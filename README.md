@@ -1,4 +1,4 @@
-# Creando una Red Social
+# ECOGRAM
 
 ## Índice
 
