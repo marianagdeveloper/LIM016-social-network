@@ -30,7 +30,6 @@ export const changeTmp = (hash) => {
             const user = userCredential.user;
             console.log('created');
             alert('Created User');
-            // ...
           })
           .catch((error) => {
             const errorCode = error.code;
