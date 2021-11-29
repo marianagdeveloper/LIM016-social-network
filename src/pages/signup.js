@@ -74,7 +74,7 @@ export default () => {
           </div> 
           <p>
           Do you already have an account?
-            <a href="#" style="color: dodgerblue">Sign In</a>.
+            <a href="#/signin" style="color: dodgerblue">Sign In</a>.
           </p>
         </div>
       </form>

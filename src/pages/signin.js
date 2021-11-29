@@ -59,7 +59,7 @@ export default () => {
             </div>
               <p>
               You do not have an account?
-                <a href="#" style="color: dodgerblue">Sign up</a>.
+                <a href="#/signup" style="color: dodgerblue">Sign up</>.
               </p>
               <p>
               Forgot your password?
