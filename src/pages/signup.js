@@ -74,7 +74,7 @@ export default () => {
 
           <p id="verify-message" class="verify-message"></p>
           <div class="clearfix">
-            <button type="submit" id="btn-welcome-signup" id="signUp" class="signupbtn">Sign Up</button>
+            <button type="submit" id="btn-welcome-signup" id="signup" class="signupbtn">Sign Up</button>
           </div>
           </div>
         </div>
