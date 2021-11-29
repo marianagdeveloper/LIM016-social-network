@@ -36,7 +36,6 @@ getDocs(colRef)
     // console.log(usuarios[0].title);
     main.innerHTML = usuarios[0].title;
   });
-  
 // .catch(err => {
 //   console.log(err.message)
 // });
