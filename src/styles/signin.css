@@ -9,7 +9,6 @@ form {
   box-shadow: 5px 5px 10px 5px rgb(25 27 28 / 60%);
   border-radius: 10px;
   margin: auto;
-  
 }
 
 .BoxLogin {
@@ -73,7 +72,12 @@ form {
 }
 
 .containerLogin {
-  margin: 20px;
+  margin:1rem;
+  display:flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
 }
 
 .inputSignIn {

@@ -4,6 +4,7 @@ import {
   auth,
   createUserWithEmailAndPassword,
 } from '../firebase/firebaseconfig.js';
+
 // Import the functions you need from the SDKs you need
 
 export const changeTmp = (hash) => {
@@ -20,6 +21,7 @@ export const changeTmp = (hash) => {
     }
     case '#/signin': {
       sectionMain.appendChild(components[id]());
+      break;
     }
     case '#/signup': {
       sectionMain.appendChild(components[id]());

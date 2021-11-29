@@ -55,8 +55,8 @@
 
 .containerSignUp {
   border: 1px solid gray;
-  height: 450px;
-  width: 300px;
+  height: 33rem;
+  width: 100%;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -68,7 +68,7 @@
 
 .inputSignUp {
   border-radius: 10px;
-  width: 220px;
+  /* width: 220px; */
   height: 30px;
   border-color: 1px solid gray;
   margin: 3%;
