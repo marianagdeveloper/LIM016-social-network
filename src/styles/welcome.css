@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+*{
+  margin: 0px;
+  font-family: Roboto;
+}
+
+/* Place text in the middle of the image */
+.hero-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ButtonBox1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.Logo1 {
+  display: flex;
+  justify-content: center;
+}
+
+.logoHome{
+  background-color: white;
+  border-radius: 150px;
+  border: 1px solid gray;
+  width: 20%;
+  margin: 30px;
+}
+
+.text-home {
+  text-align: justify;
+  font-size: 18px;
+  width: 260px;
+  margin: 20px;
+}
+
+.btn-welcome-google, .btn-welcome-signin, .btn-welcome-signup {
+  background-color: #0f647e;
+  width: 270px;
+  height: 28px;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+  padding: 10px;
+  margin: 5px;
+}
+
+.kmr {
+  margin: 40px;
+  font-weight: bolder;
+}
+
+.btn-welcome-google:hover, .btn-welcome-signin:hover, .btn-welcome-signup:hover {
+  opacity: 1;
+}
+
+@media screen and (min-width: 500px) and (max-width: 800px) {
+  .btn-welcome-google, .btn-welcome-signin, .btn-welcome-signup {
+    width: 250px;
+  }
+  .text-home {
+    width: 240px;
+    margin: 18px;
+  }
+}
+
+@media screen and (min-width: 204px) and (max-width: 499px) {
+  .btn-welcome-google, .btn-welcome-signin, .btn-welcome-signup {
+    width: 200px;
+  }
+  .text-home {
+    width: 190px;
+    margin: 17px;
+  }
+}
+
+@media screen and (min-width: 73px) and (max-width: 203px) {
+  .btn-welcome-google, .btn-welcome-signin, .btn-welcome-signup {
+    width: 150px;
+  }
+  .text-home {
+    width: 140px;
+    margin: 16px;
+  }
+}
