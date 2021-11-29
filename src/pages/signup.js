@@ -18,7 +18,7 @@ export default () => {
     
       <form>
         <div class="containerSignUp">
-          <h1><br><br>Sign Up</h1>
+          <h1>Sign Up</h1>
           <hr />
           <div class="containerLogin">
           <label for="name"><b>Name</b></label>
@@ -51,16 +51,6 @@ export default () => {
             required
           />
 
-          <label for="psw-repeat"><b>Repeat Password</b></label>
-          <input
-            class="inputSignUp"
-            id="passwordRepeat"
-            type="password"
-            placeholder="Repeat Password"
-            name="psw-repeat"
-            required
-          />
-
           <label>
             <input
               class="inputCheck"
@@ -80,8 +70,8 @@ export default () => {
           <p id="verify-message" class="verify-message"></p>
           <div class="clearfix">
             <button type="submit" id="btn-welcome-signup" id="signup" class="signupbtn">Sign Up</button>
-          </div>
-          </div>
+          </div><hr>
+          </div> 
           <p>
           Do you already have an account?
             <a href="#" style="color: dodgerblue">Sign In</a>.

@@ -55,7 +55,7 @@ export default () => {
             <div class="clearfix">
               <button type="submit" id="btn-signin-signin" class="Loginbtn"><a href="#/signup">Login</a></button>
               <button type="submit" id="btn-signin-google" class="LoginGooglebtn" href="#/google">Continue with Google</button>
-            </div>
+            </div><hr>
             </div>
               <p>
               You do not have an account?
