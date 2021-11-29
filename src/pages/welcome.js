@@ -1,7 +1,5 @@
-
-
 export default () => {
-    const viewHome = `
+  const viewHome = `
     <div class="hero-image">
         <div class="hero-text">
           <div class="Logo1">
@@ -13,9 +11,9 @@ export default () => {
             the preservation of our only home "🌎The Planet Earth".
           </p>
           <div class="ButtonBox1">
-            <button id="btn-welcome-google" class="btn-welcome-google" href="#/google">Continue with Google</button>
-            <button id="btn-welcome-signin" class="btn-welcome-signin" href="#/signin">Sign In</button>
-            <button id="btn-welcome-signin" class="btn-welcome-signup" href="#/signup">Sign Up</button>
+            <button id="btn-welcome-google" class="btn-welcome-google"><a href="#/google">Continue with Google</a></button>
+            <button id="btn-welcome-signin" class="btn-welcome-signin"><a href="#/signin">Sign In</a></button>
+            <button id="btn-welcome-signup" class="btn-welcome-signup"><a href="#/signup">Sign Up</a></button>
           </div>
 
           <p class="kmr">
@@ -27,8 +25,8 @@ export default () => {
 
   // <img class="image" src="http://olegif.com/bin/gifs/00/39/56.gif" alt="Conejo codeando">
 
-    const divElemt = document.createElement('div');
-    divElemt.classList.add('position')
-    divElemt.innerHTML = viewHome;
-    return divElemt;
+  const divElemt = document.createElement('div');
+  divElemt.classList.add('position');
+  divElemt.innerHTML = viewHome;
+  return divElemt;
 };

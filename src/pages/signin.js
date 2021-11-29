@@ -48,7 +48,7 @@ export default () => {
             </label>
 
             <div class="clearfix">
-              <button type="submit" id="btn-signin-signin" href="#/signin" class="Loginbtn">Login</button>
+              <button type="submit" id="btn-signin-signin" class="Loginbtn"><a href="#/signup">Login</a></button>
               <button type="submit" id="btn-signin-google" class="Loginbtn" href="#/google">Continue with Google</button>
             </div>
             </div>
@@ -61,7 +61,7 @@ export default () => {
   `;
 
   const divElemt = document.createElement('div');
-  divElemt.classList.add('position')
+  divElemt.classList.add('position');
   divElemt.innerHTML = viewAccessories;
   return divElemt;
 };
