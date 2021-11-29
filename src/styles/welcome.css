@@ -1,9 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
 
-* {
-  margin: 0px;
-  font-family: Roboto;
-}
+/************** GENERAL STYLE **************/
 
 body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.87)),
@@ -16,6 +13,26 @@ a {
   text-decoration: none;
   color: white;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: rgba(0, 0, 0, 0.993);
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.795);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2db36075;
+  border-radius: 10px;
+}
+* {
+  margin: 0px;
+  font-family: Roboto;
+}
+
+/************** PAGE STYLE **************/
 
 /* Place text in the middle of the image */
 .hero-text {
@@ -45,24 +62,40 @@ a {
 
 .text-home {
   text-align: justify;
-  font-size: 18px;
+  font-size: small;
   width: 260px;
   margin: 20px;
+  text-align: center;
 }
 
-.btn-welcome-google,
-.btn-welcome-signin,
-.btn-welcome-signup {
-  background-color: gray;
+.btn-welcome-google{
+  background-color: rgb(194, 53, 53);
   width: 270px;
-  height: 28px;
+  height: 100%;
   border-radius: 10px;
   color: white;
   border: none;
   cursor: pointer;
   opacity: 0.9;
-  padding: 10px;
-  margin: 5px;
+  padding: 4%;
+  margin: 2%;
+  box-shadow: 3px 3px 5px 3px rgb(25 27 28 / 91%)
+
+}
+
+.btn-welcome-signin,
+.btn-welcome-signup {
+  background-color: rgb(44, 45, 46);
+  width: 270px;
+  height: 100%;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+  padding: 4%;
+  margin: 2%;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%)
 }
 
 .kmr {
@@ -73,7 +106,7 @@ a {
 .btn-welcome-google:hover,
 .btn-welcome-signin:hover,
 .btn-welcome-signup:hover {
-  opacity: 1;
+  opacity: 8;
 }
 
 @media screen and (min-width: 500px) and (max-width: 800px) {

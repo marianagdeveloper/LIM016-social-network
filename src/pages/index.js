@@ -1,16 +1,15 @@
 import Signin from './signin.js';
 import Signup from './signup.js';
-import Home from './welcome.js';
+// import Home from './welcome.js';
 import Different from './404.js';
-import welcome from './welcome.js';
-
+import Welcome from './welcome.js';
 
 const components = {
-  welcome: welcome,
+  welcome: Welcome,
   signin: Signin,
   signup: Signup,
-  home: Home,
+  // home: Home,
   different: Different,
-}
+};
 
-export { components }
+export { components };
