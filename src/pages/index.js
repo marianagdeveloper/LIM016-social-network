@@ -6,11 +6,11 @@ import welcome from './welcome.js';
 
 
 const components = {
-    welcome: welcome,
-    signin: Signin,
-    signup: Signup,
-    home: Home,
-    different: Different
+  welcome: welcome,
+  signin: Signin,
+  signup: Signup,
+  home: Home,
+  different: Different,
 }
 
 export { components }

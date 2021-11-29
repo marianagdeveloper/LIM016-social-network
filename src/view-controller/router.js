@@ -1,5 +1,5 @@
 import { components } from '../pages/index.js';
-import { app, auth, createUserWithEmailAndPassword } from '../firebase/firebaseconfig.js';
+import { auth, createUserWithEmailAndPassword } from '../firebase/firebaseconfig.js';
 // Import the functions you need from the SDKs you need
 
 export const changeTmp = (hash) => {
@@ -35,11 +35,11 @@ export const changeTmp = (hash) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             // ..
-            console.log(`Notification:${errorCode  }${errorMessage}`);
+            console.log(`Notification:${errorCode}${errorMessage}`);
             alert(`Notification: ${errorMessage}`);
           });
       });
-      return; 
+      return;
     }
     case '#/home': {
       return sectionMain.appendChild(components.home());
