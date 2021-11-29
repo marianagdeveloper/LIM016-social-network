@@ -2,7 +2,6 @@ import { components } from '../pages/index.js';
 import { app, auth, createUserWithEmailAndPassword } from '../firebase/firebaseconfig.js';
 // Import the functions you need from the SDKs you need
 
-
 export const changeTmp = (hash) => {
   const id = hash.split('/')[1];
   const sectionMain = document.getElementById('container');
@@ -17,6 +16,7 @@ export const changeTmp = (hash) => {
     }
     case '#/signin': {
       sectionMain.appendChild(components[id]());
+      break;
     }
     case '#/signup': {
       sectionMain.appendChild(components[id]());
@@ -39,8 +39,7 @@ export const changeTmp = (hash) => {
             alert(`Notification: ${errorMessage}`);
           });
       });
-      return;
-      
+      return; 
     }
     case '#/home': {
       return sectionMain.appendChild(components.home());
