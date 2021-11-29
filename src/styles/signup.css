@@ -18,6 +18,13 @@
   align-items: stretch; 
 }
 
+@media (max-width: 768px) {
+  .BoxSignUp {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .BoxWelcome2 {
   justify-self: stretch; 
   align-self: stretch; 

@@ -25,6 +25,13 @@ form {
   align-items: stretch; 
 }
 
+@media (max-width: 768px) {
+  .BoxLogin {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .BoxWelcome1 {
   justify-self: stretch; 
   align-self: stretch; 

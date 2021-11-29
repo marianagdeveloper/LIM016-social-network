@@ -1,6 +1,9 @@
 export default () => {
   const viewDifferent = `
   <div class='BoxErrorMon'>
+    <div class="Logo1">
+      <img src="/src/img/Logos/LogoG1.png" class="logoSignIn" alt="logoKMS" />
+    </div>
     <div class='BoxErrorSon'>
       <h1>404 Error Page</h1>
       <p class='zoom-area'>This page has a loading error. Please try again later or notify ECOGRAM.</p>

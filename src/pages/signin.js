@@ -63,7 +63,7 @@ export default () => {
               </p>
               <p>
               Forgot your password?
-                <a href="#" style="color: dodgerblue">Get it back here</a>.
+                <a href="#/404" style="color: dodgerblue">Get it back here</a>.
               </p>
             </div>
             
