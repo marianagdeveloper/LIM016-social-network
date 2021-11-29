@@ -1,8 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
 
-*{
+* {
   margin: 0px;
   font-family: Roboto;
+}
+
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.87)),
+    url("/src/img/Photos/Gif1.gif");
+  color: beige;
+  background-size: cover;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }
 
 /* Place text in the middle of the image */
@@ -23,10 +35,10 @@
   justify-content: center;
 }
 
-.logoHome{
-  background-color: white;
+.logoHome {
+  background-color: rgba(12, 12, 12, 0.705);
   border-radius: 150px;
-  border: 1px solid gray;
+  border: 1px solid rgba(128, 128, 128, 0);
   width: 20%;
   margin: 30px;
 }
@@ -38,8 +50,10 @@
   margin: 20px;
 }
 
-.btn-welcome-google, .btn-welcome-signin, .btn-welcome-signup {
-  background-color: #b0dae7;
+.btn-welcome-google,
+.btn-welcome-signin,
+.btn-welcome-signup {
+  background-color: gray;
   width: 270px;
   height: 28px;
   border-radius: 10px;
@@ -56,12 +70,16 @@
   font-weight: bolder;
 }
 
-.btn-welcome-google:hover, .btn-welcome-signin:hover, .btn-welcome-signup:hover {
+.btn-welcome-google:hover,
+.btn-welcome-signin:hover,
+.btn-welcome-signup:hover {
   opacity: 1;
 }
 
 @media screen and (min-width: 500px) and (max-width: 800px) {
-  .btn-welcome-google, .btn-welcome-signin, .btn-welcome-signup {
+  .btn-welcome-google,
+  .btn-welcome-signin,
+  .btn-welcome-signup {
     width: 250px;
   }
   .text-home {
@@ -71,7 +89,9 @@
 }
 
 @media screen and (min-width: 204px) and (max-width: 499px) {
-  .btn-welcome-google, .btn-welcome-signin, .btn-welcome-signup {
+  .btn-welcome-google,
+  .btn-welcome-signin,
+  .btn-welcome-signup {
     width: 200px;
   }
   .text-home {
@@ -81,7 +101,9 @@
 }
 
 @media screen and (min-width: 73px) and (max-width: 203px) {
-  .btn-welcome-google, .btn-welcome-signin, .btn-welcome-signup {
+  .btn-welcome-google,
+  .btn-welcome-signin,
+  .btn-welcome-signup {
     width: 150px;
   }
   .text-home {
