@@ -51,6 +51,7 @@ export const changeTmp = (hash) => {
             // Signed in
             const user = userCredential.user;
             console.log("created");
+            alert("Created User")
             // ...
           })
           .catch((error) => {
