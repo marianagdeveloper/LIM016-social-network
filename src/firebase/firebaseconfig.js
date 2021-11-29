@@ -1,3 +1,4 @@
+
 // eslint-disable-next-line import/no-unresolved
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
 // import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
@@ -5,6 +6,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
 // eslint-disable-next-line import/no-unresolved
+  
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 // TODO: Add SDKs for Firebase products that you want to use

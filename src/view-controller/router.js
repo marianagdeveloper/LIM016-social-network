@@ -1,5 +1,10 @@
 import { components } from '../pages/index.js';
-import { app, auth, createUserWithEmailAndPassword } from '../firebase/firebaseconfig.js';
+import {
+  app,
+  auth,
+  createUserWithEmailAndPassword,
+} from '../firebase/firebaseconfig.js';
+
 // Import the functions you need from the SDKs you need
 
 export const changeTmp = (hash) => {
@@ -20,26 +25,29 @@ export const changeTmp = (hash) => {
     }
     case '#/signup': {
       sectionMain.appendChild(components[id]());
-      document.getElementById('btn-welcome-signup').addEventListener('click', () => {
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+      document
+        .getElementById('btn-welcome-signup')
+        .addEventListener('click', function () {
+          const email = document.getElementById('email').value;
+          const password = document.getElementById('password').value;
 
-        createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            console.log('created');
-            alert('Created User');
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
-            console.log(`Notification:${errorCode  }${errorMessage}`);
-            alert(`Notification: ${errorMessage}`);
-          });
-      });
-      return; 
+          createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+              // Signed in
+              const user = userCredential.user;
+              console.log('created');
+              alert('Created User');
+              // ...
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              // ..
+              console.log('Notification:' + errorCode + errorMessage);
+              alert('Notification: ' + errorMessage);
+            });
+        });
+      return;
     }
     case '#/home': {
       return sectionMain.appendChild(components.home());

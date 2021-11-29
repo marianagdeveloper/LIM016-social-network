@@ -5,37 +5,52 @@
   font-family: Roboto;
 }
 
-
 .BoxSignUp {
-  display: flex;
-  justify-content: space-evenly;
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "BoxWelcome1 BoxFormLogin"; 
+  justify-content: stretch; 
+  align-content: stretch; 
+  justify-items: stretch; 
+  align-items: stretch; 
 }
 
-.BoxWelcome1 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* background-color: gray; */
-  width: 400px;
+@media (max-width: 768px) {
+  .BoxSignUp {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.BoxWelcome2 {
+  justify-self: stretch; 
+  align-self: stretch; 
+  grid-area: BoxWelcome1; 
+  width: 100%;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .BoxFormSignUp {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(18, 44, 25, 0.801);
-  width: 400px;
+  justify-self: stretch; 
+  align-self: stretch; 
+  grid-area: BoxFormLogin; 
+  background-color: rgb(7 47 18 / 80%);
   height: 100vh;
+  display: flex;
 }
 
 .logoSignIn {
-  background-color: #073606c4;
-  border-radius: 150px;
-  border: 1px solid gray;
-  width: 50%;
-  margin: 30px;
+  background-color: #000000c4;
+  border-radius: 100%;
+  border: 1px solid rgba(128, 128, 128, 0);
+  width: 30%;
 }
 
 .containerSignUp {
@@ -45,7 +60,10 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 30px;
+  align-items: stretch;
+  justify-content: center;
+  text-align: center;
 }
 
 .inputSignUp {
@@ -53,8 +71,7 @@
   /* width: 220px; */
   height: 30px;
   border-color: 1px solid gray;
-  margin: 0.4rem;
-  padding: 1rem;
+  margin: 3%;
 }
 
 .signupbtn {
@@ -66,6 +83,24 @@
   border-radius: 10px;
   margin: 5px;
   color: white;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%)
+}
+
+.LoginGooglebtn {
+  background-color: rgb(194, 53, 53);
+  width: 150px;
+  height: 30px;
+  align-items: center;
+  border-radius: 10px;
+  margin: 5px;
+  color: white;
+  border: none;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%)
+}
+
+.LoginGooglebtn:hover,
+.signupbtn:hover {
+  opacity: 8;
 }
 
 .clearfix {
@@ -73,4 +108,5 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  margin: 5%;
 }

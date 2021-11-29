@@ -1,19 +1,24 @@
 export default () => {
   const viewCatalogue = `
   <div class="BoxSignUp">
-    <div class="BoxWelcome1">
+    <div class="BoxWelcome2">
         <div class="Logo1">
             <img src="/src/img/Logos/LogoG1.png" class="logoSignIn" alt="logoKMS" />
         </div>
+        <br>
+        <p class="text-home">
+            It is a social network focused on creating a community interested in
+            the preservation of our only home "🌎The Planet Earth".
+          </p>
         <p class="kmr">
             KMR
         </p>
     </div>
     <div class="BoxFormSignUp">
+    
       <form>
         <div class="containerSignUp">
           <h1>Sign Up</h1>
-          <p>Please fill in this form to create an account.</p>
           <hr />
           <div class="containerLogin">
           <label for="name"><b>Name</b></label>
@@ -46,16 +51,6 @@ export default () => {
             required
           />
 
-          <label for="psw-repeat"><b>Repeat Password</b></label>
-          <input
-            class="inputSignUp"
-            id="passwordRepeat"
-            type="password"
-            placeholder="Repeat Password"
-            name="psw-repeat"
-            required
-          />
-
           <label>
             <input
               class="inputCheck"
@@ -75,16 +70,20 @@ export default () => {
           <p id="verify-message" class="verify-message"></p>
           <div class="clearfix">
             <button type="submit" id="btn-welcome-signup" id="signup" class="signupbtn">Sign Up</button>
-          </div>
-          </div>
+          </div><hr>
+          </div> 
+          <p>
+          Do you already have an account?
+            <a href="#/signin" style="color: dodgerblue">Sign In</a>.
+          </p>
         </div>
       </form>
     </div>
   </div>
   `;
   // <a type="submit" href="#/home">Send</a>
-  const divElemt = document.createElement("div");
-  divElemt.classList.add("position");
+  const divElemt = document.createElement('div');
+  divElemt.classList.add('position');
   divElemt.innerHTML = viewCatalogue;
 
   return divElemt;

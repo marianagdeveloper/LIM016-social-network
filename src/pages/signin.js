@@ -6,6 +6,11 @@ export default () => {
         <div class="Logo1">
             <img src="/src/img/Logos/LogoG1.png" class="logoSignIn" alt="logoKMS" />
         </div>
+        <br>
+        <p class="text-home">
+            It is a social network focused on creating a community interested in
+            the preservation of our only home "🌎The Planet Earth".
+          </p>
         <p class="kmr">
             KMR
         </p>
@@ -49,10 +54,19 @@ export default () => {
 
             <div class="clearfix">
               <button type="submit" id="btn-signin-signin" class="Loginbtn"><a href="#/signup">Login</a></button>
-              <button type="submit" id="btn-signin-google" class="Loginbtn" href="#/google">Continue with Google</button>
+              <button type="submit" id="btn-signin-google" class="LoginGooglebtn" href="#/google">Continue with Google</button>
+            </div><hr>
             </div>
+              <p>
+              You do not have an account?
+                <a href="#/signup" style="color: dodgerblue">Sign up</>.
+              </p>
+              <p>
+              Forgot your password?
+                <a href="#/404" style="color: dodgerblue">Get it back here</a>.
+              </p>
             </div>
-            </div>
+            
           </div>
         </form>
       </div>
