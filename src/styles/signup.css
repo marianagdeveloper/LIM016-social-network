@@ -25,13 +25,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: rgba(18, 44, 25, 0.801);
   width: 400px;
   height: 100vh;
 }
 
 .logoSignIn {
-  background-color: white;
+  background-color: #073606c4;
   border-radius: 150px;
   border: 1px solid gray;
   width: 50%;

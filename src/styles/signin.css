@@ -5,6 +5,11 @@
   font-family: Roboto;
 }
 
+form {
+  box-shadow: 3px 3px 18px 3px #4b86ade8;
+  border-radius: 10px;
+}
+
 .BoxLogin {
   display: flex;
   justify-content: space-evenly;
@@ -24,13 +29,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: rgba(18, 44, 25, 0.801);
   width: 400px;
   height: 100vh;
 }
 
 .logoSignIn {
-  background-color: white;
+  background-color: #073606c4;
   border-radius: 150px;
   width: 50%;
   margin: 30px;
