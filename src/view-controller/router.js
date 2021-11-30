@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import { components } from '../pages/index.js';
-import { auth, createUserWithEmailAndPassword } from '../../firebase/firebaseconfig.js';
+import { auth, createUserWithEmailAndPassword } from '../utils/firebaseconfig.js';
 
 export const changeTmp = (hash) => {
   const id = hash.split('/')[1];
