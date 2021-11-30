@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 import { components } from '../pages/index.js';
-import { auth, createUserWithEmailAndPassword } from '../../firebase/firebaseconfig.js';
+// eslint-disable-next-line import/no-unresolved
+import { auth, createUserWithEmailAndPassword } from '../utils/firebaseconfig.js';
 
 export const changeTmp = (hash) => {
   const id = hash.split('/')[1];
@@ -29,13 +30,17 @@ export const changeTmp = (hash) => {
           createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
               const user = userCredential.user;
+              // eslint-disable-next-line no-console
               console.log('created');
+              // eslint-disable-next-line no-alert
               alert(`Created User ${user}`);
             })
             .catch((error) => {
               const errorCode = error.code;
               const errorMessage = error.message;
+              // eslint-disable-next-line no-console
               console.log(`Notification:${errorCode}${errorMessage}`);
+              // eslint-disable-next-line no-alert
               alert(`Notification: ${errorMessage}`);
             });
         });
