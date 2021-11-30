@@ -1,17 +1,18 @@
-import { app } from './firebaseconfig';
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithRedirect,
-  getRedirectResult,
+// import { app } from './firebaseconfig';
+// import {
+//   getAuth,
+//   createUserWithEmailAndPassword,
+//   signInWithEmailAndPassword,
+//   GoogleAuthProvider,
+//   signInWithRedirect,
+//   getRedirectResult,
 
-} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
+// } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
-const auth = getAuth(app);
+// const auth = getAuth(app);
 
-// export const createUser = (email, password) => createUserWithEmailAndPassword(auth, email, password)
+// export const createUser = (email, password) => createUserWithEmailAndPassword
+// (auth, email, password)
 //   .then((userCredential) => { // aquí en el then debería ir lo que sucede luego de registrarse
 //     // Signed in
 //     const user = userCredential.user;
@@ -25,8 +26,6 @@ const auth = getAuth(app);
 //     console.log(errorMessage);
 //     // ..
 //   });
-
-
 //   // Método para loguear un usuario ya registrado
 
 // export const signIn = (email, password) => signInWithEmailAndPassword(auth, email, password)
@@ -48,8 +47,6 @@ const auth = getAuth(app);
 // export const googleSignIn = () => {
 // signInWithRedirect(auth, provider);
 // };
-
-
 // export const redirection = () => {
 //   getRedirectResult(auth)
 //     .then((result) => {

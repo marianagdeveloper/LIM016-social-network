@@ -6,61 +6,92 @@
 }
 
 form {
-  box-shadow: 3px 3px 18px 3px #4b86ade8;
+  box-shadow: 5px 5px 10px 5px rgb(25 27 28 / 60%);
   border-radius: 10px;
+  margin: auto;
 }
 
 .BoxLogin {
-  display: flex;
-  justify-content: space-evenly;
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "BoxWelcome1 BoxFormLogin"; 
+  justify-content: stretch; 
+  align-content: stretch; 
+  justify-items: stretch; 
+  align-items: stretch; 
+}
+
+@media (max-width: 768px) {
+  .BoxLogin {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .BoxWelcome1 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* background-color: gray; */
-  width: 400px;
+  justify-self: stretch; 
+  align-self: stretch; 
+  grid-area: BoxWelcome1; 
+  width: 100%;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .BoxFormLogin {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(18, 44, 25, 0.801);
-  width: 400px;
+  justify-self: stretch; 
+  align-self: stretch; 
+  grid-area: BoxFormLogin; 
+  background-color: rgb(7 47 18 / 80%);
   height: 100vh;
+  display: flex;
 }
 
 .logoSignIn {
-  background-color: #073606c4;
-  border-radius: 150px;
-  width: 50%;
-  margin: 30px;
+  background-color: #000000c4;
+  border-radius: 100%;
+  border: 1px solid rgba(128, 128, 128, 0);
+  width: 30%;
 }
 
 .containerSignIn {
   border: 1px solid gray;
-  height: 300px;
-  width: 250px;
+  width: 24rem;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   padding: 30px;
+  align-items: stretch;
+  justify-content: center;
+  text-align: center;
 }
 
 .containerLogin {
-  margin: 20px;
+  margin:1rem;
+  display:flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+.containerLogin label {
+ text-align: left;
+ padding-left: 0.4rem;
 }
 
 .inputSignIn {
   border-radius: 10px;
-  width: 200px;
-  height: 30px;
+  width: 18rem;
+  height: 1rem;
   border-color: 1px solid gray;
-  margin: 5px;
+  margin: 0.5rem 0.3rem;
+  padding: 1rem;
 }
 
 .Loginbtn {
@@ -72,6 +103,11 @@ form {
   border-radius: 10px;
   margin: 5px;
   color: white;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%)
+}
+
+.Loginbtn:hover {
+  opacity: 8;
 }
 
 .clearfix {
@@ -79,4 +115,15 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+}
+
+@media (max-width: 360px) {
+  .inputSignIn {
+    border-radius: 10px;
+    width: 14rem;
+    height: 1rem;
+    border-color: 1px solid gray;
+    margin: 0.5rem 0.3rem;
+    padding: 1rem;
+  }
 }
