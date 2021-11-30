@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
 
-*{
+* {
   margin: 0px;
   font-family: Roboto;
 }
@@ -12,16 +12,15 @@ form {
 }
 
 .BoxLogin {
-  display: grid; 
-  grid-template-columns: 1fr 1fr; 
-  grid-template-rows: 1fr; 
-  gap: 0px 0px; 
-  grid-template-areas: 
-    "BoxWelcome1 BoxFormLogin"; 
-  justify-content: stretch; 
-  align-content: stretch; 
-  justify-items: stretch; 
-  align-items: stretch; 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas: "BoxWelcome1 BoxFormLogin";
+  justify-content: stretch;
+  align-content: stretch;
+  justify-items: stretch;
+  align-items: stretch;
 }
 
 @media (max-width: 768px) {
@@ -32,9 +31,9 @@ form {
 }
 
 .BoxWelcome1 {
-  justify-self: stretch; 
-  align-self: stretch; 
-  grid-area: BoxWelcome1; 
+  justify-self: stretch;
+  align-self: stretch;
+  grid-area: BoxWelcome1;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -44,9 +43,9 @@ form {
 }
 
 .BoxFormLogin {
-  justify-self: stretch; 
-  align-self: stretch; 
-  grid-area: BoxFormLogin; 
+  justify-self: stretch;
+  align-self: stretch;
+  grid-area: BoxFormLogin;
   background-color: rgb(7 47 18 / 80%);
   height: 100vh;
   display: flex;
@@ -72,8 +71,8 @@ form {
 }
 
 .containerLogin {
-  margin:1rem;
-  display:flex;
+  margin: 1rem;
+  display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-content: center;
@@ -81,8 +80,8 @@ form {
 }
 
 .containerLogin label {
- text-align: left;
- padding-left: 0.4rem;
+  text-align: left;
+  padding-left: 0.4rem;
 }
 
 .inputSignIn {
@@ -103,7 +102,7 @@ form {
   border-radius: 10px;
   margin: 5px;
   color: white;
-  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%)
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
 .Loginbtn:hover {

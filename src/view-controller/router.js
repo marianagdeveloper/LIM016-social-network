@@ -1,7 +1,6 @@
 /* eslint-disable consistent-return */
 import { components } from '../pages/index.js';
 import { auth, createUserWithEmailAndPassword } from '../../firebase/firebaseconfig.js';
-// Import the functions you need from the SDKs you need
 
 export const changeTmp = (hash) => {
   const id = hash.split('/')[1];
@@ -29,7 +28,6 @@ export const changeTmp = (hash) => {
 
           createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-            // Signed in
               const user = userCredential.user;
               console.log('created');
               alert(`Created User ${user}`);
@@ -37,27 +35,10 @@ export const changeTmp = (hash) => {
             .catch((error) => {
               const errorCode = error.code;
               const errorMessage = error.message;
-              // ..
               console.log(`Notification:${errorCode}${errorMessage}`);
               alert(`Notification: ${errorMessage}`);
             });
         });
-      //   createUserWithEmailAndPassword(auth, email, password)
-      //     .then((userCredential) => {
-      //       // Signed in
-      //       const user = userCredential.user;
-      //       console.log('created');
-      //       alert('Created User');
-      //       // ...
-      //     })
-      //     .catch((error) => {
-      //       const errorCode = error.code;
-      //       const errorMessage = error.message;
-      //       // ..
-      //       console.log('Notification:' + errorCode + errorMessage);
-      //       alert('Notification: ' + errorMessage);
-      //     });
-      // });
       return;
     }
     case '#/home': {
