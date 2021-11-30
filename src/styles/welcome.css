@@ -61,11 +61,11 @@ a {
 }
 
 .text-home {
-  text-align: justify;
-  font-size: small;
+  font-size: 1rem;
   width: 260px;
   margin: 20px;
   text-align: center;
+  font-weight: bold;
 }
 
 .btn-welcome-google{

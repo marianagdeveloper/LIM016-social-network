@@ -56,7 +56,7 @@
 .containerSignUp {
   border: 1px solid gray;
   height: 33rem;
-  width: 100%;
+  width: 24rem;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -68,10 +68,11 @@
 
 .inputSignUp {
   border-radius: 10px;
-  /* width: 220px; */
-  height: 30px;
+  width: 18rem;
+  height: 1rem;
   border-color: 1px solid gray;
-  margin: 3%;
+  margin: 0.5rem 0.3rem;
+  padding: 1rem;
 }
 
 .signupbtn {
@@ -109,4 +110,19 @@
   align-items: center;
   justify-content: space-evenly;
   margin: 5%;
+}
+
+@media (max-width: 360px) {
+  .containerSignIn {
+    border: 1px solid gray;
+    width: 18rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    align-items: stretch;
+    justify-content: center;
+    text-align: center;
+  }
+
 }

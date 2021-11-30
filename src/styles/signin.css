@@ -61,7 +61,7 @@ form {
 
 .containerSignIn {
   border: 1px solid gray;
-  width: 250px;
+  width: 24rem;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -80,12 +80,18 @@ form {
   justify-content: center;
 }
 
+.containerLogin label {
+ text-align: left;
+ padding-left: 0.4rem;
+}
+
 .inputSignIn {
   border-radius: 10px;
-  width: 200px;
-  height: 30px;
+  width: 18rem;
+  height: 1rem;
   border-color: 1px solid gray;
-  margin: 5px;
+  margin: 0.5rem 0.3rem;
+  padding: 1rem;
 }
 
 .Loginbtn {
@@ -109,4 +115,15 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+}
+
+@media (max-width: 360px) {
+  .inputSignIn {
+    border-radius: 10px;
+    width: 14rem;
+    height: 1rem;
+    border-color: 1px solid gray;
+    margin: 0.5rem 0.3rem;
+    padding: 1rem;
+  }
 }

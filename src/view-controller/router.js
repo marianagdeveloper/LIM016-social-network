@@ -1,10 +1,6 @@
+/* eslint-disable consistent-return */
 import { components } from '../pages/index.js';
-import {
-  app,
-  auth,
-  createUserWithEmailAndPassword,
-} from '../firebase/firebaseconfig.js';
-
+import { auth, createUserWithEmailAndPassword } from '../firebase/firebaseconfig.js';
 // Import the functions you need from the SDKs you need
 
 export const changeTmp = (hash) => {
@@ -27,26 +23,41 @@ export const changeTmp = (hash) => {
       sectionMain.appendChild(components[id]());
       document
         .getElementById('btn-welcome-signup')
-        .addEventListener('click', function () {
+        .addEventListener('click', () => {
           const email = document.getElementById('email').value;
           const password = document.getElementById('password').value;
 
           createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-              // Signed in
+            // Signed in
               const user = userCredential.user;
               console.log('created');
-              alert('Created User');
-              // ...
+              alert(`Created User ${user}`);
             })
             .catch((error) => {
               const errorCode = error.code;
               const errorMessage = error.message;
               // ..
-              console.log('Notification:' + errorCode + errorMessage);
-              alert('Notification: ' + errorMessage);
+              console.log(`Notification:${errorCode}${errorMessage}`);
+              alert(`Notification: ${errorMessage}`);
             });
         });
+      //   createUserWithEmailAndPassword(auth, email, password)
+      //     .then((userCredential) => {
+      //       // Signed in
+      //       const user = userCredential.user;
+      //       console.log('created');
+      //       alert('Created User');
+      //       // ...
+      //     })
+      //     .catch((error) => {
+      //       const errorCode = error.code;
+      //       const errorMessage = error.message;
+      //       // ..
+      //       console.log('Notification:' + errorCode + errorMessage);
+      //       alert('Notification: ' + errorMessage);
+      //     });
+      // });
       return;
     }
     case '#/home': {
