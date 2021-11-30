@@ -3,7 +3,7 @@ export default () => {
   <div class="BoxSignUp">
     <div class="BoxWelcome2">
         <div class="Logo1">
-            <img src="/src/img/Logos/LogoG1.png" class="logoSignIn" alt="logoKMS" />
+            <img src="../img/Logos/LogoG1.png" class="logoSignIn" alt="logoKMS" />
         </div>
         <br>
         <p class="text-home">
