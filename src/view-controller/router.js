@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import { components } from '../pages/index.js';
-import { auth, createUserWithEmailAndPassword } from '../firebase/firebaseconfig.js';
+import { auth, createUserWithEmailAndPassword } from '../../firebase/firebaseconfig.js';
 // Import the functions you need from the SDKs you need
 
 export const changeTmp = (hash) => {
