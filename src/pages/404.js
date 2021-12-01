@@ -2,7 +2,7 @@ export default () => {
   const viewDifferent = `
   <div class='BoxErrorMon'>
     <div class="Logo1">
-      <img src="../img/Logos/LogoG1.png" class="logoSignIn" alt="logoKMS" />
+      <img src="img/Logos/LogoG1.png" class="logoSignIn" alt="logoKMS" />
     </div>
     <div class='BoxErrorSon'>
       <h1>404 Error Page</h1>
