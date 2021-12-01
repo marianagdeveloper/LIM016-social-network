@@ -2,7 +2,7 @@
 /* eslint-disable consistent-return */
 import { components } from '../pages/index.js';
 // eslint-disable-next-line import/no-unresolved
-import { auth, provider, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, getRedirectResult, signInWithRedirect } from '../utils/firebaseconfig.js';
+import { auth, provider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, getRedirectResult, signInWithRedirect } from '../utils/firebaseconfig.js';
 
 export const changeTmp = (hash) => {
   const id = hash.split('/')[1];
@@ -20,27 +20,27 @@ export const changeTmp = (hash) => {
     case '#/signin': {
       sectionMain.appendChild(components[id]());
       document
+        .getElementById('btn-signin-signin')
+        .addEventListener('click', () => {
+          const email = document.getElementById('email').value;
+          const password = document.getElementById('password').value;
+          signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+              // Signed in
+              const user = userCredential.user;
+              console.log(user);
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.log("error en signin" + errorMessage);
+            });
+        });
+
+      //Sign In with Google
+      document
         .getElementById('btn-signin-google')
         .addEventListener('click', () => {
-          // signInWithRedirect(auth, provider);
-          // getRedirectResult(auth)
-          //   .then((result) => {
-          //     // This gives you a Google Access Token. You can use it to access Google APIs.
-          //     const credential = GoogleAuthProvider.credentialFromResult(result);
-          //     const token = credential.accessToken;
-
-          //     // The signed-in user info.
-          //     const user = result.user;
-          //   }).catch((error) => {
-          //     // Handle Errors here.
-          //     const errorCode = error.code;
-          //     const errorMessage = error.message;
-          //     // The email of the user's account used.
-          //     const email = error.email;
-          //     // The AuthCredential type that was used.
-          //     const credential = GoogleAuthProvider.credentialFromError(error);
-          //     // ...
-          //   });
           signInWithPopup(auth, provider)
             .then((result) => {
               // This gives you a Google Access Token. You can use it to access the Google API.
@@ -70,9 +70,9 @@ export const changeTmp = (hash) => {
       document
         .getElementById('btn-welcome-signup')
         .addEventListener('click', () => {
+          // alert('click btn-welcome-signup');
           const email = document.getElementById('email').value;
           const password = document.getElementById('password').value;
-
           createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
               const user = userCredential.user;
