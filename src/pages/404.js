@@ -1,5 +1,4 @@
 export default () => {
-  
   const viewDifferent = `
   <div class='BoxErrorMon'>
     <div class="Logo1">
