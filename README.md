@@ -1,4 +1,4 @@
-# ECOGRAM Environmental Social Network  
+# ECOGRAM   
 
 ## Índice
 
