@@ -1,0 +1,144 @@
+/************** GENERAL STYLE **************/
+* {
+  margin: 0px;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.87)),
+    url("../img/Photos/Gif1.gif");
+  color: beige;
+  background-size: cover;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: rgba(0, 0, 0, 0.993);
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.795);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2db36075;
+  border-radius: 10px;
+}
+
+/************** PAGE STYLE **************/
+
+/* Place text in the middle of the image */
+.hero-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ButtonBox1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.Logo1 {
+  display: flex;
+  justify-content: center;
+}
+
+.logoHome {
+  background-color: rgba(12, 12, 12, 0.705);
+  border-radius: 150px;
+  border: 1px solid rgba(128, 128, 128, 0);
+  width: 20%;
+  margin: 30px;
+}
+
+.text-home {
+  font-size: 1rem;
+  width: 260px;
+  margin: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.btn-welcome-google{
+  background-color: rgb(194, 53, 53);
+  width: 270px;
+  height: 100%;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+  padding: 4%;
+  margin: 2%;
+  box-shadow: 3px 3px 5px 3px rgb(25 27 28 / 91%)
+
+}
+
+.btn-welcome-signin,
+.btn-welcome-signup {
+  background-color: rgb(44, 45, 46);
+  width: 270px;
+  height: 100%;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+  padding: 4%;
+  margin: 2%;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%)
+}
+
+.kmr {
+  margin: 40px;
+  font-weight: bolder;
+}
+
+.btn-welcome-google:hover,
+.btn-welcome-signin:hover,
+.btn-welcome-signup:hover {
+  opacity: 8;
+}
+
+@media screen and (min-width: 500px) and (max-width: 800px) {
+  .btn-welcome-google,
+  .btn-welcome-signin,
+  .btn-welcome-signup {
+    width: 250px;
+  }
+  .text-home {
+    width: 240px;
+    margin: 18px;
+  }
+}
+
+@media screen and (min-width: 204px) and (max-width: 499px) {
+  .btn-welcome-google,
+  .btn-welcome-signin,
+  .btn-welcome-signup {
+    width: 200px;
+  }
+  .text-home {
+    width: 190px;
+    margin: 17px;
+  }
+}
+
+@media screen and (min-width: 73px) and (max-width: 203px) {
+  .btn-welcome-google,
+  .btn-welcome-signin,
+  .btn-welcome-signup {
+    width: 150px;
+  }
+  .text-home {
+    width: 140px;
+    margin: 16px;
+  }
+}

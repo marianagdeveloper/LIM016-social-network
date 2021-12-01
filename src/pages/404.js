@@ -1,12 +1,24 @@
 export default () => {
-    const viewDifferent = `
-            <h2>404</h2>
-            <h1>Página no encontrada</h1>
-            <p>El archivo especificado no se encontró en este sitio web. Por favor, compruebe la URL para errores y vuelva a intentarlo.</p>
-          `;
+  
+  const viewDifferent = `
+  <div class='BoxErrorMon'>
+    <div class="Logo1">
+      <img src="../img/Logos/LogoG1.png" class="logoSignIn" alt="logoKMS" />
+    </div>
+    <div class='BoxErrorSon'>
+      <h1>404 Error Page</h1>
+      <p class='zoom-area'>This page has a loading error. Please try again later or notify ECOGRAM.</p>
+      <section class='error-container'> <hr>
+        <span>•4</span>
+        <span><span class='screen-reader-text'>0</span></span>
+        <span>4•</span>
+      </section><hr>
+    <div>
+  <div>
+  `;
 
-    const divElemt = document.createElement('div');
-    divElemt.setAttribute('id', 'message');
-    divElemt.innerHTML = viewDifferent;
-    return divElemt;
+  const divElemt = document.createElement('div');
+  divElemt.setAttribute('id', 'message');
+  divElemt.innerHTML = viewDifferent;
+  return divElemt;
 };
