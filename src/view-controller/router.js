@@ -2,7 +2,7 @@
 /* eslint-disable consistent-return */
 import { components } from '../pages/index.js';
 // eslint-disable-next-line import/no-unresolved
-import { auth, createUserWithEmailAndPassword } from '../utils/firebaseconfig.js';
+import { auth, provider, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, getRedirectResult, signInWithRedirect } from '../utils/firebaseconfig.js';
 
 export const changeTmp = (hash) => {
   const id = hash.split('/')[1];
@@ -19,6 +19,50 @@ export const changeTmp = (hash) => {
     }
     case '#/signin': {
       sectionMain.appendChild(components[id]());
+      document
+        .getElementById('btn-signin-google')
+        .addEventListener('click', () => {
+          // signInWithRedirect(auth, provider);
+          // getRedirectResult(auth)
+          //   .then((result) => {
+          //     // This gives you a Google Access Token. You can use it to access Google APIs.
+          //     const credential = GoogleAuthProvider.credentialFromResult(result);
+          //     const token = credential.accessToken;
+
+          //     // The signed-in user info.
+          //     const user = result.user;
+          //   }).catch((error) => {
+          //     // Handle Errors here.
+          //     const errorCode = error.code;
+          //     const errorMessage = error.message;
+          //     // The email of the user's account used.
+          //     const email = error.email;
+          //     // The AuthCredential type that was used.
+          //     const credential = GoogleAuthProvider.credentialFromError(error);
+          //     // ...
+          //   });
+          signInWithPopup(auth, provider)
+            .then((result) => {
+              // This gives you a Google Access Token. You can use it to access the Google API.
+              const credential = GoogleAuthProvider.credentialFromResult(result);
+              const token = credential.accessToken;
+              // The signed-in user info.
+              const user = result.user;
+              // ...
+              console.log(user.displayName);
+            }).catch((error) => {
+              // Handle Errors here.
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              // The email of the user's account used.
+              const email = error.email;
+              // The AuthCredential type that was used.
+              const credential = GoogleAuthProvider.credentialFromError(error);
+              // ...
+              console.log(errorCode, errorMessage);
+            });
+        });
+
       break;
     }
     case '#/signup': {
