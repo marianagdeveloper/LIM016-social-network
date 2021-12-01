@@ -85,6 +85,6 @@ export default () => {
   const divElemt = document.createElement('div');
   divElemt.classList.add('position');
   divElemt.innerHTML = viewCatalogue;
-
+  
   return divElemt;
 };
