@@ -4,11 +4,7 @@ export default () => {
     <div class="BoxLogin">
       <div class="BoxWelcome1">
         <div class="Logo1">
-<<<<<<< HEAD
             <img src="img/Logos/LogoG1.png" class="logoSignIn" alt="logoKMS" />
-=======
-            <img src="../img/Logos/LogoG1.png" class="logoSignIn" alt="logoKMS" />
->>>>>>> d361de0f787adc6cdb1d6ed7dc1507f7de4f5b66
         </div>
         <br>
         <p class="text-home">
