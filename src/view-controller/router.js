@@ -5,6 +5,7 @@ import { auth, createUserWithEmailAndPassword } from '../utils/firebaseconfig.js
 
 export const changeTmp = (hash) => {
   const id = hash.split('/')[1];
+
   const sectionMain = document.getElementById('container');
   sectionMain.innerHTML = '';
 
@@ -45,6 +46,12 @@ export const changeTmp = (hash) => {
             });
         });
       return;
+    }
+    case '#/forgotPassw': {
+      return sectionMain.appendChild(components[id]());
+    }
+    case '#/forgotPassw2': {
+      return sectionMain.appendChild(components[id]());
     }
     case '#/home': {
       return sectionMain.appendChild(components.home());

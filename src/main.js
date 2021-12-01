@@ -5,6 +5,7 @@ import { viewPreBienv } from './pages/preBienvenida.js';
 
 viewPreBienv();
 myFunction();
+
 const init = () => {
   changeTmp(window.location.hash);
   window.addEventListener('hashchange', () => changeTmp(window.location.hash));

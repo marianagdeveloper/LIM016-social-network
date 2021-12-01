@@ -4,7 +4,7 @@ export default () => {
     <div class="BoxLogin">
       <div class="BoxWelcome1">
         <div class="Logo1">
-            <img src="../img/Logos/LogoG1.png" class="logoSignIn" alt="logoKMS" />
+            <img src="img/Logos/LogoG1.png" class="logoSignIn" alt="logoKMS" />
         </div>
         <br>
         <p class="text-home">
@@ -63,7 +63,7 @@ export default () => {
               </p>
               <p>
               Forgot your password?
-                <a href="#/404" style="color: dodgerblue">Get it back here</a>.
+                <a href="#/forgotPassw" style="color: dodgerblue">Get it back here</a>.
               </p>
             </div>
             

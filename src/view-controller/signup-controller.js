@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { userSignUp, verifyEmail } from '../firebase/firebasefunction';
 
 export const signUpController = (e) => {

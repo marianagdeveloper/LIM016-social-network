@@ -1,10 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
-
 /************** GENERAL STYLE **************/
+* {
+  margin: 0px;
+  font-family: 'Roboto', sans-serif;
+}
 
 body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.87)),
-    url("/src/img/Photos/Gif1.gif");
+    url("../img/Photos/Gif1.gif");
   color: beige;
   background-size: cover;
 }
@@ -26,10 +28,6 @@ a {
 ::-webkit-scrollbar-thumb {
   background: #2db36075;
   border-radius: 10px;
-}
-* {
-  margin: 0px;
-  font-family: Roboto;
 }
 
 /************** PAGE STYLE **************/
