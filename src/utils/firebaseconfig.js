@@ -28,4 +28,8 @@ const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
+<<<<<<< HEAD
 export { app, auth, createUserWithEmailAndPassword };
+=======
+export { app, auth, createUserWithEmailAndPassword };
+>>>>>>> d361de0f787adc6cdb1d6ed7dc1507f7de4f5b66

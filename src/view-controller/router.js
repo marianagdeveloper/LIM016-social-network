@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 /* eslint-disable consistent-return */
 import { components } from '../pages/index.js';
 // eslint-disable-next-line import/no-unresolved

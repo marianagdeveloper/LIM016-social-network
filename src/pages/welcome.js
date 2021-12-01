@@ -3,7 +3,11 @@ export default () => {
     <div class="hero-image">
         <div class="hero-text">
           <div class="Logo1">
+<<<<<<< HEAD
             <img src="img/Logos/LogoG1.png" class="logoHome" alt="logoKMS" />
+=======
+            <img src="../img/Logos/LogoG1.png" class="logoHome" alt="logoKMS" />
+>>>>>>> d361de0f787adc6cdb1d6ed7dc1507f7de4f5b66
           </div>
           <h4>WELCOME</h4>
           <p class="text-home">
