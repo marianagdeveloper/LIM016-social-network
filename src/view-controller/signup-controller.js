@@ -1,19 +1,21 @@
 // eslint-disable-next-line import/no-unresolved
-import { userSignUp, verifyEmail } from '../firebase/firebasefunction';
+import { createUserWithEmailAndPassword } from '../utils/firebaseconfig.js';
 
-export const signUpController = (e) => {
-  e.preventDefault();
-  const name = document.querySelector('#name').value;
-  const email = document.querySelector('#email').value;
-  const password = document.querySelector('#password').value;
-  const passwordRepeat = document.querySelector('#passwordRepeat').value;
-  const msgverify = document.querySelector('#verify-message');
-  userSignUp(name, email, password, passwordRepeat)
-    .then(() => {
-      verifyEmail();
-      msgverify.textContent = 'Please, revise su email';
-    }).catch((verify) => {
-      msgverify.classList.add('verify-message');
-      msgverify.textContent = verify.message;
+export const signUpController = (auth, email, password) => {
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      // eslint-disable-next-line no-console
+      console.log('created');
+      // eslint-disable-next-line no-alert
+      alert(`Created User ${user}`);
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // eslint-disable-next-line no-console
+      console.log(`Notification:${errorCode}${errorMessage}`);
+      // eslint-disable-next-line no-alert
+      alert(`Notification: ${errorMessage}`);
     });
 };
