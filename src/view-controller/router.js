@@ -4,8 +4,12 @@
 import { components } from '../pages/index.js';
 // eslint-disable-next-line import/no-unresolved
 import {
-  auth, createUserWithEmailAndPassword, provider, signInWithRedirect,
-  getRedirectResult, GoogleAuthProvider, signInWithPopup,
+  auth,
+  provider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from '../utils/firebaseconfig.js';
 
 export const changeTmp = (hash) => {
@@ -15,7 +19,7 @@ export const changeTmp = (hash) => {
   sectionMain.innerHTML = '';
 
   switch (hash) {
-    case '':
+    case ':':
     case '#':
     case '#/welcome':
     case '#/': {
@@ -24,27 +28,27 @@ export const changeTmp = (hash) => {
     case '#/signin': {
       sectionMain.appendChild(components[id]());
       document
-        .getElementById('btn-signin-google')
-        .addEventListener('click', (e) => {
-          // signInWithRedirect(auth, provider);
-          // getRedirectResult(auth)
-          //   .then((result) => {
-          //   // This gives you a Google Access Token. You can use it to access Google APIs.
-          //     const credential = GoogleAuthProvider.credentialFromResult(result);
-          //     const token = credential.accessToken;
+        .getElementById('btn-signin-signin')
+        .addEventListener('click', () => {
+          const email = document.getElementById('email').value;
+          const password = document.getElementById('password').value;
+          signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+              // Signed in
+              const user = userCredential.user;
+              console.log(user);
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.log('error en signin', errorMessage, errorCode);
+            });
+        });
 
-          //     // The signed-in user info.
-          //     const user = result.user;
-          //   }).catch((error) => {
-          //   // Handle Errors here.
-          //     const errorCode = error.code;
-          //     const errorMessage = error.message;
-          //     // The email of the user's account used.
-          //     const email = error.email;
-          //     // The AuthCredential type that was used.
-          //     const credential = GoogleAuthProvider.credentialFromError(error);
-          //   // ...
-          //   });
+      // Sign In with Google
+      document
+        .getElementById('btn-signin-google')
+        .addEventListener('click', () => {
           signInWithPopup(auth, provider)
             .then((result) => {
               // This gives you a Google Access Token. You can use it to access the Google API.
@@ -53,8 +57,9 @@ export const changeTmp = (hash) => {
               // The signed-in user info.
               const user = result.user;
               // ...
-              alert(user.displayName);
-            }).catch((error) => {
+              console.log(user.displayName + token);
+            })
+            .catch((error) => {
               // Handle Errors here.
               const errorCode = error.code;
               const errorMessage = error.message;
@@ -63,19 +68,20 @@ export const changeTmp = (hash) => {
               // The AuthCredential type that was used.
               const credential = GoogleAuthProvider.credentialFromError(error);
               // ...
-              alert(errorMessage);
+              console.log(errorCode, errorMessage, email, credential);
             });
-        }); }
-    // eslint-disable-next-line no-fallthrough
+        });
+
+      break;
+    }
     case '#/signup': {
       sectionMain.appendChild(components[id]());
       document
         .getElementById('btn-welcome-signup')
-        .addEventListener('click', (e) => {
-          e.preventDefault();
+        .addEventListener('click', () => {
+          // alert('click btn-welcome-signup');
           const email = document.getElementById('email').value;
           const password = document.getElementById('password').value;
-
           createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
               const user = userCredential.user;
