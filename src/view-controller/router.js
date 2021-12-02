@@ -1,11 +1,11 @@
 /* eslint-disable import/named */
 /* eslint-disable consistent-return */
 import { components } from '../pages/index.js';
-import { signIn, signInWithGmail } from './signin-controller.js';
+
 import { signUpController } from './signup-controller.js';
 // eslint-disable-next-line import/no-unresolved
 import {
-  auth, provider,
+  auth,
 } from '../utils/firebaseconfig.js';
 
 export const changeTmp = (hash) => {
@@ -23,22 +23,6 @@ export const changeTmp = (hash) => {
     }
     case '#/signin': {
       sectionMain.appendChild(components[id]());
-      document
-        .getElementById('btn-signin-signin')
-        .addEventListener('click', (e) => {
-          e.preventDefault();
-          const email = document.getElementById('email').value;
-          const password = document.getElementById('password').value;
-          signIn(auth, email, password);
-        });
-
-      // Sign In with Google
-      document
-        .getElementById('btn-signin-google')
-        .addEventListener('click', () => {
-          signInWithGmail(auth, provider);
-        });
-
       break;
     }
     case '#/signup': {

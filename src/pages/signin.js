@@ -1,4 +1,24 @@
-export default () => {
+import { signInWithGmail } from '../view-controller/signin-controller.js';
+import { signInWithEmailAndPassword, provider, auth } from '../utils/firebaseconfig.js';
+
+export const handleSignin = (e) => {
+  e.preventDefault();
+  const email = e.target.closest('form').querySelector('#email').value;
+  const password = e.target.closest('form').querySelector('#password').value;
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      console.log(user);
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log('error en signin', errorMessage, errorCode);
+    });
+};
+
+const SignIn = () => {
   const viewAccessories = `
   <div class="BoxContainerSignIn">
     <div class="BoxLogin">
@@ -77,5 +97,18 @@ export default () => {
   const divElemt = document.createElement('div');
   divElemt.classList.add('position');
   divElemt.innerHTML = viewAccessories;
+
+  divElemt
+    .querySelector('#btn-signin-signin')
+    .addEventListener('click', handleSignin);
+
+  // Sign In with Google
+  divElemt
+    .querySelector('#btn-signin-google')
+    .addEventListener('click', () => {
+      signInWithGmail(auth, provider);
+    });
   return divElemt;
 };
+
+export default SignIn;

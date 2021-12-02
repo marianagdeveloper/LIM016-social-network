@@ -1,18 +1,6 @@
 import { signInWithEmailAndPassword, signInWithPopup } from '../utils/firebaseconfig.js';
 
-export const signIn = (auth, email, password) => {
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      console.log(user);
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log('error en signin', errorMessage, errorCode);
-    });
-};
+export const signIn = (auth, email, password) => signInWithEmailAndPassword(auth, email, password);
 
 export const signInWithGmail = (auth, provider) => {
   signInWithPopup(auth, provider)
