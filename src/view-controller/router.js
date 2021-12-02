@@ -2,7 +2,14 @@
 /* eslint-disable consistent-return */
 import { components } from '../pages/index.js';
 // eslint-disable-next-line import/no-unresolved
-import { auth, provider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, getRedirectResult, signInWithRedirect } from '../utils/firebaseconfig.js';
+import {
+  auth,
+  provider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from '../utils/firebaseconfig.js';
 
 export const changeTmp = (hash) => {
   const id = hash.split('/')[1];
@@ -11,7 +18,7 @@ export const changeTmp = (hash) => {
   sectionMain.innerHTML = '';
 
   switch (hash) {
-    case '':
+    case ':':
     case '#':
     case '#/welcome':
     case '#/': {
@@ -33,11 +40,11 @@ export const changeTmp = (hash) => {
             .catch((error) => {
               const errorCode = error.code;
               const errorMessage = error.message;
-              console.log("error en signin" + errorMessage);
+              console.log('error en signin', errorMessage, errorCode);
             });
         });
 
-      //Sign In with Google
+      // Sign In with Google
       document
         .getElementById('btn-signin-google')
         .addEventListener('click', () => {
@@ -49,8 +56,9 @@ export const changeTmp = (hash) => {
               // The signed-in user info.
               const user = result.user;
               // ...
-              console.log(user.displayName);
-            }).catch((error) => {
+              console.log(user.displayName + token);
+            })
+            .catch((error) => {
               // Handle Errors here.
               const errorCode = error.code;
               const errorMessage = error.message;
@@ -59,7 +67,7 @@ export const changeTmp = (hash) => {
               // The AuthCredential type that was used.
               const credential = GoogleAuthProvider.credentialFromError(error);
               // ...
-              console.log(errorCode, errorMessage);
+              console.log(errorCode, errorMessage, email, credential);
             });
         });
 
