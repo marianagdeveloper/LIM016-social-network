@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  sendPasswordResetEmail,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -29,7 +30,6 @@ const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider(app);
 // const analytics = getAnalytics(app);
 const auth = getAuth(app);
-const provider = new GoogleAuthProvider(app);
 
 export {
   app,
@@ -39,4 +39,5 @@ export {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  sendPasswordResetEmail,
 };
