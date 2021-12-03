@@ -1,71 +1,48 @@
-// import { createUser } from '../firebase/index.js';
-// Import the functions you need from the SDKs you need
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
-import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js';
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/named */
+/* eslint-disable consistent-return */
 import { components } from '../pages/index.js';
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: 'AIzaSyCk8ZsvxtMvGdSDjbG9qZwEtjRbW7ub9J4',
-  authDomain: 'ecogram-5151.firebaseapp.com',
-  projectId: 'ecogram-5151',
-  storageBucket: 'ecogram-5151.appspot.com',
-  messagingSenderId: '477155575466',
-  appId: '1:477155575466:web:a58327dc906a17f4ebb2d3',
-  measurementId: 'G-ETL5GSYXTL',
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const auth = getAuth(app);
+// import { signUpController } from './signup-controller.js';
+// eslint-disable-next-line import/no-unresolved
+// import {
+//   auth,
+//   provider,
+//   signInWithPopup,
+//   GoogleAuthProvider,
+//   sendPasswordResetEmail,
+// } from '../utils/firebaseconfig.js';
 
 export const changeTmp = (hash) => {
   const id = hash.split('/')[1];
+
   const sectionMain = document.getElementById('container');
   sectionMain.innerHTML = '';
 
   switch (hash) {
     case '':
     case '#':
+    case '#/welcome':
     case '#/': {
-      return sectionMain.appendChild(components.signin());
+      return sectionMain.appendChild(components.welcome());
     }
-    case '#/signin':
+    case '#/signin': {
+      sectionMain.appendChild(components[id]());
+      break;
+    }
     case '#/signup': {
       sectionMain.appendChild(components[id]());
-      document.getElementById('signup').addEventListener('click', () => {
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('pass').value;
-
-        createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            console.log('created');
-            alert('Created User');
-            // ...
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
-            console.log(`Notification:${errorCode}${errorMessage}`);
-            alert(`Notification: ${errorMessage}`);
-          });
-      });
-      return;
+      break;
     }
+    case '#/forgotPassw': {
+      sectionMain.appendChild(components[id]());
+      break;
+    }
+    // case '#/forgotPassw2': {
+    //   return sectionMain.appendChild(components[id]());
+    // }
     case '#/home': {
-      return sectionMain.appendChild(components[id]());
+      return sectionMain.appendChild(components.home());
     }
     default:
       return sectionMain.appendChild(components.different());
