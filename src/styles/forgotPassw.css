@@ -47,7 +47,14 @@ box-shadow: 1px 1px 2px 1px #5aff99;
     margin: 0.7rem;
 }
 
-
+.alertMessage {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    color: rgb(212, 233, 220);
+}
+.ocultAlertMessage {
+    display: none;
+}
 
 .entreLineas {
     display: flex;

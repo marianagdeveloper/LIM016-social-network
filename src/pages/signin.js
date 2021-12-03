@@ -83,7 +83,7 @@ const SignIn = () => {
               </p>
               <p>
               Forgot your password?
-                <a href="#/forgotPassw" style="color: dodgerblue">Get it back here</a>.
+                <a id="forgotPassw" href="#/forgotPassw" style="color: dodgerblue">Get it back here</a>.
               </p>
             </div>
             
