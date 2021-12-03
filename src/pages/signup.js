@@ -1,4 +1,28 @@
-export default () => {
+import { createUserWithEmailAndPassword, auth } from '../utils/firebaseconfig.js';
+
+export const handleSingUp = (e) => {
+  e.preventDefault();
+  const email = e.target.closest('form').querySelector('#email').value;
+  const password = e.target.closest('form').querySelector('#password').value;
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      // eslint-disable-next-line no-console
+      console.log('created');
+      // eslint-disable-next-line no-alert
+      alert(`Created User ${user}`);
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // eslint-disable-next-line no-console
+      console.log(`Notification:${errorCode}${errorMessage}`);
+      // eslint-disable-next-line no-alert
+      alert(`Notification: ${errorMessage}`);
+    });
+};
+
+const SignUp = () => {
   const viewCatalogue = `
   <div class="BoxSignUp">
     <div class="BoxWelcome1">
@@ -85,5 +109,11 @@ export default () => {
   const divElemt = document.createElement('div');
   divElemt.classList.add('position');
   divElemt.innerHTML = viewCatalogue;
+
+  divElemt
+    .querySelector('#btn-welcome-signup')
+    .addEventListener('click', handleSingUp);
   return divElemt;
 };
+
+export default SignUp;
