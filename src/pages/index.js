@@ -1,5 +1,6 @@
 import Welcome from './welcome.js';
 import Signin from './signin.js';
+import Home from './home.js';
 
 import Signup from './signup.js';
 import ForgotPassw from './forgotPassw.js';
@@ -13,8 +14,7 @@ const components = {
   signup: Signup,
   forgotPassw: ForgotPassw,
   forgotPassw2: ForgotPassw2,
-
-  // home: Home,
+  home: Home,
   different: Different,
 };
 
