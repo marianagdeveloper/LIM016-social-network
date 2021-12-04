@@ -19,6 +19,12 @@ export const changeTmp = (hash) => {
   const sectionMain = document.getElementById('container');
   sectionMain.innerHTML = '';
 
+  const headerNav = document.getElementById('headerNav');
+  headerNav.innerHTML = '';
+
+  const publications = document.querySelector('#publications');
+  publications.innerHTML = '';
+
   switch (hash) {
     case '':
     case '#':
@@ -42,8 +48,21 @@ export const changeTmp = (hash) => {
     //   return sectionMain.appendChild(components[id]());
     // }
     case '#/home': {
-      return sectionMain.appendChild(components.home());
+      headerNav.appendChild(components.nav());
+      sectionMain.appendChild(components.home());
+      break;
     }
+
+    case '#/about': {
+      headerNav.appendChild(components.nav());
+      sectionMain.appendChild(components.about());
+      break;
+    }
+    case '#/publications': {
+      publications.appendChild(components.publications());
+      break;
+    }
+
     default:
       return sectionMain.appendChild(components.different());
   }
