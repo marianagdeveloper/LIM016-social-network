@@ -53,6 +53,18 @@ export const changeTmp = (hash) => {
       break;
     }
 
+    case '#/searchUser': {
+      headerNav.appendChild(components.nav());
+      sectionMain.appendChild(components.search());
+      break;
+    }
+
+    case '#/editProfile': {
+      headerNav.appendChild(components.nav());
+      sectionMain.appendChild(components.editProfile());
+      break;
+    }
+
     case '#/about': {
       headerNav.appendChild(components.nav());
       sectionMain.appendChild(components.about());

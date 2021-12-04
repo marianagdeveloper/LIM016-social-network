@@ -9,7 +9,10 @@ import ForgotPassw from './forgotPassw.js';
 import ForgotPassw2 from './forgotPassw2.js';
 import Home from './home.js';
 import Publications from './publications.js';
+import Search from './search.js';
+import EditProfile from './editProfile.js';
 import Different from './404.js';
+
 
 const components = {
   welcome: Welcome,
@@ -19,6 +22,8 @@ const components = {
   forgotPassw2: ForgotPassw2,
   nav: NavHome,
   home: Home,
+  search: Search,
+  editProfile: EditProfile,
   about: AboutUs,
   publications: Publications,
   // publications: Publications,
