@@ -13,7 +13,6 @@ import Search from './search.js';
 import EditProfile from './editProfile.js';
 import Different from './404.js';
 
-
 const components = {
   welcome: Welcome,
   signin: Signin,
