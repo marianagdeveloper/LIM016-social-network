@@ -8,7 +8,7 @@ body {
     url("../img/Photos/Gif1.gif");
   color: beige;
   background-size: cover;
-  font-family: "Roboto";
+  font-family: 'Roboto', sans-serif;
 }
 
 /************* HEADER *************/
@@ -20,7 +20,7 @@ body {
   width: 100%;
   top: 0;
   left: 0;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
 }
 
 main {
@@ -67,14 +67,14 @@ main {
   display: none;
 }
 
+.nav-menu-link {
+  border-radius: 5px;
+}
+
 .nav-menu-link:hover {
   background-color: none;
   color: #84f0deea;
   transition: 0.5s;
-}
-
-.nav-menu-link {
-  border-radius: 5px;
 }
 
 .NavToggle {
@@ -101,7 +101,6 @@ main {
     /* list-style: none; */
     background-color: black;
     position: absolute;
-    left: 0;
     top: 70px;
     width: 100%;
     /* padding: 20px 0; */
@@ -136,7 +135,6 @@ main {
 
   .nav-menu_visible {
     left: 0;
-    display: block;
     width: -webkit-fill-available;
     display: inline-grid;
     /* justify-items: start; */
@@ -154,7 +152,6 @@ main {
 
   .nav-menu a {
     position: relative;
-    display: block;
     padding: 5px;
     display: flex;
     align-items: center;
@@ -199,10 +196,7 @@ main {
   background-color: rgb(50, 88, 172);
   height: 800px;
 }
-#AboutUs {
-  background-color: brown;
-  height: 800px;
-}
+
 #SignOut {
   background-color: rgb(206, 133, 24);
   height: 800px;
@@ -303,15 +297,6 @@ main {
   position: relative;
 }
 
-.Avatar {
-  display: flex;
-  flex-direction: column;
-}
-
-.UserName {
-  display: flex;
-  flex-direction: column;
-}
 /***************** PAGE HOME GRID ******************/
 
 .HomeBox {
@@ -336,18 +321,18 @@ main {
 .UserName {
   grid-area: UserName;
   display: flex;
+  flex-direction: column;
   text-align: center;
   align-items: center;
-  justify-content: center;
   justify-content: space-evenly;
 }
 
 .Avatar {
   grid-area: Avatar;
   display: flex;
+  flex-direction: column;
   text-align: center;
   align-items: center;
-  justify-content: center;
   justify-content: space-between;
 }
 
@@ -499,7 +484,7 @@ main {
 }
 
 .AboutUsText {
-  padding: 0 5% 3% 5%;
+  padding: 0 5% 2% 5%;
 } 
 
 #AboutUs h1 {
@@ -536,11 +521,13 @@ main {
 }
 
 .FounderImg img {
-  width: 50%;
+  width: 40%;
 }
 
 .FounderRedSocial-Box {
   display: flex;
+  flex-wrap: wrap;
+  height: 4rem;
   justify-content: space-around;
 }
 

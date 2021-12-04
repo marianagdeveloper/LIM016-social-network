@@ -22,8 +22,8 @@ export const changeTmp = (hash) => {
   const headerNav = document.getElementById('headerNav');
   headerNav.innerHTML = '';
 
-  const publications = document.querySelector('#publications');
-  publications.innerHTML = '';
+  // const publications = document.querySelector('#publications');
+  // publications.innerHTML = '';
 
   switch (hash) {
     case '':
@@ -58,10 +58,10 @@ export const changeTmp = (hash) => {
       sectionMain.appendChild(components.about());
       break;
     }
-    case '#/publications': {
-      publications.appendChild(components.publications());
-      break;
-    }
+    // case '#/publications': {
+    //   publications.appendChild(components.publications());
+    //   break;
+    // }
 
     default:
       return sectionMain.appendChild(components.different());
