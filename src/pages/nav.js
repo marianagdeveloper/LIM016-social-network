@@ -19,14 +19,14 @@ const NavHome = () => {
         </li>
 
         <li class='nav-menu-item'>
-          <a  class='nav-menu-link nav-link ' >
+          <a  href="#/searchUser" class='nav-menu-link nav-link ' >
             <img src='/src/img/Icons/WhiteBorder/Search1.png' alt='Search Users'>
             <p>Search User</p>
           </a>
         </li>
 
         <li class='nav-menu-item'>
-          <a  class='nav-menu-link nav-link'>
+          <a href="#/editProfile" class='nav-menu-link nav-link'>
             <img src='/src/img/Icons/WhiteBorder/Edit1.png' alt='Edit Profile'>
             <p>Edit Profile</p>
           </a>
