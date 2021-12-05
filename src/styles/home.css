@@ -202,10 +202,6 @@ main {
   background-color: greenyellow;
   height: 800px;
 }
-#EditProfile {
-  background-color: rgb(50, 88, 172);
-  height: 800px;
-}
 
 #SignOut {
   background-color: rgb(206, 133, 24);

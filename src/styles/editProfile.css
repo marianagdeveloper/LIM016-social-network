@@ -1,0 +1,110 @@
+#EditProfile {
+  /* background-color: rgb(50, 88, 172); */
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+}
+
+#Profile {
+  background: #c4ddbf;
+  width: 90vw;
+  height: 90vh;
+  border-radius: 30px;
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  grid-template-rows: 0.5fr 0.4fr 2.4fr 0.4fr 0.4fr 1.4fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+}
+
+/* Title: Edit Profile */
+.titleEditProfile {
+  grid-area: 1 / 1 / 2 / 3;
+  border: 1px solid black;
+  align-self: center;
+  justify-self: center;
+  margin-top: 30px;
+}
+
+.titleEditProfile h1 {
+ 
+}
+
+/* Body: Edit Profile */
+.bodyEditProfile {
+  grid-area: 2 / 1 / 7 / 3;
+  border: 1px solid black;
+  background: #3E6C43;
+  width: 80vw;
+  height: 70vh; 
+  border-radius: 30px;
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  grid-template-rows: 0.1fr 0.7fr 2.2fr 0.4fr 0.4fr 1.4fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  align-self: center;
+  justify-self: center;
+}
+
+.nameUser {
+  grid-area: 2 / 1 / 3 / 3;
+  border: 1px solid black;
+  align-self: center;
+  justify-self: center;
+}
+
+/* Card: Interests and Photo Profile */
+.profileAndInterest {
+  grid-area: 3 / 1 / 4 / 3;
+  border: 1px solid black;
+}
+
+.interests {
+  grid-area: 3 / 1 / 4 / 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.interests img {
+  width: 45%;
+}
+
+/* Photo: Photo Profile */
+.photoProfile {
+  grid-area: 3 / 2 / 4 / 3;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photoProfile img {
+  width: 60%;
+  border-radius: 100%;
+  border-width: 5px;
+  border-color: rgb(34, 100, 13);
+  border-style: solid;
+}
+
+/* Country */
+.countryUser {
+  grid-area: 4 / 1 / 5 / 3;
+  border: 1px solid black;
+}
+
+/* Bio */
+.titleWriteBio {
+  grid-area: 5 / 1 / 6 / 3;
+  border: 1px solid black;
+}
+
+.bioUser {
+  grid-area: 6 / 1 / 7 / 3;
+  border: 1px solid black;
+}
