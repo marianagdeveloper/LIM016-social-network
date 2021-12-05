@@ -55,7 +55,7 @@ a {
   border-radius: 150px;
   border: 1px solid rgba(128, 128, 128, 0);
   width: 20%;
-  margin: 30px;
+  margin: 5%;
 }
 
 .text-home {
@@ -115,7 +115,12 @@ a {
   }
   .text-home {
     width: 240px;
-    margin: 18px;
+    margin: 5%;
+  }
+
+  .logoHome {
+    width: 40%;
+    margin: 10% 0;
   }
 }
 
@@ -127,7 +132,11 @@ a {
   }
   .text-home {
     width: 190px;
-    margin: 17px;
+    margin: 5%;
+  }
+  .logoHome {
+    width: 40%;
+    margin: 15% 0;
   }
 }
 
@@ -139,6 +148,14 @@ a {
   }
   .text-home {
     width: 140px;
-    margin: 16px;
+    margin: 5%;
+  }
+  .logoHome {
+    width: 60%;
+    margin: 30% 0;
   }
 }
+
+/* html {
+  height: 100%;
+} */
