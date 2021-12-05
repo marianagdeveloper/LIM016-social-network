@@ -40,6 +40,10 @@ export const changeTmp = (hash) => {
       sectionMain.appendChild(components[id]());
       break;
     }
+    case '#/terms': {
+      sectionMain.appendChild(components[id]());
+      break;
+    }
     case '#/forgotPassw': {
       sectionMain.appendChild(components[id]());
       break;

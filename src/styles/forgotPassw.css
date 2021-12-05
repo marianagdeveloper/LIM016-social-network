@@ -1,13 +1,13 @@
-h1 {
+/* h1 {
     color: #9effc3;
-}
+} */
 
 .formForgotPass {
     display: flex;
     flex-direction: column;
 }
 
-i {
+.BoxContainerSignIn i {
     font-weight: 900;
     margin: 1rem;
     font-size: 1.5rem;
