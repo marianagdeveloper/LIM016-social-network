@@ -259,7 +259,7 @@ main {
 
 /***************** CONTAINER PUBLICATIONS (EVENTS, GALERY, PUBLICS, HISTORIAL) RESPONSIVE *****************/
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .nav-Publications {
     display: none;
   }
@@ -394,7 +394,7 @@ main {
 
 /***************** PAGE HOME GRID RESPONSIVE ******************/
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .HomeBox {
     display: grid;
     grid-template-columns: 0.5fr 0.5fr 1.7fr;
@@ -484,7 +484,7 @@ main {
 }
 
 .AboutUsText {
-  padding: 0 5% 2% 5%;
+  padding: 0 5%;
 } 
 
 #AboutUs h1 {
@@ -505,6 +505,7 @@ main {
 #AboutUs ul {
   color: rgb(0, 0, 0);
   font-size: small;
+  margin-left: 5%;
 }
 
 
@@ -521,31 +522,42 @@ main {
 }
 
 .FounderImg img {
-  width: 40%;
+  width: 60%;
 }
 
-.FounderRedSocial-Box {
-  display: flex;
-  flex-wrap: wrap;
-  height: 4rem;
-  justify-content: space-around;
+a img {
+  width: 15%;
 }
 
-.FounderRedSocial-Box1 {
-  display: flex;
-  flex-direction: column;
-}
-
-.FRS-div1 {
-  display: flex;
-}
-
-.RedSocialContainerImg {
-  margin: 8% 5%;
-  border-radius: 50%;
-  background-color: rgb(15, 102, 15);
+.Founders-Box {
+  display: flex;    
   text-align: center;
 }
 
+@media screen and (max-width: 768px) {
 
+  #AboutUs {
+    background-color: rgb(255, 255, 255);
+    height: 1000px;
+    margin: 0 10%;
+  }
+
+  #AboutUs ul {
+    margin-left: 8%;
+  }
+
+  .FounderImg img {
+    width: 80%;
+  }
+
+  .Founders-Box {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+  }
+
+  a img {
+    width: 10%;
+  }
+}
 
