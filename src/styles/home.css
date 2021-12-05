@@ -491,10 +491,13 @@ main {
   background-color: rgb(255, 255, 255);
   height: 1000px;
   margin: 0 20%;
+  box-shadow: 3px 3px 18px 3px black;
+  font-weight: bold;
 }
 
 .AboutUsText {
-  padding: 0 5%;
+  padding: 5% 10%;
+  text-align: justify;
 } 
 
 #AboutUs h1 {
@@ -525,6 +528,7 @@ main {
 
 .LogoLarge {
   width: 100%;
+  box-shadow: 0 0 18px 0 black;
 }
 
 .FounderImg {
@@ -533,6 +537,7 @@ main {
 
 .FounderImg img {
   width: 60%;
+  margin: 5%;
 }
 
 a img {
@@ -542,6 +547,10 @@ a img {
 .Founders-Box {
   display: flex;    
   text-align: center;
+}
+
+.Founder-Box-Box p {
+  font-weight: bold;
 }
 
 @media screen and (max-width: 768px) {

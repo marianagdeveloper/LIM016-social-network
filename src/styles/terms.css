@@ -1,6 +1,6 @@
 
 .Terms {
-  background-color: black;
+  background-color: #000000c9;
   color: beige;
   margin: 0 20%;
   box-shadow: 3px 3px 18px 3px black;
@@ -16,7 +16,7 @@
 
 .Terms-Text h1 {
   text-align: center;
-  margin: 2% 15%;
+  margin: 5% 15%;
   color: #9effc3;
 }
 
@@ -30,6 +30,14 @@
   line-height: 100%;
   margin: 0 15%;
   text-align: justify;
+  padding-bottom: 8%;
+}
+
+.logoTerms img {
+  width: 50%;
+}
+.logoTerms {
+  text-align: center;
   padding-bottom: 8%;
 }
 

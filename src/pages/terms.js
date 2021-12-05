@@ -51,6 +51,9 @@ const Terms = () => {
         Collect or save personal data of other users.
         </li><br> 
       </ul>
+      <div class="logoTerms">
+      <img src="/src/img/Logos/LogoG8.png" alt="ECOGRAM"/>
+      </div>
     </div>
   </div>
   `;
