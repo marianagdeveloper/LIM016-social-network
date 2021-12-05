@@ -92,7 +92,7 @@ main {
 
 @media (max-width: 768px) {
   .logo {
-    width: 50%;
+    width: 60%;
   }
 
   .nav-menu {
@@ -101,7 +101,7 @@ main {
     /* list-style: none; */
     background-color: black;
     position: absolute;
-    top: 70px;
+    top: 62px;
     width: 100%;
     /* padding: 20px 0; */
     height: calc(100% - 80px);
@@ -131,6 +131,7 @@ main {
 
   .NavToggle {
     display: block;
+    margin-right: 5%;
   }
 
   .nav-menu_visible {
@@ -184,6 +185,15 @@ main {
   .nav-menu[data-animation="center"] a::before {
     transform-origin: center;
   }
+}
+
+@media (max-width: 400px) {
+  .logo {
+    width: 60%;
+  } 
+  .nav-menu {
+    top: 61px;
+  } 
 }
 
 /************* PAGES GENERALS*****************/
