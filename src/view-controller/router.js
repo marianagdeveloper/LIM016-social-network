@@ -71,11 +71,11 @@ export const changeTmp = (hash) => {
       sectionMain.appendChild(components.about());
       break;
     }
-    case '#/publications': {
-      headerNav.appendChild(components.nav());
-      publications.appendChild(components.publications());
-      break;
-    }
+    // case '#/publications': {
+    //   headerNav.appendChild(components.nav());
+    //   publications.appendChild(components.publications());
+    //   break;
+    // }
 
     default:
       return sectionMain.appendChild(components.different());
