@@ -124,13 +124,13 @@
   }
 }
 
-h1 {
+.BoxErrorMon h1 {
   text-align: center;
-  margin: 30px 15px;
+  margin: 20px 15px;
 }
 .zoom-area {
   max-width: 490px;
-  margin: 30px auto 30px;
+  margin: 20px auto 20px;
   font-size: 19px;
   text-align: center;
 }
@@ -151,4 +151,10 @@ a.more-link {
   text-decoration: none;
   margin-top: 50px;
   letter-spacing: 1px;
+}
+
+@media screen and (max-width: 768px) {
+  .error-container {
+  display: none;
+  }
 }

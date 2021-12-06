@@ -1,0 +1,10 @@
+@import '/src/styles/preBienvenida.css';
+@import '/src/styles/welcome.css';
+@import '/src/styles/terms.css';
+@import '/src/styles/signup.css';
+@import '/src/styles/signin.css';
+@import '/src/styles/forgotPassw.css';
+@import '/src/styles/home.css';
+@import '/src/styles/aboutUs.css';
+@import '/src/styles/error.css';
+@import '/src/styles/header.css';

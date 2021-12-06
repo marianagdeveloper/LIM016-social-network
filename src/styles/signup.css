@@ -35,6 +35,7 @@
   border-radius: 100%;
   border: 1px solid rgba(128, 128, 128, 0);
   width: 30%;
+  padding: 3%;
 }
 
 .containerSignUp {
@@ -97,8 +98,8 @@
   margin: 3%;
 }
 
-@media (max-width: 360px) {
-  .containerSignIn {
+@media (max-width: 375px) {
+  .containerSignUp {
     border: 1px solid gray;
     width: 18rem;
     border-radius: 10px;
@@ -108,5 +109,13 @@
     align-items: stretch;
     justify-content: center;
     text-align: center;
+  }
+  .inputSignUp{
+    border-radius: 10px;
+    width: 14rem;
+    height: 1rem;
+    border-color: 1px solid gray;
+    margin: 0.5rem 0.3rem;
+    padding: 1rem;
   }
 }

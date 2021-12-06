@@ -53,6 +53,7 @@ form {
   border-radius: 100%;
   border: 1px solid rgba(128, 128, 128, 0);
   width: 30%;
+  padding: 3%;
 }
 
 .containerSignIn {
@@ -114,7 +115,7 @@ form {
   justify-content: space-evenly;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 375px) {
   .inputSignIn {
     border-radius: 10px;
     width: 14rem;
@@ -122,5 +123,16 @@ form {
     border-color: 1px solid gray;
     margin: 0.5rem 0.3rem;
     padding: 1rem;
+  }
+  .containerSignIn {
+    border: 1px solid gray;
+    width: 18rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    align-items: stretch;
+    justify-content: center;
+    text-align: center;
   }
 }

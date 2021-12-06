@@ -88,7 +88,7 @@ const SignUp = () => {
 
           <p>
             By creating an account you agree to our
-            <a href="#" style="color: dodgerblue">Terms & Privacy</a>.
+            <a href="#/terms" style="color: dodgerblue">Terms & Privacy</a>.
           </p>
 
           <p id="verify-message" class="verify-message"></p>

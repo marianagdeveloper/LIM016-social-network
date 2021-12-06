@@ -5,6 +5,7 @@ import NavHome from './nav.js';
 // import Publications from './publications.js';
 import AboutUs from './aboutUs.js';
 import Signup from './signup.js';
+import Terms from './terms.js';
 import ForgotPassw from './forgotPassw.js';
 import ForgotPassw2 from './forgotPassw2.js';
 import Home from './home.js';
@@ -17,6 +18,7 @@ const components = {
   welcome: Welcome,
   signin: Signin,
   signup: Signup,
+  terms: Terms,
   forgotPassw: ForgotPassw,
   forgotPassw2: ForgotPassw2,
   nav: NavHome,
