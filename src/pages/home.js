@@ -44,7 +44,7 @@ const Home = () => {
           </div>
         </div>
         
-        <div class='Publications'>
+        <div id="publications" class='Publications'>
 
           <nav class='nav-Publications'>
             <button class='tablink'  id='defaultOpen'><a href="#/publications">
