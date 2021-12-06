@@ -63,20 +63,32 @@ export const changeTmp = (hash) => {
     }
 
     case '#/searchUser': {
-      headerNav.appendChild(components.nav());
-      sectionMain.appendChild(components.search());
+      if (handleCurrent()) {
+        headerNav.appendChild(components.nav());
+        sectionMain.appendChild(components.search());
+      } else {
+        sectionMain.appendChild(components.signin());
+      }
       break;
     }
 
     case '#/editProfile': {
-      headerNav.appendChild(components.nav());
-      sectionMain.appendChild(components.editProfile());
+      if (handleCurrent()) {
+        headerNav.appendChild(components.nav());
+        sectionMain.appendChild(components.editProfile());
+      } else {
+        sectionMain.appendChild(components.signin());
+      }
       break;
     }
 
     case '#/about': {
-      headerNav.appendChild(components.nav());
-      sectionMain.appendChild(components.about());
+      if (handleCurrent()) {
+        headerNav.appendChild(components.nav());
+        sectionMain.appendChild(components.about());
+      } else {
+        sectionMain.appendChild(components.signin());
+      }
       break;
     }
     // case '#/publications': {
