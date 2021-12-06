@@ -2,13 +2,15 @@ import { createUserWithEmailAndPassword, auth } from '../utils/firebaseconfig.js
 
 export const handleSingUp = (e) => {
   e.preventDefault();
+  const name = e.target.closest('form').querySelector('#name').value;
   const email = e.target.closest('form').querySelector('#email').value;
   const password = e.target.closest('form').querySelector('#password').value;
-  createUserWithEmailAndPassword(auth, email, password)
+  createUserWithEmailAndPassword(auth, email, password, name)
     .then((userCredential) => {
       const user = userCredential.user;
+      user.displayname = name;
       // eslint-disable-next-line no-console
-      console.log('created');
+      console.log(user.displayname);
       // eslint-disable-next-line no-alert
       alert(`Created User ${user}`);
     })

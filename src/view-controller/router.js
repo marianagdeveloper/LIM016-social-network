@@ -2,6 +2,7 @@
 /* eslint-disable import/named */
 /* eslint-disable consistent-return */
 import { components } from '../pages/index.js';
+import { handleCurrent } from '../pages/signin.js';
 
 // import { signUpController } from './signup-controller.js';
 // eslint-disable-next-line import/no-unresolved
@@ -52,8 +53,12 @@ export const changeTmp = (hash) => {
     //   return sectionMain.appendChild(components[id]());
     // }
     case '#/home': {
-      headerNav.appendChild(components.nav());
-      sectionMain.appendChild(components.home());
+      if (handleCurrent()) {
+        headerNav.appendChild(components.nav());
+        sectionMain.appendChild(components.home());
+      } else {
+        sectionMain.appendChild(components.signin());
+      }
       break;
     }
 
