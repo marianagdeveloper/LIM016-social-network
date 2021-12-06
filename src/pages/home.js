@@ -26,7 +26,6 @@ const Home = () => {
         </div>
   
         <div class='Bio'>
- 
           <h3>Biography:</h3>
           <div>
             <p>Hola, soy amante del arte en reciclado. Hago muchas manualidades pro ambientales. Les invito a ver mi galeria. 🧮 </p>
