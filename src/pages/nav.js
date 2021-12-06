@@ -50,6 +50,25 @@ const NavHome = () => {
   const divElemt = document.createElement('div');
   divElemt.innerHTML = viewNav;
 
+  // Event for Nav-Menu responsive
+
+  const navToggle = divElemt.querySelector('.NavToggle');
+  const navMenu = divElemt.querySelector('.nav-menu');
+
+  // BAR NAVEGATION
+
+  navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('nav-menu_visible');
+
+    // Event for area-label open and close menu
+
+    if (navMenu.classList.contains('nav-menu_visible')) {
+      navToggle.setAttribute('aria-label', 'Close menu');
+    } else {
+      navToggle.setAttribute('aria-label', 'Open menu');
+    }
+  });
+
   return divElemt;
 };
 
