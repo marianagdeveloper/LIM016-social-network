@@ -23,18 +23,18 @@ initializeApp(firebaseConfig);
 const db = getFirestore();
 
 // collection ref
-const colRef = collection(db, 'usuarios');
+const colRef = collection(db, 'users');
 
 // get collection data
 
 getDocs(colRef)
   .then((snapshot) => {
-    const usuarios = [];
+    const users = [];
     snapshot.docs.forEach((doc) => {
-      usuarios.push({ ...doc.data(), id: doc.id });
+      users.push({ ...doc.data(), id: doc.id });
     });
     // console.log(usuarios[0].title);
-    main.innerHTML = usuarios[0].title;
+    main.innerHTML = users[0].title;
   });
 // .catch(err => {
 //   console.log(err.message)
