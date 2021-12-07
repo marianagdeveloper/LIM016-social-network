@@ -1,0 +1,121 @@
+* {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  background-repeat: repeat;
+}
+
+input, select {
+  width: 15rem;
+  padding: 12px 20px;
+  margin: 8px 8px;
+  display: flex;
+  border: 1px solid rgb(185, 161, 161);
+  border-radius: 4px;
+  box-sizing: border-box;
+  color:rgb(79, 112, 46);
+}
+
+.caja1 {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  background: rgb(34, 100, 13);
+  height: auto;
+  align-content: center;
+  padding: 0.7rem 3%;
+}
+
+.filtros {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.caja2 {
+  height: 40rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); 
+  /* grid-auto-rows: 150px;
+  /* grid-template-columns: repeat(4,auto);*/
+  grid-auto-rows: auto; 
+  grid-gap:40px 40px;
+  padding:40px;
+  justify-items: center;
+  /* align-items: stretch;
+  justify-content: stretch; */
+
+
+}
+/* .search {
+  background: blue;
+  width: 20%;
+} */
+[class ^="search"] {
+  color:rgb(250, 246, 246);
+  /* border: 2rem solid rgb(207, 47, 47); */
+  border-width: 3px;
+  border-radius: 1rem;
+  height: 8rem;
+  width: 20rem;
+  box-shadow: #568758 0px 4px 16px, rgb(32 37 32) 0px 8px 32px;
+}
+
+.search {
+  background: #f4fffe;
+  display: grid;
+  grid-auto-flow: column dense;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  /* gap: 15px 15px; */
+  grid-template-areas: "perfil caracteres";
+  padding: 0.4rem;
+}
+
+.perfil { 
+  grid-area: perfil; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.perfil img {
+  border: 5px solid #29322a;
+  border-radius: 50%;
+  height: 6rem;
+}
+.caracteres { 
+  grid-area: caracteres; 
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+  color: #584d4d;
+  padding: 0.3rem;
+}
+
+.caracteres img {
+  height: 3.5rem;
+  margin: 0 0.2rem;
+}
+
+.intereses {
+  display: flex;
+}
+
+@media (max-width: 900px) {
+  .filtros {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: space-around;
+    align-items: center;
+    width: 100%;
+  }
+  .filtros input {
+    width: 12rem;
+  }
+}
