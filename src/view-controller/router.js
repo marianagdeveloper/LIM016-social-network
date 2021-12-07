@@ -23,9 +23,6 @@ export const changeTmp = (hash) => {
   const headerNav = document.getElementById('headerNav');
   headerNav.innerHTML = '';
 
-  // const publications = document.querySelector('#publications');
-  // publications.innerHTML = '';
-
   switch (hash) {
     case '':
     case '#':
@@ -69,6 +66,8 @@ export const changeTmp = (hash) => {
       } else {
         sectionMain.appendChild(components.signin());
       }
+      // headerNav.appendChild(components.nav());
+      // sectionMain.appendChild(components.search());
       break;
     }
 
@@ -92,6 +91,7 @@ export const changeTmp = (hash) => {
       break;
     }
     // case '#/publications': {
+    //   headerNav.appendChild(components.nav());
     //   publications.appendChild(components.publications());
     //   break;
     // }
