@@ -4,7 +4,7 @@
   background-repeat: repeat;
 }
 
-input, select {
+.filtros input,.filtros select, .input input{
   width: 15rem;
   padding: 12px 20px;
   margin: 8px 8px;
