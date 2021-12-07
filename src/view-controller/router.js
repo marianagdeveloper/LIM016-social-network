@@ -60,14 +60,14 @@ export const changeTmp = (hash) => {
     }
 
     case '#/searchUser': {
-      // if (handleCurrent()) {
-      //   headerNav.appendChild(components.nav());
-      //   sectionMain.appendChild(components.search());
-      // } else {
-      //   sectionMain.appendChild(components.signin());
-      // }
-      headerNav.appendChild(components.nav());
-      sectionMain.appendChild(components.search());
+      if (handleCurrent()) {
+        headerNav.appendChild(components.nav());
+        sectionMain.appendChild(components.search());
+      } else {
+        sectionMain.appendChild(components.signin());
+      }
+      // headerNav.appendChild(components.nav());
+      // sectionMain.appendChild(components.search());
       break;
     }
 
