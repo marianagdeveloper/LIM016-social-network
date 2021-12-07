@@ -36,6 +36,11 @@
 .logoTerms img {
   width: 50%;
 }
+
+.Terms-Text {
+  padding: 2% 0;
+}
+
 .logoTerms {
   text-align: center;
   padding-bottom: 8%;

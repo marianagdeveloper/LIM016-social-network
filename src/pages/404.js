@@ -1,13 +1,14 @@
 export default () => {
-  const viewDifferent = `
+  const viewDifferent = ` 
   <div class='BoxErrorMon'>
-    <div class="Logo1">
+  <hr> <br>
+    <div class="Logo1"> 
       <img src="img/Logos/LogoG1.png" class="logoSignIn" alt="logoKMS" />
     </div>
     <div class='BoxErrorSon'>
       <h1>404 Error Page</h1>
-      <p class='zoom-area'>This page has a loading error. Please try again later or notify ECOGRAM.</p>
-      <section class='error-container'> <hr>
+      <p class='zoom-area'>This page has a loading error. Please try again later or notify ECOGRAM.</p> <hr>
+      <section class='error-container'> 
         <span>•4</span>
         <span><span class='screen-reader-text'>0</span></span>
         <span>4•</span>

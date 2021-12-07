@@ -1,0 +1,94 @@
+/************ ABOUS PAGE ***********/
+
+#AboutUs {
+  background-color: rgb(255, 255, 255);
+  height: 1000px;
+  margin: 0 20%;
+  box-shadow: 3px 3px 18px 3px black;
+  font-weight: bold;
+}
+
+.AboutUsText {
+  padding: 5% 10%;
+  text-align: justify;
+} 
+
+#AboutUs h1 {
+  color: rgb(9, 54, 9);
+  font-size: large;
+}
+
+#AboutUs h3 {
+  color: rgb(9, 54, 9);
+  font-size: medium;
+}
+
+#AboutUs p {
+  color: rgb(0, 0, 0);
+  font-size: small;
+}
+
+#AboutUs ul {
+  color: rgb(0, 0, 0);
+  font-size: small;
+  margin-left: 5%;
+}
+
+
+.LogoLargeDiv {
+  text-align: center;
+}
+
+.LogoLarge {
+  width: 100%;
+  box-shadow: 0 0 18px 0 black;
+}
+
+.FounderImg {
+  text-align: center;
+}
+
+.FounderImg img {
+  width: 60%;
+  margin: 5%;
+}
+
+a img {
+  width: 15%;
+}
+
+.Founders-Box {
+  display: flex;    
+  text-align: center;
+}
+
+.Founder-Box-Box p {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+
+  #AboutUs {
+    background-color: rgb(255, 255, 255);
+    height: 1000px;
+    margin: 0 10%;
+  }
+
+  #AboutUs ul {
+    margin-left: 8%;
+  }
+
+  .FounderImg img {
+    width: 80%;
+  }
+
+  .Founders-Box {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+  }
+
+  a img {
+    width: 10%;
+  }
+}

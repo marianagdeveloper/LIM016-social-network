@@ -5,15 +5,36 @@ import {
   signInWithPopup,
 } from '../utils/firebaseconfig.js';
 
+export const handleCurrent = () => {
+  const user = auth.currentUser;
+  if (user !== null) {
+    user.providerData.forEach((profile) => {
+      console.log(`Sign-in provider: ${profile.providerId}`);
+      console.log(`Provider-specific UID: ${profile.uid}`);
+      console.log(`Name: ${profile.displayName}`);
+      console.log(`Email: ${profile.email}`);
+      console.log(`Photo URL: ${profile.photoURL}`);
+      console.log(`uid: ${profile.uid}`);
+    });
+    // console.log(displayName, email, photoURL, emailVerified, uid);
+  }
+  return user;
+};
+
 export const handleSignin = (e) => {
   e.preventDefault();
   const email = e.target.closest('form').querySelector('#email').value;
   const password = e.target.closest('form').querySelector('#password').value;
+  const a = e.target.closest('form').querySelector('#btn-signin-signin');
+
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
       console.log(user);
+      a.href = '#/home';
+      window.location.href = a.href;
+      // handleCurrent(userCredential.user);
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -102,8 +123,9 @@ const SignIn = () => {
             </label>
 
             <div class="clearfix">
-              <button type="submit" id="btn-signin-signin" class="Loginbtn">Login</button>
-              <button type="submit" id="btn-signin-google" class="LoginGooglebtn" href="#/google">Continue with Google</button>
+              <button id="btn-signin-signin" class="Loginbtn">Login</button>
+
+              <button type="submit" id="btn-signin-google" class="LoginGooglebtn">Continue with Google</button>
             </div><hr>
             </div>
               <p>
@@ -135,6 +157,7 @@ const SignIn = () => {
   divElemt
     .querySelector('#btn-signin-google')
     .addEventListener('click', handleSigninGoogle);
+
   return divElemt;
 };
 

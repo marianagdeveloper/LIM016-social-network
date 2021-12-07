@@ -2,6 +2,7 @@
 /* eslint-disable import/named */
 /* eslint-disable consistent-return */
 import { components } from '../pages/index.js';
+import { handleCurrent } from '../pages/signin.js';
 
 // import { signUpController } from './signup-controller.js';
 // eslint-disable-next-line import/no-unresolved
@@ -52,26 +53,42 @@ export const changeTmp = (hash) => {
     //   return sectionMain.appendChild(components[id]());
     // }
     case '#/home': {
-      headerNav.appendChild(components.nav());
-      sectionMain.appendChild(components.home());
+      if (handleCurrent()) {
+        headerNav.appendChild(components.nav());
+        sectionMain.appendChild(components.home());
+      } else {
+        sectionMain.appendChild(components.signin());
+      }
       break;
     }
 
     case '#/searchUser': {
-      headerNav.appendChild(components.nav());
-      sectionMain.appendChild(components.search());
+      if (handleCurrent()) {
+        headerNav.appendChild(components.nav());
+        sectionMain.appendChild(components.search());
+      } else {
+        sectionMain.appendChild(components.signin());
+      }
       break;
     }
 
     case '#/editProfile': {
-      headerNav.appendChild(components.nav());
-      sectionMain.appendChild(components.editProfile());
+      if (handleCurrent()) {
+        headerNav.appendChild(components.nav());
+        sectionMain.appendChild(components.editProfile());
+      } else {
+        sectionMain.appendChild(components.signin());
+      }
       break;
     }
 
     case '#/about': {
-      headerNav.appendChild(components.nav());
-      sectionMain.appendChild(components.about());
+      if (handleCurrent()) {
+        headerNav.appendChild(components.nav());
+        sectionMain.appendChild(components.about());
+      } else {
+        sectionMain.appendChild(components.signin());
+      }
       break;
     }
     // case '#/publications': {

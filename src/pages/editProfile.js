@@ -58,7 +58,7 @@ const EditProfile = () => {
   </body>
   `;
 
-  const divElemt = document.createElement("div");
+  const divElemt = document.createElement('div');
   divElemt.innerHTML = viewEditProfile;
 
   return divElemt;
