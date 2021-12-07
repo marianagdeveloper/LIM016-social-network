@@ -8,6 +8,14 @@ form {
   margin: auto;
 }
 
+.modalSignIn {
+ display: none;
+}
+
+.alertMessageSignIn {
+  color :#5aff99;
+}
+
 .BoxLogin {
   display: grid;
   grid-template-columns: 1fr 1fr;
