@@ -1,4 +1,21 @@
+import {
+  auth, signOut,
+} from '../utils/firebaseconfig.js';
+
 /* eslint-disable no-unused-expressions */
+export const handleSignOut = (e) => {
+  const a = e.target.closest('ul').querySelector('#signOutbtn');
+  signOut(auth)
+    .then(() => {
+    // Sign-out successful.
+      a.href = '#/welcome';
+      window.location.href = a.href;
+    }).catch((error) => {
+    // An error happened.
+      console.log(error);
+    });
+};
+
 const NavHome = () => {
   const viewNav = ` <nav class="nav">
 
@@ -38,7 +55,7 @@ const NavHome = () => {
             <p>About Us</p>
           </a>
         </li>
-        <li class="nav-menu-item">
+        <li id="signOutbtn" class="nav-menu-item">
           <a class="nav-menu-link nav-link">
             <img src="/src/img/Icons/WhiteBorder/SignOut.png" alt="Sign Out">
             <p>Sign Out</p>
@@ -68,6 +85,10 @@ const NavHome = () => {
       navToggle.setAttribute('aria-label', 'Open menu');
     }
   });
+
+  divElemt
+    .querySelector('#signOutbtn')
+    .addEventListener('click', handleSignOut);
 
   return divElemt;
 };

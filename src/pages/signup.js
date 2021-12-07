@@ -1,4 +1,13 @@
-import { createUserWithEmailAndPassword, auth } from '../utils/firebaseconfig.js';
+import { createUserWithEmailAndPassword, auth, sendEmailVerification } from '../utils/firebaseconfig.js';
+
+export const handleSenEmailVerification = () => {
+  sendEmailVerification(auth.currentUser)
+    .then(() => {
+      // Email verification sent!
+      // ...
+      console.log('send email');
+    });
+};
 
 export const handleSingUp = (e) => {
   e.preventDefault();
@@ -13,6 +22,7 @@ export const handleSingUp = (e) => {
       console.log(user.displayname);
       // eslint-disable-next-line no-alert
       alert(`Created User ${user}`);
+      handleSenEmailVerification();
     })
     .catch((error) => {
       const errorCode = error.code;
