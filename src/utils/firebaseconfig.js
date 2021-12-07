@@ -9,6 +9,8 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   sendPasswordResetEmail,
+  sendEmailVerification,
+  signOut,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -40,4 +42,6 @@ export {
   signInWithPopup,
   GoogleAuthProvider,
   sendPasswordResetEmail,
+  sendEmailVerification,
+  signOut,
 };
