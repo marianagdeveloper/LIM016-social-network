@@ -8,26 +8,28 @@ const Search = () => {
         </div>
         <div class="filtros">
           <div class="filtro1">
-            <input list="browsers" name="myBrowser" />
-              <datalist id="browsers">
-                <option value="Chrome">
-                <option value="Firefox">
-                <option value="Internet Explorer">
-                <option value="Opera">
-                <option value="Safari">
-                <option value="Microsoft Edge">
-              </datalist>
+              <select name="select">
+                <option value="Country">Country</opcion>
+                <option value="Peru">Perú</opcion>
+                <option value="Mexico">México</opcion>
+                <option value="Chile">Chile</opcion>
+                <option value="Venezuela">Venezuela</opcion>
+                <option value="Argentina">Argentina</opcion>
+                <option value="Nicaragua">Nicaragua</opcion>
+              </select>
           </div>
+              
+
           <div class="filtro2">
-            <input list="browsers" name="myBrowser" />
-            <datalist id="browsers">
-              <option value="Chrome">
-              <option value="Firefox">
-              <option value="Internet Explorer">
-              <option value="Opera">
-              <option value="Safari">
-              <option value="Microsoft Edge">
-            </datalist>
+            <select name="select">
+              <option value="Interest">Interest</opcion>
+              <option value="Energia">Energía</opcion>
+              <option value="Agua">Agua</opcion>
+              <option value="Reciclaje">Reciclaje</opcion>
+              <option value="Siembra">Siembra</opcion>
+              <option value="Argentina">Argentina</opcion>
+              <option value="Nicaragua">Nicaragua</opcion>
+            </select>
           </div>
         </div>
       </div>
@@ -45,9 +47,9 @@ const Search = () => {
           </div>  
         </div>
         <div class="search">
-          <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA1.png" alt=""></div>
+          <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Human/AvatarH1.png" alt=""></div>
           <div class="caracteres">
-            <div class="nombre">JUANITO ARISTISABAL</div>
+            <div class="nombre">VICENTE VALERIO</div>
             <div class="pais">Perú</div>
             <div class="intereses">
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
@@ -57,9 +59,9 @@ const Search = () => {
           </div> 
         </div>
         <div class="search">
-          <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA1.png" alt=""></div>
+          <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA3.png" alt=""></div>
           <div class="caracteres">
-            <div class="nombre">JUANITO ARISTISABAL</div>
+            <div class="nombre">LUIS JIMENEZ</div>
             <div class="pais">Perú</div>
             <div class="intereses">
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
@@ -69,9 +71,9 @@ const Search = () => {
           </div> 
         </div>
         <div class="search">
-          <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA1.png" alt=""></div>
+          <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Human/AvatarH2.png" alt=""></div>
           <div class="caracteres">
-            <div class="nombre">JUANITO ARISTISABAL</div>
+            <div class="nombre">ADRIANA LOPEZ</div>
             <div class="pais">Perú</div>
             <div class="intereses">
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
@@ -81,9 +83,9 @@ const Search = () => {
           </div> 
         </div>
         <div class="search">
-          <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA1.png" alt=""></div>
+          <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA5.png" alt=""></div>
           <div class="caracteres">
-            <div class="nombre">JUANITO ARISTISABAL</div>
+            <div class="nombre">CRISTIAN CASTRO</div>
             <div class="pais">Perú</div>
             <div class="intereses">
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
@@ -92,9 +94,9 @@ const Search = () => {
             </div>
           </div> 
         </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA1.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Human/AvatarH4.png" alt=""></div>
           <div class="caracteres">
-            <div class="nombre">JUANITO ARISTISABAL</div>
+            <div class="nombre">PEDRO SUAREZ</div>
             <div class="pais">Perú</div>
             <div class="intereses">
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
@@ -102,9 +104,9 @@ const Search = () => {
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA1.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA6.png" alt=""></div>
           <div class="caracteres">
-            <div class="nombre">JUANITO ARISTISABAL</div>
+            <div class="nombre">DIEGO DOMINGUEZ</div>
             <div class="pais">Perú</div>
             <div class="intereses">
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
@@ -112,9 +114,9 @@ const Search = () => {
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA1.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Human/AvatarH6.png" alt=""></div>
           <div class="caracteres">
-            <div class="nombre">JUANITO ARISTISABAL</div>
+            <div class="nombre">ADRIÁN PLAZA</div>
             <div class="pais">Perú</div>
             <div class="intereses">
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
@@ -122,9 +124,9 @@ const Search = () => {
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA1.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA9.png" alt=""></div>
           <div class="caracteres">
-            <div class="nombre">JUANITO ARISTISABAL</div>
+            <div class="nombre">MARC DUQUE </div>
             <div class="pais">Perú</div>
             <div class="intereses">
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
@@ -132,9 +134,9 @@ const Search = () => {
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA1.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Human/AvatarH8.png" alt=""></div>
           <div class="caracteres">
-            <div class="nombre">JUANITO ARISTISABAL</div>
+            <div class="nombre">PAULA SALA</div>
             <div class="pais">Perú</div>
             <div class="intereses">
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
@@ -142,9 +144,9 @@ const Search = () => {
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA1.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA8.png" alt=""></div>
           <div class="caracteres">
-            <div class="nombre">JUANITO ARISTISABAL</div>
+            <div class="nombre">XAVIER FANER</div>
             <div class="pais">Perú</div>
             <div class="intereses">
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
@@ -152,9 +154,9 @@ const Search = () => {
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA1.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Plants/AvatarP2.png" alt=""></div>
           <div class="caracteres">
-            <div class="nombre">JUANITO ARISTISABAL</div>
+            <div class="nombre">MARGALIDA PERELLO</div>
             <div class="pais">Perú</div>
             <div class="intereses">
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>

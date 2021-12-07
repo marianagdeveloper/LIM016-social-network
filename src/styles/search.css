@@ -4,14 +4,15 @@
   background-repeat: repeat;
 }
 
-input {
+input, select {
   width: 15rem;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: 8px 8px;
   display: flex;
-  border: 1px solid #ccc;
+  border: 1px solid rgb(185, 161, 161);
   border-radius: 4px;
   box-sizing: border-box;
+  color:rgb(79, 112, 46);
 }
 
 .caja1 {
@@ -22,17 +23,13 @@ input {
   background: rgb(34, 100, 13);
   height: auto;
   align-content: center;
-  padding: 0.7rem;
+  padding: 0.7rem 3%;
 }
 
 .filtros {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-}
-
-.filtro1 {
-  margin: 0 3rem;
 }
 
 .caja2 {
@@ -108,7 +105,17 @@ input {
   display: flex;
 }
 
-
-
-
-
+@media (max-width: 900px) {
+  .filtros {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: space-around;
+    align-items: center;
+    width: 100%;
+  }
+  .filtros input {
+    width: 12rem;
+  }
+}
