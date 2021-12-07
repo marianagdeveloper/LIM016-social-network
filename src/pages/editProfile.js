@@ -9,7 +9,7 @@ const EditProfile = () => {
         <div class="containerSection">
           <div class="bodyEditProfile">
             <div class="nameUser">
-              <h3>ANDALUCÍA LOPEZ</h3>
+              <h3>USER NAME</h3>
             </div>
             <div class="profileAndInterest"></div>
             <div class="interests">
@@ -19,7 +19,7 @@ const EditProfile = () => {
             </div>
             <div class="photoProfile">
               <img
-                src="../src/img/Avatares/Animals/AvatarA5.png"
+                src="../src/img/Avatares/Animals/AvatarA7.png"
                 alt=""
                 srcset=""
               />
