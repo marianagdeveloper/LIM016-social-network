@@ -55,9 +55,6 @@ const Home = () => {
             <button class='tablink' onclick='openBoxPublication('galery', this, 'rgb(102, 74, 31)')'>
               <img src='/src/img/Icons/WhiteBorder/Galery1.png' alt='Galery'>
             </button>
-            <button class='tablink' onclick='openBoxPublication('historial', this, 'rgb(172, 35, 35)')'>
-              <img src='/src/img/Icons/WhiteBorder/Heart.png' alt='Heart'>
-            </button>
           </nav>
           
           <div id='publications' class='tabcontent'><br>

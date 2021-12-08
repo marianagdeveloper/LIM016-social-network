@@ -1,9 +1,8 @@
 * {
   font-family: 'Roboto', sans-serif;
-  font-weight: 600;
-  background-repeat: repeat;
+  /* font-weight: 600;
+  background-repeat: repeat; */
 }
-
 
 .filtros input,.filtros select, .input input {
   width: 15rem;

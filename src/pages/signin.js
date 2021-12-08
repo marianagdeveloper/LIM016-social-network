@@ -5,6 +5,18 @@ import {
   signInWithPopup,
 } from '../utils/firebaseconfig.js';
 
+const handleError = (error) => {
+  const errorCode = error.code;
+  const errorMessage = error.message;
+  console.log('error en signin', errorMessage, errorCode);
+  // const errorModal = '333';
+  document
+    .getElementById('modalSignIn')
+    .classList.replace('modalSignIn', 'alertMessageSignIn');
+
+  document.getElementById('errormessage').innerHTML = errorCode;
+};
+
 export const handleCurrent = () => {
   const user = auth.currentUser;
   if (user !== null) {
@@ -36,11 +48,7 @@ export const handleSignin = (e) => {
       window.location.href = a.href;
       // handleCurrent(userCredential.user);
     })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log('error en signin', errorMessage, errorCode);
-    });
+    .catch(handleError);
 };
 
 export const handleSigninGoogle = (e) => {
@@ -51,17 +59,7 @@ export const handleSigninGoogle = (e) => {
       console.log(user.displayName);
       window.location.href = '#/home';
     })
-    .catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      // const errorMessage = error.message;
-      // The email of the user's account used.
-      // const email = error.email;
-      // The AuthCredential type that was used.
-      // const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-      console.log(errorCode);
-    });
+    .catch(handleError);
 };
 
 const SignIn = () => {
@@ -122,8 +120,12 @@ const SignIn = () => {
               <button id="btn-signin-signin" class="Loginbtn">Login</button>
 
               <button type="submit" id="btn-signin-google" class="LoginGooglebtn">Continue with Google</button>
+            </div>            
+            <div id="modalSignIn" class="modalSignIn">
+              <img src="img/Icons/Alert2.png" class="Alert" alt="Alert" />
+              <p id="errormessage"> Error </p>
             </div><hr>
-            </div>
+            </div> 
               <p>
               You do not have an account?
                 <a href="#/signup" style="color: dodgerblue">Sign up</a>.
