@@ -1,5 +1,5 @@
 import {
-  signInWithEmailAndPassword,
+  // signInWithEmailAndPassword,
   provider,
   auth,
   signInWithPopup,
@@ -57,10 +57,10 @@ export default () => {
   divElemt.classList.add('position');
   divElemt.innerHTML = viewHome;
 
-   // Sign In with Google
-   divElemt
-   .querySelector('#btn-welcome-google')
-   .addEventListener('click', handleSigninGoogle);
+  // Sign In with Google
+  divElemt
+    .querySelector('#btn-welcome-google')
+    .addEventListener('click', handleSigninGoogle);
 
   return divElemt;
 };

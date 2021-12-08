@@ -44,54 +44,10 @@ const Home = () => {
         </div>
         
         <div id="publications" class='Publications'>
-
-          <nav class='nav-Publications'>
-            <button class='tablink'  id='defaultOpen'><a href="#/publications">
-              <img src='/src/img/Icons/WhiteBorder/Notice.png' alt='Notice'></a>
-            </button>
-            <button class='tablink' onclick='openBoxPublication('events', this, 'rgb(28, 70, 99)')'>
-              <img src='/src/img/Icons/WhiteBorder/Event1.png' alt='Events'>
-            </button>
-            <button class='tablink' onclick='openBoxPublication('galery', this, 'rgb(102, 74, 31)')'>
-              <img src='/src/img/Icons/WhiteBorder/Galery1.png' alt='Galery'>
-            </button>
-            <button class='tablink' onclick='openBoxPublication('historial', this, 'rgb(172, 35, 35)')'>
-              <img src='/src/img/Icons/WhiteBorder/Heart.png' alt='Heart'>
-            </button>
-          </nav>
-          
-          <div id='publications' class='tabcontent'><br>
+          <p>ECOGRAM</p>
+          <div class="input">
+            <input type="text" id="fname" name="firstname" placeholder="Your name..">
           </div>
-
-          <div id='events' class='tabcontent'>
-            <h1>EVENTS</h1>
-            <p>All events</p>
-          </div>
-          
-          <div id='galery' class='tabcontent'>
-            <h1>MY GALLERY</h1>
-            <p>Photos</p>
-          </div>
-
-          <div id='historial' class='tabcontent'>
-            <h1>HISTORIAL</h1>
-            <p>All likes</p>
-          </div>
-
-          <footer class='footer-Publications'>
-            <button class='tablink' onclick='openBoxPublication('publications', this, 'rgb(26, 77, 33)')' id='defaultOpen'>
-              <img src='/src/img/Icons/WhiteBorder/Notice.png' alt='Notice'>
-            </button>
-            <button class='tablink' onclick='openBoxPublication('events', this, 'rgb(28, 70, 99)')'>
-              <img src='/src/img/Icons/WhiteBorder/Event1.png' alt='Events'>
-            </button>
-            <button class='tablink' onclick='openBoxPublication('galery', this, 'rgb(102, 74, 31)')'>
-              <img src='/src/img/Icons/WhiteBorder/Galery1.png' alt='Galery'>
-            </button>
-            <button class='tablink' onclick='openBoxPublication('historial', this, 'rgb(172, 35, 35)')'>
-              <img src='/src/img/Icons/WhiteBorder/Heart.png' alt='Heart'>
-            </button>
-          </footer> 
         </div>
       </div>
 
