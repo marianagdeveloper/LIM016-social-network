@@ -137,3 +137,32 @@
   width: 8%;
   margin-right: 3%;
 }
+
+.modalCheck {
+  display: none;
+}
+
+.alertmodalCheck {
+  color: #4fe24f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.Check {
+  width: 8%;
+  margin-right: 3%;
+}
+
+.modalName{
+  display: none;
+}
+
+.alertmodalName {
+  color: #f1ff75;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
+}
