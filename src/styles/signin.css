@@ -143,4 +143,13 @@ form {
 
 .alertMessageSignIn {
   color: #f1ff75;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.Alert {
+  width: 8%;
+  margin-right: 3%;
 }

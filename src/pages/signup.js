@@ -117,6 +117,7 @@ const SignUp = () => {
             <button type="submit" id="btn-welcome-signup" id="signup" class="signupbtn">Sign Up</button>
           </div>
           <div id="modalSignUp" class="modalSignUp">
+            <img src="img/Icons/Alert2.png" class="Alert" alt="Alert" />
             <p id="errormessage"> Error </p>
           </div><hr>
           </div> 
