@@ -1,4 +1,8 @@
-import { createUserWithEmailAndPassword, auth, sendEmailVerification } from '../utils/firebaseconfig.js';
+import {
+  createUserWithEmailAndPassword,
+  auth,
+  sendEmailVerification,
+} from '../utils/firebaseconfig.js';
 
 export const handleSenEmailVerification = () => {
   sendEmailVerification(auth.currentUser)
@@ -28,9 +32,14 @@ export const handleSingUp = (e) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       // eslint-disable-next-line no-console
-      console.log(`Notification:${errorCode}${errorMessage}`);
+      console.log('error en signup', errorMessage, errorCode);
       // eslint-disable-next-line no-alert
-      alert(`Notification: ${errorMessage}`);
+      // alert(`Notification: ${errorMessage}`);
+      document
+        .getElementById('modalSignUp')
+        .classList.replace('modalSignUp', 'alertMessageSignUp');
+
+      document.getElementById('errormessage').innerHTML = errorCode;
     });
 };
 
@@ -106,6 +115,9 @@ const SignUp = () => {
           <p id="verify-message" class="verify-message"></p>
           <div class="clearfix">
             <button type="submit" id="btn-welcome-signup" id="signup" class="signupbtn">Sign Up</button>
+          </div>
+          <div id="modalSignUp" class="modalSignUp">
+            <p id="errormessage"> Error </p>
           </div><hr>
           </div> 
           <p>

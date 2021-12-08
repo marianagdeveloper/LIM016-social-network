@@ -119,3 +119,12 @@
     padding: 1rem;
   }
 }
+
+
+.modalSignUp {
+  display: none;
+}
+
+.alertMessageSignUp {
+  color: #f1ff75;
+}
