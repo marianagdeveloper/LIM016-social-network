@@ -35,6 +35,7 @@ export const handleSigninGoogle = (e) => {
       const user = result.user;
       // ...
       console.log(user.displayName + token);
+      window.location.href = '#/home';
     })
     .catch((error) => {
       // Handle Errors here.
