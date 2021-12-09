@@ -73,7 +73,6 @@ export const handleSingUp = (e) => {
           .getElementById('modalSignUp')
           .classList.replace('modalSignUp', 'alertMessageSignUp');
 
-      
         document.getElementById('errormessage').innerHTML = errorCode;
       });
   } else if (name === '' || name == null) {

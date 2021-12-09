@@ -2,23 +2,49 @@ import {
   auth, sendPasswordResetEmail, signInWithPopup, provider, GoogleAuthProvider,
 } from '../utils/firebaseconfig.js';
 
+const cleanModal = () => {
+  const check = document.getElementById('modalCheckP');
+  const emailI = document.getElementById('modalCheckPA')
+
+  if (check) {
+    document
+      .getElementById('modalCheckP')
+      .classList.replace('alertmodalCheckP', 'modalCheckP');
+  }
+
+  if (emailI) {
+    document
+      .getElementById('modalCheckPA')
+      .classList.replace('alertmodalCheckPA', 'modalCheckPA');
+  }
+};
+
 export const handleForgotPassw = (e) => {
   e.preventDefault();
   const email = e.target.closest('form').querySelector('#email').value;
-  sendPasswordResetEmail(auth, email)
-    .then(() => {
-      document
-        .getElementById('alertMessage')
-        .classList.replace('ocultAlertMessage', 'alertMessage');
+
+  if (email !== '') {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        cleanModal();
+        document
+          .getElementById('modalCheckP')
+          .classList.replace('modalCheckP', 'alertmodalCheckP');
       // document.getElementById('alertMessage').classList.add('alertMessage');
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-      console.log('error en password', errorMessage, errorCode);
-      return errorMessage;
-    });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        console.log('error en password', errorMessage, errorCode);
+        return errorMessage;
+      });
+  } else if (email === '' || email == null) {
+    cleanModal();
+    document
+      .getElementById('modalCheckPA')
+      .classList.replace('modalCheckPA', 'alertmodalCheckPA');
+  }
 };
 
 export const handleSigninGoogle = (e) => {
@@ -77,8 +103,15 @@ const forgotPass = () => {
                 <label for="uname"><b>Enter your email associated with your account</b></label>
                 <div class="clearfix clearfixForgotPass" id="clearfix clearfixForgotPass">
                     <input class="inputSignIn inputSignInForgotPass" id="email" type="text" placeholder="Enter your email" name="uname" required/>
-                    <p id="alertMessage" class= "ocultAlertMessage">
-                    A verification email has just been sent to complete your password change.</p> 
+                    <div id="modalCheckP" class="modalCheckP">
+                      <img src="img/Icons/Verify.png" class="CheckP" alt="sent email" />
+                      <p>
+                      A verification email has just been sent to complete your password change.</p> 
+                    </div>
+                    <div id="modalCheckPA" class="modalCheckPA">
+                      <img src="img/Icons/Alert2.png" class="AlertP" alt="Alert" />
+                      <p>You need to write a valid email.</p> 
+                    </div>
                     <button type="submit" id="btn-signin-signin" class="Loginbtn LoginbtnForgotPass"><a href="#/forgotPassw2">Continue</a></button>
                         <div class="entreLineas">
                             <div class="linea">&nbsp;</div>
