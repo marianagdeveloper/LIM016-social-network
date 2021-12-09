@@ -4,7 +4,7 @@ import {
 
 const cleanModal = () => {
   const check = document.getElementById('modalCheckP');
-  const emailI = document.getElementById('modalCheckPA')
+  const emailI = document.getElementById('modalCheckPA');
 
   if (check) {
     document
@@ -36,7 +36,7 @@ export const handleForgotPassw = (e) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..
-        console.log('error en password', errorMessage, errorCode);
+        console.log('error en email', errorMessage, errorCode);
         return errorMessage;
       });
   } else if (email === '' || email == null) {
