@@ -5,23 +5,27 @@ import {
 } from '../utils/firebaseconfig.js';
 
 const cleanModal = () => {
-  const check = document
-    .getElementById('modalCheck');
+  const check = document.getElementById('modalCheck');
+  const nameI = document.getElementById('modalName');
+  const errorSU = document.getElementById('modalSignUp');
 
   if (check) {
     document
-      .getElementById('modalCheck').classList.replace('alertmodalCheck', 'modalCheck');
+      .getElementById('modalCheck')
+      .classList.replace('alertmodalCheck', 'modalCheck');
   }
 
-  // document
-  //   .getElementById('alertmodalCheck')
-  //   .classList.replace('alertmodalCheck', 'modalCheck');
-  // document
-  //   .getElementById('alertmodalName')
-  //   .classList.replace('alertmodalName', 'modalName');
-  // document
-  //   .getElementById('alertmodalSignUp')
-  //   .classList.replace('alertmodalSignUp', 'modalSignUp');
+  if (nameI) {
+    document
+      .getElementById('modalName')
+      .classList.replace('alertmodalName', 'modalName');
+  }
+
+  if (errorSU) {
+    document
+      .getElementById('modalSignUp')
+      .classList.replace('alertMessageSignUp', 'modalSignUp');
+  }
 };
 
 export const handleSenEmailVerification = () => {
@@ -41,7 +45,6 @@ export const handleSingUp = (e) => {
 
   console.log(name);
 
-  
   if (name !== '') {
     // alert(`Created User ${user}`);
     createUserWithEmailAndPassword(auth, email, password, name)
@@ -51,6 +54,8 @@ export const handleSingUp = (e) => {
         // eslint-disable-next-line no-console
         console.log(user.displayname);
         // eslint-disable-next-line no-alert
+        cleanModal();
+        // Print notification: User created
         document
           .getElementById('modalCheck')
           .classList.replace('modalCheck', 'alertmodalCheck');
@@ -68,6 +73,7 @@ export const handleSingUp = (e) => {
           .getElementById('modalSignUp')
           .classList.replace('modalSignUp', 'alertMessageSignUp');
 
+      
         document.getElementById('errormessage').innerHTML = errorCode;
       });
   } else if (name === '' || name == null) {
