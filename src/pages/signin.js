@@ -122,6 +122,7 @@ const SignIn = () => {
               <button type="submit" id="btn-signin-google" class="LoginGooglebtn">Continue with Google</button>
             </div>            
             <div id="modalSignIn" class="modalSignIn">
+              <img src="img/Icons/Alert2.png" class="Alert" alt="Alert" />
               <p id="errormessage"> Error </p>
             </div><hr>
             </div> 

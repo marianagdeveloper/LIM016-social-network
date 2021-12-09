@@ -1,4 +1,28 @@
-import { createUserWithEmailAndPassword, auth, sendEmailVerification } from '../utils/firebaseconfig.js';
+import {
+  createUserWithEmailAndPassword,
+  auth,
+  sendEmailVerification,
+} from '../utils/firebaseconfig.js';
+
+const cleanModal = () => {
+  const check = document
+    .getElementById('modalCheck');
+
+  if (check) {
+    document
+      .getElementById('modalCheck').classList.replace('alertmodalCheck', 'modalCheck');
+  }
+
+  // document
+  //   .getElementById('alertmodalCheck')
+  //   .classList.replace('alertmodalCheck', 'modalCheck');
+  // document
+  //   .getElementById('alertmodalName')
+  //   .classList.replace('alertmodalName', 'modalName');
+  // document
+  //   .getElementById('alertmodalSignUp')
+  //   .classList.replace('alertmodalSignUp', 'modalSignUp');
+};
 
 export const handleSenEmailVerification = () => {
   sendEmailVerification(auth.currentUser)
@@ -14,24 +38,44 @@ export const handleSingUp = (e) => {
   const name = e.target.closest('form').querySelector('#name').value;
   const email = e.target.closest('form').querySelector('#email').value;
   const password = e.target.closest('form').querySelector('#password').value;
-  createUserWithEmailAndPassword(auth, email, password, name)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      user.displayname = name;
-      // eslint-disable-next-line no-console
-      console.log(user.displayname);
-      // eslint-disable-next-line no-alert
-      alert(`Created User ${user}`);
-      handleSenEmailVerification();
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // eslint-disable-next-line no-console
-      console.log(`Notification:${errorCode}${errorMessage}`);
-      // eslint-disable-next-line no-alert
-      alert(`Notification: ${errorMessage}`);
-    });
+
+  console.log(name);
+
+  
+  if (name !== '') {
+    // alert(`Created User ${user}`);
+    createUserWithEmailAndPassword(auth, email, password, name)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        user.displayname = name;
+        // eslint-disable-next-line no-console
+        console.log(user.displayname);
+        // eslint-disable-next-line no-alert
+        document
+          .getElementById('modalCheck')
+          .classList.replace('modalCheck', 'alertmodalCheck');
+        handleSenEmailVerification();
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // eslint-disable-next-line no-console
+        console.log('error en signup', errorMessage, errorCode);
+        // eslint-disable-next-line no-alert
+        // alert(`Notification: ${errorMessage}`);
+        cleanModal();
+        document
+          .getElementById('modalSignUp')
+          .classList.replace('modalSignUp', 'alertMessageSignUp');
+
+        document.getElementById('errormessage').innerHTML = errorCode;
+      });
+  } else if (name === '' || name == null) {
+    cleanModal();
+    document
+      .getElementById('modalName')
+      .classList.replace('modalName', 'alertmodalName');
+  }
 };
 
 const SignUp = () => {
@@ -83,6 +127,7 @@ const SignUp = () => {
             id="password"
             type="password"
             placeholder="Enter Password"
+            maxlength="8"
             name="psw"
             required
           />
@@ -106,6 +151,18 @@ const SignUp = () => {
           <p id="verify-message" class="verify-message"></p>
           <div class="clearfix">
             <button type="submit" id="btn-welcome-signup" id="signup" class="signupbtn">Sign Up</button>
+          </div>
+          <div id="modalSignUp" class="modalSignUp">
+            <img src="img/Icons/Alert2.png" class="Alert" alt="Alert" />
+            <p id="errormessage"> Error </p>
+          </div>
+          <div id="modalCheck" class="modalCheck">
+            <img src="img/Icons/Verify.png" class="Check" alt="User Created" />
+            <p id="CheckMessage"> Your username was created successfully. Check your email.</p>
+          </div>
+          <div id="modalName" class="modalName">
+            <img src="img/Icons/Alert2.png" class="Alert" alt="You need enter your name" />
+            <p id="nameMessage"> Required your name </p>
           </div><hr>
           </div> 
           <p>

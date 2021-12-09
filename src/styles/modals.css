@@ -1,0 +1,66 @@
+
+/*---------------------Características de los Modales-------------*/
+#ubicacionModal{
+  position: absolute;
+  right: 0;
+  padding: 10px;
+  justify-content: center; 
+}
+
+.modalError{
+  width: auto;
+  height: auto;
+  display: flex;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
+  background-color: #EA4335;
+  border-radius: 10px;
+  align-items: center;
+  padding: 10px 10px 10px 0;
+  justify-content: center; 
+  animation: slideUpLarge 4s;
+}
+
+.modalExito{
+  width: auto;
+  height: auto;
+  display: flex;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
+  background-color: #34A853;
+  border-radius: 10px;    
+  align-items: center;
+  padding: 10px 10px 10px 0;
+  justify-content: center; 
+  animation: slideUpLarge 4s;
+}
+
+.modalError i {
+  color: rgb(252, 246, 246);
+  margin: 0 15px 0 10px;
+  
+}
+
+.modalExito i {
+  color: rgb(252, 246, 246);
+  margin-right: 20px;
+  margin: 0 15px 0 10px;
+}
+
+.modalError p, .modalExito p {
+  color:#FFFF;
+  font-size: 16px;
+  margin-left: 3x;
+  justify-self: center;
+
+}
+
+@keyframes slideUpLarge {
+  0% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(-10%);
+  }
+  100% {
+      transform: translateX(0%);
+  }
+}

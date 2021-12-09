@@ -8,14 +8,6 @@ form {
   margin: auto;
 }
 
-.modalSignIn {
- display: none;
-}
-
-.alertMessageSignIn {
-  color :#5aff99;
-}
-
 .BoxLogin {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -143,4 +135,21 @@ form {
     justify-content: center;
     text-align: center;
   }
+}
+
+.modalSignIn {
+  display: none;
+}
+
+.alertMessageSignIn {
+  color: #f1ff75;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.Alert {
+  width: 8%;
+  margin-right: 3%;
 }
