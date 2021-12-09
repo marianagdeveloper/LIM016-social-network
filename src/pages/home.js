@@ -17,8 +17,8 @@ const Home = () => {
           <div class='linea2'>&nbsp;</div>
         </div>
         <div class='User'>
-          <h3>User</h3>
-          <p>@User165</p>
+          <h3>Email</h3>
+          <p>user@email.com</p>
         </div>
         <div class='Country'>
           <h3>Country</h3>
@@ -42,12 +42,14 @@ const Home = () => {
             <img src='/src/img/Intereses/InteresesCN/ReciclajeCN.png' alt=''>
           </div>
         </div>
-        
         <div id="publications" class='Publications'>
+<<<<<<< HEAD
           <p>ECOGRAM</p>
           <div class="input">
             <input type="text" id="fname" name="firstname" placeholder="Your name..">
           </div>
+=======
+>>>>>>> c01dc80640120620e6728d836f620b7dcba28cf0
         </div>
       </div>
 
