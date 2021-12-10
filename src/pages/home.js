@@ -6,32 +6,16 @@ import {
   doc
 } from '../utils/firebaseconfig.js';
 
-let uid = sessionStorage.getItem('key');
-let name = sessionStorage.getItem('name');
-
-async function readData() {
-  //firebase
-  const querySnapshot = await getDocs(collection(db, "users"));
-  // console.log('estamos leyendo los usuarios en firestore:');
-  querySnapshot.forEach((doc) => {
-    // console.log(`${doc.id} => ${doc.data()}`);
-  });
-}
-
-
 //Obtener un usuario
 async function readUser(uid) {
-  let data;
+  let data = '';
   const docRef = doc(db, "users", uid);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
     // console.log("Document data:", docSnap.data());
     data = docSnap.data();
-    // console.log("Document data:", data);
-    let name = data.name;
-    sessionStorage.setItem('name', name);
-
+    console.log("Document data:", data);
   } else {
     // doc.data() will be undefined in this case
     console.log("No such document!");
@@ -39,17 +23,19 @@ async function readUser(uid) {
   return data
 }
 
+//Export const Home
 const Home = () => {
-  
+  const containerHome = document.createElement('div');
+
+  containerHome.classList.add('positionHome');
+
   const viewHome = `
   <main>
     <!-- HOME PAGE -->
     <section id='Home' class='Box'>
 
       <div class='HomeBox'>
-        <div class='UserName'>
-          <h1>${name}</h1> 
-          <div class='linea2'>&nbsp;</div>
+        <div id='UserName'>
         </div>
         
         <div class='Avatar'>
@@ -89,23 +75,23 @@ const Home = () => {
 
     </section>
   </main>`;
+  containerHome.innerHTML = viewHome;
 
-  // <a type='submit' href='#/home'>Send</a>
-  const divElemt = document.createElement('div');
-  divElemt.classList.add('positionHome');
-  divElemt.innerHTML = viewHome;
+  const infoUser = (info) => {
+    console.log(info);
+    containerHome.querySelector('#UserName').innerHTML += 
+    `<h1>${info.name}</h1> 
+    <div class='linea2'>&nbsp;</div>`
+  };
 
-  // readData();
+  const uid = () => {
+    let uidSS = sessionStorage.getItem('key');
+    return uidSS
+  }
 
-  //  console.log('este es el uid:', uid);
-  readUser(uid);
+  readUser(uid()).then((value) => infoUser(value)).catch((error) => console.log(error));
 
-  console.log("Nombre:", name);
-  return divElemt;
+  return containerHome;
 };
-
-
-
-
 
 export default Home;
