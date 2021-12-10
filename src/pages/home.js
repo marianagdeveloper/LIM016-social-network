@@ -72,13 +72,6 @@ const Home = () => {
           </div>
         </div>
         <div id="publications" class='Publications'>
-<<<<<<< HEAD
-          <p>ECOGRAM</p>
-          <div class="input">
-            <input type="text" id="fname" name="firstname" placeholder="Your name..">
-          </div>
-=======
->>>>>>> c01dc80640120620e6728d836f620b7dcba28cf0
         </div>
       </div>
 
