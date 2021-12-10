@@ -3,6 +3,9 @@ import {
   provider,
   auth,
   signInWithPopup,
+  doc,
+  getDoc,
+  db,
 } from '../utils/firebaseconfig.js';
 
 const handleError = (error) => {
@@ -33,8 +36,6 @@ export const handleCurrent = () => {
   return user;
 };
 
-
-
 export const handleSignin = (e) => {
   e.preventDefault();
   const email = e.target.closest('form').querySelector('#email').value;
@@ -44,11 +45,13 @@ export const handleSignin = (e) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
-      const user = userCredential.user.uid;
+      let user = userCredential.user.uid;
       console.log('user', user);
       // Save data to sessionStorage
       sessionStorage.setItem('key', user);
-      // console.log(user);
+      console.log('userCredential.user.uid:', userCredential.user.uid);
+
+    
       a.href = '#/home';
       window.location.href = a.href;
       // handleCurrent(userCredential.user);
