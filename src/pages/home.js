@@ -1,13 +1,54 @@
-const Home = () => {
-  const viewHome = `
+import {
+  db,
+  collection,
+  getDocs,
+  getDoc,
+  doc
+} from '../utils/firebaseconfig.js';
 
+let uid = sessionStorage.getItem('key');
+let name = sessionStorage.getItem('name');
+
+async function readData() {
+  //firebase
+  const querySnapshot = await getDocs(collection(db, "users"));
+  // console.log('estamos leyendo los usuarios en firestore:');
+  querySnapshot.forEach((doc) => {
+    // console.log(`${doc.id} => ${doc.data()}`);
+  });
+}
+
+
+//Obtener un usuario
+async function readUser(uid) {
+  let data;
+  const docRef = doc(db, "users", uid);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    // console.log("Document data:", docSnap.data());
+    data = docSnap.data();
+    // console.log("Document data:", data);
+    let name = data.name;
+    sessionStorage.setItem('name', name);
+
+  } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+  }
+  return data
+}
+
+const Home = () => {
+  
+  const viewHome = `
   <main>
     <!-- HOME PAGE -->
     <section id='Home' class='Box'>
 
       <div class='HomeBox'>
         <div class='UserName'>
-          <h1>USER NAME</h1> 
+          <h1>${name}</h1> 
           <div class='linea2'>&nbsp;</div>
         </div>
         
@@ -54,7 +95,17 @@ const Home = () => {
   divElemt.classList.add('positionHome');
   divElemt.innerHTML = viewHome;
 
+  // readData();
+
+  //  console.log('este es el uid:', uid);
+  readUser(uid);
+
+  console.log("Nombre:", name);
   return divElemt;
 };
+
+
+
+
 
 export default Home;
