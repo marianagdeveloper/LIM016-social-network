@@ -2,6 +2,7 @@
 // eslint-disable-next-line import/no-unresolved
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js';
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -16,6 +17,8 @@ import {
 import {
   getFirestore,
   addDoc,
+  doc,
+  setDoc,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -36,8 +39,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider(app);
 const analytics = getAnalytics(app);
-const auth = getAuth();
-const db = getFirestore();
+const auth = getAuth(app);
+const db = getFirestore(app);
 export {
   app,
   auth,
@@ -53,4 +56,6 @@ export {
   getFirestore,
   addDoc,
   db,
+  doc,
+  setDoc,
 };
