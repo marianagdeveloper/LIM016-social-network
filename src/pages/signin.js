@@ -3,9 +3,9 @@ import {
   provider,
   auth,
   signInWithPopup,
-  doc,
-  getDoc,
-  db,
+  // doc,
+  // getDoc,
+  // db,
 } from '../utils/firebaseconfig.js';
 
 const handleError = (error) => {
@@ -51,7 +51,6 @@ export const handleSignin = (e) => {
       sessionStorage.setItem('key', user);
       console.log('userCredential.user.uid:', userCredential.user.uid);
 
-    
       a.href = '#/home';
       window.location.href = a.href;
       // handleCurrent(userCredential.user);
