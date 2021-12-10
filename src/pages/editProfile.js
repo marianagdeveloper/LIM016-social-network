@@ -1,3 +1,29 @@
+import {
+  db,
+  // collection,
+  // getDocs,
+  getDoc,
+  doc,
+} from '../utils/firebaseconfig.js';
+
+// Obtener un usuario
+async function readUser(uid) {
+  let data = '';
+  const docRef = doc(db, 'users', uid);
+  const docSnap = await getDoc(docRef);
+  console.log(docSnap);
+
+  if (docSnap.exists()) {
+    // console.log("Document data:", docSnap.data());
+    data = docSnap.data();
+    console.log('Document data:', data);
+  } else {
+    // doc.data() will be undefined in this case
+    console.log('No such document!');
+  }
+  return data;
+}
+
 const EditProfile = () => {
   const viewEditProfile = ` 
   <body>
@@ -240,6 +266,11 @@ const EditProfile = () => {
     console.log(info);
     divElemt.querySelector('.nameUser').innerHTML
     += `<h3>${info.name}</h3>`;
+  };
+
+  const uid = () => {
+    const uidSS = sessionStorage.getItem('key');
+    return uidSS;
   };
 
   readUser(uid).then((value) => infoUser(value)).catch((error) => console.log(error));
