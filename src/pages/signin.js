@@ -36,25 +36,6 @@ export const handleCurrent = () => {
   return user;
 };
 
-// //Obtener un usuario
-// async function readUser(uid) {
-//   let data;
-//   const docRef = doc(db, "users", uid);
-//   const docSnap = await getDoc(docRef);
-
-//   if (docSnap.exists()) {
-//     // console.log("Document data:", docSnap.data());
-//     data = docSnap.data();
-//     // console.log("Document data:", data);
-//   } else {
-//     // doc.data() will be undefined in this case
-//     console.log("No such document!");
-//   }
-//   return data
-// }
-
-
-
 export const handleSignin = (e) => {
   e.preventDefault();
   const email = e.target.closest('form').querySelector('#email').value;
@@ -64,25 +45,13 @@ export const handleSignin = (e) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
-      const user = userCredential.user.uid;
+      let user = userCredential.user.uid;
       console.log('user', user);
       // Save data to sessionStorage
       sessionStorage.setItem('key', user);
       console.log('userCredential.user.uid:', userCredential.user.uid);
 
-      // readUser(user)
-      // .then
-      // (val => 
-      //   // console.log('val:', val.name),
-      //   sessionStorage.setItem('name', val.name),
-      //   );
-      
-      
-
-      
-      // sessionStorage.setItem('name', userCredential.user.name);
-      // console.log('userCredential.user.name:', userCredential.user);
-      // console.log(user);
+    
       a.href = '#/home';
       window.location.href = a.href;
       // handleCurrent(userCredential.user);

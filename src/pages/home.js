@@ -6,13 +6,11 @@ import {
   doc
 } from '../utils/firebaseconfig.js';
 
-// let uid = sessionStorage.getItem('key');
-// let name = sessionStorage.getItem('name');
-let nombre;
+let uid = sessionStorage.getItem('key');
 
 //Obtener un usuario
 async function readUser(uid) {
-  let data;
+  let data = '';
   const docRef = doc(db, "users", uid);
   const docSnap = await getDoc(docRef);
 
@@ -27,50 +25,19 @@ async function readUser(uid) {
   return data
 }
 
-// async function readData() {
-//   //firebase
-//   const querySnapshot = await getDocs(collection(db, "users"));
-//   // console.log('estamos leyendo los usuarios en firestore:');
-//   querySnapshot.forEach((doc) => {
-//     // console.log(`${doc.id} => ${doc.data()}`);
-//   });
-// }
-
-
-
-
+//Export const Home
 const Home = () => {
+  const containerHome = document.createElement('div');
 
-  const user = sessionStorage.getItem('key');
-  console.log('user:', user);
-  // readUser(user)
-  // .then
-  // (val => 
-  //   console.log('val:', val.name),
-  //   console.log('val2:', val.name),
-  //   // nombre = val.name,
-  //   // sessionStorage.setItem('name', val.name),
-  //   );
+  containerHome.classList.add('positionHome');
 
-  (
-    async () => {
-       const data = await readUser(user);
-       let nameUser = data.name;
-       console.log(nameUser);
-    }
-)()
-  
-  
-  
   const viewHome = `
   <main>
     <!-- HOME PAGE -->
     <section id='Home' class='Box'>
 
       <div class='HomeBox'>
-        <div class='UserName'>
-          <h1>USERNAME</h1> 
-          <div class='linea2'>&nbsp;</div>
+        <div id='UserName'>
         </div>
         
         <div class='Avatar'>
@@ -110,22 +77,18 @@ const Home = () => {
 
     </section>
   </main>`;
+  containerHome.innerHTML = viewHome;
 
-  // <a type='submit' href='#/home'>Send</a>
-  const divElemt = document.createElement('div');
-  divElemt.classList.add('positionHome');
-  divElemt.innerHTML = viewHome;
+  const infoUser = (info) => {
+    console.log(info);
+    containerHome.querySelector('#UserName').innerHTML += 
+    `<h1>${info.name}</h1> 
+    <div class='linea2'>&nbsp;</div>`
+  };
 
-  // readData();
-  console.log("Nombre:", name);
-  //  console.log('este es el uid:', uid);
+  readUser(uid).then((value) => infoUser(value)).catch((error) => console.log(error));
 
- 
-  return divElemt;
+  return containerHome;
 };
-
-
-
-
 
 export default Home;
