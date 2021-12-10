@@ -6,18 +6,9 @@ import {
   doc
 } from '../utils/firebaseconfig.js';
 
-let uid = sessionStorage.getItem('key');
-let name = sessionStorage.getItem('name');
-
-async function readData() {
-  //firebase
-  const querySnapshot = await getDocs(collection(db, "users"));
-  // console.log('estamos leyendo los usuarios en firestore:');
-  querySnapshot.forEach((doc) => {
-    // console.log(`${doc.id} => ${doc.data()}`);
-  });
-}
-
+// let uid = sessionStorage.getItem('key');
+// let name = sessionStorage.getItem('name');
+let nombre;
 
 //Obtener un usuario
 async function readUser(uid) {
@@ -28,10 +19,7 @@ async function readUser(uid) {
   if (docSnap.exists()) {
     // console.log("Document data:", docSnap.data());
     data = docSnap.data();
-    // console.log("Document data:", data);
-    let name = data.name;
-    sessionStorage.setItem('name', name);
-
+    console.log("Document data:", data);
   } else {
     // doc.data() will be undefined in this case
     console.log("No such document!");
@@ -39,7 +27,40 @@ async function readUser(uid) {
   return data
 }
 
+// async function readData() {
+//   //firebase
+//   const querySnapshot = await getDocs(collection(db, "users"));
+//   // console.log('estamos leyendo los usuarios en firestore:');
+//   querySnapshot.forEach((doc) => {
+//     // console.log(`${doc.id} => ${doc.data()}`);
+//   });
+// }
+
+
+
+
 const Home = () => {
+
+  const user = sessionStorage.getItem('key');
+  console.log('user:', user);
+  // readUser(user)
+  // .then
+  // (val => 
+  //   console.log('val:', val.name),
+  //   console.log('val2:', val.name),
+  //   // nombre = val.name,
+  //   // sessionStorage.setItem('name', val.name),
+  //   );
+
+  (
+    async () => {
+       const data = await readUser(user);
+       let nameUser = data.name;
+       console.log(nameUser);
+    }
+)()
+  
+  
   
   const viewHome = `
   <main>
@@ -48,7 +69,7 @@ const Home = () => {
 
       <div class='HomeBox'>
         <div class='UserName'>
-          <h1>${name}</h1> 
+          <h1>USERNAME</h1> 
           <div class='linea2'>&nbsp;</div>
         </div>
         
@@ -96,11 +117,10 @@ const Home = () => {
   divElemt.innerHTML = viewHome;
 
   // readData();
-
-  //  console.log('este es el uid:', uid);
-  readUser(uid);
-
   console.log("Nombre:", name);
+  //  console.log('este es el uid:', uid);
+
+ 
   return divElemt;
 };
 
