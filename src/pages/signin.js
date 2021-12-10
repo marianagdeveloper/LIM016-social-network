@@ -21,17 +21,19 @@ export const handleCurrent = () => {
   const user = auth.currentUser;
   if (user !== null) {
     user.providerData.forEach((profile) => {
-      console.log(`Sign-in provider: ${profile.providerId}`);
-      console.log(`Provider-specific UID: ${profile.uid}`);
-      console.log(`Name: ${profile.displayName}`);
-      console.log(`Email: ${profile.email}`);
-      console.log(`Photo URL: ${profile.photoURL}`);
-      console.log(`uid: ${profile.uid}`);
+      // console.log(`Sign-in provider: ${profile.providerId}`);
+      // console.log(`Provider-specific UID: ${profile.uid}`);
+      // console.log(`Name: ${profile.displayName}`);
+      // console.log(`Email: ${profile.email}`);
+      // console.log(`Photo URL: ${profile.photoURL}`);
+      // console.log(`uid: ${profile.uid}`);
     });
     // console.log(displayName, email, photoURL, emailVerified, uid);
   }
   return user;
 };
+
+
 
 export const handleSignin = (e) => {
   e.preventDefault();
@@ -42,8 +44,11 @@ export const handleSignin = (e) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
-      const user = userCredential.user;
-      console.log(user);
+      const user = userCredential.user.uid;
+      console.log('user', user);
+      // Save data to sessionStorage
+      sessionStorage.setItem('key', user);
+      // console.log(user);
       a.href = '#/home';
       window.location.href = a.href;
       // handleCurrent(userCredential.user);
@@ -119,7 +124,7 @@ const SignIn = () => {
             <div class="clearfix">
               <button id="btn-signin-signin" class="Loginbtn">Login</button>
 
-              <button type="submit" id="btn-signin-google" class="LoginGooglebtn">Continue with Google</button>
+              
             </div>            
             <div id="modalSignIn" class="modalSignIn">
               <img src="img/Icons/Alert2.png" class="Alert" alt="Alert" />
@@ -154,9 +159,12 @@ const SignIn = () => {
   // Sign In with Google
   divElemt
     .querySelector('#btn-signin-google')
-    .addEventListener('click', handleSigninGoogle);
+    // .addEventListener('click', handleSigninGoogle);
 
   return divElemt;
 };
 
 export default SignIn;
+
+//Boton para iniciar sesion con Google - Linea 122
+{/* <button type="submit" id="btn-signin-google" class="LoginGooglebtn">Continue with Google</button> */}

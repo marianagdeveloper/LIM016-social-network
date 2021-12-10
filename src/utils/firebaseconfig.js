@@ -2,6 +2,15 @@
 // eslint-disable-next-line import/no-unresolved
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
 // import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
+import { 
+  getFirestore, 
+  collection, 
+  getDocs, 
+  getDoc,
+  doc, 
+  setDoc, 
+} from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -32,6 +41,7 @@ const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider(app);
 // const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 export {
   app,
@@ -44,4 +54,10 @@ export {
   sendPasswordResetEmail,
   sendEmailVerification,
   signOut,
+  db,
+  collection, 
+  getDocs,
+  getDoc,
+  doc,
+  setDoc,
 };

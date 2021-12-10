@@ -2,7 +2,18 @@ import {
   createUserWithEmailAndPassword,
   auth,
   sendEmailVerification,
+  doc, setDoc, db,
 } from '../utils/firebaseconfig.js';
+
+
+// Add a new document in collection "users"
+async function createNewUser(name, email, uid) {
+  await setDoc(doc(db, "users", uid), {
+    uid: uid,
+    name: name,
+    email: email,
+  });
+}
 
 const cleanModal = () => {
   const check = document.getElementById('modalCheck');
@@ -47,12 +58,19 @@ export const handleSingUp = (e) => {
 
   if (name !== '') {
     // alert(`Created User ${user}`);
-    createUserWithEmailAndPassword(auth, email, password, name)
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
-        user.displayname = name;
+        //Add new user
+        //Usar userCredential para crear un nuevo usuario y que el id sea el uid
+        //revisar en el caso de Google para la creacion del usuario
+       console.log('userCredential:', userCredential);
+       let emailFS = userCredential.user.email;
+       let uidFS = userCredential.user.uid;
+        createNewUser(name, emailFS, uidFS);
+        // const user = userCredential.user;
+        // user.displayname = name;
         // eslint-disable-next-line no-console
-        console.log(user.displayname);
+        // console.log(user.displayname);
         // eslint-disable-next-line no-alert
         cleanModal();
         // Print notification: User created
