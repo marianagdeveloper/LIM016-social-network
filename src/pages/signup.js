@@ -2,7 +2,20 @@ import {
   createUserWithEmailAndPassword,
   auth,
   sendEmailVerification,
+  // getFirestore,
+  // collection,
+  // addDoc,
+  db,
+  db2,
 } from '../utils/firebaseconfig.js';
+
+const handleUserProfile = (name, email) => {
+  console.log(db);
+  db2.collection('users').doc(email).set({
+    nameUser: name,
+    emailUser: email,
+  });
+};
 
 const cleanModal = () => {
   const check = document.getElementById('modalCheck');
@@ -49,6 +62,7 @@ export const handleSingUp = (e) => {
     // alert(`Created User ${user}`);
     createUserWithEmailAndPassword(auth, email, password, name)
       .then((userCredential) => {
+        handleUserProfile(name, email);
         const user = userCredential.user;
         user.displayname = name;
         // eslint-disable-next-line no-console
