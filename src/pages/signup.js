@@ -8,9 +8,9 @@ import {
 // Add a new document in collection "users"
 async function createNewUser(name, email, uid) {
   await setDoc(doc(db, 'users', uid), {
-    uid,
-    name,
-    email,
+    uid: uid,
+    name: name,
+    email: email,
   });
 }
 

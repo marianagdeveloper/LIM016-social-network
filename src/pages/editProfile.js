@@ -9,7 +9,6 @@ const EditProfile = () => {
         <div class="containerSection">
           <div class="bodyEditProfile">
             <div class="nameUser">
-              <h3>ANDALUCÍA LOPEZ</h3>
             </div>
             <div class="profileAndInterest"></div>
             <div class="interests">
@@ -236,6 +235,14 @@ const EditProfile = () => {
 
   const divElemt = document.createElement('div');
   divElemt.innerHTML = viewEditProfile;
+
+  const infoUser = (info) => {
+    console.log(info);
+    divElemt.querySelector('.nameUser').innerHTML
+    += `<h3>${info.name}</h3>`;
+  };
+
+  readUser(uid).then((value) => infoUser(value)).catch((error) => console.log(error));
 
   return divElemt;
 };

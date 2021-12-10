@@ -37,7 +37,7 @@ const Home = () => {
     <section id='Home' class='Box'>
 
       <div class='HomeBox'>
-        <div id='UserName'>
+        <div class='UserName'>
         </div>
         
         <div class='Avatar'>
@@ -46,8 +46,6 @@ const Home = () => {
           <div class='linea2'>&nbsp;</div>
         </div>
         <div class='User'>
-          <h3>Email</h3>
-          <p>user@email.com</p>
         </div>
         <div class='Country'>
           <h3>Country</h3>
@@ -81,9 +79,12 @@ const Home = () => {
 
   const infoUser = (info) => {
     console.log(info);
-    containerHome.querySelector('#UserName').innerHTML
+    containerHome.querySelector('.UserName').innerHTML
     += `<h1>${info.name}</h1> 
     <div class='linea2'>&nbsp;</div>`;
+    containerHome.querySelector('.User').innerHTML
+    += `<h3>Email</h3>
+    <p>${info.email}</p>`;
   };
 
   readUser(uid).then((value) => infoUser(value)).catch((error) => console.log(error));
