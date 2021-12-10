@@ -1,29 +1,29 @@
 import {
   db,
-  collection,
-  getDocs,
+  // collection,
+  // getDocs,
   getDoc,
-  doc
+  doc,
 } from '../utils/firebaseconfig.js';
 
-//Obtener un usuario
+// Obtener un usuario
 async function readUser(uid) {
   let data = '';
-  const docRef = doc(db, "users", uid);
+  const docRef = doc(db, 'users', uid);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
     // console.log("Document data:", docSnap.data());
     data = docSnap.data();
-    console.log("Document data:", data);
+    console.log('Document data:', data);
   } else {
     // doc.data() will be undefined in this case
-    console.log("No such document!");
+    console.log('No such document!');
   }
-  return data
+  return data;
 }
 
-//Export const Home
+// Export const Home
 const Home = () => {
   const containerHome = document.createElement('div');
 
@@ -35,7 +35,7 @@ const Home = () => {
     <section id='Home' class='Box'>
 
       <div class='HomeBox'>
-        <div id='UserName'>
+        <div class='UserName'>
         </div>
         
         <div class='Avatar'>
@@ -44,8 +44,6 @@ const Home = () => {
           <div class='linea2'>&nbsp;</div>
         </div>
         <div class='User'>
-          <h3>Email</h3>
-          <p>user@email.com</p>
         </div>
         <div class='Country'>
           <h3>Country</h3>
@@ -79,15 +77,18 @@ const Home = () => {
 
   const infoUser = (info) => {
     console.log(info);
-    containerHome.querySelector('#UserName').innerHTML += 
-    `<h1>${info.name}</h1> 
-    <div class='linea2'>&nbsp;</div>`
+    containerHome.querySelector('.UserName').innerHTML
+    += `<h1>${info.name}</h1> 
+    <div class='linea2'>&nbsp;</div>`;
+    containerHome.querySelector('.User').innerHTML
+    += `<h3>Email</h3>
+    <p>${info.email}</p>`;
   };
 
   const uid = () => {
-    let uidSS = sessionStorage.getItem('key');
-    return uidSS
-  }
+    const uidSS = sessionStorage.getItem('key');
+    return uidSS;
+  };
 
   readUser(uid()).then((value) => infoUser(value)).catch((error) => console.log(error));
 

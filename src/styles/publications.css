@@ -1,0 +1,42 @@
+p {
+  color: black;
+}
+
+/* **************SECCION DE PUBLICACIONES *****************/
+
+.photoPerfil img {
+  width: 4rem;
+}
+
+#publications {
+  background-color: rgb(255, 255, 255);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.boxPublications {
+  display: grid; 
+  grid-template-columns: 1fr 1.1fr 0.9fr; 
+  grid-template-rows: 1fr 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "photoPerfil userName userName"
+    "publication publication publication"
+    ". cancel save"; 
+  width: 50%;
+  align-items: center;
+  background: cadetblue;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.photoPerfil { grid-area: photoPerfil; }
+.userName { grid-area: userName; }
+.publication { grid-area: publication; }
+.cancel { grid-area: cancel; }
+.save { grid-area: save; }
+
+.publication input {
+  width:200px;
+  height:15px;
+}
