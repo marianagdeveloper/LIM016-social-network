@@ -6,8 +6,6 @@ import {
   doc
 } from '../utils/firebaseconfig.js';
 
-let uid = sessionStorage.getItem('key');
-
 //Obtener un usuario
 async function readUser(uid) {
   let data = '';
@@ -86,7 +84,12 @@ const Home = () => {
     <div class='linea2'>&nbsp;</div>`
   };
 
-  readUser(uid).then((value) => infoUser(value)).catch((error) => console.log(error));
+  const uid = () => {
+    let uidSS = sessionStorage.getItem('key');
+    return uidSS
+  }
+
+  readUser(uid()).then((value) => infoUser(value)).catch((error) => console.log(error));
 
   return containerHome;
 };
