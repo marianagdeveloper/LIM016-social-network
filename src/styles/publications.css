@@ -1,15 +1,21 @@
 p {
   color: black;
+  font-weight: bold;
 }
 
 /* **************SECCION DE PUBLICACIONES *****************/
 
 .photoPerfil img {
   width: 4rem;
+  border-radius: 100%;
+  border-width: 3px;
+  border-color: rgb(32 35 31);
+  border-style: solid;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
 
 #publications {
-  background-color: rgb(255, 255, 255);
+  background-color: #C4C4C4;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -17,7 +23,7 @@ p {
 
 .boxPublications {
   display: grid; 
-  grid-template-columns: 1fr 1.1fr 0.9fr; 
+  grid-template-columns: 0.4fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr; 
   gap: 0px 0px; 
   grid-template-areas: 
@@ -26,9 +32,10 @@ p {
     ". cancel save"; 
   width: 50%;
   align-items: center;
-  background: cadetblue;
+  background: #f7f9fa;
   padding: 1rem;
   border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
 .photoPerfil { grid-area: photoPerfil; }
 .userName { grid-area: userName; }
@@ -39,4 +46,48 @@ p {
 .publication input {
   width:200px;
   height:15px;
+}
+
+.publication #texta2 {
+  width: 100%;
+  height: 80%;
+  border-radius: 10px;
+  resize: none;
+  background: #F5F2F2;
+  /* justify-content: unset; */
+  justify-content: center;
+  padding: 0.5rem;
+  margin: 0.2rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+.save .btnCancel {
+  background-color: rgb(194, 53, 53);
+  width: 100px;
+  height: 100%;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+  padding: 4%;
+  margin: 2%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+.save {
+  display: flex;
+}
+.save .btnSave {
+  background-color: rgb(44, 45, 46);
+  width: 100px;
+  height: 100%;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+  padding: 4%;
+  margin: 2%;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%)
 }
