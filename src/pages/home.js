@@ -16,6 +16,7 @@ async function readUser(uid) {
     // console.log("Document data:", docSnap.data());
     data = docSnap.data();
     console.log('Document data:', data);
+    localStorage.setItem('user', JSON.stringify(data));
   } else {
     // doc.data() will be undefined in this case
     console.log('No such document!');
