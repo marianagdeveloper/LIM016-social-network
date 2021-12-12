@@ -176,7 +176,16 @@ a {
   }
 }
 
-
+@media screen and (min-height: 630px) and (min-height: 640px){
+  .hero-text {
+    height: 640px;
+  }
+  .logoHome {
+    width: 40%;
+    margin: 8% 0;
+    border-radius: 100%;
+  }
+}
 @media screen and (min-height: 700px) and (min-height: 720px){
   .hero-text {
     height: 735px;
