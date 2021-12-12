@@ -77,22 +77,31 @@ const Home = () => {
         </div>
         <div class='SliderNews'>
           <div class='TittleEcoNews'>
-            <h3> ECO NEWS </h3><br><hr>
+            <h3> ECO NEWS </h3>
           </div>  
           <div class='NewsContainer'>
+            
             <div class='News'>
               <img src='/src/img/Notice/notice3.jpg'>
-              
-            </div> 
+              <h2>COP26: Women are the most affected by climate change</h2>
+              <a href="https://news.un.org/es/story/2021/11/1499772" target="_blank">See more</a>
+            </div><br>
             <div class='News'>
               <img src='/src/img/Notice/notice2.jpg'>
-            </div>
-            <div class='News'>
-              <img src='/src/img/Notice/notice4.jpg'>
-            </div>
+              <h2>
+              The era of fossil fuel-powered cars in the spotlight at COP26</h2>
+              <a href="https://news.un.org/es/story/2021/11/1499832" target="_blank">See more</a>
+            </div><br>
             <div class='News'>
               <img src='/src/img/Notice/notice1.jpg'>
-            </div>
+              <h2>COP26: Promises "ring hollow" when fossil fuels continue to receive trillions in subsidies, says Guterres</h2>
+              <a href="https://news.un.org/es/story/2021/11/1499902" target="_blank">See more</a>
+            </div><br>
+            <div class='News'>
+              <img src='/src/img/Notice/notice5.jpg'>
+              <h2>Panela, a sweet bet for the indigenous people to continue living in the Sierra de Colombia</h2>
+              <a href="https://news.un.org/es/story/2021/11/1500632" target="_blank">See more</a>
+            </div> <br>
           </div> 
         </div>
       </div>
