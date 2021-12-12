@@ -56,4 +56,10 @@
   .Terms-Text ul {
     font-size: small;
   }
+  .Terms-Text h1 {
+    text-align: center;
+    margin: 5% 15%;
+    color: #9effc3;
+    font-size: medium;
+}
 }
