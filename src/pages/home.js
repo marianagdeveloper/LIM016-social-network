@@ -43,14 +43,14 @@ const Home = () => {
           <div class='linea2'>&nbsp;</div>
         </div>
         <div class='Bio'>
-          <h3>Biography:</h3>
+          <h3>Biography:</h3><br>
           <div>
             <p>Hola, soy amante del arte en reciclado. Hago muchas manualidades pro ambientales. Les invito a ver mi galeria. 🧮 </p>
           </div>
         </div>
         <div class='Inf'>
           <div class='Country'>
-            <h3>Country</h3>
+            <h3>Country:</h3>
             <p>Italia</p>
           </div>
           <div class='Email'>
@@ -76,11 +76,24 @@ const Home = () => {
           </div>
         </div>
         <div class='SliderNews'>
-          <div class='Interests-Box'>
-            <img src='/src/img/Intereses/InteresesCN/AnimalCN.png' alt=''>
-            <img src='/src/img/Intereses/InteresesCN/SiembraCN.png' alt=''>
-            <img src='/src/img/Intereses/InteresesCN/ReciclajeCN.png' alt=''>
+          <div class='TittleEcoNews'>
+            <h3> ECO NEWS </h3><br><hr>
           </div>  
+          <div class='NewsContainer'>
+            <div class='News'>
+              <img src='/src/img/Notice/notice3.jpg'>
+              
+            </div> 
+            <div class='News'>
+              <img src='/src/img/Notice/notice2.jpg'>
+            </div>
+            <div class='News'>
+              <img src='/src/img/Notice/notice4.jpg'>
+            </div>
+            <div class='News'>
+              <img src='/src/img/Notice/notice1.jpg'>
+            </div>
+          </div> 
         </div>
       </div>
 
@@ -94,7 +107,7 @@ const Home = () => {
     += `<br><h1>${info.name}</h1><br>
     <div class='linea2'>&nbsp;</div>`;
     containerHome.querySelector('.Email').innerHTML
-    += `<h3>Email</h3>
+    += `<h3>Email:</h3>
     <p>${info.email}</p>`;
   };
 
