@@ -33,42 +33,56 @@ const Home = () => {
   const viewHome = `
   <main>
     <!-- HOME PAGE -->
-    <section id='Home' class='Box'>
+    <section id='Home' class='Box Home'>
 
       <div class='HomeBox'>
         <div class='UserName'>
         </div>
-        
         <div class='Avatar'>
-          
-          <img class='Avatar-img' src='/src/img/Avatares/Animals/AvatarA7.png' alt='Avatar Profile'>
+          <img class='Avatar-img' src='/src/img/Avatares/Animals/AvatarA7.png' alt='Avatar Profile'><br>
           <div class='linea2'>&nbsp;</div>
         </div>
-        <div class='User'>
-        </div>
-        <div class='Country'>
-          <h3>Country</h3>
-          <p>Italia</p>
-        </div>
-  
         <div class='Bio'>
           <h3>Biography:</h3>
           <div>
             <p>Hola, soy amante del arte en reciclado. Hago muchas manualidades pro ambientales. Les invito a ver mi galeria. 🧮 </p>
           </div>
         </div>
-        
+        <div class='Inf'>
+          <div class='Country'>
+            <h3>Country</h3>
+            <p>Italia</p>
+          </div>
+          <div class='Email'>
+
+          </div>
+        </div>
         <div class='Interests'>
           <h3>
             Interests:
-          </h3>
+          </h3><br>
           <div class='Interests-Box'>
             <img src='/src/img/Intereses/InteresesCN/AnimalCN.png' alt=''>
             <img src='/src/img/Intereses/InteresesCN/SiembraCN.png' alt=''>
             <img src='/src/img/Intereses/InteresesCN/ReciclajeCN.png' alt=''>
           </div>
         </div>
-        <div id="publications" class='Publications'>
+      </div>
+
+      <div id="publications" class='Publications'>
+        <div class='PublicationsContent'>
+          <div class='Interests-Box'>
+            <img src='/src/img/Intereses/InteresesCN/AnimalCN.png' alt=''>
+            <img src='/src/img/Intereses/InteresesCN/SiembraCN.png' alt=''>
+            <img src='/src/img/Intereses/InteresesCN/ReciclajeCN.png' alt=''>
+          </div>
+        </div>
+        <div class='SliderNews'>
+          <div class='Interests-Box'>
+            <img src='/src/img/Intereses/InteresesCN/AnimalCN.png' alt=''>
+            <img src='/src/img/Intereses/InteresesCN/SiembraCN.png' alt=''>
+            <img src='/src/img/Intereses/InteresesCN/ReciclajeCN.png' alt=''>
+          </div>  
         </div>
       </div>
 
@@ -79,9 +93,9 @@ const Home = () => {
   const infoUser = (info) => {
     console.log(info);
     containerHome.querySelector('.UserName').innerHTML
-    += `<h1>${info.name}</h1> 
+    += `<br><h1>${info.name}</h1><br>
     <div class='linea2'>&nbsp;</div>`;
-    containerHome.querySelector('.User').innerHTML
+    containerHome.querySelector('.Email').innerHTML
     += `<h3>Email</h3>
     <p>${info.email}</p>`;
   };
