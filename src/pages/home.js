@@ -71,10 +71,8 @@ const Home = () => {
 
       <div id="publications" class='Publications'>
         <div class='PublicationsContent'>
-          <div class='Interests-Box'>
-            <img src='/src/img/Intereses/InteresesCN/AnimalCN.png' alt=''>
-            <img src='/src/img/Intereses/InteresesCN/SiembraCN.png' alt=''>
-            <img src='/src/img/Intereses/InteresesCN/ReciclajeCN.png' alt=''>
+          <div class='btnPublic'>
+            <img src='/src/img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
           </div>
         </div>
         <div class='SliderNews'>
