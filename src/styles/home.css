@@ -21,8 +21,8 @@ body {
   display: flex;
   flex-direction: column;
   width: 20%;
-  box-shadow: inset 5px 5px 10px #000000,
-            inset -5px -5px 10px #000000;
+  /* box-shadow: inset 5px 5px 10px #000000,
+  inset -5px -5px 10px #000000; */
   
 }
 
@@ -95,6 +95,7 @@ text-align: center;
   border-width: 5px;
   border-color: rgb(34, 100, 13);
   border-style: solid;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .Interests-Box img {
@@ -133,7 +134,7 @@ text-align: center;
   width: 80%;
 }
 .PublicationsContent {
-  background-color: gray;
+  background-color: #C4C4C4;
   width: 70%;
   box-shadow: inset 5px 5px 10px #a7a1a1,
   inset -5px -5px 10px #a7a1a1;
@@ -143,13 +144,14 @@ text-align: center;
   display: flex;
   justify-content: flex-end;
   margin: 2%;
+  
 }
 .btnPublic img{
   width: 5%;
   border-radius: 100%;
   padding: 1%;
   background-color: rgb(123 123 123);
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .SliderNews {
@@ -168,8 +170,8 @@ text-align: center;
 .NewsContainer{
   text-align: center;
   padding: 5%;
-  box-shadow: inset 5px 5px 10px #000000,
-  inset -5px -5px 10px #000000;
+  /* box-shadow: inset 5px 5px 10px #000000,
+  inset -5px -5px 10px #000000; */
   
 }
 .NewsContainer img {
