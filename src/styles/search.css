@@ -1,8 +1,8 @@
-* {
+/* * {
   font-family: 'Roboto', sans-serif;
   /* font-weight: 600;
-  background-repeat: repeat; */
-}
+  background-repeat: repeat; 
+} */
 
 .filtros input,.filtros select, .input input {
   width: 15rem;
@@ -21,6 +21,8 @@
   flex-direction: row;
   justify-content: space-around;
   background: rgb(34, 100, 13);
+  box-shadow: inset 5px 5px 10px rgb(20, 92, 24),
+  inset -5px -5px 10px rgb(9, 58, 11);
   height: auto;
   align-content: center;
   padding: 0.7rem 3%;
