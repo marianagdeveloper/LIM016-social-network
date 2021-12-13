@@ -129,33 +129,45 @@ const Home = () => {
 
   readUser(uid()).then((value) => infoUser(value)).catch((error) => console.log(error));
 
-  containerHome.querySelector('#btnSave').addEventListener('click', (e) => {
-    e.preventDefault();
-    const publication = containerHome.querySelector('#texta2').value;
-    containerHome.querySelector('#texta2').value = containerHome.querySelector('#texta2').defaultValue;
-    console.log(publication);
-    addPublication(publication);
-  });
+  // actualizacion tiempo real
+  function realOnSnapshot(doc1) {
+    const unsub = onSnapshot(doc(db, 'probando', doc1.id), (doc3) => {
+      const divPublicado = containerHome.querySelector('#publicado');
+      console.log('Current data: ', doc3.data().publication);
+      divPublicado.innerHTML
+            += `<h3>${doc3.data().publication}</h3>`;
+    });
+    console.log(unsub);
+  }
 
   // leer datos
   async function reedPublications() {
     const querySnapshot = await getDocs(collection(db, 'probando'));
+    // console.log('visualizando esta linea: ', querySnapshot);
     querySnapshot.forEach((doc1) => {
-      console.log(`${doc1.id} => ${JSON.stringify(doc1.data())}`);
-      // actualizacion tiempo real
-      function realOnSnapshot() {
-        const unsub = onSnapshot(doc(db, 'probando', doc1.id), (doc3) => {
-          console.log('Current data: ', doc3.data().publication);
-          containerHome.querySelector('#publicado').innerHTML
-          += `<h3>${doc3.data().publication}</h3>`;
-        });
-        console.log(unsub);
-      }
-      realOnSnapshot();
+      realOnSnapshot(doc1);
+      // console.log('visualizando doc1:', doc1);
+      // console.log(`${doc1.id} => ${JSON.stringify(doc1.data())}`);
     });
     return querySnapshot;
   }
   reedPublications();
+
+  containerHome.querySelector('#btnSave').addEventListener('click', (e) => {
+    e.preventDefault();
+    const divPublicado = containerHome.querySelector('#publicado');
+    const publication = containerHome.querySelector('#texta2').value;
+
+    containerHome.querySelector('#texta2').value = containerHome.querySelector('#texta2').defaultValue;
+    console.log(publication);
+    addPublication(publication);
+
+    while (divPublicado.firstChild) {
+      divPublicado.removeChild(divPublicado.firstChild);
+    }
+
+    reedPublications();
+  });
 
   return containerHome;
 };
