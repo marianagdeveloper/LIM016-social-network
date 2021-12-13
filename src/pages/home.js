@@ -91,6 +91,23 @@ const Home = () => {
             <img src='/src/img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
           </div>
           <div class="boxPublications">
+<<<<<<< HEAD
+          <div class="photoPerfil">
+            <img src="/src/img/Avatares/Animals/AvatarA7.png" alt="">
+          </div>
+          <div class="userName">
+            <p>KATERIN TELLO</p>
+          </div>
+          <div class="publication">
+            <textarea name="comments" placeholder="Type something here..." id="texta2" clase="texta2"></textarea>
+          </div>
+          <div class="cancel">
+            <!-- <button class="button">CANCEL</button> -->
+          </div>
+          <div class="save">
+            <button id="btnSave" class="btnSave">SAVE</button>
+            <button class="btnCancel">CANCEL</button>
+=======
             <div class="photoPerfil">
               <img src="/src/img/Avatares/Animals/AvatarA7.png" alt="">
             </div>
@@ -109,6 +126,7 @@ const Home = () => {
             </div>
           </div>
           <div id="publicado">
+>>>>>>> 7f3f710adb25b491a4b46ab23ff8750d0232b2f7
           </div>
         </div>
         <div class='SliderNews'>
@@ -140,6 +158,8 @@ const Home = () => {
             </div> <br>
           </div> 
         </div>
+        <div id="publicado">
+        </div >
       </div>
 
     </section>
