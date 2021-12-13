@@ -92,11 +92,15 @@ const Home = () => {
           </div>
           <div class="boxPublic">
           <div class="boxPublications">
-            <div class="photoPerfil">
-              <img src="/src/img/Avatares/Animals/AvatarA7.png" alt="">
-            </div>
-            <div class="userName">
-              <p>KATERIN TELLO</p>
+            <div class="boxPhotoandName">
+              <div class="boxInternoPhotoandName">
+                <div class="photoPerfil">
+                  <img src="/src/img/Avatares/Animals/AvatarA7.png" alt="">
+                </div>
+                <div class="userName">
+                  <p>KATERIN TELLO</p>
+                </div>
+              </div>
             </div>
             <div class="publication">
               <textarea name="comments" placeholder="Type something here..." id="texta2" clase="texta2"></textarea>
@@ -170,20 +174,25 @@ const Home = () => {
       divPublicado.innerHTML
             += `
             <div class="boxPublications">
-              <div class="photoPerfil">
-                <img src="/src/img/Avatares/Animals/AvatarA7.png" alt="">
+              <div class="boxPhotoandName">
+                <div class="boxInternoPhotoandName">
+                  <div class="photoPerfil">
+                    <img src="/src/img/Avatares/Animals/AvatarA7.png" alt="">
+                  </div>
+                  <div class="userName">
+                    <p>KATERIN TELLO</p>
+                  </div>
+                </div>
+              <div class="delete">
+              <button id="btnDeletet" class="btnDeletet">DELETE</button>
               </div>
-              <div class="userName">
-                <p>KATERIN TELLO</p>
-              </div>
+            </div>
               <div class="publication">
-                <div><p>${doc3.data().publication}</p></div>
+                <div class="contentPublication"><p>${doc3.data().publication}</p></div>
               </div>
               <div class="save">
                 <p>20</p>
                 <img src="/src/img/Icons/WhiteTotal/Heart2.png" alt="">
-
-
               </div>
             </div>`;
     });
