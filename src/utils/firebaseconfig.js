@@ -20,6 +20,9 @@ import {
   doc,
   setDoc,
   getDoc,
+  collection,
+  getDocs,
+  onSnapshot,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -60,4 +63,7 @@ export {
   doc,
   setDoc,
   getDoc,
+  collection,
+  getDocs,
+  onSnapshot,
 };

@@ -1,9 +1,11 @@
 import {
   db,
-  // collection,
-  // getDocs,
+  collection,
+  addDoc,
+  getDocs,
   getDoc,
   doc,
+  onSnapshot,
 } from '../utils/firebaseconfig.js';
 
 // Obtener un usuario
@@ -22,6 +24,20 @@ async function readUser(uid) {
     console.log('No such document!');
   }
   return data;
+}
+
+// agregar datos
+async function addPublication(publication) {
+  try {
+    const docRef = await addDoc(collection(db, 'probando'), {
+      author: sessionStorage.getItem('key'),
+      publication,
+    });
+
+    console.log('Document written with ID: ', docRef.id);
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
 }
 
 // Export const Home
@@ -73,6 +89,26 @@ const Home = () => {
         <div class='PublicationsContent'>
           <div class='btnPublic'>
             <img src='/src/img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
+          </div>
+          <div class="boxPublications">
+            <div class="photoPerfil">
+              <img src="/src/img/Avatares/Animals/AvatarA7.png" alt="">
+            </div>
+            <div class="userName">
+              <p>KATERIN TELLO</p>
+            </div>
+            <div class="publication">
+              <textarea name="comments" placeholder="Type something here..." id="texta2" clase="texta2"></textarea>
+            </div>
+            <div class="cancel">
+              <!-- <button class="button">CANCEL</button> -->
+            </div>
+            <div class="save">
+              <button id="btnSave" class="btnSave">SAVE</button>
+              <button class="btnCancel">CANCEL</button>
+            </div>
+          </div>
+          <div id="publicado">
           </div>
         </div>
         <div class='SliderNews'>
@@ -126,6 +162,46 @@ const Home = () => {
   };
 
   readUser(uid()).then((value) => infoUser(value)).catch((error) => console.log(error));
+
+  // actualizacion tiempo real
+  function realOnSnapshot(doc1) {
+    const unsub = onSnapshot(doc(db, 'probando', doc1.id), (doc3) => {
+      const divPublicado = containerHome.querySelector('#publicado');
+      console.log('Current data: ', doc3.data().publication);
+      divPublicado.innerHTML
+            += `<h3>${doc3.data().publication}</h3>`;
+    });
+    console.log(unsub);
+  }
+
+  // leer datos
+  async function reedPublications() {
+    const querySnapshot = await getDocs(collection(db, 'probando'));
+    // console.log('visualizando esta linea: ', querySnapshot);
+    querySnapshot.forEach((doc1) => {
+      realOnSnapshot(doc1);
+      // console.log('visualizando doc1:', doc1);
+      // console.log(`${doc1.id} => ${JSON.stringify(doc1.data())}`);
+    });
+    return querySnapshot;
+  }
+  reedPublications();
+
+  containerHome.querySelector('#btnSave').addEventListener('click', (e) => {
+    e.preventDefault();
+    const divPublicado = containerHome.querySelector('#publicado');
+    const publication = containerHome.querySelector('#texta2').value;
+
+    containerHome.querySelector('#texta2').value = containerHome.querySelector('#texta2').defaultValue;
+    console.log(publication);
+    addPublication(publication);
+
+    while (divPublicado.firstChild) {
+      divPublicado.removeChild(divPublicado.firstChild);
+    }
+
+    reedPublications();
+  });
 
   return containerHome;
 };
