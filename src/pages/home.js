@@ -180,22 +180,25 @@ const Home = () => {
 
   // Eliminar datos con Firebase
 
-  async function deletePublication(idPublicationRef, divPublicado) {
+  // async function deletePublication(idPublicationRef, divPublicado) {
   // const docRefuser = addDoc(collection(db, 'publications'));
-    await deleteDoc(doc(db, 'publications', idPublicationRef));
-    // divPublicado.childNodes.forEach(
-    //   divPublicado.removeChild(divPublicado.childNodes[i]);
-    // );
-    let arrayChild = [];
-    arrayChild = divPublicado.chidNodes;
-    console.log('arrayChild', arrayChild);
-    for (let i = 0; i < arrayChild.length; i++) {
-      const element = arrayChild[i];
-      divPublicado.removeChild(element);
-    }
+  // await deleteDoc(doc(db, 'publications', idPublicationRef));
+  // divPublicado.childNodes.forEach(
+  //   divPublicado.removeChild(divPublicado.childNodes[i]);
+  // );
+  // let arrayChild = [];
+  // arrayChild = divPublicado.chidNodes;
+  // console.log('arrayChild', arrayChild);
+  // for (let i = 0; i < arrayChild.length; i++) {
+  //   const element = arrayChild[i];
+  //   divPublicado.removeChild(element);
+  // }
 
-    reedPublications();
-  }
+  // reedPublications();
+  // }
+
+  // Eliminar datos con Firebase
+
   // actualizacion tiempo real
   function realOnSnapshot(documentFirebase) {
     const idPublication = documentFirebase.id;
@@ -218,7 +221,7 @@ const Home = () => {
                     </div>
                   </div>
                 <div class="delete">
-                <button id="btnDelete" class="btnDelete" data-ref=${idPublication} >DELETE</button>
+                <button id="btnDelete" class="btnDelete" data-id=${idPublication} >DELETE</button>
                 </div>
               </div>
                 <div class="publication">
@@ -235,14 +238,24 @@ const Home = () => {
       const btnDelete = divPublicado.querySelectorAll('.btnDelete');
       console.log('btnDelete: ', btnDelete);
 
-      btnDelete.addEventListener('click', () => {
-        const idPublicationRef = btnDelete.dataset.ref;
-        console.log('idPublicationRef', idPublicationRef);
-        // console.log('id depublicaciones en delete: ', idPublicationRef);
-        deletePublication(idPublicationRef, divPublicado);
+      btnDelete.forEach((btnDeleteSelec) => {
+        btnDeleteSelec.addEventListener('click', async (e) => {
+          // const idPublicationRef = btnDelete.dataset.ref;
+          // console.log('idPublicationRef', idPublicationRef);
+          // console.log('id depublicaciones en delete: ', idPublicationRef);
+          // deletePublication(idPublicationRef, divPublicado);
+          console.log(e.target.dataset.id);
+
+          const deletePublication = (idPublicationRef) => {
+            deleteDoc(doc(db, 'publications', idPublicationRef));
+            divPublicado.remove();
+            // const docRefuser = addDoc(collection(db, 'publications'));
+          };
+          deletePublication(e.target.dataset.id);
+        });
       });
 
-      return '';
+      // return '';
     } catch (error) { (console.log('error en delete')); }
     return console.log('el return de la funcion realOnSnapshot');
   }
@@ -250,6 +263,7 @@ const Home = () => {
   // leer datos desde Firebase
   async function reedPublications() {
     const querySnapshot = await getDocs(collection(db, 'publications'));
+
     // console.log('visualizando esta linea: ', querySnapshot);
     querySnapshot.forEach((documentFirebase) => {
       realOnSnapshot(documentFirebase);
