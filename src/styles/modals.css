@@ -34,29 +34,23 @@
 }
 
 .modalError i {
-  color: #FFFF;
+  color: rgb(252, 246, 246);
   margin: 0 15px 0 10px;
   
 }
 
 .modalExito i {
-  color: #FFFF;
+  color: rgb(252, 246, 246);
   margin-right: 20px;
   margin: 0 15px 0 10px;
 }
 
-.modalError p {
+.modalError p, .modalExito p {
   color:#FFFF;
   font-size: 16px;
   margin-left: 3x;
   justify-self: center;
 
-}
-.modalExito p {
-  color:#FFFF;
-  font-size: 16px;
-  margin-left: 3px;
-  justify-self: center;
 }
 
 @keyframes slideUpLarge {

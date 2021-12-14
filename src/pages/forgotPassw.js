@@ -6,6 +6,8 @@ const cleanModal = () => {
   const check = document.getElementById('modalCheckP');
   const emailI = document.getElementById('modalCheckPA');
 
+  const errorPss = document.getElementById('modalErrorMessage');
+
   if (check) {
     document
       .getElementById('modalCheckP')
@@ -16,6 +18,12 @@ const cleanModal = () => {
     document
       .getElementById('modalCheckPA')
       .classList.replace('alertmodalCheckPA', 'modalCheckPA');
+  }
+
+  if (errorPss) {
+    document
+      .getElementById('modalErrorMessage')
+      .classList.replace('alertmodalErrorMessage', 'modalErrorMessage');
   }
 };
 
@@ -37,7 +45,12 @@ export const handleForgotPassw = (e) => {
         const errorMessage = error.message;
         // ..
         console.log('error en email', errorMessage, errorCode);
-        return errorMessage;
+
+        cleanModal();
+        document
+          .getElementById('modalErrorMessage')
+          .classList.replace('modalErrorMessage', 'alertmodalErrorMessage');
+        document.getElementById('errormessage').innerHTML = errorCode;
       });
   } else if (email === '' || email == null) {
     cleanModal();
@@ -111,6 +124,10 @@ const forgotPass = () => {
                     <div id="modalCheckPA" class="modalCheckPA">
                       <img src="img/Icons/Alert2.png" class="AlertP" alt="Alert" />
                       <p>You need to write a valid email.</p> 
+                    </div>
+                    <div id="modalErrorMessage" class="modalErrorMessage">
+                      <img src="img/Icons/Alert2.png" class="AlertP" alt="Alert" />
+                      <p id="errormessage"> Error </p>
                     </div>
                     <button type="submit" id="btn-signin-signin" class="Loginbtn LoginbtnForgotPass"><a href="#/forgotPassw2">Continue</a></button>
                         <div class="entreLineas">

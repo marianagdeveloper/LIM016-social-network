@@ -1,15 +1,7 @@
 /* eslint-disable import/no-unresolved */
 // eslint-disable-next-line import/no-unresolved
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
-// import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
-import { 
-  getFirestore, 
-  collection, 
-  getDocs, 
-  getDoc,
-  doc, 
-  setDoc, 
-} from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
+import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js';
 
 import {
   getAuth,
@@ -21,6 +13,18 @@ import {
   sendEmailVerification,
   signOut,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
+
+import {
+  getFirestore,
+  addDoc,
+  doc,
+  setDoc,
+  getDoc,
+  collection,
+  getDocs,
+  onSnapshot,
+  deleteDoc,
+} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -39,14 +43,14 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider(app);
-// const analytics = getAnalytics(app);
+const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
-
 export {
   app,
   auth,
   provider,
+  analytics,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -54,10 +58,14 @@ export {
   sendPasswordResetEmail,
   sendEmailVerification,
   signOut,
+  getFirestore,
+  addDoc,
   db,
-  collection, 
-  getDocs,
-  getDoc,
   doc,
   setDoc,
+  getDoc,
+  collection,
+  getDocs,
+  onSnapshot,
+  deleteDoc,
 };

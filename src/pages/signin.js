@@ -3,9 +3,9 @@ import {
   provider,
   auth,
   signInWithPopup,
-  doc,
-  getDoc,
-  db,
+  // doc,
+  // getDoc,
+  // db,
 } from '../utils/firebaseconfig.js';
 
 const handleError = (error) => {
@@ -45,13 +45,12 @@ export const handleSignin = (e) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
-      let user = userCredential.user.uid;
+      const user = userCredential.user.uid;
       console.log('user', user);
       // Save data to sessionStorage
       sessionStorage.setItem('key', user);
       console.log('userCredential.user.uid:', userCredential.user.uid);
 
-    
       a.href = '#/home';
       window.location.href = a.href;
       // handleCurrent(userCredential.user);
@@ -161,13 +160,14 @@ const SignIn = () => {
 
   // Sign In with Google
   divElemt
-    .querySelector('#btn-signin-google')
-    // .addEventListener('click', handleSigninGoogle);
+    .querySelector('#btn-signin-google');
+  // .addEventListener('click', handleSigninGoogle);
 
   return divElemt;
 };
 
 export default SignIn;
 
-//Boton para iniciar sesion con Google - Linea 122
-{/* <button type="submit" id="btn-signin-google" class="LoginGooglebtn">Continue with Google</button> */}
+// Boton para iniciar sesion con Google - Linea 122
+/*<button type="submit" id="btn-signin-google" class="LoginGooglebtn">*/
+/*Continue with Google</button>*/ 

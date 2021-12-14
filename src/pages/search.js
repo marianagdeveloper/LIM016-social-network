@@ -1,6 +1,5 @@
 const Search = () => {
   const viewSearch = `      
-    <main class="main">
     <div class="container">
       <div class="caja1">
         <div class="input">
@@ -166,7 +165,7 @@ const Search = () => {
           </div> </div>
         </div>
       </div>
-    </main>`;
+`;
 
   const divElemt = document.createElement('div');
   divElemt.innerHTML = viewSearch;

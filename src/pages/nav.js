@@ -8,6 +8,9 @@ export const handleSignOut = (e) => {
   signOut(auth)
     .then(() => {
     // Sign-out successful.
+
+      // Remove all saved data from sessionStorage
+      sessionStorage.clear();
       a.href = '#/welcome';
       window.location.href = a.href;
     }).catch((error) => {

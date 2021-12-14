@@ -1,31 +1,48 @@
+/* eslint-disable no-plusplus */
 import {
   db,
   collection,
+  addDoc,
   getDocs,
   getDoc,
-  doc
+  doc,
+  onSnapshot,
+  deleteDoc,
 } from '../utils/firebaseconfig.js';
 
-let uid = sessionStorage.getItem('key');
-
-//Obtener un usuario
+// Obtener un usuario
 async function readUser(uid) {
   let data = '';
-  const docRef = doc(db, "users", uid);
+  const docRef = doc(db, 'users', uid);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
     // console.log("Document data:", docSnap.data());
     data = docSnap.data();
-    console.log("Document data:", data);
+    console.log('Document data:', data);
+    localStorage.setItem('user', JSON.stringify(data));
   } else {
     // doc.data() will be undefined in this case
-    console.log("No such document!");
+    console.log('No such document!');
   }
-  return data
+  return data;
 }
 
-//Export const Home
+// agregar datos
+async function addPublication(publication) {
+  try {
+    const docRef = await addDoc(collection(db, 'publications'), {
+      author: sessionStorage.getItem('key'),
+      publication,
+    });
+
+    console.log('Document written with ID: ', docRef.id);
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
+}
+
+// Export const Home
 const Home = () => {
   const containerHome = document.createElement('div');
 
@@ -34,44 +51,99 @@ const Home = () => {
   const viewHome = `
   <main>
     <!-- HOME PAGE -->
-    <section id='Home' class='Box'>
+    <section id='Home' class='Box Home'>
 
       <div class='HomeBox'>
-        <div id='UserName'>
+        <div class='UserName'>
         </div>
-        
         <div class='Avatar'>
-          
-          <img class='Avatar-img' src='/src/img/Avatares/Animals/AvatarA7.png' alt='Avatar Profile'>
+          <img class='Avatar-img' src='/src/img/Avatares/Animals/AvatarA7.png' alt='Avatar Profile'><br>
           <div class='linea2'>&nbsp;</div>
         </div>
-        <div class='User'>
-          <h3>Email</h3>
-          <p>user@email.com</p>
-        </div>
-        <div class='Country'>
-          <h3>Country</h3>
-          <p>Italia</p>
-        </div>
-  
         <div class='Bio'>
-          <h3>Biography:</h3>
+          <h3>Biography:</h3><br>
           <div>
             <p>Hola, soy amante del arte en reciclado. Hago muchas manualidades pro ambientales. Les invito a ver mi galeria. 🧮 </p>
           </div>
         </div>
-        
+        <div class='Inf'>
+          <div class='Country'>
+            <h3>Country:</h3>
+            <p>Italia</p>
+          </div>
+          <div class='Email'>
+
+          </div>
+        </div>
         <div class='Interests'>
           <h3>
             Interests:
-          </h3>
+          </h3><br>
           <div class='Interests-Box'>
             <img src='/src/img/Intereses/InteresesCN/AnimalCN.png' alt=''>
             <img src='/src/img/Intereses/InteresesCN/SiembraCN.png' alt=''>
             <img src='/src/img/Intereses/InteresesCN/ReciclajeCN.png' alt=''>
           </div>
         </div>
-        <div id="publications" class='Publications'>
+      </div>
+
+      <div id="publications" class='Publications'>
+        <div class='PublicationsContent'>
+          <div class='btnPublic'>
+            <img src='/src/img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
+          </div>
+          <div class="boxPublic">
+          <div class="boxPublications">
+            <div class="boxPhotoandName">
+              <div class="boxInternoPhotoandName">
+                <div class="photoPerfil">
+                  <img src="/src/img/Avatares/Animals/AvatarA7.png" alt="">
+                </div>
+                <div class="userName">
+                  <p>KATERIN TELLO</p>
+                </div>
+              </div>
+            </div>
+            <div class="publication">
+              <textarea name="comments" placeholder="Type something here..." id="texta2" clase="texta2"></textarea>
+            </div>
+            <div class="save">
+              <button id="btnSave" class="btnSave">SAVE</button>
+              <button class="btnCancel">CANCEL</button>
+            </div>
+          </div>
+          <div id="publicado">
+          </div>
+        </div>
+        </div>
+        <div class='SliderNews'>
+          <div class='TittleEcoNews'>
+            <h3> ECO NEWS </h3>
+          </div>  
+          <div class='NewsContainer'>
+            
+            <div class='News'>
+              <img src='/src/img/Notice/notice3.jpg'>
+              <h2>COP26: Women are the most affected by climate change</h2>
+              <a href="https://news.un.org/es/story/2021/11/1499772" target="_blank">See more</a>
+            </div><br>
+            <div class='News'>
+              <img src='/src/img/Notice/notice2.jpg'>
+              <h2>
+              The era of fossil fuel-powered cars in the spotlight at COP26</h2>
+              <a href="https://news.un.org/es/story/2021/11/1499832" target="_blank">See more</a>
+            </div><br>
+            <div class='News'>
+              <img src='/src/img/Notice/notice1.jpg'>
+              <h2>COP26: Promises "ring hollow" when fossil fuels continue to receive trillions in subsidies, says Guterres</h2>
+              <a href="https://news.un.org/es/story/2021/11/1499902" target="_blank">See more</a>
+            </div><br>
+            <div class='News'>
+              <img src='/src/img/Notice/notice5.jpg'>
+              <h2>Panela, a sweet bet for the indigenous people to continue living in the Sierra de Colombia</h2>
+              <a href="https://news.un.org/es/story/2021/11/1500632" target="_blank">See more</a>
+            </div> <br>
+          </div> 
         </div>
       </div>
 
@@ -81,12 +153,128 @@ const Home = () => {
 
   const infoUser = (info) => {
     console.log(info);
-    containerHome.querySelector('#UserName').innerHTML += 
-    `<h1>${info.name}</h1> 
-    <div class='linea2'>&nbsp;</div>`
+    containerHome.querySelector('.UserName').innerHTML
+    += `<br><h1>${info.name}</h1><br>
+    <div class='linea2'>&nbsp;</div>`;
+    containerHome.querySelector('.Email').innerHTML
+    += `<h3>Email:</h3>
+    <p>${info.email}</p>`;
   };
 
-  readUser(uid).then((value) => infoUser(value)).catch((error) => console.log(error));
+  const uid = () => {
+    const uidSS = sessionStorage.getItem('key');
+    return uidSS;
+  };
+
+  readUser(uid()).then((value) => infoUser(value)).catch((error) => console.log(error));
+
+  // function deletesPublications() {
+  //   const btnDelete = containerHome.getElementById('btnDelet');
+  //   console.log(btnDelete.dataset.ref);
+  //   // btnDelete.addEventListener('click', (e) => {
+  //   //   e.preventDefault();
+  //   //   // btnDelete.dataset.ref;
+
+  //   // });
+  // }
+
+  // Eliminar datos con Firebase
+
+  async function deletePublication(idPublicationRef, divPublicado) {
+  // const docRefuser = addDoc(collection(db, 'publications'));
+    await deleteDoc(doc(db, 'publications', idPublicationRef));
+    // divPublicado.childNodes.forEach(
+    //   divPublicado.removeChild(divPublicado.childNodes[i]);
+    // );
+    let arrayChild = [];
+    arrayChild = divPublicado.chidNodes;
+    console.log('arrayChild', arrayChild);
+    for (let i = 0; i < arrayChild.length; i++) {
+      const element = arrayChild[i];
+      divPublicado.removeChild(element);
+    }
+
+    reedPublications();
+  }
+  // actualizacion tiempo real
+  function realOnSnapshot(documentFirebase) {
+    const idPublication = documentFirebase.id;
+    // console.log('idpUBLICATION:', idPublication);
+
+    try {
+      onSnapshot(doc(db, 'publications', idPublication));
+      const divPublicado = containerHome.querySelector('#publicado');
+      const publicationText = documentFirebase.data().publication;
+      divPublicado.innerHTML
+              += `
+              <div class="boxPublications">
+                <div class="boxPhotoandName">
+                  <div class="boxInternoPhotoandName">
+                    <div class="photoPerfil">
+                      <img src="/src/img/Avatares/Animals/AvatarA7.png" alt="">
+                    </div>
+                    <div class="userName">
+                      <p>KATERIN TELLO</p>
+                    </div>
+                  </div>
+                <div class="delete">
+                <button id="btnDelete" class="btnDelete" data-ref=${idPublication} >DELETE</button>
+                </div>
+              </div>
+                <div class="publication">
+                  <div class="contentPublication"><p>${publicationText}</p></div>
+                </div>
+                <div class="save">
+                  <p>20</p>
+                  <img src="/src/img/Icons/WhiteTotal/Heart2.png" alt="">
+                </div>
+              </div>`;
+
+      console.log('estamos viendo documentFirebase.data(): ', documentFirebase.data());
+
+      const btnDelete = divPublicado.querySelectorAll('.btnDelete');
+      console.log('btnDelete: ', btnDelete);
+
+      btnDelete.addEventListener('click', () => {
+        const idPublicationRef = btnDelete.dataset.ref;
+        console.log('idPublicationRef', idPublicationRef);
+        // console.log('id depublicaciones en delete: ', idPublicationRef);
+        deletePublication(idPublicationRef, divPublicado);
+      });
+
+      return '';
+    } catch (error) { (console.log('error en delete')); }
+    return console.log('el return de la funcion realOnSnapshot');
+  }
+
+  // leer datos desde Firebase
+  async function reedPublications() {
+    const querySnapshot = await getDocs(collection(db, 'publications'));
+    // console.log('visualizando esta linea: ', querySnapshot);
+    querySnapshot.forEach((documentFirebase) => {
+      realOnSnapshot(documentFirebase);
+      // console.log('visualizando doc1:', doc1);
+      // console.log(`${doc1.id} => ${JSON.stringify(doc1.data())}`);
+    });
+    return querySnapshot;
+  }
+  reedPublications();
+
+  // evento de añadir publicación con save
+  containerHome.querySelector('#btnSave').addEventListener('click', (e) => {
+    e.preventDefault();
+    const divPublicado = containerHome.querySelector('#publicado');
+    const publication = containerHome.querySelector('#texta2').value;
+    containerHome.querySelector('#texta2').value = containerHome.querySelector('#texta2').defaultValue;
+    console.log(publication);
+    addPublication(publication);
+
+    while (divPublicado.firstChild) {
+      divPublicado.removeChild(divPublicado.firstChild);
+    }
+
+    reedPublications();
+  });
 
   return containerHome;
 };
