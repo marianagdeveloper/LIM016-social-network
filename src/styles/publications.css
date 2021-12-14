@@ -92,11 +92,13 @@
   
 }
 
+.contentPublication {
+  overflow-wrap: break-word;
+}
+
 .contentPublication p {
   width: 400px;
   white-space: pre-line;
-  overflow-y: scroll;
-  height:3rem;
 }
 
 .boxPhotoandName {
