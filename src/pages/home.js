@@ -213,7 +213,7 @@ const Home = () => {
                 </div>
               </div>
             <div class='delete'>
-            <button id='btnDelete' class='btnDelete' data-ref='${idPublication}' ><img src='/src/img/Icons/Delete.png' alt=''></button>
+            <button id='btnDelete' class='btnDelete' data-ref='${idPublication}'><img src='/src/img/Icons/Delete.png' alt=''></button>
             </div>
           </div>
             <div class='publication'>

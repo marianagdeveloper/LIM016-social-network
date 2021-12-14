@@ -126,6 +126,12 @@
   width: 25%;
 }
 
+.save p {
+  margin: 0;
+  color: rgb(13, 92, 13);
+  font-weight: bold;
+}
+
 @media screen and (max-width: 760px) {
   .contentPublication p {
     width: 227px;
