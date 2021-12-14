@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-sequences */
+/* eslint-disable no-use-before-define */
 /* eslint-disable no-plusplus */
 import {
   db,
@@ -31,15 +34,21 @@ async function readUser(uid) {
 // agregar datos
 async function addPublication(publication) {
   try {
+    // eslint-disable-next-line no-unused-vars
     const docRef = await addDoc(collection(db, 'publications'), {
       author: sessionStorage.getItem('key'),
       publication,
     });
 
-    console.log('Document written with ID: ', docRef.id);
+    // console.log('Document written with ID: ', docRef.id);
   } catch (e) {
     console.error('Error adding document: ', e);
   }
+}
+
+// eliminar publicacion
+async function deletePublication(idPublicationRef) {
+  await deleteDoc(doc(db, 'publications', idPublicationRef));
 }
 
 // Export const Home
@@ -99,8 +108,7 @@ const Home = () => {
                 <div class="photoPerfil">
                   <img src="/src/img/Avatares/Animals/AvatarA7.png" alt="">
                 </div>
-                <div class="userName">
-                  <p>KATERIN TELLO</p>
+                <div class="userNamePublication">
                 </div>
               </div>
             </div>
@@ -153,12 +161,33 @@ const Home = () => {
 
   const infoUser = (info) => {
     console.log(info);
-    containerHome.querySelector('.UserName').innerHTML
-    += `<br><h1>${info.name}</h1><br>
+    containerHome.querySelector(
+      '.UserName',
+    ).innerHTML += `<br><h1>${info.name}</h1><br>
     <div class='linea2'>&nbsp;</div>`;
-    containerHome.querySelector('.Email').innerHTML
-    += `<h3>Email:</h3>
+    containerHome.querySelector('.Email').innerHTML += `<h3>Email:</h3>
     <p>${info.email}</p>`;
+
+    containerHome.querySelector(
+      '.userNamePublication',
+    ).innerHTML += `
+    <p>${info.name}</p>`;
+
+    // evento de añadir publicación con save
+    containerHome.querySelector('#btnSave').addEventListener('click', (e) => {
+      e.preventDefault();
+      const divPublicado = containerHome.querySelector('#publicado');
+      const publication = containerHome.querySelector('#texta2').value;
+      containerHome.querySelector('#texta2').value = containerHome.querySelector('#texta2').defaultValue;
+      console.log(publication);
+      addPublication(publication);
+
+      while (divPublicado.firstChild) {
+        divPublicado.removeChild(divPublicado.firstChild);
+      }
+
+      reedPublications(info);
+    });
   };
 
   const uid = () => {
@@ -166,129 +195,76 @@ const Home = () => {
     return uidSS;
   };
 
-  readUser(uid()).then((value) => infoUser(value)).catch((error) => console.log(error));
-
-  // function deletesPublications() {
-  //   const btnDelete = containerHome.getElementById('btnDelet');
-  //   console.log(btnDelete.dataset.ref);
-  //   // btnDelete.addEventListener('click', (e) => {
-  //   //   e.preventDefault();
-  //   //   // btnDelete.dataset.ref;
-
-  //   // });
-  // }
-
-  // Eliminar datos con Firebase
-
-  // async function deletePublication(idPublicationRef, divPublicado) {
-  // const docRefuser = addDoc(collection(db, 'publications'));
-  // await deleteDoc(doc(db, 'publications', idPublicationRef));
-  // divPublicado.childNodes.forEach(
-  //   divPublicado.removeChild(divPublicado.childNodes[i]);
-  // );
-  // let arrayChild = [];
-  // arrayChild = divPublicado.chidNodes;
-  // console.log('arrayChild', arrayChild);
-  // for (let i = 0; i < arrayChild.length; i++) {
-  //   const element = arrayChild[i];
-  //   divPublicado.removeChild(element);
-  // }
-
-  // reedPublications();
-  // }
-
-  // Eliminar datos con Firebase
+  readUser(uid())
+    .then((value) => { infoUser(value), reedPublications(value); })
+    .catch((error) => console.log(error));
 
   // actualizacion tiempo real
-  function realOnSnapshot(documentFirebase) {
+
+  async function realOnSnapshot(documentFirebase, data) {
     const idPublication = documentFirebase.id;
     // console.log('idpUBLICATION:', idPublication);
+    await onSnapshot(doc(db, 'publications', idPublication));
+    llenarPublications(documentFirebase, idPublication, data);
+  }
 
-    try {
-      onSnapshot(doc(db, 'publications', idPublication));
-      const divPublicado = containerHome.querySelector('#publicado');
-      const publicationText = documentFirebase.data().publication;
-      divPublicado.innerHTML
-              += `
-              <div class="boxPublications">
-                <div class="boxPhotoandName">
-                  <div class="boxInternoPhotoandName">
-                    <div class="photoPerfil">
-                      <img src="/src/img/Avatares/Animals/AvatarA7.png" alt="">
-                    </div>
-                    <div class="userName">
-                      <p>KATERIN TELLO</p>
-                    </div>
-                  </div>
-                <div class="delete">
-                <button id="btnDelete" class="btnDelete" data-id=${idPublication} >DELETE</button>
+  function llenarPublications(documentFirebase, idPublication, data) {
+    console.log('data', data);
+    const divPublicado = containerHome.querySelector('#publicado');
+    const publicationText = documentFirebase.data().publication;
+    divPublicado.innerHTML += `
+          <div class="boxPublications">
+            <div class="boxPhotoandName">
+              <div class="boxInternoPhotoandName">
+                <div class="photoPerfil">
+                  <img src="/src/img/Avatares/Animals/AvatarA7.png" alt="">
+                </div>
+                <div class="userName">
+                  <p>${data.name}</p>
                 </div>
               </div>
-                <div class="publication">
-                  <div class="contentPublication"><p>${publicationText}</p></div>
-                </div>
-                <div class="save">
-                  <p>20</p>
-                  <img src="/src/img/Icons/WhiteTotal/Heart2.png" alt="">
-                </div>
-              </div>`;
+            <div class="delete">
+            <button id="btnDelete" class="btnDelete" data-ref="${idPublication}" >DELETE</button>
+            </div>
+          </div>
+            <div class="publication">
+              <div class="contentPublication"><p>${publicationText}</p></div>
+            </div>
+            <div class="save">
+              <p>20</p>
+              <img src="/src/img/Icons/WhiteTotal/Heart2.png" alt="">
+            </div>
+          </div>`;
 
-      console.log('estamos viendo documentFirebase.data(): ', documentFirebase.data());
+    // delete publication
+    const publication = divPublicado.querySelectorAll('button[data-ref]');
 
-      const btnDelete = divPublicado.querySelectorAll('.btnDelete');
-      console.log('btnDelete: ', btnDelete);
-
-      btnDelete.forEach((btnDeleteSelec) => {
-        btnDeleteSelec.addEventListener('click', async (e) => {
-          // const idPublicationRef = btnDelete.dataset.ref;
-          // console.log('idPublicationRef', idPublicationRef);
-          // console.log('id depublicaciones en delete: ', idPublicationRef);
-          // deletePublication(idPublicationRef, divPublicado);
-          console.log(e.target.dataset.id);
-
-          const deletePublication = (idPublicationRef) => {
-            deleteDoc(doc(db, 'publications', idPublicationRef));
-            divPublicado.remove();
-            // const docRefuser = addDoc(collection(db, 'publications'));
-          };
-          deletePublication(e.target.dataset.id);
-        });
+    publication.forEach((element) => {
+      element.addEventListener('click', (e) => {
+        e.preventDefault();
+        const idPublicationRef = element.dataset.ref;
+        // console.log('delete Publication: ');
+        console.log('id depublicaciones en delete: ', idPublicationRef);
+        deletePublication(idPublicationRef, divPublicado);
+        const elementDelete = element.parentNode.parentNode.parentNode;
+        console.log('element.parentNode:', elementDelete);
+        elementDelete.remove();
       });
-
-      // return '';
-    } catch (error) { (console.log('error en delete')); }
-    return console.log('el return de la funcion realOnSnapshot');
+    });
   }
 
   // leer datos desde Firebase
-  async function reedPublications() {
+  async function reedPublications(data) {
     const querySnapshot = await getDocs(collection(db, 'publications'));
-
     // console.log('visualizando esta linea: ', querySnapshot);
     querySnapshot.forEach((documentFirebase) => {
-      realOnSnapshot(documentFirebase);
+      realOnSnapshot(documentFirebase, data);
       // console.log('visualizando doc1:', doc1);
       // console.log(`${doc1.id} => ${JSON.stringify(doc1.data())}`);
     });
     return querySnapshot;
   }
-  reedPublications();
-
-  // evento de añadir publicación con save
-  containerHome.querySelector('#btnSave').addEventListener('click', (e) => {
-    e.preventDefault();
-    const divPublicado = containerHome.querySelector('#publicado');
-    const publication = containerHome.querySelector('#texta2').value;
-    containerHome.querySelector('#texta2').value = containerHome.querySelector('#texta2').defaultValue;
-    console.log(publication);
-    addPublication(publication);
-
-    while (divPublicado.firstChild) {
-      divPublicado.removeChild(divPublicado.firstChild);
-    }
-
-    reedPublications();
-  });
+  // reedPublications();
 
   return containerHome;
 };
