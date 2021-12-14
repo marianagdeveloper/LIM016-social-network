@@ -20,7 +20,7 @@ async function readUser(uid) {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    // console.log("Document data:", docSnap.data());
+    // console.log('Document data:', docSnap.data());
     data = docSnap.data();
     console.log('Document data:', data);
     localStorage.setItem('user', JSON.stringify(data));
@@ -34,6 +34,7 @@ async function readUser(uid) {
 // agregar datos
 async function addPublication(publication) {
   try {
+
     // eslint-disable-next-line no-unused-vars
     const docRef = await addDoc(collection(db, 'publications'), {
       author: sessionStorage.getItem('key'),
@@ -96,31 +97,32 @@ const Home = () => {
         </div>
       </div>
 
-      <div id="publications" class='Publications'>
+      <div id='publications' class='Publications'>
         <div class='PublicationsContent'>
           <div class='btnPublic'>
             <img src='/src/img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
           </div>
-          <div class="boxPublic">
-          <div class="boxPublications">
-            <div class="boxPhotoandName">
-              <div class="boxInternoPhotoandName">
-                <div class="photoPerfil">
-                  <img src="/src/img/Avatares/Animals/AvatarA7.png" alt="">
+          <div class='boxPublic'>
+          <div class='boxPublications'>
+            <div class='boxPhotoandName'>
+              <div class='boxInternoPhotoandName'>
+                <div class='photoPerfil'>
+                  <img src='/src/img/Avatares/Animals/AvatarA7.png' alt=''>
                 </div>
                 <div class="userNamePublication">
+
                 </div>
               </div>
             </div>
-            <div class="publication">
-              <textarea name="comments" placeholder="Type something here..." id="texta2" clase="texta2"></textarea>
+            <div class='publication'>
+              <textarea name='comments' placeholder='Type something here...' id='texta2' clase='texta2'></textarea>
             </div>
-            <div class="save">
-              <button id="btnSave" class="btnSave">SAVE</button>
-              <button class="btnCancel">CANCEL</button>
+            <div class='save'>
+              <button id='btnSave' class='btnSave'>SAVE</button>
+              <button class='btnCancel'>CANCEL</button>
             </div>
           </div>
-          <div id="publicado">
+          <div id='publicado'>
           </div>
         </div>
         </div>
@@ -133,23 +135,23 @@ const Home = () => {
             <div class='News'>
               <img src='/src/img/Notice/notice3.jpg'>
               <h2>COP26: Women are the most affected by climate change</h2>
-              <a href="https://news.un.org/es/story/2021/11/1499772" target="_blank">See more</a>
+              <a href='https://news.un.org/es/story/2021/11/1499772' target='_blank'>See more</a>
             </div><br>
             <div class='News'>
               <img src='/src/img/Notice/notice2.jpg'>
               <h2>
               The era of fossil fuel-powered cars in the spotlight at COP26</h2>
-              <a href="https://news.un.org/es/story/2021/11/1499832" target="_blank">See more</a>
+              <a href='https://news.un.org/es/story/2021/11/1499832' target='_blank'>See more</a>
             </div><br>
             <div class='News'>
               <img src='/src/img/Notice/notice1.jpg'>
-              <h2>COP26: Promises "ring hollow" when fossil fuels continue to receive trillions in subsidies, says Guterres</h2>
-              <a href="https://news.un.org/es/story/2021/11/1499902" target="_blank">See more</a>
+              <h2>COP26: Promises 'ring hollow' when fossil fuels continue to receive trillions in subsidies, says Guterres</h2>
+              <a href='https://news.un.org/es/story/2021/11/1499902' target='_blank'>See more</a>
             </div><br>
             <div class='News'>
               <img src='/src/img/Notice/notice5.jpg'>
               <h2>Panela, a sweet bet for the indigenous people to continue living in the Sierra de Colombia</h2>
-              <a href="https://news.un.org/es/story/2021/11/1500632" target="_blank">See more</a>
+              <a href='https://news.un.org/es/story/2021/11/1500632' target='_blank'>See more</a>
             </div> <br>
           </div> 
         </div>
@@ -163,6 +165,7 @@ const Home = () => {
     console.log(info);
     containerHome.querySelector(
       '.UserName',
+
     ).innerHTML += `<br><h1>${info.name}</h1><br>
     <div class='linea2'>&nbsp;</div>`;
     containerHome.querySelector('.Email').innerHTML += `<h3>Email:</h3>
@@ -205,6 +208,7 @@ const Home = () => {
     const idPublication = documentFirebase.id;
     // console.log('idpUBLICATION:', idPublication);
     await onSnapshot(doc(db, 'publications', idPublication));
+
     llenarPublications(documentFirebase, idPublication, data);
   }
 
@@ -213,33 +217,34 @@ const Home = () => {
     const divPublicado = containerHome.querySelector('#publicado');
     const publicationText = documentFirebase.data().publication;
     divPublicado.innerHTML += `
-          <div class="boxPublications">
-            <div class="boxPhotoandName">
-              <div class="boxInternoPhotoandName">
-                <div class="photoPerfil">
-                  <img src="/src/img/Avatares/Animals/AvatarA7.png" alt="">
+          <div class='boxPublications'>
+            <div class='boxPhotoandName'>
+              <div class='boxInternoPhotoandName'>
+                <div class='photoPerfil'>
+                  <img src='/src/img/Avatares/Animals/AvatarA7.png' alt=''>
                 </div>
+
                 <div class="userName">
                   <p>${data.name}</p>
                 </div>
               </div>
-            <div class="delete">
-            <button id="btnDelete" class="btnDelete" data-ref="${idPublication}" >DELETE</button>
+            <div class='delete'>
+            <button id='btnDelete' class='btnDelete' data-ref='${idPublication}'><img src='/src/img/Icons/Delete.png' alt=''></button>
             </div>
           </div>
-            <div class="publication">
-              <div class="contentPublication"><p>${publicationText}</p></div>
+            <div class='publication'>
+              <div class='contentPublication'><p>${publicationText}</p></div>
             </div>
-            <div class="save">
+            <div class='save'>
               <p>20</p>
-              <img src="/src/img/Icons/WhiteTotal/Heart2.png" alt="">
+              <img src='/src/img/Icons/WhiteTotal/Heart2.png' alt=''>
             </div>
           </div>`;
-
     // delete publication
     const publication = divPublicado.querySelectorAll('button[data-ref]');
 
     publication.forEach((element) => {
+
       element.addEventListener('click', (e) => {
         e.preventDefault();
         const idPublicationRef = element.dataset.ref;
@@ -254,7 +259,9 @@ const Home = () => {
   }
 
   // leer datos desde Firebase
+
   async function reedPublications(data) {
+
     const querySnapshot = await getDocs(collection(db, 'publications'));
     // console.log('visualizando esta linea: ', querySnapshot);
     querySnapshot.forEach((documentFirebase) => {
