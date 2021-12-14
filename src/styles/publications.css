@@ -12,10 +12,8 @@
   border-width: 3px;
   border-color: rgb(32 35 31);
   border-style: solid;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  box-shadow: rgb(0 0 0 / 40%) 0px 2px 4px, rgb(0 0 0 / 30%) 0px 7px 13px -3px, rgb(0 0 0 / 20%) 0px -3px 0px inset;
 }
-
-
 
 .boxPublications {
   display: flex;
@@ -93,3 +91,32 @@
   width: 100%;
   
 }
+
+.contentPublication {
+  overflow-wrap: break-word;
+}
+
+.contentPublication p {
+  width: 539px;
+  white-space: pre-line;
+}
+
+@media screen and (max-width: 760px) {
+  .contentPublication p {
+    width: 227px;
+    white-space: pre-line;
+  }
+
+  .btnPublic img {
+    width: 10%;
+    margin: 3% 3% 0 0;
+  }
+  .PublicationsContent {
+    background-color: gray;
+    width: 100%;
+    padding-bottom: 10%;
+}
+}
+
+
+

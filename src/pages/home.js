@@ -177,7 +177,7 @@ const Home = () => {
                 <p>KATERIN TELLO</p>
               </div>
               <div class="publication">
-                <div><p>${doc3.data().publication}</p></div>
+                <div class="contentPublication"><p>${doc3.data().publication}</p></div>
               </div>
               <div class="save">
                 <p>20</p>
