@@ -46,7 +46,7 @@ const Search = () => {
           </div>  
         </div>
         <div class="search">
-          <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Human/AvatarH1.png" alt=""></div>
+          <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA3.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">VICENTE VALERIO</div>
             <div class="pais">Perú</div>
@@ -70,7 +70,7 @@ const Search = () => {
           </div> 
         </div>
         <div class="search">
-          <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Human/AvatarH2.png" alt=""></div>
+          <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA3.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">ADRIANA LOPEZ</div>
             <div class="pais">Perú</div>
@@ -93,7 +93,7 @@ const Search = () => {
             </div>
           </div> 
         </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Human/AvatarH4.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA3.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">PEDRO SUAREZ</div>
             <div class="pais">Perú</div>
@@ -113,7 +113,7 @@ const Search = () => {
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Human/AvatarH6.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA3.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">ADRIÁN PLAZA</div>
             <div class="pais">Perú</div>
@@ -133,7 +133,7 @@ const Search = () => {
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Human/AvatarH8.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA3.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">PAULA SALA</div>
             <div class="pais">Perú</div>
@@ -153,7 +153,7 @@ const Search = () => {
               <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Plants/AvatarP2.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA3.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">MARGALIDA PERELLO</div>
             <div class="pais">Perú</div>
