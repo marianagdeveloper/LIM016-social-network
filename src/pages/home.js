@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-sequences */
+/* eslint-disable no-use-before-define */
 /* eslint-disable no-plusplus */
 import {
   db,
@@ -31,6 +34,8 @@ async function readUser(uid) {
 // agregar datos
 async function addPublication(publication) {
   try {
+
+    // eslint-disable-next-line no-unused-vars
     const docRef = await addDoc(collection(db, 'publications'), {
       author: sessionStorage.getItem('key'),
       publication,
@@ -42,23 +47,9 @@ async function addPublication(publication) {
   }
 }
 
-//eliminar publicacion
-async function deletePublication(idPublicationRef, divPublicado) {
-  // const docRefuser = addDoc(collection(db, 'publications'));
+// eliminar publicacion
+async function deletePublication(idPublicationRef) {
   await deleteDoc(doc(db, 'publications', idPublicationRef));
-  // divPublicado.childNodes.forEach(
-  //   divPublicado.removeChild(divPublicado.childNodes[i]);
-  // );
-  // let arrayChild = [];
-  // arrayChild = divPublicado;
-  // console.log('arrayChild: ', arrayChild);
-  // for (let i = 0; i < arrayChild.length; i++) {
-  //   const element = arrayChild[i];
-  //   divPublicado.removeChild(element);
-  // }
-
-  // reedPublications();
-  return
 }
 
 // Export const Home
@@ -118,8 +109,8 @@ const Home = () => {
                 <div class='photoPerfil'>
                   <img src='/src/img/Avatares/Animals/AvatarA7.png' alt=''>
                 </div>
-                <div class='userName'>
-                  <p>KATERIN TELLO</p>
+                <div class="userNamePublication">
+
                 </div>
               </div>
             </div>
@@ -173,11 +164,33 @@ const Home = () => {
   const infoUser = (info) => {
     console.log(info);
     containerHome.querySelector(
-      '.UserName'
+      '.UserName',
+
     ).innerHTML += `<br><h1>${info.name}</h1><br>
     <div class='linea2'>&nbsp;</div>`;
     containerHome.querySelector('.Email').innerHTML += `<h3>Email:</h3>
     <p>${info.email}</p>`;
+
+    containerHome.querySelector(
+      '.userNamePublication',
+    ).innerHTML += `
+    <p>${info.name}</p>`;
+
+    // evento de añadir publicación con save
+    containerHome.querySelector('#btnSave').addEventListener('click', (e) => {
+      e.preventDefault();
+      const divPublicado = containerHome.querySelector('#publicado');
+      const publication = containerHome.querySelector('#texta2').value;
+      containerHome.querySelector('#texta2').value = containerHome.querySelector('#texta2').defaultValue;
+      console.log(publication);
+      addPublication(publication);
+
+      while (divPublicado.firstChild) {
+        divPublicado.removeChild(divPublicado.firstChild);
+      }
+
+      reedPublications(info);
+    });
   };
 
   const uid = () => {
@@ -186,19 +199,21 @@ const Home = () => {
   };
 
   readUser(uid())
-    .then((value) => infoUser(value))
+    .then((value) => { infoUser(value), reedPublications(value); })
     .catch((error) => console.log(error));
 
   // actualizacion tiempo real
 
-  async function realOnSnapshot(documentFirebase) {
+  async function realOnSnapshot(documentFirebase, data) {
     const idPublication = documentFirebase.id;
     // console.log('idpUBLICATION:', idPublication);
     await onSnapshot(doc(db, 'publications', idPublication));
-    llenarPublications(documentFirebase, idPublication);
+
+    llenarPublications(documentFirebase, idPublication, data);
   }
 
-  function llenarPublications(documentFirebase, idPublication) {
+  function llenarPublications(documentFirebase, idPublication, data) {
+    console.log('data', data);
     const divPublicado = containerHome.querySelector('#publicado');
     const publicationText = documentFirebase.data().publication;
     divPublicado.innerHTML += `
@@ -208,8 +223,9 @@ const Home = () => {
                 <div class='photoPerfil'>
                   <img src='/src/img/Avatares/Animals/AvatarA7.png' alt=''>
                 </div>
-                <div class='userName'>
-                  <p>KATERIN TELLO</p>
+
+                <div class="userName">
+                  <p>${data.name}</p>
                 </div>
               </div>
             <div class='delete'>
@@ -224,64 +240,38 @@ const Home = () => {
               <img src='/src/img/Icons/WhiteTotal/Heart2.png' alt=''>
             </div>
           </div>`;
+    // delete publication
+    const publication = divPublicado.querySelectorAll('button[data-ref]');
 
-    //delete publication  
-    let publication = divPublicado.querySelectorAll('button[data-ref]');
+    publication.forEach((element) => {
 
-    publication.forEach(element => {
       element.addEventListener('click', (e) => {
         e.preventDefault();
-        let idPublicationRef = element.dataset.ref;
+        const idPublicationRef = element.dataset.ref;
         // console.log('delete Publication: ');
         console.log('id depublicaciones en delete: ', idPublicationRef);
         deletePublication(idPublicationRef, divPublicado);
-        let elementDelete = element.parentNode.parentNode.parentNode;
+        const elementDelete = element.parentNode.parentNode.parentNode;
         console.log('element.parentNode:', elementDelete);
         elementDelete.remove();
       });
-    });  
+    });
   }
 
   // leer datos desde Firebase
-  async function reedPublications() {
+
+  async function reedPublications(data) {
+
     const querySnapshot = await getDocs(collection(db, 'publications'));
     // console.log('visualizando esta linea: ', querySnapshot);
     querySnapshot.forEach((documentFirebase) => {
-      realOnSnapshot(documentFirebase);
+      realOnSnapshot(documentFirebase, data);
       // console.log('visualizando doc1:', doc1);
       // console.log(`${doc1.id} => ${JSON.stringify(doc1.data())}`);
     });
     return querySnapshot;
   }
-  reedPublications();
-
-  // evento de añadir publicación con save
-  containerHome.querySelector('#btnSave').addEventListener('click', (e) => {
-    e.preventDefault();
-    const divPublicado = containerHome.querySelector('#publicado');
-    const publication = containerHome.querySelector('#texta2').value;
-    containerHome.querySelector('#texta2').value =
-      containerHome.querySelector('#texta2').defaultValue;
-    console.log(publication);
-    addPublication(publication);
-
-    while (divPublicado.firstChild) {
-      divPublicado.removeChild(divPublicado.firstChild);
-    }
-
-    reedPublications();
-  });
-
-  // //delete publication
-  // let divPublicado = containerHome.querySelector('#publicado');
-  // console.log('divPublicado', divPublicado);
-  // divPublicado.querySelector('btnDelete').addEventListener('click', (e) => {
-  //   e.preventDefault();
-  //   // let idPublicationRef = btnDelete.dataset.ref;
-  //   console.log('delete Publication: ');
-  //   // console.log('id depublicaciones en delete: ', idPublicationRef);
-  //   // deletePublication(idPublicationRef, divPublicado);
-  // });
+  // reedPublications();
 
   return containerHome;
 };
