@@ -34,7 +34,6 @@ async function readUser(uid) {
 // agregar datos
 async function addPublication(publication) {
   try {
-
     // eslint-disable-next-line no-unused-vars
     const docRef = await addDoc(collection(db, 'publications'), {
       author: sessionStorage.getItem('key'),
@@ -244,7 +243,6 @@ const Home = () => {
     const publication = divPublicado.querySelectorAll('button[data-ref]');
 
     publication.forEach((element) => {
-
       element.addEventListener('click', (e) => {
         e.preventDefault();
         const idPublicationRef = element.dataset.ref;
@@ -261,7 +259,6 @@ const Home = () => {
   // leer datos desde Firebase
 
   async function reedPublications(data) {
-
     const querySnapshot = await getDocs(collection(db, 'publications'));
     // console.log('visualizando esta linea: ', querySnapshot);
     querySnapshot.forEach((documentFirebase) => {
