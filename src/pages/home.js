@@ -34,7 +34,6 @@ async function readUser(uid) {
 // agregar datos
 async function addPublication(publication) {
   try {
-
     // eslint-disable-next-line no-unused-vars
     const docRef = await addDoc(collection(db, 'publications'), {
       author: sessionStorage.getItem('key'),
@@ -55,9 +54,7 @@ async function deletePublication(idPublicationRef) {
 // Export const Home
 const Home = () => {
   const containerHome = document.createElement('div');
-
   containerHome.classList.add('positionHome');
-
   const viewHome = `
   <main>
     <!-- HOME PAGE -->
@@ -100,10 +97,10 @@ const Home = () => {
       <div id='publications' class='Publications'>
         <div class='PublicationsContent'>
           <div class='btnPublic'>
-            <img src='/src/img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
+            <img id="NewPost" class="NewPost" src='/src/img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
           </div>
           <div class='boxPublic'>
-          <div class='boxPublications'>
+          <div id='boxPublications'class='NoneboxPublications'>
             <div class='boxPhotoandName'>
               <div class='boxInternoPhotoandName'>
                 <div class='photoPerfil'>
@@ -119,7 +116,7 @@ const Home = () => {
             </div>
             <div class='save'>
               <button id='btnSave' class='btnSave'>SAVE</button>
-              <button class='btnCancel'>CANCEL</button>
+              <button id='btnCancel' class='btnCancel'>CANCEL</button>
             </div>
           </div>
           <div id='publicado'>
@@ -191,6 +188,22 @@ const Home = () => {
 
       reedPublications(info);
     });
+
+    containerHome.querySelector('.btnCancel').addEventListener('click', (e) => {
+      e.preventDefault();
+
+      document
+        .getElementById('boxPublications')
+        .classList.replace('boxPublications', 'NoneboxPublications');
+    });
+
+    containerHome.querySelector('.NewPost').addEventListener('click', (e) => {
+      e.preventDefault();
+
+      document
+        .getElementById('boxPublications')
+        .classList.replace('NoneboxPublications', 'boxPublications');
+    });
   };
 
   const uid = () => {
@@ -217,14 +230,14 @@ const Home = () => {
     const divPublicado = containerHome.querySelector('#publicado');
     const publicationText = documentFirebase.data().publication;
     divPublicado.innerHTML += `
-          <div class='boxPublications'>
-            <div class='boxPhotoandName'>
-              <div class='boxInternoPhotoandName'>
-                <div class='photoPerfil'>
+          <div class='boxPublicationsN'>
+            <div class='boxPhotoandNameN'>
+              <div class='boxInternoPhotoandNameN'>
+                <div class='photoPerfilN'>
                   <img src='/src/img/Avatares/Animals/AvatarA7.png' alt=''>
                 </div>
 
-                <div class="userName">
+                <div class="userNameN">
                   <p>${data.name}</p>
                 </div>
               </div>
@@ -232,19 +245,19 @@ const Home = () => {
             <button id='btnDelete' class='btnDelete' data-ref='${idPublication}'><img src='/src/img/Icons/Delete.png' alt=''></button>
             </div>
           </div>
-            <div class='publication'>
-              <div class='contentPublication'><p>${publicationText}</p></div>
+            <div class='publicationN'>
+              <div class='contentPublicationN'><p>${publicationText}</p></div>
             </div>
-            <div class='save'>
-              <p>20</p>
+            <div class='saveN'>
+              <p>2</p>
               <img src='/src/img/Icons/WhiteTotal/Heart2.png' alt=''>
             </div>
           </div>`;
+
     // delete publication
     const publication = divPublicado.querySelectorAll('button[data-ref]');
 
     publication.forEach((element) => {
-
       element.addEventListener('click', (e) => {
         e.preventDefault();
         const idPublicationRef = element.dataset.ref;
@@ -261,7 +274,6 @@ const Home = () => {
   // leer datos desde Firebase
 
   async function reedPublications(data) {
-
     const querySnapshot = await getDocs(collection(db, 'publications'));
     // console.log('visualizando esta linea: ', querySnapshot);
     querySnapshot.forEach((documentFirebase) => {
@@ -272,7 +284,6 @@ const Home = () => {
     return querySnapshot;
   }
   // reedPublications();
-
   return containerHome;
 };
 
