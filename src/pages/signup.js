@@ -5,10 +5,9 @@ import {
   doc, setDoc, db,
 } from '../utils/firebaseconfig.js';
 
-
 // Add a new document in collection "users"
 async function createNewUser(name, email, uid) {
-  await setDoc(doc(db, "users", uid), {
+  await setDoc(doc(db, 'users', uid), {
     uid: uid,
     name: name,
     email: email,
@@ -60,12 +59,12 @@ export const handleSingUp = (e) => {
     // alert(`Created User ${user}`);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        //Add new user
-        //Usar userCredential para crear un nuevo usuario y que el id sea el uid
-        //revisar en el caso de Google para la creacion del usuario
-       console.log('userCredential:', userCredential);
-       let emailFS = userCredential.user.email;
-       let uidFS = userCredential.user.uid;
+        // Add new user
+        // Usar userCredential para crear un nuevo usuario y que el id sea el uid
+        // revisar en el caso de Google para la creacion del usuario
+        console.log('userCredential:', userCredential);
+        const emailFS = userCredential.user.email;
+        const uidFS = userCredential.user.uid;
         createNewUser(name, emailFS, uidFS);
         // const user = userCredential.user;
         // user.displayname = name;

@@ -75,6 +75,18 @@
   margin: 0.4rem 0rem;
 }
 
+.modalErrorMessage {
+  display: none;
+}
+
+.alertmodalErrorMessage {
+  color: #f1ff75;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
 @media (max-width: 768px) {
   .BoxWelcome1 {
     display: none;
