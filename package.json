@@ -29,6 +29,7 @@
     "gh-pages": "^3.2.3",
     "htmlhint": "^0.15.1",
     "jest": "^27.0.1",
+    "page": "^1.11.6",
     "regenerator-runtime": "^0.13.1",
     "serve": "^12.0.0",
     "stylelint": "^13.13.1",

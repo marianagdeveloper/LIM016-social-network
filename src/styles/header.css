@@ -12,7 +12,7 @@
 
 main {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.87)),
-    url("/src/img/Photos/img-10.jpg");
+    url("img/Photos/img-10.jpg");
   background-size: cover;
 }
 

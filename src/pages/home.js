@@ -113,10 +113,15 @@ const Home = () => {
             </div>
             <div class='publication'>
               <textarea name='comments' placeholder='Type something here...' id='texta2' clase='texta2'></textarea>
+              <div id="modalCheckPost" class="modalCheckPost">
+                <img src="img/Icons/Verify.png"  alt="sent email" />
+                <p>Your post was published successfully</p> 
+              </div>
             </div>
             <div class='save'>
               <button id='btnSave' class='btnSave'>SAVE</button>
               <button id='btnCancel' class='btnCancel'>CANCEL</button>
+
             </div>
           </div>
           <div id='publicado'>
@@ -128,7 +133,6 @@ const Home = () => {
             <h3> ECO NEWS </h3>
           </div>  
           <div class='NewsContainer'>
-            
             <div class='News'>
               <img src='img/Notice/notice3.jpg'>
               <h2>COP26: Women are the most affected by climate change</h2>
@@ -158,6 +162,16 @@ const Home = () => {
   </main>`;
   containerHome.innerHTML = viewHome;
 
+  const cleanModal = () => {
+    const check = document.getElementById('modalCheckPost');
+
+    if (check) {
+      document
+        .getElementById('modalCheckPost')
+        .classList.replace('AlertmodalCheckPost', 'modalCheckPost');
+    }
+  };
+
   const infoUser = (info) => {
     console.log(info);
     containerHome.querySelector(
@@ -180,23 +194,41 @@ const Home = () => {
       const publication = containerHome.querySelector('#texta2').value;
       containerHome.querySelector('#texta2').value = containerHome.querySelector('#texta2').defaultValue;
       console.log(publication);
-      addPublication(publication);
 
       while (divPublicado.firstChild) {
         divPublicado.removeChild(divPublicado.firstChild);
       }
 
+      if (publication !== '') {
+        document
+          .getElementById('modalCheckPost')
+          .classList.replace('modalCheckPost', 'AlertmodalCheckPost');
+
+        addPublication(publication);
+      }
+      if (publication === '') {
+        cleanModal();
+      }
       reedPublications(info);
     });
 
+    // Función para eliminar el contenido del input al momento de cancelar
+    const deleteContentInput = () => {
+      containerHome.querySelector('#texta2').value = '';
+    };
+
+    // Botón para ocultar la caja de agregar publicación
     containerHome.querySelector('.btnCancel').addEventListener('click', (e) => {
       e.preventDefault();
-
       document
         .getElementById('boxPublications')
         .classList.replace('boxPublications', 'NoneboxPublications');
+      containerHome.querySelector('#texta2').value;
+      deleteContentInput();
+      cleanModal();
     });
 
+    // Botón para mostrar la caja de agregar publicación
     containerHome.querySelector('.NewPost').addEventListener('click', (e) => {
       e.preventDefault();
 
@@ -266,7 +298,6 @@ const Home = () => {
               <img src='img/Icons/WhiteTotal/Heart2.png' alt=''>
             </div>
           </div>`;
-
         // delete publication
         const publication = divPublicado.querySelectorAll('button[data-ref]');
 

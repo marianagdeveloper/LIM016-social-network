@@ -31,6 +31,7 @@ export const handleCurrent = () => {
       // console.log(`Email: ${profile.email}`);
       // console.log(`Photo URL: ${profile.photoURL}`);
       // console.log(`uid: ${profile.uid}`);
+      console.log(profile);
     });
     // console.log(displayName, email, photoURL, emailVerified, uid);
   }
@@ -172,4 +173,4 @@ export default SignIn;
 // Boton para iniciar sesion con Google - Linea 122
 // eslint-disable-next-line spaced-comment
 /*<button type="submit" id="btn-signin-google" class="LoginGooglebtn"> */
-/* Continue with Google</button> */
+
