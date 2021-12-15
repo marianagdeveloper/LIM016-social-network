@@ -30,6 +30,7 @@ export const handleCurrent = () => {
       // console.log(`Email: ${profile.email}`);
       // console.log(`Photo URL: ${profile.photoURL}`);
       // console.log(`uid: ${profile.uid}`);
+      console.log(profile);
     });
     // console.log(displayName, email, photoURL, emailVerified, uid);
   }
@@ -169,5 +170,5 @@ const SignIn = () => {
 export default SignIn;
 
 // Boton para iniciar sesion con Google - Linea 122
-/*<button type="submit" id="btn-signin-google" class="LoginGooglebtn">*/
-/*Continue with Google</button>*/ 
+/* <button type="submit" id="btn-signin-google" class="LoginGooglebtn"> */
+/* Continue with Google</button> */

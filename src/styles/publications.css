@@ -1,10 +1,10 @@
 /* **************SECCION DE PUBLICACIONES *****************/
-.Publications p,
+/* .Publications p,
 .PublicationsN p  {
   color: black;
   font-weight: bold;
   margin: 1rem;
-}
+} */
 
 .photoPerfil img,
 .photoPerfilN img {
@@ -16,12 +16,25 @@
   box-shadow: rgb(0 0 0 / 40%) 0px 2px 4px, rgb(0 0 0 / 30%) 0px 7px 13px -3px, rgb(0 0 0 / 20%) 0px -3px 0px inset;
 }
 
-.boxPublications,
+.boxPublications {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  background: #a1a1a1;
+  padding: 1rem;
+  border-radius: 1rem;
+  /* box-shadow: rgb(0 0 0 / 25%) 0px 0.0625em 0.0625em, rgb(0 0 0 / 25%) 0px 0.125em 0.5em, rgb(255 255 255 / 10%) 0px 0px 0px 1px inset; */
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
+  margin: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .boxPublicationsN {
   display: flex;
   width: 80%;
   align-items: center;
-  background: #f7f9fa;
+  background: #ffffff;
   padding: 1rem;
   border-radius: 1rem;
   /* box-shadow: rgb(0 0 0 / 25%) 0px 0.0625em 0.0625em, rgb(0 0 0 / 25%) 0px 0.125em 0.5em, rgb(255 255 255 / 10%) 0px 0px 0px 1px inset; */
@@ -48,7 +61,8 @@
   margin: 0.2rem;
   /* box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset; */
   box-shadow:  1px 1px 2px 1px rgb(25 27 28 / 30%);
-
+  color: black;
+  font-weight: bold;
 }
 
 .save .btnCancel {
@@ -113,6 +127,13 @@
   width: 100%;
 }
 
+.boxPhotoandName p,
+.boxPhotoandNameN p {
+  color: black;
+  font-weight: bold;
+  margin: 1rem;
+}
+
 .boxInternoPhotoandName,
 .boxInternoPhotoandNameN {
   display: flex;
@@ -123,6 +144,9 @@
   /* width: 100%; */
   white-space: pre-line;
   font-size: small;
+  color: black;
+  font-weight: bold;
+  margin: 1rem;
 }
 
 .btnDelete { 
@@ -154,6 +178,39 @@
 
 .saveN img {
   width: 22%;
+}
+
+.modalInputNull {
+  display: none;
+}
+
+.AlertmodalInputNull {
+  color: #5b6018;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  margin-bottom: 2%;
+  font-weight: bold;
+  font-size: small;
+}
+
+.modalCheckPost {
+  display: none;
+}
+
+.AlertmodalCheckPost {
+  color: #186e1d;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2%;
+  font-weight: bold;
+  font-size: small;
+}
+
+.AlertmodalCheckPost img,
+.AlertmodalInputNull img {
+  width: 5%;
+  margin: 2%;
 }
 
 @media screen and (max-width: 760px) {

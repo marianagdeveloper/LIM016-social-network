@@ -1,14 +1,14 @@
-@import '/src/styles/preBienvenida.css';
-@import '/src/styles/welcome.css';
-@import '/src/styles/terms.css';
-@import '/src/styles/signup.css';
-@import '/src/styles/signin.css';
-@import '/src/styles/forgotPassw.css';
-@import '/src/styles/home.css';
-@import '/src/styles/aboutUs.css';
-@import '/src/styles/error.css';
-@import '/src/styles/header.css';
-@import '/src/styles/editProfile.css';
-@import '/src/styles/search.css';
-@import '/src/styles/publications.css';
+@import 'styles/preBienvenida.css';
+@import 'styles/welcome.css';
+@import 'styles/terms.css';
+@import 'styles/signup.css';
+@import 'styles/signin.css';
+@import 'styles/forgotPassw.css';
+@import 'styles/home.css';
+@import 'styles/aboutUs.css';
+@import 'styles/error.css';
+@import 'styles/header.css';
+@import 'styles/editProfile.css';
+@import 'styles/search.css';
+@import 'styles/publications.css';
 

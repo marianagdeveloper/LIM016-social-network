@@ -64,7 +64,7 @@ const Home = () => {
         <div class='UserName'>
         </div>
         <div class='Avatar'>
-          <img class='Avatar-img' src='/src/img/Avatares/Animals/AvatarA7.png' alt='Avatar Profile'><br>
+          <img class='Avatar-img' src='img/Avatares/Animals/AvatarA7.png' alt='Avatar Profile'><br>
           <div class='linea2'>&nbsp;</div>
         </div>
         <div class='Bio'>
@@ -87,9 +87,9 @@ const Home = () => {
             Interests:
           </h3><br>
           <div class='Interests-Box'>
-            <img src='/src/img/Intereses/InteresesCN/AnimalCN.png' alt=''>
-            <img src='/src/img/Intereses/InteresesCN/SiembraCN.png' alt=''>
-            <img src='/src/img/Intereses/InteresesCN/ReciclajeCN.png' alt=''>
+            <img src='img/Intereses/InteresesCN/AnimalCN.png' alt=''>
+            <img src='img/Intereses/InteresesCN/SiembraCN.png' alt=''>
+            <img src='img/Intereses/InteresesCN/ReciclajeCN.png' alt=''>
           </div>
         </div>
       </div>
@@ -97,14 +97,14 @@ const Home = () => {
       <div id='publications' class='Publications'>
         <div class='PublicationsContent'>
           <div class='btnPublic'>
-            <img id="NewPost" class="NewPost" src='/src/img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
+            <img id="NewPost" class="NewPost" src='img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
           </div>
           <div class='boxPublic'>
           <div id='boxPublications'class='NoneboxPublications'>
             <div class='boxPhotoandName'>
               <div class='boxInternoPhotoandName'>
                 <div class='photoPerfil'>
-                  <img src='/src/img/Avatares/Animals/AvatarA7.png' alt=''>
+                  <img src='img/Avatares/Animals/AvatarA7.png' alt=''>
                 </div>
                 <div class="userNamePublication">
 
@@ -113,6 +113,14 @@ const Home = () => {
             </div>
             <div class='publication'>
               <textarea name='comments' placeholder='Type something here...' id='texta2' clase='texta2'></textarea>
+              <div id="modalInputNull" class="modalInputNull">
+                <img src="img/Icons/Alert2.png" alt="Alert"/>
+                <p> You need to write something to make a publication </p>
+              </div>
+              <div id="modalCheckPost" class="modalCheckPost">
+                <img src="img/Icons/Verify.png"  alt="sent email" />
+                <p>Your post was published successfully</p> 
+              </div>
             </div>
             <div class='save'>
               <button id='btnSave' class='btnSave'>SAVE</button>
@@ -130,23 +138,23 @@ const Home = () => {
           <div class='NewsContainer'>
             
             <div class='News'>
-              <img src='/src/img/Notice/notice3.jpg'>
+              <img src='img/Notice/notice3.jpg'>
               <h2>COP26: Women are the most affected by climate change</h2>
               <a href='https://news.un.org/es/story/2021/11/1499772' target='_blank'>See more</a>
             </div><br>
             <div class='News'>
-              <img src='/src/img/Notice/notice2.jpg'>
+              <img src='img/Notice/notice2.jpg'>
               <h2>
               The era of fossil fuel-powered cars in the spotlight at COP26</h2>
               <a href='https://news.un.org/es/story/2021/11/1499832' target='_blank'>See more</a>
             </div><br>
             <div class='News'>
-              <img src='/src/img/Notice/notice1.jpg'>
+              <img src='img/Notice/notice1.jpg'>
               <h2>COP26: Promises 'ring hollow' when fossil fuels continue to receive trillions in subsidies, says Guterres</h2>
               <a href='https://news.un.org/es/story/2021/11/1499902' target='_blank'>See more</a>
             </div><br>
             <div class='News'>
-              <img src='/src/img/Notice/notice5.jpg'>
+              <img src='img/Notice/notice5.jpg'>
               <h2>Panela, a sweet bet for the indigenous people to continue living in the Sierra de Colombia</h2>
               <a href='https://news.un.org/es/story/2021/11/1500632' target='_blank'>See more</a>
             </div> <br>
@@ -157,6 +165,22 @@ const Home = () => {
     </section>
   </main>`;
   containerHome.innerHTML = viewHome;
+
+  const cleanModal = () => {
+    const inputPostNull = document.getElementById('modalInputNull');
+    const check = document.getElementById('modalCheckPost');
+
+    if (inputPostNull) {
+      document
+        .getElementById('modalInputNull')
+        .classList.replace('AlertInputNull', 'modalInputNull');
+    }
+    if (check) {
+      document
+        .getElementById('modalCheckPost')
+        .classList.replace('AlertmodalCheckPost', 'modalCheckPost');
+    }
+  };
 
   const infoUser = (info) => {
     console.log(info);
@@ -180,23 +204,47 @@ const Home = () => {
       const publication = containerHome.querySelector('#texta2').value;
       containerHome.querySelector('#texta2').value = containerHome.querySelector('#texta2').defaultValue;
       console.log(publication);
-      addPublication(publication);
 
       while (divPublicado.firstChild) {
         divPublicado.removeChild(divPublicado.firstChild);
       }
 
+      if (publication !== '') {
+        cleanModal();
+        document
+          .getElementById('modalCheckPost')
+          .classList.replace('modalCheckPost', 'AlertmodalCheckPost');
+        addPublication(publication);
+      }
+      if (publication === '') {
+        cleanModal();
+        document
+          .getElementById('modalInputNull')
+          .classList.replace('modalInputNull', 'AlertmodalInputNull');
+      }
       reedPublications(info);
     });
 
+    // Función para eliminar el contenido del input al momento de cancelar
+    const deleteContentInput = () => {
+      containerHome.querySelector('#texta2').value = '';
+    };
+
+    // Botón para ocultar la caja de agregar publicación
     containerHome.querySelector('.btnCancel').addEventListener('click', (e) => {
       e.preventDefault();
+      // eslint-disable-next-line no-alert
+      alert(' Estás seguro que deseas cancelar la publicación ');
 
       document
         .getElementById('boxPublications')
         .classList.replace('boxPublications', 'NoneboxPublications');
+      containerHome.querySelector('#texta2').value;
+      deleteContentInput();
+      cleanModal();
     });
 
+    // Botón para mostrar la caja de agregar publicación
     containerHome.querySelector('.NewPost').addEventListener('click', (e) => {
       e.preventDefault();
 
@@ -234,7 +282,7 @@ const Home = () => {
             <div class='boxPhotoandNameN'>
               <div class='boxInternoPhotoandNameN'>
                 <div class='photoPerfilN'>
-                  <img src='/src/img/Avatares/Animals/AvatarA7.png' alt=''>
+                  <img src='img/Avatares/Animals/AvatarA7.png' alt=''>
                 </div>
 
                 <div class="userNameN">
@@ -242,7 +290,7 @@ const Home = () => {
                 </div>
               </div>
             <div class='delete'>
-            <button id='btnDelete' class='btnDelete' data-ref='${idPublication}'><img src='/src/img/Icons/Delete.png' alt=''></button>
+            <button id='btnDelete' class='btnDelete' data-ref='${idPublication}'><img src='img/Icons/Delete.png' alt=''></button>
             </div>
           </div>
             <div class='publicationN'>
@@ -250,7 +298,7 @@ const Home = () => {
             </div>
             <div class='saveN'>
               <p>2</p>
-              <img src='/src/img/Icons/WhiteTotal/Heart2.png' alt=''>
+              <img src='img/Icons/WhiteTotal/Heart2.png' alt=''>
             </div>
           </div>`;
 
