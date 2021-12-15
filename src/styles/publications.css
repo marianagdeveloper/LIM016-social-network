@@ -180,20 +180,6 @@
   width: 22%;
 }
 
-.modalInputNull {
-  display: none;
-}
-
-.AlertmodalInputNull {
-  color: #5b6018;
-  display: flex;
-  /* justify-content: center; */
-  align-items: center;
-  margin-bottom: 2%;
-  font-weight: bold;
-  font-size: small;
-}
-
 .modalCheckPost {
   display: none;
 }
@@ -207,8 +193,7 @@
   font-size: small;
 }
 
-.AlertmodalCheckPost img,
-.AlertmodalInputNull img {
+.AlertmodalCheckPost img {
   width: 5%;
   margin: 2%;
 }
@@ -230,8 +215,66 @@
 }
 }
 
+/* Modal para cancelar post*/
 
+.btns {
+  display: flex;
+}
 
+.modal-contenido{
+  background-color:aqua;
+  width:300px;
+  padding: 10px 20px;
+  margin: 20% auto;
+  position: relative;
+}
+.modal{
+  background-color: rgba(0,0,0,.8);
+  position:fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  opacity:0;
+  pointer-events:none;
+  transition: all 1s;
+}
 
+#miModal:target{
+  opacity:1;
+  pointer-events:auto;
+}
 
+/* <button id='btnCancel' class='btnCancel'><a href="#miModal">CANCEL</a></button>
+  <div id="miModal" class="modal">
+    <div class="modal-contenido">
+      <a href="#">X</a>
+      <h2>Estas seguro que deseas cancelar la publicación</h2>
+      <div class="btns">
+        <button id='btnYes' class='btnCancel'>Yes</button>
+        <button id='btnNo' class='btnSave'>No</button>
+      </div> 
+    </div>  
+  </div> */
+  /* button id='btnDelete' class='btnDelete' data-ref='${idPublication}><a href="#miModal"><img src='img/Icons/Delete.png' alt=''></a></button>
+  <div id="miModal" class="modal">
+    <div class="modal-contenido">
+      <a href="#home">X</a>
+      <h2>Estas seguro que deseas eliminar la publicación</h2>
+      <div class="btns">
+        <button class='btnCancel'>Yes</button>
+        <button class='btnSave'><a href="#home">No</a></button>
+      </div> 
+    </div>   */
+/* 
+    <div id="miModal" class="modal">
+            <div class="modal-contenido">
+              <a href="#home">X</a>
+              <h2>Estas seguro que deseas eliminar la publicación</h2>
 
+              <div class="btns">
+                <button data-ref='${idPublication}' class='btnCancel'>Yes</button>
+                <button class='btnSave'><a href="#home">No</a></button>
+              </div> 
+            </div>
+          </div> */

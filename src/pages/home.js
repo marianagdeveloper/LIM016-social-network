@@ -113,10 +113,6 @@ const Home = () => {
             </div>
             <div class='publication'>
               <textarea name='comments' placeholder='Type something here...' id='texta2' clase='texta2'></textarea>
-              <div id="modalInputNull" class="modalInputNull">
-                <img src="img/Icons/Alert2.png" alt="Alert"/>
-                <p> You need to write something to make a publication </p>
-              </div>
               <div id="modalCheckPost" class="modalCheckPost">
                 <img src="img/Icons/Verify.png"  alt="sent email" />
                 <p>Your post was published successfully</p> 
@@ -125,6 +121,7 @@ const Home = () => {
             <div class='save'>
               <button id='btnSave' class='btnSave'>SAVE</button>
               <button id='btnCancel' class='btnCancel'>CANCEL</button>
+
             </div>
           </div>
           <div id='publicado'>
@@ -136,7 +133,6 @@ const Home = () => {
             <h3> ECO NEWS </h3>
           </div>  
           <div class='NewsContainer'>
-            
             <div class='News'>
               <img src='img/Notice/notice3.jpg'>
               <h2>COP26: Women are the most affected by climate change</h2>
@@ -167,14 +163,8 @@ const Home = () => {
   containerHome.innerHTML = viewHome;
 
   const cleanModal = () => {
-    const inputPostNull = document.getElementById('modalInputNull');
     const check = document.getElementById('modalCheckPost');
 
-    if (inputPostNull) {
-      document
-        .getElementById('modalInputNull')
-        .classList.replace('AlertInputNull', 'modalInputNull');
-    }
     if (check) {
       document
         .getElementById('modalCheckPost')
@@ -210,17 +200,14 @@ const Home = () => {
       }
 
       if (publication !== '') {
-        cleanModal();
         document
           .getElementById('modalCheckPost')
           .classList.replace('modalCheckPost', 'AlertmodalCheckPost');
+
         addPublication(publication);
       }
       if (publication === '') {
         cleanModal();
-        document
-          .getElementById('modalInputNull')
-          .classList.replace('modalInputNull', 'AlertmodalInputNull');
       }
       reedPublications(info);
     });
@@ -233,9 +220,6 @@ const Home = () => {
     // Botón para ocultar la caja de agregar publicación
     containerHome.querySelector('.btnCancel').addEventListener('click', (e) => {
       e.preventDefault();
-      // eslint-disable-next-line no-alert
-      alert(' Estás seguro que deseas cancelar la publicación ');
-
       document
         .getElementById('boxPublications')
         .classList.replace('boxPublications', 'NoneboxPublications');
