@@ -34,133 +34,133 @@ const Search = () => {
       </div>
       <div class="caja2">
         <div class="search">
-          <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA1.png" alt=""></div>
+          <div class="perfil"><img class="imgPerfil" src="img/Avatares/Animals/AvatarA1.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">JUANITO ARISTISABAL</div>
             <div class="pais">Perú</div>
             <div class="intereses">
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div>  
         </div>
         <div class="search">
-          <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA3.png" alt=""></div>
+          <div class="perfil"><img class="imgPerfil" src="img/Avatares/Animals/AvatarA3.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">VICENTE VALERIO</div>
             <div class="pais">Perú</div>
             <div class="intereses">
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> 
         </div>
         <div class="search">
-          <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA3.png" alt=""></div>
+          <div class="perfil"><img class="imgPerfil" src="img/Avatares/Animals/AvatarA3.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">LUIS JIMENEZ</div>
             <div class="pais">Perú</div>
             <div class="intereses">
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> 
         </div>
         <div class="search">
-          <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA3.png" alt=""></div>
+          <div class="perfil"><img class="imgPerfil" src="img/Avatares/Animals/AvatarA3.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">ADRIANA LOPEZ</div>
             <div class="pais">Perú</div>
             <div class="intereses">
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> 
         </div>
         <div class="search">
-          <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA5.png" alt=""></div>
+          <div class="perfil"><img class="imgPerfil" src="img/Avatares/Animals/AvatarA5.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">CRISTIAN CASTRO</div>
             <div class="pais">Perú</div>
             <div class="intereses">
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> 
         </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA3.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="img/Avatares/Animals/AvatarA3.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">PEDRO SUAREZ</div>
             <div class="pais">Perú</div>
             <div class="intereses">
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA6.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="img/Avatares/Animals/AvatarA6.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">DIEGO DOMINGUEZ</div>
             <div class="pais">Perú</div>
             <div class="intereses">
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA3.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="img/Avatares/Animals/AvatarA3.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">ADRIÁN PLAZA</div>
             <div class="pais">Perú</div>
             <div class="intereses">
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA9.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="img/Avatares/Animals/AvatarA9.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">MARC DUQUE </div>
             <div class="pais">Perú</div>
             <div class="intereses">
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA3.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="img/Avatares/Animals/AvatarA3.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">PAULA SALA</div>
             <div class="pais">Perú</div>
             <div class="intereses">
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA8.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="img/Avatares/Animals/AvatarA8.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">XAVIER FANER</div>
             <div class="pais">Perú</div>
             <div class="intereses">
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> </div>
-        <div class="search">   <div class="perfil"><img class="imgPerfil" src="/src/img/Avatares/Animals/AvatarA3.png" alt=""></div>
+        <div class="search">   <div class="perfil"><img class="imgPerfil" src="img/Avatares/Animals/AvatarA3.png" alt=""></div>
           <div class="caracteres">
             <div class="nombre">MARGALIDA PERELLO</div>
             <div class="pais">Perú</div>
             <div class="intereses">
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
-              <div class="imgCaracteres"><img src="/src/img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AguaCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
+              <div class="imgCaracteres"><img src="img/Intereses/InteresesCN/AnimalCN.png" alt=""></div>
             </div>
           </div> </div>
         </div>

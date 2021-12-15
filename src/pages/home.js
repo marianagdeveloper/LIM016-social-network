@@ -9,7 +9,7 @@ import {
   getDocs,
   getDoc,
   doc,
-  onSnapshot,
+  // onSnapshot,
   deleteDoc,
 } from '../utils/firebaseconfig.js';
 
@@ -22,8 +22,7 @@ async function readUser(uid) {
   if (docSnap.exists()) {
     // console.log('Document data:', docSnap.data());
     data = docSnap.data();
-    console.log('Document data:', data);
-    localStorage.setItem('user', JSON.stringify(data));
+    // console.log('Document data:', data);
   } else {
     // doc.data() will be undefined in this case
     console.log('No such document!');
@@ -31,12 +30,13 @@ async function readUser(uid) {
   return data;
 }
 
-// agregar datos
+// agregar datos a Firebase
 async function addPublication(publication) {
   try {
     // eslint-disable-next-line no-unused-vars
     const docRef = await addDoc(collection(db, 'publications'), {
       author: sessionStorage.getItem('key'),
+      // user: localStorage.getItem('user'),
       publication,
     });
 
@@ -64,7 +64,7 @@ const Home = () => {
         <div class='UserName'>
         </div>
         <div class='Avatar'>
-          <img class='Avatar-img' src='/src/img/Avatares/Animals/AvatarA7.png' alt='Avatar Profile'><br>
+          <img class='Avatar-img' src='img/Avatares/Animals/AvatarA7.png' alt='Avatar Profile'><br>
           <div class='linea2'>&nbsp;</div>
         </div>
         <div class='Bio'>
@@ -87,9 +87,9 @@ const Home = () => {
             Interests:
           </h3><br>
           <div class='Interests-Box'>
-            <img src='/src/img/Intereses/InteresesCN/AnimalCN.png' alt=''>
-            <img src='/src/img/Intereses/InteresesCN/SiembraCN.png' alt=''>
-            <img src='/src/img/Intereses/InteresesCN/ReciclajeCN.png' alt=''>
+            <img src='img/Intereses/InteresesCN/AnimalCN.png' alt=''>
+            <img src='img/Intereses/InteresesCN/SiembraCN.png' alt=''>
+            <img src='img/Intereses/InteresesCN/ReciclajeCN.png' alt=''>
           </div>
         </div>
       </div>
@@ -97,14 +97,14 @@ const Home = () => {
       <div id='publications' class='Publications'>
         <div class='PublicationsContent'>
           <div class='btnPublic'>
-            <img id="NewPost" class="NewPost" src='/src/img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
+            <img id="NewPost" class="NewPost" src='img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
           </div>
           <div class='boxPublic'>
           <div id='boxPublications'class='NoneboxPublications'>
             <div class='boxPhotoandName'>
               <div class='boxInternoPhotoandName'>
                 <div class='photoPerfil'>
-                  <img src='/src/img/Avatares/Animals/AvatarA7.png' alt=''>
+                  <img src='img/Avatares/Animals/AvatarA7.png' alt=''>
                 </div>
                 <div class="userNamePublication">
 
@@ -113,10 +113,15 @@ const Home = () => {
             </div>
             <div class='publication'>
               <textarea name='comments' placeholder='Type something here...' id='texta2' clase='texta2'></textarea>
+              <div id="modalCheckPost" class="modalCheckPost">
+                <img src="img/Icons/Verify.png"  alt="sent email" />
+                <p>Your post was published successfully</p> 
+              </div>
             </div>
             <div class='save'>
               <button id='btnSave' class='btnSave'>SAVE</button>
               <button id='btnCancel' class='btnCancel'>CANCEL</button>
+
             </div>
           </div>
           <div id='publicado'>
@@ -128,25 +133,24 @@ const Home = () => {
             <h3> ECO NEWS </h3>
           </div>  
           <div class='NewsContainer'>
-            
             <div class='News'>
-              <img src='/src/img/Notice/notice3.jpg'>
+              <img src='img/Notice/notice3.jpg'>
               <h2>COP26: Women are the most affected by climate change</h2>
               <a href='https://news.un.org/es/story/2021/11/1499772' target='_blank'>See more</a>
             </div><br>
             <div class='News'>
-              <img src='/src/img/Notice/notice2.jpg'>
+              <img src='img/Notice/notice2.jpg'>
               <h2>
               The era of fossil fuel-powered cars in the spotlight at COP26</h2>
               <a href='https://news.un.org/es/story/2021/11/1499832' target='_blank'>See more</a>
             </div><br>
             <div class='News'>
-              <img src='/src/img/Notice/notice1.jpg'>
+              <img src='img/Notice/notice1.jpg'>
               <h2>COP26: Promises 'ring hollow' when fossil fuels continue to receive trillions in subsidies, says Guterres</h2>
               <a href='https://news.un.org/es/story/2021/11/1499902' target='_blank'>See more</a>
             </div><br>
             <div class='News'>
-              <img src='/src/img/Notice/notice5.jpg'>
+              <img src='img/Notice/notice5.jpg'>
               <h2>Panela, a sweet bet for the indigenous people to continue living in the Sierra de Colombia</h2>
               <a href='https://news.un.org/es/story/2021/11/1500632' target='_blank'>See more</a>
             </div> <br>
@@ -158,8 +162,18 @@ const Home = () => {
   </main>`;
   containerHome.innerHTML = viewHome;
 
+  const cleanModal = () => {
+    const check = document.getElementById('modalCheckPost');
+
+    if (check) {
+      document
+        .getElementById('modalCheckPost')
+        .classList.replace('AlertmodalCheckPost', 'modalCheckPost');
+    }
+  };
+
   const infoUser = (info) => {
-    console.log(info);
+    // console.log(info);
     containerHome.querySelector(
       '.UserName',
 
@@ -180,23 +194,41 @@ const Home = () => {
       const publication = containerHome.querySelector('#texta2').value;
       containerHome.querySelector('#texta2').value = containerHome.querySelector('#texta2').defaultValue;
       console.log(publication);
-      addPublication(publication);
 
       while (divPublicado.firstChild) {
         divPublicado.removeChild(divPublicado.firstChild);
       }
 
+      if (publication !== '') {
+        document
+          .getElementById('modalCheckPost')
+          .classList.replace('modalCheckPost', 'AlertmodalCheckPost');
+
+        addPublication(publication);
+      }
+      if (publication === '') {
+        cleanModal();
+      }
       reedPublications(info);
     });
 
+    // Función para eliminar el contenido del input al momento de cancelar
+    const deleteContentInput = () => {
+      containerHome.querySelector('#texta2').value = '';
+    };
+
+    // Botón para ocultar la caja de agregar publicación
     containerHome.querySelector('.btnCancel').addEventListener('click', (e) => {
       e.preventDefault();
-
       document
         .getElementById('boxPublications')
         .classList.replace('boxPublications', 'NoneboxPublications');
+      containerHome.querySelector('#texta2').value;
+      deleteContentInput();
+      cleanModal();
     });
 
+    // Botón para mostrar la caja de agregar publicación
     containerHome.querySelector('.NewPost').addEventListener('click', (e) => {
       e.preventDefault();
 
@@ -215,34 +247,35 @@ const Home = () => {
     .then((value) => { infoUser(value), reedPublications(value); })
     .catch((error) => console.log(error));
 
-  // actualizacion tiempo real
-
-  async function realOnSnapshot(documentFirebase, data) {
+  // actualizacion tiempo real de publications
+  function realOnSnapshot(documentFirebase) {
     const idPublication = documentFirebase.id;
-    // console.log('idpUBLICATION:', idPublication);
-    await onSnapshot(doc(db, 'publications', idPublication));
-
-    llenarPublications(documentFirebase, idPublication, data);
+    llenarPublications(documentFirebase, idPublication);
   }
 
-  function llenarPublications(documentFirebase, idPublication, data) {
-    console.log('data', data);
-    const divPublicado = containerHome.querySelector('#publicado');
-    const publicationText = documentFirebase.data().publication;
-    divPublicado.innerHTML += `
+  // publicaciones realizadas
+  async function llenarPublications(documentFirebase, idPublication) {
+    const userOfPublication = await getDoc(doc(db, 'users', documentFirebase.data().author));
+
+    if (userOfPublication.exists()) {
+      const divPublicado = containerHome.querySelector('#publicado');
+
+      const nameUser = userOfPublication.data().name;
+      const publicationText = documentFirebase.data().publication;
+      divPublicado.innerHTML += `
           <div class='boxPublicationsN'>
             <div class='boxPhotoandNameN'>
               <div class='boxInternoPhotoandNameN'>
                 <div class='photoPerfilN'>
-                  <img src='/src/img/Avatares/Animals/AvatarA7.png' alt=''>
+                  <img src='img/Avatares/Animals/AvatarA7.png' alt=''>
                 </div>
 
                 <div class="userNameN">
-                  <p>${data.name}</p>
+                  <p>${nameUser}</p>
                 </div>
               </div>
             <div class='delete'>
-            <button id='btnDelete' class='btnDelete' data-ref='${idPublication}'><img src='/src/img/Icons/Delete.png' alt=''></button>
+            <button id='btnDelete' class='btnDelete' data-ref='${idPublication}'><img src='img/Icons/Delete.png' alt=''></button>
             </div>
           </div>
             <div class='publicationN'>
@@ -250,40 +283,46 @@ const Home = () => {
             </div>
             <div class='saveN'>
               <p>2</p>
-              <img src='/src/img/Icons/WhiteTotal/Heart2.png' alt=''>
+              <img src='img/Icons/WhiteTotal/Heart2.png' alt=''>
             </div>
           </div>`;
+      // delete publication
+      const publication = divPublicado.querySelectorAll('button[data-ref]');
 
-    // delete publication
-    const publication = divPublicado.querySelectorAll('button[data-ref]');
+      publication.forEach((element) => {
+        element.addEventListener('click', (e) => {
+          e.preventDefault();
+          const idPublicationRef = element.dataset.ref;
 
-    publication.forEach((element) => {
-      element.addEventListener('click', (e) => {
-        e.preventDefault();
-        const idPublicationRef = element.dataset.ref;
-        // console.log('delete Publication: ');
-        console.log('id depublicaciones en delete: ', idPublicationRef);
-        deletePublication(idPublicationRef, divPublicado);
-        const elementDelete = element.parentNode.parentNode.parentNode;
-        console.log('element.parentNode:', elementDelete);
-        elementDelete.remove();
+          // console.log('id depublicaciones en delete: ', idPublicationRef);
+          deletePublication(idPublicationRef, divPublicado);
+
+          const elementDelete = element.parentNode.parentNode.parentNode;
+          // console.log('element.parentNode:', elementDelete);
+          elementDelete.remove();
+        });
       });
-    });
+    } else {
+      // doc.data() will be undefined in this case
+      // console.log('No such document!');
+    }
+    return userOfPublication;
   }
 
-  // leer datos desde Firebase
+  // leer datos desde Firebase de la colección Publicaciones y Usuarios
+  async function reedPublications() {
+    const querySnapshotPublications = await getDocs(collection(db, 'publications'));
 
-  async function reedPublications(data) {
-    const querySnapshot = await getDocs(collection(db, 'publications'));
-    // console.log('visualizando esta linea: ', querySnapshot);
-    querySnapshot.forEach((documentFirebase) => {
-      realOnSnapshot(documentFirebase, data);
-      // console.log('visualizando doc1:', doc1);
-      // console.log(`${doc1.id} => ${JSON.stringify(doc1.data())}`);
+    // console.log('visualizando esta linea querySnapshotUsers: ', querySnapshotUsers);
+    // eslint-disable-next-line max-len
+    // console.log('visualizando esta linea querySnapshotPublications: ', querySnapshotPublications);
+
+    querySnapshotPublications.forEach((documentFirebase) => {
+      realOnSnapshot(documentFirebase);
     });
-    return querySnapshot;
+
+    return querySnapshotPublications;
   }
-  // reedPublications();
   return containerHome;
 };
 

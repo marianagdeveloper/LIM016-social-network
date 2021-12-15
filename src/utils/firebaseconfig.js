@@ -25,6 +25,7 @@ import {
   onSnapshot,
   deleteDoc,
   query,
+  where,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -47,6 +48,7 @@ const provider = new GoogleAuthProvider(app);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
+
 export {
   app,
   auth,
@@ -70,4 +72,5 @@ export {
   onSnapshot,
   deleteDoc,
   query,
+  where,
 };
