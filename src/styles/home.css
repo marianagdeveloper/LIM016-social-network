@@ -28,6 +28,8 @@ body {
   width: 20%;
   /* box-shadow: inset 5px 5px 10px #000000,
   inset -5px -5px 10px #000000; */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.842), rgba(0, 0, 0, 0.87)),
+  url("../img/Photos/img-10.jpg");
   
 }
 
@@ -143,6 +145,7 @@ text-align: center;
   width: 70%;
   box-shadow: inset 5px 5px 10px #a7a1a1,
   inset -5px -5px 10px #a7a1a1;
+  padding-bottom: 5%;
 }
 
 .btnPublic {
@@ -152,7 +155,7 @@ text-align: center;
   
 }
 .btnPublic img{
-  width: 5%;
+  width: 7%;
   border-radius: 100%;
   padding: 1%;
   background-color: rgb(123 123 123);
@@ -177,6 +180,8 @@ text-align: center;
   padding: 5%;
   /* box-shadow: inset 5px 5px 10px #000000,
   inset -5px -5px 10px #000000; */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.842), rgba(0, 0, 0, 0.87)),
+  url("../img/Photos/img-5.jpg");
   
 }
 .NewsContainer img {

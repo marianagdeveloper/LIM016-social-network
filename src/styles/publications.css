@@ -1,12 +1,13 @@
-.Publications p {
+/* **************SECCION DE PUBLICACIONES *****************/
+.Publications p,
+.PublicationsN p  {
   color: black;
   font-weight: bold;
   margin: 1rem;
 }
 
-/* **************SECCION DE PUBLICACIONES *****************/
-
-.photoPerfil img {
+.photoPerfil img,
+.photoPerfilN img {
   width: 4rem;
   border-radius: 100%;
   border-width: 3px;
@@ -15,7 +16,8 @@
   box-shadow: rgb(0 0 0 / 40%) 0px 2px 4px, rgb(0 0 0 / 30%) 0px 7px 13px -3px, rgb(0 0 0 / 20%) 0px -3px 0px inset;
 }
 
-.boxPublications {
+.boxPublications,
+.boxPublicationsN {
   display: flex;
   width: 80%;
   align-items: center;
@@ -26,6 +28,7 @@
   box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
   margin: 1rem;
   flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .publication input {
@@ -76,7 +79,8 @@
   box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
-.publication {
+.publication,
+.publicationN {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -85,7 +89,8 @@
   padding: 0.3rem;
 }
 
-#publicado {
+#publicado,
+#publicadoN {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -93,27 +98,31 @@
   
 }
 
-.contentPublication {
+.contentPublicationN {
   overflow-wrap: break-word;
   background-color: #e6dece;
   border-radius: 10px;
   box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
+  text-align: justify;
 }
 
-.boxPhotoandName {
+.boxPhotoandName,
+.boxPhotoandNameN {
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
-.boxInternoPhotoandName {
+.boxInternoPhotoandName,
+.boxInternoPhotoandNameN {
   display: flex;
   flex-direction: row;
 }
 
-.contentPublication p {
-  width: 100%;
+.contentPublicationN p {
+  /* width: 100%; */
   white-space: pre-line;
+  font-size: small;
 }
 
 .btnDelete { 
@@ -126,14 +135,29 @@
   width: 25%;
 }
 
-.save p {
+.save p,
+.saveN p {
   margin: 0;
   color: rgb(13, 92, 13);
   font-weight: bold;
 }
 
+.NoneboxPublications {
+  display: none;
+}
+
+.saveN {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.saveN img {
+  width: 22%;
+}
+
 @media screen and (max-width: 760px) {
-  .contentPublication p {
+  .contentPublicationN p {
     width: 227px;
     white-space: pre-line;
   }
@@ -142,7 +166,7 @@
     width: 10%;
     margin: 3% 3% 0 0;
   }
-  .PublicationsContent {
+  .PublicationsContentN {
     background-color: gray;
     width: 100%;
     padding-bottom: 10%;

@@ -208,3 +208,18 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
+export const actionCodeSettings = () => ({
+  url: 'katerint.github.io',
+  // This must be true.
+  handleCodeInApp: true,
+  iOS: {
+    bundleId: 'com.example.ios',
+  },
+  android: {
+    packageName: 'com.example.android',
+    installApp: true,
+    minimumVersion: '12',
+  },
+  dynamicLinkDomain: 'katerint.github.io',
+});
