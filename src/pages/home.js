@@ -22,7 +22,7 @@ async function readUser(uid) {
   if (docSnap.exists()) {
     // console.log('Document data:', docSnap.data());
     data = docSnap.data();
-    console.log('Document data:', data);
+    // console.log('Document data:', data);
   } else {
     // doc.data() will be undefined in this case
     console.log('No such document!');
@@ -173,7 +173,7 @@ const Home = () => {
   };
 
   const infoUser = (info) => {
-    console.log(info);
+    // console.log(info);
     containerHome.querySelector(
       '.UserName',
 
@@ -248,33 +248,21 @@ const Home = () => {
     .catch((error) => console.log(error));
 
   // actualizacion tiempo real de publications
-
   function realOnSnapshot(documentFirebase) {
     const idPublication = documentFirebase.id;
-    // console.log('idpUBLICATION:', idPublication);
-    // await onSnapshot(doc(db, 'publications', idPublication));
     llenarPublications(documentFirebase, idPublication);
   }
 
   // publicaciones realizadas
-  function llenarPublications(documentFirebase, idPublication) {
-    // console.log(documentFirebase.data().author);
-    async function querySnapshot() {
-      const userOfPublication = await getDoc(doc(db, 'users', documentFirebase.data().author));
-      console.log('userOfPublication: ', userOfPublication);
+  async function llenarPublications(documentFirebase, idPublication) {
+    const userOfPublication = await getDoc(doc(db, 'users', documentFirebase.data().author));
 
-      if (userOfPublication.exists()) {
-        console.log('data user:', userOfPublication.data());
-        // console.log('q: ', querySnapshot);
-        const divPublicado = containerHome.querySelector('#publicado');
-        const publicationUserUid = documentFirebase.data().author;
-        // realOnSnapshotUser(publicationUsuario);
-        // console.log((realOnSnapshotUser(documentFirebase)));
-        console.log(publicationUserUid);
+    if (userOfPublication.exists()) {
+      const divPublicado = containerHome.querySelector('#publicado');
 
-        const nameUser = userOfPublication.data().name;
-        const publicationText = documentFirebase.data().publication;
-        divPublicado.innerHTML += `
+      const nameUser = userOfPublication.data().name;
+      const publicationText = documentFirebase.data().publication;
+      divPublicado.innerHTML += `
           <div class='boxPublicationsN'>
             <div class='boxPhotoandNameN'>
               <div class='boxInternoPhotoandNameN'>
@@ -298,50 +286,40 @@ const Home = () => {
               <img src='img/Icons/WhiteTotal/Heart2.png' alt=''>
             </div>
           </div>`;
-        // delete publication
-        const publication = divPublicado.querySelectorAll('button[data-ref]');
+      // delete publication
+      const publication = divPublicado.querySelectorAll('button[data-ref]');
 
-        publication.forEach((element) => {
-          element.addEventListener('click', (e) => {
-            e.preventDefault();
-            const idPublicationRef = element.dataset.ref;
-            // console.log('delete Publication: ');
-            console.log('id depublicaciones en delete: ', idPublicationRef);
-            deletePublication(idPublicationRef, divPublicado);
-            const elementDelete = element.parentNode.parentNode.parentNode;
-            console.log('element.parentNode:', elementDelete);
-            elementDelete.remove();
-          });
+      publication.forEach((element) => {
+        element.addEventListener('click', (e) => {
+          e.preventDefault();
+          const idPublicationRef = element.dataset.ref;
+
+          // console.log('id depublicaciones en delete: ', idPublicationRef);
+          deletePublication(idPublicationRef, divPublicado);
+
+          const elementDelete = element.parentNode.parentNode.parentNode;
+          // console.log('element.parentNode:', elementDelete);
+          elementDelete.remove();
         });
-      } else {
-        // doc.data() will be undefined in this case
-        console.log('No such document!');
-      }
-      return userOfPublication;
+      });
+    } else {
+      // doc.data() will be undefined in this case
+      // console.log('No such document!');
     }
-    console.log(querySnapshot());
+    return userOfPublication;
   }
 
   // leer datos desde Firebase de la colección Publicaciones y Usuarios
-
   async function reedPublications() {
     const querySnapshotPublications = await getDocs(collection(db, 'publications'));
-    // const querySnapshotUsers = await getDocs(collection(db, 'users'));
 
     // console.log('visualizando esta linea querySnapshotUsers: ', querySnapshotUsers);
-    console.log('visualizando esta linea querySnapshotPublications: ', querySnapshotPublications);
+    // eslint-disable-next-line max-len
+    // console.log('visualizando esta linea querySnapshotPublications: ', querySnapshotPublications);
 
     querySnapshotPublications.forEach((documentFirebase) => {
       realOnSnapshot(documentFirebase);
-      // console.log('visualizando doc1:', doc1);
-      // console.log(`${doc1.id} => ${JSON.stringify(doc1.data())}`);
     });
-
-    // querySnapshotPublications.forEach((documentFirebase) => {
-    //   realOnSnapshot(documentFirebase);
-    //   // console.log('visualizando doc1:', doc1);
-    //   // console.log(`${doc1.id} => ${JSON.stringify(doc1.data())}`);
-    // });
 
     return querySnapshotPublications;
   }
