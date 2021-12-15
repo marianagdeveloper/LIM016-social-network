@@ -274,7 +274,7 @@ const Home = () => {
                 </div>
               </div>
             <div class='delete'>
-            <button id='btnDelete' class='btnDelete' data-ref='${idPublication}'><img src='img/Icons/Delete.png' alt=''></button>
+            <div id='btnDelete' class='btnDelete' data-ref='${idPublication}'><img src='img/Icons/Delete.png' alt=''></div>
             </div>
           </div>
             <div class='publicationN'>
@@ -287,7 +287,7 @@ const Home = () => {
           </div>`;
 
     // delete publication
-    const publication = divPublicado.querySelectorAll('button[data-ref]');
+    const publication = divPublicado.querySelectorAll('div[data-ref]');
 
     publication.forEach((element) => {
       element.addEventListener('click', (e) => {
