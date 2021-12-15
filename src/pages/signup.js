@@ -8,9 +8,9 @@ import {
 // Add a new document in collection "users"
 async function createNewUser(name, email, uid) {
   await setDoc(doc(db, 'users', uid), {
-    uid: uid,
-    name: name,
-    email: email,
+    uid,
+    name,
+    email,
   });
 }
 
@@ -37,10 +37,12 @@ const cleanModal = () => {
       .classList.replace('alertMessageSignUp', 'modalSignUp');
   }
 };
+// console.log('auth.current: ', auth.currentUser);
 
 export const handleSenEmailVerification = () => {
   sendEmailVerification(auth.currentUser)
-    .then(() => {
+    .then((result) => {
+      console.log('result: ', result);
       // Email verification sent!
       // ...
       console.log('send email');
