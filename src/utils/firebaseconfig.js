@@ -1,6 +1,5 @@
-/* eslint-disable import/no-unresolved */
-// eslint-disable-next-line import/no-unresolved
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
+// eslint-disable-next-line import/no-unresolved
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js';
 
 import {
@@ -12,6 +11,7 @@ import {
   sendPasswordResetEmail,
   sendEmailVerification,
   signOut,
+// eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 import {
@@ -28,11 +28,6 @@ import {
   where,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: 'AIzaSyCk8ZsvxtMvGdSDjbG9qZwEtjRbW7ub9J4',
   authDomain: 'ecogram-5151.firebaseapp.com',

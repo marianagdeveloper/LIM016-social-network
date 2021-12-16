@@ -22,6 +22,7 @@ const handleError = (error) => {
 
 export const handleCurrent = () => {
   const user = auth.currentUser;
+  console.log('user', user);
   if (user !== null) {
     // eslint-disable-next-line no-unused-vars
     user.providerData.forEach((profile) => {
@@ -173,4 +174,3 @@ export default SignIn;
 // Boton para iniciar sesion con Google - Linea 122
 // eslint-disable-next-line spaced-comment
 /*<button type="submit" id="btn-signin-google" class="LoginGooglebtn"> */
-

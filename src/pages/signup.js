@@ -55,24 +55,13 @@ export const handleSingUp = (e) => {
   const email = e.target.closest('form').querySelector('#email').value;
   const password = e.target.closest('form').querySelector('#password').value;
 
-  console.log(name);
-
   if (name !== '') {
-    // alert(`Created User ${user}`);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Add new user
-        // Usar userCredential para crear un nuevo usuario y que el id sea el uid
-        // revisar en el caso de Google para la creacion del usuario
-        console.log('userCredential:', userCredential);
         const emailFS = userCredential.user.email;
         const uidFS = userCredential.user.uid;
         createNewUser(name, emailFS, uidFS);
-        // const user = userCredential.user;
-        // user.displayname = name;
-        // eslint-disable-next-line no-console
-        // console.log(user.displayname);
-        // eslint-disable-next-line no-alert
         cleanModal();
         // Print notification: User created
         document
@@ -83,19 +72,18 @@ export const handleSingUp = (e) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // eslint-disable-next-line no-console
         console.log('error en signup', errorMessage, errorCode);
-        // eslint-disable-next-line no-alert
-        // alert(`Notification: ${errorMessage}`);
+        // Print notification: error messeges
         cleanModal();
         document
           .getElementById('modalSignUp')
           .classList.replace('modalSignUp', 'alertMessageSignUp');
-
+        // Print text: error messages of Firebase
         document.getElementById('errormessage').innerHTML = errorCode;
       });
   } else if (name === '' || name == null) {
     cleanModal();
+    // Print notification: name incompleted
     document
       .getElementById('modalName')
       .classList.replace('modalName', 'alertmodalName');
@@ -198,7 +186,7 @@ const SignUp = () => {
     </div>
   </div>
   `;
-  // <a type="submit" href="#/home">Send</a>
+
   const divElemt = document.createElement('div');
   divElemt.classList.add('position');
   divElemt.innerHTML = viewCatalogue;
