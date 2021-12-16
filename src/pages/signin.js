@@ -22,6 +22,7 @@ const handleError = (error) => {
 
 export const handleCurrent = () => {
   const user = auth.currentUser;
+  console.log('user', user);
   if (user !== null) {
     // eslint-disable-next-line no-unused-vars
     user.providerData.forEach((_profile) => {
@@ -55,7 +56,7 @@ export const handleSignin = (e) => {
 
       a.href = '#/home';
       window.location.href = a.href;
-      // handleCurrent(userCredential.user);
+      handleCurrent(userCredential.user);
     })
     .catch(handleError);
 };
