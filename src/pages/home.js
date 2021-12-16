@@ -14,10 +14,10 @@ import {
 } from '../utils/firebaseconfig.js';
 
 //modal
-let cerrar = document.getElementById("close");
-let modalC = document.getElementById("modal-container");
-let btnModalConfirmDelete = document.getElementById("btn-modal-yes");
-let btnModalCancel = document.getElementById("btn-modal-no");
+let cerrar = document.getElementById('close');
+let modalC = document.getElementById('modal-container');
+let btnModalConfirmDelete = document.getElementById('btn-modal-yes');
+let btnModalCancel = document.getElementById('btn-modal-no');
 
 // Obtener un usuario
 async function readUser(uid) {
@@ -279,8 +279,9 @@ const Home = () => {
                   <p>${nameUser}</p>
                 </div>
               </div>
-            <div class='delete'>
-            <button id='btnDelete' class='btnDelete' data-ref='${idPublication}'><img src='img/Icons/Delete.png' alt=''></button>
+            <div class='editPost'>
+              <img id='btnEditPost' class='btnEditPost' data-ref='${idPublication}' src='img/Icons/Pencil.png' alt=''>
+              <img id='btnDelete' class='btnDelete' data-ref='${idPublication}' src='img/Icons/Delete.png' alt=''>              
             </div>
           </div>
             <div class='publicationN'>
@@ -292,9 +293,8 @@ const Home = () => {
             </div>
           </div>`;
 
-
       // delete publication
-      const publication = divPublicado.querySelectorAll('button[data-ref]');
+      const publication = divPublicado.querySelectorAll('img[data-ref]');
 
       publication.forEach((element) => {
         element.addEventListener('click', (e) => {
