@@ -25,7 +25,7 @@ export const handleCurrent = () => {
   console.log('user', user);
   if (user !== null) {
     // eslint-disable-next-line no-unused-vars
-    user.providerData.forEach((profile) => {
+    user.providerData.forEach((_profile) => {
       // console.log(`Sign-in provider: ${profile.providerId}`);
       // console.log(`Provider-specific UID: ${profile.uid}`);
       // console.log(`Name: ${profile.displayName}`);
@@ -174,3 +174,4 @@ export default SignIn;
 // Boton para iniciar sesion con Google - Linea 122
 // eslint-disable-next-line spaced-comment
 /*<button type="submit" id="btn-signin-google" class="LoginGooglebtn"> */
+
