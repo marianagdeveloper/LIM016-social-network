@@ -49,6 +49,7 @@ async function addPublication(publication) {
 // eliminar publicacion
 async function deletePublication(idPublicationRef) {
   await deleteDoc(doc(db, 'publications', idPublicationRef));
+  console.log(idPublicationRef);
 }
 
 // Export const Home
@@ -250,16 +251,17 @@ const Home = () => {
   // actualizacion tiempo real de publications
   function realOnSnapshot(documentFirebase) {
     const idPublication = documentFirebase.id;
+
     llenarPublications(documentFirebase, idPublication);
   }
 
   // publicaciones realizadas
   async function llenarPublications(documentFirebase, idPublication) {
     const userOfPublication = await getDoc(doc(db, 'users', documentFirebase.data().author));
-
+    function arrayUids(arrayUidsPost) {};
     if (userOfPublication.exists()) {
       const divPublicado = containerHome.querySelector('#publicado');
-
+      // console.log(userOfPublication.data().uid);
       const nameUser = userOfPublication.data().name;
       const publicationText = documentFirebase.data().publication;
       divPublicado.innerHTML += `
@@ -292,14 +294,21 @@ const Home = () => {
       publication.forEach((element) => {
         element.addEventListener('click', (e) => {
           e.preventDefault();
-          const idPublicationRef = element.dataset.ref;
+          console.log('este es del user:', userOfPublication.data().uid);
+          console.log('este es del session:', sessionStorage.getItem('key'));
+          if (userOfPublication.data().uid === sessionStorage.getItem('key')) {
+            const idPublicationRef = element.dataset.ref;
+            // console.log('id depublicaciones en delete: ', idPublicationRef);
+            deletePublication(idPublicationRef);
+            // el elemento del button eliminar
 
-          // console.log('id depublicaciones en delete: ', idPublicationRef);
-          deletePublication(idPublicationRef, divPublicado);
-
-          const elementDelete = element.parentNode.parentNode.parentNode;
-          // console.log('element.parentNode:', elementDelete);
-          elementDelete.remove();
+            // el elemento de la caja publicaciones a eliminar
+            const elementDelete = element.parentNode.parentNode.parentNode;
+            console.log('element.parentNode:', elementDelete);
+            elementDelete.remove();
+          } else {
+            console.log('error en delete');
+          }
         });
       });
     } else {
@@ -313,13 +322,18 @@ const Home = () => {
   async function reedPublications() {
     const querySnapshotPublications = await getDocs(collection(db, 'publications'));
 
-    // console.log('visualizando esta linea querySnapshotUsers: ', querySnapshotUsers);
+    // console.log('visualizando esta linea: ', querySnapshotPublications);
     // eslint-disable-next-line max-len
     // console.log('visualizando esta linea querySnapshotPublications: ', querySnapshotPublications);
-
+    const arrayUidsPost = [];
     querySnapshotPublications.forEach((documentFirebase) => {
       realOnSnapshot(documentFirebase);
+
+      arrayUidsPost.push(documentFirebase.id);
+      console.log(documentFirebase.id);
+      // arrayUids(arrayUidsPost);
     });
+    console.log(arrayUidsPost);
 
     return querySnapshotPublications;
   }
