@@ -149,14 +149,15 @@
   margin: 1rem;
 }
 
-.btnDelete { 
-  text-align: end;
-  width: 100%;
-  border-style: none;
-  background: none;
+.editPost {
+  display: flex;
+  justify-content: space-between;
 }
-.btnDelete img {
-  width: 25%;
+
+.editPost img {
+  width: 20px;
+  height: 20px;
+  margin: 5%;
 }
 
 .save p,
@@ -212,6 +213,11 @@
     background-color: gray;
     width: 100%;
     padding-bottom: 10%;
+}
+.editPost img {
+  width: 20px;
+  height: 20px;
+  margin: 3%;
 }
 }
 
