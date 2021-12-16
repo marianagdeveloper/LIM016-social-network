@@ -24,7 +24,7 @@ export const handleCurrent = () => {
   const user = auth.currentUser;
   if (user !== null) {
     // eslint-disable-next-line no-unused-vars
-    user.providerData.forEach((_profile) => {
+    user.providerData.forEach((profile) => {
       // console.log(`Sign-in provider: ${profile.providerId}`);
       // console.log(`Provider-specific UID: ${profile.uid}`);
       // console.log(`Name: ${profile.displayName}`);
@@ -55,7 +55,7 @@ export const handleSignin = (e) => {
 
       a.href = '#/home';
       window.location.href = a.href;
-      // handleCurrent(userCredential.user);
+      handleCurrent(userCredential.user);
     })
     .catch(handleError);
 };
