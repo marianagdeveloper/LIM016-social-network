@@ -152,12 +152,14 @@
 .editPost {
   display: flex;
   justify-content: space-between;
+  /* visibility: visible; */
 }
 
 .editPost img {
   width: 20px;
   height: 20px;
   margin: 5%;
+  cursor: pointer;
 }
 
 .save p,

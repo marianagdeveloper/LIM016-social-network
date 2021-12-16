@@ -2,6 +2,9 @@
 /* eslint-disable no-sequences */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-plusplus */
+
+import { publicationComponent } from './publication.js';
+
 import {
   db,
   collection,
@@ -19,7 +22,7 @@ let modalC = document.getElementById('modal-container');
 let btnModalConfirmDelete = document.getElementById('btn-modal-yes');
 let btnModalCancel = document.getElementById('btn-modal-no');
 
-// Obtener un usuario
+// Obtener un usuario de Firebase
 async function readUser(uid) {
   let data = '';
   const docRef = doc(db, 'users', uid);
@@ -31,28 +34,25 @@ async function readUser(uid) {
     // console.log('Document data:', data);
   } else {
     // doc.data() will be undefined in this case
-    console.log('No such document!');
+    console.log('No exist user!');
   }
   return data;
 }
 
-// agregar datos a Firebase
+// Agregar publicacion a Firebase
 async function addPublication(publication) {
   try {
     // eslint-disable-next-line no-unused-vars
     const docRef = await addDoc(collection(db, 'publications'), {
       author: sessionStorage.getItem('key'),
-      // user: localStorage.getItem('user'),
       publication,
     });
-
-    // console.log('Document written with ID: ', docRef.id);
   } catch (e) {
     console.error('Error adding document: ', e);
   }
 }
 
-// eliminar publicacion
+// Eliminar publicacion de Firebase
 async function deletePublication(idPublicationRef) {
   await deleteDoc(doc(db, 'publications', idPublicationRef));
 }
@@ -169,7 +169,6 @@ const Home = () => {
 
   const cleanModal = () => {
     const check = document.getElementById('modalCheckPost');
-
     if (check) {
       document
         .getElementById('modalCheckPost')
@@ -178,10 +177,8 @@ const Home = () => {
   };
 
   const infoUser = (info) => {
-    // console.log(info);
     containerHome.querySelector(
       '.UserName',
-
     ).innerHTML += `<br><h1>${info.name}</h1><br>
     <div class='linea2'>&nbsp;</div>`;
     containerHome.querySelector('.Email').innerHTML += `<h3>Email:</h3>
@@ -208,7 +205,6 @@ const Home = () => {
         document
           .getElementById('modalCheckPost')
           .classList.replace('modalCheckPost', 'AlertmodalCheckPost');
-
         addPublication(publication);
       }
       if (publication === '') {
@@ -236,7 +232,6 @@ const Home = () => {
     // Botón para mostrar la caja de agregar publicación
     containerHome.querySelector('.NewPost').addEventListener('click', (e) => {
       e.preventDefault();
-
       document
         .getElementById('boxPublications')
         .classList.replace('NoneboxPublications', 'boxPublications');
@@ -247,7 +242,6 @@ const Home = () => {
     const uidSS = sessionStorage.getItem('key');
     return uidSS;
   };
-
   readUser(uid())
     .then((value) => { infoUser(value), reedPublications(value); })
     .catch((error) => console.log(error));
@@ -267,35 +261,22 @@ const Home = () => {
 
       const nameUser = userOfPublication.data().name;
       const publicationText = documentFirebase.data().publication;
-      divPublicado.innerHTML += `
-          <div class='boxPublicationsN'>
-            <div class='boxPhotoandNameN'>
-              <div class='boxInternoPhotoandNameN'>
-                <div class='photoPerfilN'>
-                  <img src='img/Avatares/Animals/AvatarA7.png' alt=''>
-                </div>
 
-                <div class="userNameN">
-                  <p>${nameUser}</p>
-                </div>
-              </div>
-            <div class='editPost'>
-              <img id='btnEditPost' class='btnEditPost' data-ref='${idPublication}' src='img/Icons/Pencil.png' alt=''>
-              <img id='btnDelete' class='btnDelete' data-ref='${idPublication}' src='img/Icons/Delete.png' alt=''>              
-            </div>
-          </div>
-            <div class='publicationN'>
-              <div class='contentPublicationN'><p>${publicationText}</p></div>
-            </div>
-            <div class='saveN'>
-              <p>2</p>
-              <img src='img/Icons/WhiteTotal/Heart2.png' alt=''>
-            </div>
-          </div>`;
+      //Only Delete or Edit Post for UserCurrent
+      let authorPublication = userOfPublication.data().uid;
+      let userCurrent = sessionStorage.getItem('key');
+      let myPost = authorPublication === userCurrent;
+      let visibilityImg = "hidden";
+      if (myPost) {
+        visibilityImg = "visible";
+      }
+
+      //add componet publication___________________________________________________________-
+      divPublicado.prepend(publicationComponent(nameUser, myPost, visibilityImg, idPublication, publicationText));
+
 
       // delete publication
       const publication = divPublicado.querySelectorAll('img[data-ref]');
-
       publication.forEach((element) => {
         element.addEventListener('click', (e) => {
           e.preventDefault();
@@ -312,7 +293,6 @@ const Home = () => {
           cerrar.addEventListener("click", function () {
             modalC.style.opacity = "0";
             modalC.style.visibility = "hidden";
-            // console.log('buton close:', stateModal);
             return stateModal;
           });
 
@@ -320,16 +300,14 @@ const Home = () => {
           btnModalCancel.addEventListener("click", function () {
             modalC.style.opacity = "0";
             modalC.style.visibility = "hidden";
-            // console.log('stateModal cancel:', stateModal);
             return stateModal
           });
 
-          //confirm modal - YES
+          //confirm delete - YES
           btnModalConfirmDelete.addEventListener("click", function () {
             modalC.style.opacity = "0";
             modalC.style.visibility = "hidden";
             stateModal = true;
-            // console.log('stateModal confirm:', stateModal);
 
             // Delete publication for Firebase
             deletePublication(idPublicationRef, divPublicado);
@@ -352,10 +330,6 @@ const Home = () => {
   // leer datos desde Firebase de la colección Publicaciones y Usuarios
   async function reedPublications() {
     const querySnapshotPublications = await getDocs(collection(db, 'publications'));
-
-    // console.log('visualizando esta linea querySnapshotUsers: ', querySnapshotUsers);
-    // eslint-disable-next-line max-len
-    // console.log('visualizando esta linea querySnapshotPublications: ', querySnapshotPublications);
 
     querySnapshotPublications.forEach((documentFirebase) => {
       realOnSnapshot(documentFirebase);
