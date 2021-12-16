@@ -292,49 +292,6 @@ const Home = () => {
             </div>
           </div>`;
 
-      //FUNCTION - Modal for Vericate Delete Publication
-      // function printVerificationModal() {
-
-      //   let stateModal = false;
-
-      //   //view modal
-      //   modalC.style.opacity = "1";
-      //   modalC.style.visibility = "visible";
-
-      //   //close modal
-      //   cerrar.addEventListener("click", function () {
-      //     modalC.style.opacity = "0";
-      //     modalC.style.visibility = "hidden";
-      //     console.log('buton close:', stateModal);
-      //     return stateModal;
-      //   });
-
-      //   //cancel modal
-      //   btnModalCancel.addEventListener("click", function () {
-      //     modalC.style.opacity = "0";
-      //     modalC.style.visibility = "hidden";
-      //     console.log('stateModal cancel:', stateModal);
-      //     return stateModal
-      //   });
-
-      //   //confirm modal
-      //   btnModalConfirmDelete.addEventListener("click", function () {
-      //     modalC.style.opacity = "0";
-      //     modalC.style.visibility = "hidden";
-      //     stateModal = true;
-      //     console.log('stateModal confirm:', stateModal);
-
-      //    // Delete publication for Firebase
-      //     deletePublication(idPublicationRef, divPublicado);
-          
-      //     //Delete box of publications
-      //     const elementDelete = element.parentNode.parentNode.parentNode;
-      //     elementDelete.remove();
-
-      //     return stateModal
-      //   });
-            
-      // }
 
       // delete publication
       const publication = divPublicado.querySelectorAll('button[data-ref]');
@@ -345,67 +302,49 @@ const Home = () => {
           const idPublicationRef = element.dataset.ref;
 
           //INIT - Modal for Vericate Delete Publication
-          // async function verificationModal(){
-          //   console.log(await printVerificationModal());
-          // } 
-
-          // if (printVerificationModal()) {
-          //   console.log('dentro del delete');
-
-          //   // Delete publication for Firebase
-          //   deletePublication(idPublicationRef, divPublicado);
-            
-          //   //Delete box of publications
-          //   const elementDelete = element.parentNode.parentNode.parentNode;
-          //   elementDelete.remove();
-          // }
-
           let stateModal = false;
 
-        //view modal
-        modalC.style.opacity = "1";
-        modalC.style.visibility = "visible";
+          //view modal
+          modalC.style.opacity = "1";
+          modalC.style.visibility = "visible";
 
-        //close modal
-        cerrar.addEventListener("click", function () {
-          modalC.style.opacity = "0";
-          modalC.style.visibility = "hidden";
-          console.log('buton close:', stateModal);
-          return stateModal;
-        });
+          //close modal
+          cerrar.addEventListener("click", function () {
+            modalC.style.opacity = "0";
+            modalC.style.visibility = "hidden";
+            // console.log('buton close:', stateModal);
+            return stateModal;
+          });
 
-        //cancel modal
-        btnModalCancel.addEventListener("click", function () {
-          modalC.style.opacity = "0";
-          modalC.style.visibility = "hidden";
-          console.log('stateModal cancel:', stateModal);
-          return stateModal
-        });
+          //cancel modal
+          btnModalCancel.addEventListener("click", function () {
+            modalC.style.opacity = "0";
+            modalC.style.visibility = "hidden";
+            // console.log('stateModal cancel:', stateModal);
+            return stateModal
+          });
 
-        //confirm modal
-        btnModalConfirmDelete.addEventListener("click", function () {
-          modalC.style.opacity = "0";
-          modalC.style.visibility = "hidden";
-          stateModal = true;
-          console.log('stateModal confirm:', stateModal);
+          //confirm modal - YES
+          btnModalConfirmDelete.addEventListener("click", function () {
+            modalC.style.opacity = "0";
+            modalC.style.visibility = "hidden";
+            stateModal = true;
+            // console.log('stateModal confirm:', stateModal);
 
-         // Delete publication for Firebase
-          deletePublication(idPublicationRef, divPublicado);
-          
-          //Delete box of publications
-          const elementDelete = element.parentNode.parentNode.parentNode;
-          elementDelete.remove();
+            // Delete publication for Firebase
+            deletePublication(idPublicationRef, divPublicado);
 
-          return stateModal
-        });
+            //Delete box of publications
+            const elementDelete = element.parentNode.parentNode.parentNode;
+            elementDelete.remove();
 
-          console.log('no delete');
+            return stateModal
+          });
           //END - Modal for Vericate Delete Publication
         });
       });
     } else {
-      // doc.data() will be undefined in this case
-      // console.log('No such document!');
+      console.log('No such document!');
     }
     return userOfPublication;
   }
