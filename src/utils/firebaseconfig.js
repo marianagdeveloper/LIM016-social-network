@@ -1,6 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js';
 
+// Import components of authtentication firebase
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -12,6 +13,7 @@ import {
   signOut,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
+// Import components of firestore
 import {
   getFirestore,
   addDoc,
@@ -26,6 +28,7 @@ import {
   where,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 
+// Configuration key Firebase
 const firebaseConfig = {
   apiKey: 'AIzaSyCk8ZsvxtMvGdSDjbG9qZwEtjRbW7ub9J4',
   authDomain: 'ecogram-5151.firebaseapp.com',
@@ -42,6 +45,7 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+// export components of firestore
 export {
   app,
   auth,
@@ -54,6 +58,10 @@ export {
   sendPasswordResetEmail,
   sendEmailVerification,
   signOut,
+};
+
+// export components of firestore
+export {
   getFirestore,
   addDoc,
   db,
