@@ -269,15 +269,10 @@ const Home = () => {
       const authorPublication = userOfPublication.data().uid;
       const userCurrent = sessionStorage.getItem('key');
       const myPost = authorPublication === userCurrent;
-      let visibilityImg = 'hidden';
-      if (myPost) {
-        visibilityImg = 'visible';
-      }
 
       // add componet publication
       divPublicado.prepend(publicationComponent(nameUser,
         myPost,
-        visibilityImg,
         idPublication,
         publicationText));
 

@@ -11,7 +11,7 @@ export function publicationComponent(nameUser,
       </div>
 
       <div class="userNameN">
-        <p>${nameUser}</p>
+        <h1>${nameUser}</h1>
       </div>
     </div>
   <div id='editPost' class='editPost'>             
@@ -27,16 +27,34 @@ export function publicationComponent(nameUser,
 </div>`;
 
   const divElemt = document.createElement('div');
+  divElemt.setAttribute('class', 'parentDivPost');
   divElemt.innerHTML += componetPublication;
 
+  // print btns edit and delete post, only of user
   const btnsEditAndDeletePost = `
   <img id='btnEditPost' class='btnEditPost' data-edit='${idPublication}' src='img/Icons/Pencil.png' alt=''>
   <img id='btnDelete' class='btnDelete' data-ref='${idPublication}' src='img/Icons/Delete.png' alt=''>`;
 
   const btnsContainer = divElemt.querySelector('.editPost');
   if (myPost) {
-  //   componetPublication.querySelector('.editPost').innerHTML(btnsEditAndDeletePost);
     btnsContainer.innerHTML += btnsEditAndDeletePost;
   }
+
+  // print date time publicated
+  const today = new Date();
+  const m = today.getMonth() + 1;
+  // eslint-disable-next-line prefer-template
+  const mm = (m < 10) ? '0' + m : m;
+  const dd = today.getDate();
+  const year = today.getFullYear();
+  const hour = today.getHours();
+  const minutes = today.getMinutes();
+  const dateconcatTemplate = `
+  <p class:"date">${dd}/${mm}/${year}</p>
+  <p class:"date">${hour}h ${minutes}min</p>
+  `;
+  const dateconcat = divElemt.querySelector('.userNameN');
+  dateconcat.innerHTML += dateconcatTemplate;
+
   return divElemt;
 }
