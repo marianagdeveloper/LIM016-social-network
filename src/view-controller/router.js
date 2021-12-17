@@ -4,16 +4,6 @@
 import { components } from '../pages/index.js';
 import { handleCurrent, handleCurrentUser } from '../pages/signin.js';
 
-// import { signUpController } from './signup-controller.js';
-// eslint-disable-next-line import/no-unresolved
-// import {
-//   auth,
-//   provider,
-//   signInWithPopup,
-//   GoogleAuthProvider,
-//   sendPasswordResetEmail,
-// } from '../utils/firebaseconfig.js';
-
 export const changeTmp = (hash) => {
   const id = hash.split('/')[1];
 

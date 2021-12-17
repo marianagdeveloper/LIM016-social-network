@@ -65,7 +65,7 @@ export const handleSignin = (e) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user.uid;
-      console.log('user', user);
+      console.log('user:', user);
       // Save data to sessionStorage
       sessionStorage.setItem('key', user);
       console.log('userCredential.user.uid:', userCredential.user.uid);
