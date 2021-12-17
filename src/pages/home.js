@@ -16,11 +16,11 @@ import {
   deleteDoc,
 } from '../utils/firebaseconfig.js';
 
-//modal
-let cerrar = document.getElementById('close');
-let modalC = document.getElementById('modal-container');
-let btnModalConfirmDelete = document.getElementById('btn-modal-yes');
-let btnModalCancel = document.getElementById('btn-modal-no');
+// modal
+const cerrar = document.getElementById('close');
+const modalC = document.getElementById('modal-container');
+const btnModalConfirmDelete = document.getElementById('btn-modal-yes');
+const btnModalCancel = document.getElementById('btn-modal-no');
 
 // Obtener un usuario de Firebase
 async function readUser(uid) {
@@ -211,6 +211,7 @@ const Home = () => {
       if (publication === '') {
         cleanModal();
       }
+      // eslint-disable-next-line no-use-before-define
       reedPublications(info);
     });
 
@@ -225,6 +226,7 @@ const Home = () => {
       document
         .getElementById('boxPublications')
         .classList.replace('boxPublications', 'NoneboxPublications');
+      // eslint-disable-next-line no-unused-expressions
       containerHome.querySelector('#texta2').value;
       deleteContentInput();
       cleanModal();
@@ -263,18 +265,21 @@ const Home = () => {
       const nameUser = userOfPublication.data().name;
       const publicationText = documentFirebase.data().publication;
 
-      //Only Delete or Edit Post for UserCurrent
-      let authorPublication = userOfPublication.data().uid;
-      let userCurrent = sessionStorage.getItem('key');
-      let myPost = authorPublication === userCurrent;
-      let visibilityImg = "hidden";
+      // Only Delete or Edit Post for UserCurrent
+      const authorPublication = userOfPublication.data().uid;
+      const userCurrent = sessionStorage.getItem('key');
+      const myPost = authorPublication === userCurrent;
+      let visibilityImg = 'hidden';
       if (myPost) {
-        visibilityImg = "visible";
+        visibilityImg = 'visible';
       }
 
-      //add componet publication___________________________________________________________-
-      divPublicado.prepend(publicationComponent(nameUser, myPost, visibilityImg, idPublication, publicationText));
-
+      // add componet publication
+      divPublicado.prepend(publicationComponent(nameUser,
+        myPost,
+        visibilityImg,
+        idPublication,
+        publicationText));
 
       // delete publication
       const publication = divPublicado.querySelectorAll('img[data-ref]');
@@ -283,43 +288,43 @@ const Home = () => {
           e.preventDefault();
           const idPublicationRef = element.dataset.ref;
 
-          //INIT - Modal for Vericate Delete Publication
+          // INIT - Modal for Vericate Delete Publication
           let stateModal = false;
 
-          //view modal
-          modalC.style.opacity = "1";
-          modalC.style.visibility = "visible";
+          // view modal
+          modalC.style.opacity = '1';
+          modalC.style.visibility = 'visible';
 
-          //close modal
-          cerrar.addEventListener("click", function () {
-            modalC.style.opacity = "0";
-            modalC.style.visibility = "hidden";
+          // close modal
+          cerrar.addEventListener('click', () => {
+            modalC.style.opacity = '0';
+            modalC.style.visibility = 'hidden';
             return stateModal;
           });
 
-          //cancel modal
-          btnModalCancel.addEventListener("click", function () {
-            modalC.style.opacity = "0";
-            modalC.style.visibility = "hidden";
-            return stateModal
+          // cancel modal
+          btnModalCancel.addEventListener('click', () => {
+            modalC.style.opacity = '0';
+            modalC.style.visibility = 'hidden';
+            return stateModal;
           });
 
-          //confirm delete - YES
-          btnModalConfirmDelete.addEventListener("click", function () {
-            modalC.style.opacity = "0";
-            modalC.style.visibility = "hidden";
+          // confirm delete - YES
+          btnModalConfirmDelete.addEventListener('click', () => {
+            modalC.style.opacity = '0';
+            modalC.style.visibility = 'hidden';
             stateModal = true;
 
             // Delete publication for Firebase
             deletePublication(idPublicationRef, divPublicado);
 
-            //Delete box of publications
+            // Delete box of publications
             const elementDelete = element.parentNode.parentNode.parentNode;
             elementDelete.remove();
 
-            return stateModal
+            return stateModal;
           });
-          //END - Modal for Vericate Delete Publication
+          // END - Modal for Vericate Delete Publication
         });
       });
     } else {

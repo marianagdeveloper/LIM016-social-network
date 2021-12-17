@@ -1,8 +1,9 @@
-
-export function publicationComponent(nameUser, myPost, visibilityImg, idPublication, publicationText) {
-
-  const componetPublication =
-    `
+export function publicationComponent(nameUser,
+  myPost,
+  visibilityImg,
+  idPublication,
+  publicationText) {
+  const componetPublication = `
 <div class='boxPublicationsN'>
   <div class='boxPhotoandNameN'>
     <div class='boxInternoPhotoandNameN'>
@@ -31,6 +32,6 @@ export function publicationComponent(nameUser, myPost, visibilityImg, idPublicat
   const divElemt = document.createElement('div');
   divElemt.innerHTML += componetPublication;
   return divElemt;
-};
+}
 
 export default { publicationComponent };
