@@ -31,7 +31,8 @@ async function readUser(uid) {
   if (docSnap.exists()) {
     // console.log('Document data:', docSnap.data());
     data = docSnap.data();
-    // console.log('Document data:', data);
+    console.log('User data:', data);
+    sessionStorage.setItem('user', JSON.stringify(data));
   } else {
     // doc.data() will be undefined in this case
     console.log('No exist user!');

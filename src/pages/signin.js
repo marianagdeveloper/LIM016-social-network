@@ -25,7 +25,7 @@ export const handleCurrent = () => {
   console.log('user', user);
   if (user !== null) {
     // eslint-disable-next-line no-unused-vars
-    user.providerData.forEach((_profile) => {
+    user.providerData.forEach((profile) => {
       // console.log(`Sign-in provider: ${profile.providerId}`);
       // console.log(`Provider-specific UID: ${profile.uid}`);
       // console.log(`Name: ${profile.displayName}`);
@@ -49,7 +49,7 @@ export const handleSignin = (e) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user.uid;
-      console.log('user', user);
+      console.log('user:', user);
       // Save data to sessionStorage
       sessionStorage.setItem('key', user);
       console.log('userCredential.user.uid:', userCredential.user.uid);

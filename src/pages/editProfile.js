@@ -270,8 +270,8 @@ const EditProfile = () => {
 
   const uid = () => {
     // const uidSS = sessionStorage.getItem('key');
-    console.log('uidSS: ', localStorage.getItem('user'));
-    const uidSS = JSON.parse(localStorage.getItem('user'));
+    console.log('uidSS: ', sessionStorage.getItem('user'));
+    const uidSS = JSON.parse(sessionStorage.getItem('user'));
 
     return uidSS;
   };
