@@ -32,7 +32,7 @@
 
 .boxPublicationsN {
   display: flex;
-  width: 80%;
+  /* width: 100%; */
   align-items: center;
   background: #ffffff;
   padding: 1rem;
@@ -107,11 +107,22 @@
 #publicadoN {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
+  width: 80%;
+  /* align-items: center;
+  width: 100%; */
   
 }
 
+.userNameN {
+  display: flex;
+  flex-direction: column;
+}
+.data {
+  display: flex;
+  color: black;
+  font-weight: bold;
+  margin-left: 1rem;
+}
 .contentPublicationN {
   overflow-wrap: break-word;
   background-color: #e6dece;
@@ -241,17 +252,6 @@
     /* box-shadow: rgb(0 0 0 / 25%) 0px 0.0625em 0.0625em, rgb(0 0 0 / 25%) 0px 0.125em 0.5em, rgb(255 255 255 / 10%) 0px 0px 0px 1px inset; */
   box-shadow: 1px 1px 2p rgb(25 27 28 / 60%);
 }
-/* .modal{
-  background-color: rgba(0,0,0,.8);
-  position:fixed;
-  top:0;
-  right:0;
-  bottom:0;
-  left:0;
-  opacity:0;
-  pointer-events:none;
-  transition: all 1s;
-} */
 
 #miModal:target{
   opacity:1;
@@ -286,36 +286,3 @@
   box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
 
-/* <button id='btnCancel' class='btnCancel'><a href="#miModal">CANCEL</a></button>
-  <div id="miModal" class="modal">
-    <div class="modal-contenido">
-      <a href="#">X</a>
-      <h2>Estas seguro que deseas cancelar la publicación</h2>
-      <div class="btns">
-        <button id='btnYes' class='btnCancel'>Yes</button>
-        <button id='btnNo' class='btnSave'>No</button>
-      </div> 
-    </div>  
-  </div> */
-  /* button id='btnDelete' class='btnDelete' data-ref='${idPublication}><a href="#miModal"><img src='img/Icons/Delete.png' alt=''></a></button>
-  <div id="miModal" class="modal">
-    <div class="modal-contenido">
-      <a href="#home">X</a>
-      <h2>Estas seguro que deseas eliminar la publicación</h2>
-      <div class="btns">
-        <button class='btnCancel'>Yes</button>
-        <button class='btnSave'><a href="#home">No</a></button>
-      </div> 
-    </div>   */
-/* 
-          <div id="miModal" class="modal">
-            <div class="modal-contenido">
-              <a href="#home">X</a>
-              <h2>Estas seguro que deseas eliminar la publicación</h2>
-
-              <div class="btns">
-                <button data-ref='${idPublication}' class='btnCancel'>Yes</button>
-                <button class='btnSave'><a href="#home">No</a></button>
-              </div> 
-            </div>
-          </div> */
