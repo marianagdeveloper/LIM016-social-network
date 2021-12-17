@@ -1,3 +1,7 @@
+/* * {
+  margin: 0px;
+} */
+
 .BoxSignUp {
   display: grid;
   grid-template-columns: 1fr 1fr;

@@ -1,3 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
 .contenedorLoader {
   background-color: #f3f3f3;
   position: fixed;

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/named */
 /* eslint-disable consistent-return */
-import { components } from '../pages/components.js';
+import { components } from '../pages/index.js';
 import { handleCurrent } from '../pages/signin.js';
 
 // import { signUpController } from './signup-controller.js';

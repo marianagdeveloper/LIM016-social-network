@@ -1,4 +1,4 @@
-import { publicationComponent } from '../components/publication.js';
+import { publicationComponent } from './publication.js';
 
 import {
   db,

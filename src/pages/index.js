@@ -1,6 +1,6 @@
 import Welcome from './welcome.js';
 import Signin from './signin.js';
-import NavHome from '../components/nav.js';
+import NavHome from './nav.js';
 // import Home from './home.js';
 // import Publications from './publications.js';
 import AboutUs from './aboutUs.js';
