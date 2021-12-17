@@ -20,24 +20,40 @@ const handleError = (error) => {
   document.getElementById('errormessage').innerHTML = errorCode;
 };
 
-export const handleCurrent = () => {
+// eslint-disable-next-line consistent-return
+export const handleCurrent = (a) => {
   const user = auth.currentUser;
+  const emailVerified = auth.currentUser.emailVerified;
   console.log('user', user);
-  if (user !== null) {
-    // eslint-disable-next-line no-unused-vars
-    user.providerData.forEach((_profile) => {
-      // console.log(`Sign-in provider: ${profile.providerId}`);
-      // console.log(`Provider-specific UID: ${profile.uid}`);
-      // console.log(`Name: ${profile.displayName}`);
-      // console.log(`Email: ${profile.email}`);
-      // console.log(`Photo URL: ${profile.photoURL}`);
-      // console.log(`uid: ${profile.uid}`);
+  console.log('emailVerified', emailVerified);
+  if (user !== null && emailVerified === true) {
+    user.providerData.forEach((profile) => {
       console.log(profile);
+      // eslint-disable-next-line no-param-reassign
+      a.href = '#/home';
+      window.location.href = a.href;
+      // eslint-disable-next-line no-param-reassign
     });
-    // console.log(displayName, email, photoURL, emailVerified, uid);
+  } else {
+    // eslint-disable-next-line no-alert
+    alert('Correo no verificado.Por favor ingresa al link de verificación enviado a tu correo para continuar');
   }
+  // console.log(displayName, email, photoURL, emailVerified, uid);
+};
+
+export const handleCurrentUser = () => {
+  const user = auth.currentUser;
+  console.log(user);
   return user;
 };
+
+// if (emailVerifiedUser !== false) {
+//   // eslint-disable-next-line no-unused-vars
+//   console.log('usuario verificado');
+//   // console.log(displayName, email, photoURL, emailVerified, uid);
+// } else {
+//   console.log('usuario noverificado');
+// }
 
 export const handleSignin = (e) => {
   e.preventDefault();
@@ -53,10 +69,7 @@ export const handleSignin = (e) => {
       // Save data to sessionStorage
       sessionStorage.setItem('key', user);
       console.log('userCredential.user.uid:', userCredential.user.uid);
-
-      a.href = '#/home';
-      window.location.href = a.href;
-      handleCurrent(userCredential.user);
+      handleCurrent(a);
     })
     .catch(handleError);
 };
@@ -174,4 +187,3 @@ export default SignIn;
 // Boton para iniciar sesion con Google - Linea 122
 // eslint-disable-next-line spaced-comment
 /*<button type="submit" id="btn-signin-google" class="LoginGooglebtn"> */
-
