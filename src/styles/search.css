@@ -1,9 +1,3 @@
-/* * {
-  font-family: 'Roboto', sans-serif;
-  /* font-weight: 600;
-  background-repeat: repeat; 
-} */
-
 .filtros input,.filtros select, .input input {
   width: 15rem;
   padding: 12px 20px;
@@ -46,8 +40,6 @@
   justify-items: center;
   /* align-items: stretch;
   justify-content: stretch; */
-
-
 }
 /* .search {
   background: blue;

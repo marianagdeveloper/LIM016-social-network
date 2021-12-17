@@ -27,6 +27,7 @@ export function publicationComponent(nameUser,
 </div>`;
 
   const divElemt = document.createElement('div');
+  divElemt.setAttribute('class', 'parentDivPost');
   divElemt.innerHTML += componetPublication;
 
   const btnsEditAndDeletePost = `

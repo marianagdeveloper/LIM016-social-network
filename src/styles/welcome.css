@@ -1,11 +1,16 @@
 /************** GENERAL STYLE **************/
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
+
+* {
+  margin: 0;
+}
 
 body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.87)),
     url("../img/Photos/Gif1.gif");
   color: beige;
   background-size: cover;
-
+  font-family: 'Roboto', sans-serif;
 }
 
 a {
