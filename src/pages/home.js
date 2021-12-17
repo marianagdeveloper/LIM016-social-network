@@ -1,3 +1,8 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-sequences */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-plusplus */
+
 import { publicationComponent } from './publication.js';
 
 import {
@@ -26,7 +31,8 @@ async function readUser(uid) {
   if (docSnap.exists()) {
     // console.log('Document data:', docSnap.data());
     data = docSnap.data();
-    // console.log('Document data:', data);
+    console.log('User data:', data);
+    sessionStorage.setItem('user', JSON.stringify(data));
   } else {
     // doc.data() will be undefined in this case
     console.log('No exist user!');
@@ -205,6 +211,7 @@ const Home = () => {
       if (publication === '') {
         cleanModal();
       }
+      // eslint-disable-next-line no-use-before-define
       reedPublications(info);
     });
 
@@ -219,6 +226,7 @@ const Home = () => {
       document
         .getElementById('boxPublications')
         .classList.replace('boxPublications', 'NoneboxPublications');
+      // eslint-disable-next-line no-unused-expressions
       containerHome.querySelector('#texta2').value;
       deleteContentInput();
       cleanModal();
@@ -238,7 +246,7 @@ const Home = () => {
     return uidSS;
   };
   readUser(uid())
-    .then((value) => {infoUser(value), reedPublications(value)})
+    .then((value) => { infoUser(value), reedPublications(value); })
     .catch((error) => console.log(error));
 
   // actualizacion tiempo real de publications

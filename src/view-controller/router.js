@@ -2,17 +2,7 @@
 /* eslint-disable import/named */
 /* eslint-disable consistent-return */
 import { components } from '../pages/index.js';
-import { handleCurrent } from '../pages/signin.js';
-
-// import { signUpController } from './signup-controller.js';
-// eslint-disable-next-line import/no-unresolved
-// import {
-//   auth,
-//   provider,
-//   signInWithPopup,
-//   GoogleAuthProvider,
-//   sendPasswordResetEmail,
-// } from '../utils/firebaseconfig.js';
+import { handleCurrent, handleCurrentUser } from '../pages/signin.js';
 
 export const changeTmp = (hash) => {
   const id = hash.split('/')[1];
@@ -50,17 +40,13 @@ export const changeTmp = (hash) => {
     //   return sectionMain.appendChild(components[id]());
     // }
     case '#/home': {
-      // if (handleCurrent()) {
       headerNav.appendChild(components.nav());
       sectionMain.appendChild(components.home());
-      // } else {
-      // sectionMain.appendChild(components.signin());
-      // }
       break;
     }
 
     case '#/searchUser': {
-      if (handleCurrent()) {
+      if (handleCurrentUser()) {
         headerNav.appendChild(components.nav());
         sectionMain.appendChild(components.search());
       } else {
@@ -72,7 +58,7 @@ export const changeTmp = (hash) => {
     }
 
     case '#/editProfile': {
-      if (handleCurrent()) {
+      if (handleCurrentUser()) {
         headerNav.appendChild(components.nav());
         sectionMain.appendChild(components.editProfile());
       } else {
@@ -82,7 +68,7 @@ export const changeTmp = (hash) => {
     }
 
     case '#/about': {
-      if (handleCurrent()) {
+      if (handleCurrentUser()) {
         headerNav.appendChild(components.nav());
         sectionMain.appendChild(components.about());
       } else {

@@ -1,4 +1,6 @@
+// eslint-disable-next-line import/no-unresolved
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
+// eslint-disable-next-line import/no-unresolved
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js';
 
 import {
@@ -10,6 +12,7 @@ import {
   sendPasswordResetEmail,
   sendEmailVerification,
   signOut,
+// eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 import {
@@ -24,6 +27,7 @@ import {
   deleteDoc,
   query,
   where,
+// eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 
 const firebaseConfig = {
