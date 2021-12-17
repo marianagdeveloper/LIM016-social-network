@@ -1,6 +1,5 @@
 export function publicationComponent(nameUser,
   myPost,
-  visibilityImg,
   idPublication,
   publicationText) {
   const componetPublication = `
@@ -15,9 +14,7 @@ export function publicationComponent(nameUser,
         <p>${nameUser}</p>
       </div>
     </div>
-  <div id='editPost' class='editPost' style='visibility:${visibilityImg};'>
-    <img id='btnEditPost' class='btnEditPost' data-edit='${idPublication}' src='img/Icons/Pencil.png' alt=''>
-    <img id='btnDelete' class='btnDelete' data-ref='${idPublication}' src='img/Icons/Delete.png' alt=''>              
+  <div id='editPost' class='editPost'>             
   </div>
 </div>
   <div class='publicationN'>
@@ -31,7 +28,15 @@ export function publicationComponent(nameUser,
 
   const divElemt = document.createElement('div');
   divElemt.innerHTML += componetPublication;
+
+  const btnsEditAndDeletePost = `
+  <img id='btnEditPost' class='btnEditPost' data-edit='${idPublication}' src='img/Icons/Pencil.png' alt=''>
+  <img id='btnDelete' class='btnDelete' data-ref='${idPublication}' src='img/Icons/Delete.png' alt=''>`;
+
+  const btnsContainer = divElemt.querySelector('.editPost');
+  if (myPost) {
+  //   componetPublication.querySelector('.editPost').innerHTML(btnsEditAndDeletePost);
+    btnsContainer.innerHTML += btnsEditAndDeletePost;
+  }
   return divElemt;
 }
-
-export default { publicationComponent };
