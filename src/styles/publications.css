@@ -131,11 +131,20 @@
   width: 100%;
 }
 
-.boxPhotoandName p,
-.boxPhotoandNameN p {
+.userNamePublication {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    color: black;
+    font-weight: bold;
+}
+
+
+.boxPhotoandName h1,
+.boxPhotoandNameN h1 {
   color: black;
   font-weight: bold;
-  margin: 1rem;
+  margin: 1rem 0 0 1rem;
 }
 
 .boxInternoPhotoandName,
@@ -143,7 +152,17 @@
   display: flex;
   flex-direction: row;
 }
+.UserNameN {
+  display: flex;
+  flex-direction: column;
+}
 
+.boxPhotoandNameN p {
+  color: rgb(31, 31, 54);
+  margin-left: 1rem;
+  font-size: x-small;
+  font-weight: bold;
+}
 .contentPublicationN p {
   white-space: pre-line;
   font-size: small;
