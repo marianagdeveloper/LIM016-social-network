@@ -129,6 +129,7 @@
   border-radius: 10px;
   box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
   text-align: justify;
+  width: 100%;
 }
 
 .boxPhotoandName,
