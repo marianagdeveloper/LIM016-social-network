@@ -129,6 +129,14 @@
   border-radius: 10px;
   box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
   text-align: justify;
+  width: 100%;
+  height: 100px;
+  resize: none;
+  padding: 3%;
+  color: black;
+  overflow-y: visible;
+  font-weight: bold;
+  font-size: small;
 }
 
 .boxPhotoandName,
@@ -138,12 +146,6 @@
   width: 100%;
 }
 
-.boxPhotoandName p,
-.boxPhotoandNameN p {
-  color: black;
-  font-weight: bold;
-  margin: 1rem;
-}
 
 .boxInternoPhotoandName,
 .boxInternoPhotoandNameN {
@@ -188,6 +190,8 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin: 5% 0 0 0;
+  font-size: small;
 }
 
 .saveN img {
@@ -286,3 +290,21 @@
   box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
 
+.hide{
+  display: none !important;
+}
+
+.boxPhotoandName h2,
+.boxPhotoandNameN h2 {
+  color: black;
+  font-weight: bold;
+  margin: 0.5rem 0 0 1rem;
+  font-size: medium;
+}
+
+.userNameN p {
+  font-size: x-small;
+  color: rgb(32, 32, 32);
+  font-weight: bold;
+  margin-left: 1rem;
+}
