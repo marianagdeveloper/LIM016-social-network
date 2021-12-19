@@ -1,29 +1,14 @@
-import {
-// db,
+import // db,
 // collection,
 // getDocs,
 // getDoc,
 // doc,
-} from '../utils/firebaseconfig.js';
+"../utils/firebaseconfig.js";
 
-// Obtener un usuario
-// async function readUserEditProfile(uid) {
-//   let data = '';
-//   const docRef = doc(db, 'users', uid);
-//   const docSnap = await getDoc(docRef);
-//   console.log(docSnap);
+import countries from "../utils/countries.js";
+// console.log('countries', Object.values(countries));
 
-//   if (docSnap.exists()) {
-//     // console.log("Document data:", docSnap.data());
-//     data = docSnap.data();
-//     console.log('Document data:', data);
-//   } else {
-//     // doc.data() will be undefined in this case
-//     console.log('No such document!');
-//   }
-//   return data;
-// }
-
+//Template View Edit Profile
 const EditProfile = () => {
   const viewEditProfile = ` 
   <body>
@@ -38,13 +23,11 @@ const EditProfile = () => {
             </div>
             <div class="profileAndInterest"></div>
             <div class="interests">
-              <img src="img/Intereses/InteresesCN/AnimalCN.png" alt="" />
-              <img src="img/Intereses/InteresesCN/SiembraCN.png" alt="" />
-              <img src="img/Intereses/InteresesCN/ReciclajeCN.png" alt="" />
             </div>
             <div class="photoProfile">
               <img
-                src="img/Avatares/Animals/AvatarA7.png"
+                class="photo"
+                src=""
                 alt=""
                 srcset=""
               />
@@ -52,10 +35,9 @@ const EditProfile = () => {
             <div class="countryUser">
               <div class="countryUserFlex">
                 <h3>Country:</h3>
-                <select name="select">
-                  <option value="value1">Value 1</option>
-                  <option value="value2" selected>Value 2</option>
-                  <option value="value3">Value 3</option>
+                <div class="flag"></div>
+                <select class="selectCountry" name="select">
+                <option value="" selected>Select your Country</option>
                 </select>
               </div>
             </div>
@@ -63,7 +45,7 @@ const EditProfile = () => {
               <h3>Write your bio:</h3>
             </div>
             <div class="bioUser">
-              <textarea name="comments" id="texta2"></textarea>
+              <textarea name="comments" id="texta2" class="bio"></textarea>
               <div class="buttonSave">
                 <button>
                   <h2>SAVE</h2>
@@ -152,13 +134,7 @@ const EditProfile = () => {
                     srcset=""
                   />
                   </div>
-                  <div class="img11">
-                    <img
-                    src="img/Avatares/Animals/AvatarA12.png"
-                    alt=""
-                    srcset=""
-                  />
-                  </div>
+                  
               </div>
           
           </div>
@@ -258,20 +234,87 @@ const EditProfile = () => {
     </section>
   </body>
   `;
-
-  const divElemt = document.createElement('div');
+  const divElemt = document.createElement("div");
   divElemt.innerHTML = viewEditProfile;
 
+  //Add info of User
   const infoUser = (info) => {
-    console.log('info: ', info);
-    divElemt.querySelector('.nameUser').innerHTML
-    += `<h3>${info.name}</h3>`;
+    console.log("info: ", info);
+
+    //User Name
+    divElemt.querySelector(".nameUser").innerHTML += `<h3>${info.name}</h3>`;
+
+    //User Bio
+    divElemt.querySelector(".bio").innerHTML += `${info.bio}`;
+
+    //User Photo of Profile
+    divElemt.querySelector(".photo").src = info.photo;
+
+    //User Interests
+    let interests = info.interests;
+    interests.forEach((element) => {
+      divElemt.querySelector(
+        ".interests"
+      ).innerHTML += `<img src="${element}" alt="" />`;
+    });
+
+    //User Country
+    let country = info.country.name;
+    let flag = info.country.flag;
+    if (country != "" && country != "") {
+      divElemt.querySelector(".flag").innerHTML = `
+      <img
+      src="https://flagcdn.com/40x30/${flag}.png"
+      srcset="https://flagcdn.com/80x60/${flag}.png 2x,
+        https://flagcdn.com/120x90/${flag}.png 3x"
+      width="40"
+      height="30"
+      alt="${country}">
+    `;
+    }
+
+    //Show Select Country
+    let arr = countries;
+    for (let prop in arr) {
+      const divElement = divElemt.querySelector(".selectCountry");
+      divElement.innerHTML += `<option value="${prop}:${arr[prop]}">${arr[prop]}</option>`;
+      }
+
+    //Change Country - Change Flag
+    const divFlag = divElemt.querySelector(".selectCountry");
+    divFlag.addEventListener("change", (event) => {
+      let countryData = event.target.value.split(':');
+      let code = countryData[0];
+      let nameCountry = countryData[1];
+      // console.log(code, nameCountry);
+      // Change Flag
+      divElemt.querySelector(".flag").innerHTML = `
+      <img
+      src="https://flagcdn.com/40x30/${code}.png"
+      srcset="httpscountrycdn.com/80x60/${code}.png 2x,
+        https://flagcdn.com/120x90/${code}.png 3x"
+      width="40"
+      height="30"
+      alt="${nameCountry}">
+    `;
+    });
+
+    //Show Photos
+    
+    // <div class="img0">
+    //                 <img
+    //                 src="img/Avatares/Animals/AvatarA1.png"
+    //                 alt=""
+    //                 srcset=""
+    //               />
+    //               </div>
+
   };
 
   const uid = () => {
     // const uidSS = sessionStorage.getItem('key');
-    console.log('uidSS: ', sessionStorage.getItem('user'));
-    const uidSS = JSON.parse(sessionStorage.getItem('user'));
+    console.log("uidSS: ", sessionStorage.getItem("user"));
+    const uidSS = JSON.parse(sessionStorage.getItem("user"));
 
     return uidSS;
   };
