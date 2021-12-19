@@ -203,7 +203,7 @@
 
 @media screen and (max-width: 760px) {
   .contentPublicationN p {
-    width: 227px;
+    /* width: 227px; */
     white-space: pre-line;
   }
 

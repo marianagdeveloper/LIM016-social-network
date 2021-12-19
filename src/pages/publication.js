@@ -25,7 +25,7 @@ export function publicationComponent(nameUser,
   </div>
   <div class='saveN'>
     <p>2</p>
-    <img src='img/Icons/WhiteTotal/Heart2.png' alt=''>
+    <img class='btnLike'data-like='${idPublication}' src='img/Icons/WhiteTotal/Heart2.png' alt=''>
   </div>
 </div>`;
 
