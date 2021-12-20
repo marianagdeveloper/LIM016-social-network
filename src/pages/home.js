@@ -240,7 +240,7 @@ const Home = () => {
       const divPublicado = containerHome.querySelector('#publicado');
       const publication = containerHome.querySelector('#texta2').value;
       containerHome.querySelector('#texta2').value = containerHome.querySelector('#texta2').defaultValue;
-      console.log(publication);
+      // console.log(publication);
 
       while (divPublicado.firstChild) {
         divPublicado.removeChild(divPublicado.firstChild);
@@ -279,12 +279,13 @@ const Home = () => {
 
   async function llenarPublications(documentFirebase, idPublication) {
     const userOfPublication = await getDoc(doc(db, 'users', documentFirebase.data().author));
-    console.log(userOfPublication);
+    // console.log(userOfPublication);
 
     if (userOfPublication.exists()) {
       const divPublicado = containerHome.querySelector('#publicado');
 
       const nameUser = userOfPublication.data().name;
+      console.log(nameUser);
       const publicationText = documentFirebase.data().publication;
 
       /* ***** Only Delete or Edit Post for UserCurrent ***** */
