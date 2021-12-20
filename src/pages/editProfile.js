@@ -6,7 +6,7 @@ import
 } from
 "../utils/firebaseconfig.js";
 
-import countries from "../utils/countries.js";
+import countries from '../utils/countries.js';
 // console.log('countries', Object.values(countries));
 
 //Template View Edit Profile
@@ -228,7 +228,7 @@ const EditProfile = () => {
     </section>
   </body>
   `;
-  const divElemt = document.createElement("div");
+  const divElemt = document.createElement('div');
   divElemt.innerHTML = viewEditProfile;
 
   //Funtion of Photo Profile
@@ -262,13 +262,13 @@ const EditProfile = () => {
 
   //Add info of User
   const infoUser = (info) => {
-    console.log("info: ", info);
+    console.log('info: ', info);
 
     //User Name
-    divElemt.querySelector(".nameUser").innerHTML += `<h3>${info.name}</h3>`;
+    divElemt.querySelector('.nameUser').innerHTML += `<h3>${info.name}</h3>`;
 
     //User Bio
-    divElemt.querySelector(".bio").innerHTML += `${info.bio}`;
+    divElemt.querySelector('.bio').innerHTML += `${info.bio}`;
 
     //User Photo of Profile
     photoProfile(info.photo);
@@ -294,7 +294,7 @@ const EditProfile = () => {
     `;
     }
 
-    //Show Select Country
+    // Show Select Country
     let arr = countries;
     for (let prop in arr) {
       const divElement = divElemt.querySelector(".selectCountry");
@@ -309,7 +309,7 @@ const EditProfile = () => {
       let nameCountry = countryData[1];
       // console.log(code, nameCountry);
       // Change Flag
-      divElemt.querySelector(".flag").innerHTML = `
+      divElemt.querySelector('.flag').innerHTML = `
       <img
       src='https://flagcdn.com/40x30/${code}.png'
       srcset='httpscountrycdn.com/80x60/${code}.png 2x,

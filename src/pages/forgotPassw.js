@@ -1,6 +1,9 @@
 import {
-  auth, sendPasswordResetEmail, signInWithPopup, provider, GoogleAuthProvider,
+  auth, sendPasswordResetEmail, signInWithPopup, doc,
+  db, provider, getDoc,
 } from '../utils/firebaseconfig.js';
+
+import { handleError } from './signin.js';
 
 const cleanModal = () => {
   const check = document.getElementById('modalCheckP');
@@ -60,33 +63,75 @@ export const handleForgotPassw = (e) => {
   }
 };
 
+// message of email not verified with google
+export const handleErrorVerificateGoogle = () => {
+  document
+    .getElementById('modalSignIn')
+    .classList.replace('modalSignIn', 'alertMessageSignIn');
+  console.log('toma el handleErrorGmail');
+
+  document.getElementById('errormessage').innerHTML = 'Email not verified.Sign Up with Google to continue';
+};
+
+// export const handleSigninGoogle = (e) => {
+//   e.preventDefault();
+//   signInWithPopup(auth, provider)
+//     .then((result) => {
+//       // This gives you a Google Access Token. You can use it to access the Google API.
+//       const credential = GoogleAuthProvider.credentialFromResult(result);
+//       const token = credential.accessToken;
+//       // The signed-in user info.
+//       const user = result.user;
+//       // ...
+//       console.log(credential);
+//       console.log(user.displayName + token);
+//       window.location.href = '#/home';
+//     })
+//     .catch((error) => {
+//       // Handle Errors here.
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+//       // The email of the user's account used.
+//       const email = error.email;
+//       // The AuthCredential type that was used.
+//       const credential = GoogleAuthProvider.credentialFromError(error);
+//       // ...
+//       console.log(errorCode, errorMessage, email, credential);
+//     });
+// };
+
+// acceder a la vista home con google.
 export const handleSigninGoogle = (e) => {
-  // document
-  //   .getElementById('btn-signin-google')
-  //   .addEventListener('click', (e) => {
   e.preventDefault();
+  const a = e.target.closest('div').querySelector('#btn-signin-google');
+
   signInWithPopup(auth, provider)
     .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
       const user = result.user;
-      // ...
-      console.log(user.displayName + token);
-      window.location.href = '#/home';
+      // const email = user.email;
+      const uid = user.uid;
+      // eslint-disable-next-line no-shadow
+      async function readUser(uid) {
+        let data = '';
+        const docRef = doc(db, 'users', uid);
+        const docSnap = await getDoc(docRef);
+        data = docSnap.data();
+        if (docSnap.exists() && data.uid === uid) {
+          sessionStorage.setItem('key', uid);
+          // console.log('Document data:', docSnap.data());
+          sessionStorage.setItem('user', JSON.stringify(data));
+          a.href = '#/home';
+          window.location.href = a.href;
+        } else {
+          handleErrorVerificateGoogle();
+          console.log('este es el else');
+        }
+        console.log(data);
+        return data;
+      }
+      readUser(uid);
     })
-    .catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-      console.log(errorCode, errorMessage, email, credential);
-    });
+    .catch(handleError);
 };
 
 const forgotPass = () => {
@@ -135,7 +180,11 @@ const forgotPass = () => {
                             <div class="o">or</div>
                             <div class="linea">&nbsp;</div>
                         </div>
-                    <button type="submit" id="btn-signin-google" class="LoginGooglebtn LoginGooglebtnForgotPass" href="#/google">Sign in with Gmail</button>
+                    <button type="submit" id="btn-signin-google" class="LoginGooglebtn LoginGooglebtnForgotPass">Sign in with Gmail</button>
+                    <div id="modalSignIn" class="modalSignIn">
+                      <img src="img/Icons/Alert2.png" class="Alert" alt="Alert" />
+                      <p id="errormessage"> Error </p>
+                    </div>
                 </div><hr>
                 </div>
             </form>

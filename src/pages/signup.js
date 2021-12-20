@@ -37,8 +37,7 @@ const cleanModal = () => {
       .classList.replace('alertMessageSignUp', 'modalSignUp');
   }
 };
-// console.log('auth.current: ', auth.currentUser);
-
+// envío de email para la verificación de correo registrado
 export const handleSenEmailVerification = () => {
   sendEmailVerification(auth.currentUser)
     .then((result) => {
@@ -101,9 +100,6 @@ export const handleSingUpGoogle = (e) => {
       const name = user.displayName;
       const email = user.email;
       const uid = user.uid;
-      console.log(user);
-      console.log(name);
-      console.log(email);
       createNewUser(name, email, uid)
         .then(() => {
           cleanModal();
@@ -111,7 +107,6 @@ export const handleSingUpGoogle = (e) => {
           document
             .getElementById('modalCheck')
             .classList.replace('modalCheck', 'alertmodalCheck');
-          handleSenEmailVerification();
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -127,43 +122,6 @@ export const handleSingUpGoogle = (e) => {
         });
     })
     .catch(console.log('error en carga'));
-  // const name = '';
-  // const email = '';
-  // const password = '';
-
-  // if (name !== '') {
-  //   createUserWithEmailAndPassword(auth, email, password)
-  //     .then((userCredential) => {
-  //       // Add new user
-  //       const emailFS = userCredential.user.email;
-  //       const uidFS = userCredential.user.uid;
-  //       createNewUser(name, emailFS, uidFS);
-  //       cleanModal();
-  //       // Print notification: User created
-  //       document
-  //         .getElementById('modalCheck')
-  //         .classList.replace('modalCheck', 'alertmodalCheck');
-  //       handleSenEmailVerification();
-  //     })
-  //     .catch((error) => {
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       console.log('error en signup', errorMessage, errorCode);
-  //       // Print notification: error messeges
-  //       cleanModal();
-  //       document
-  //         .getElementById('modalSignUp')
-  //         .classList.replace('modalSignUp', 'alertMessageSignUp');
-  //       // Print text: error messages of Firebase
-  //       document.getElementById('errormessage').innerHTML = errorCode;
-  //     });
-  // } else if (name === '' || name == null) {
-  //   cleanModal();
-  //   // Print notification: name incompleted
-  //   document
-  //     .getElementById('modalName')
-  //     .classList.replace('modalName', 'alertmodalName');
-  // }
 };
 
 const SignUp = () => {
