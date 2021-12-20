@@ -56,6 +56,7 @@
   grid-auto-flow: row;
   align-self: center;
   justify-self: center;
+  font-size: small;
 }
 
 .nameUser {
@@ -134,32 +135,35 @@
   display: flex;
   flex-direction: row;
   justify-content: left;
-  padding-top: 20px;
-  margin-left: 12%;
+  align-items: center;
+  margin: 0 10%;
 }
 
 .countryUserFlex h3 {
   margin-right: 15px;
+  font-size: medium;
 }
 
 .countryUserFlex select {
-  width: 40%;
+  width: 100%;
   border-radius: 10px;
   font-weight: bold;
+  height: 100%;
+  padding: 1%;
 }
 
 /* Bio */
 .titleWriteBio {
   grid-area: 5 / 1 / 6 / 3;
-  /* border: 1px solid black; */
+  margin: 0 10%;
   color: rgb(250, 250, 250);
-  margin-left: 12%;
-  padding-top: 20px;
-  padding-bottom: 10px;
+  align-items: center;
+  display: flex;
 }
 
 .bioUser {
   grid-area: 6 / 1 / 7 / 3;
+  margin: 0 10%;
   /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
@@ -167,8 +171,8 @@
 }
 
 #texta2 {
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
   resize: none;
   padding: 3%;
@@ -209,6 +213,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: small;
 }
 
 #selectPhoto h2 {
@@ -378,11 +383,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: small;
 }
 
 #selectInterest h2 {
   color: white;
   margin: 10px;
+}
+
+.flag img {
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
 }
 
 @media (max-width: 600px) {
@@ -449,3 +461,4 @@
     margin-left: 30px;
   }
 }
+
