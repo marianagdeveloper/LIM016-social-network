@@ -12,17 +12,20 @@ import {
   getDocs,
   getDoc,
   doc,
+  updateDoc,
   // onSnapshot,
   deleteDoc,
 } from '../utils/firebaseconfig.js';
 
-// modal
+/* *************** Constantes para el modal "delete publication" *************** */
+
 const cerrar = document.getElementById('close');
 const modalC = document.getElementById('modal-container');
 const btnModalConfirmDelete = document.getElementById('btn-modal-yes');
 const btnModalCancel = document.getElementById('btn-modal-no');
 
-// Obtener un usuario de Firebase
+/* *************** Obtener un usuario de Firebase *************** */
+
 async function readUser(uid) {
   let data = '';
   const docRef = doc(db, 'users', uid);
@@ -40,7 +43,8 @@ async function readUser(uid) {
   return data;
 }
 
-// Agregar publicacion a Firebase
+/* *************** Agregar publicacion a Firebase *************** */
+
 async function addPublication(publication) {
   try {
     // eslint-disable-next-line no-unused-vars
@@ -53,12 +57,22 @@ async function addPublication(publication) {
   }
 }
 
-// Eliminar publicacion de Firebase
-async function deletePublication(idPublicationRef) {
-  await deleteDoc(doc(db, 'publications', idPublicationRef));
-}
+/* *************** Eliminar publicacion de Firebase *************** */
 
-// Export const Home
+// async function deletePublication(idPublicationRef) {
+//   await deleteDoc(doc(db, 'publications', idPublicationRef));
+// }
+
+export const deletePublication = (idPublicationRef) => deleteDoc(doc(db, 'publications', idPublicationRef));
+
+export const editPublication = (idPublicationRef, postEdit) => {
+  const publiUpdate = doc(db, 'publications', idPublicationRef);
+  return updateDoc(publiUpdate, {
+    publication: postEdit,
+  });
+};
+
+/* *************** Template del Home *************** */
 const Home = () => {
   const containerHome = document.createElement('div');
   containerHome.classList.add('positionHome');
@@ -168,6 +182,8 @@ const Home = () => {
   </main>`;
   containerHome.innerHTML = viewHome;
 
+  /* *************** Notificaciones de "post publicated" *************** */
+
   const cleanModal = () => {
     const check = document.getElementById('modalCheckPost');
     if (check) {
@@ -176,7 +192,34 @@ const Home = () => {
         .classList.replace('AlertmodalCheckPost', 'modalCheckPost');
     }
   };
-  // datos del usuario en home nombre e email
+
+  /* ***** Botón para mostrar la caja de agregar publicación ***** */
+
+  containerHome.querySelector('.NewPost').addEventListener('click', (e) => {
+    e.preventDefault();
+    document
+      .getElementById('boxPublications')
+      .classList.replace('NoneboxPublications', 'boxPublications');
+  });
+
+  // Función para eliminar el contenido del input al momento de cancelar
+  const deleteContentInput = () => {
+    containerHome.querySelector('#texta2').value = '';
+  };
+
+  /* ***** Botón para ocultar la caja de agregar publicación ***** */
+  containerHome.querySelector('.btnCancel').addEventListener('click', (e) => {
+    e.preventDefault();
+    document
+      .getElementById('boxPublications')
+      .classList.replace('boxPublications', 'NoneboxPublications');
+    // eslint-disable-next-line no-unused-expressions
+    containerHome.querySelector('#texta2').value;
+    deleteContentInput();
+    cleanModal();
+  });
+
+  /* *************** Agregars información sincronizada del usuario al perfil *************** */
   const infoUser = (info) => {
     containerHome.querySelector(
       '.UserName',
@@ -190,7 +233,8 @@ const Home = () => {
     ).innerHTML += `
     <p>${info.name}</p>`;
 
-    // evento de añadir publicación con save
+    /* *************** evento de añadir publicación con save *************** */
+
     containerHome.querySelector('#btnSave').addEventListener('click', (e) => {
       e.preventDefault();
       const divPublicado = containerHome.querySelector('#publicado');
@@ -214,31 +258,6 @@ const Home = () => {
       // eslint-disable-next-line no-use-before-define
       reedPublications(info);
     });
-
-    // Función para eliminar el contenido del input al momento de cancelar
-    const deleteContentInput = () => {
-      containerHome.querySelector('#texta2').value = '';
-    };
-
-    // Botón para ocultar la caja de agregar publicación
-    containerHome.querySelector('.btnCancel').addEventListener('click', (e) => {
-      e.preventDefault();
-      document
-        .getElementById('boxPublications')
-        .classList.replace('boxPublications', 'NoneboxPublications');
-      // eslint-disable-next-line no-unused-expressions
-      containerHome.querySelector('#texta2').value;
-      deleteContentInput();
-      cleanModal();
-    });
-
-    // Botón para mostrar la caja de agregar publicación
-    containerHome.querySelector('.NewPost').addEventListener('click', (e) => {
-      e.preventDefault();
-      document
-        .getElementById('boxPublications')
-        .classList.replace('NoneboxPublications', 'boxPublications');
-    });
   };
   // devuelve el uid del usuario que se encuentra en sesionStorage
   const uid = () => {
@@ -249,13 +268,15 @@ const Home = () => {
     .then((value) => { infoUser(value), reedPublications(value); })
     .catch((error) => console.log(error));
 
-  // actualizacion tiempo real de publications
+  /* ***** actualizacion tiempo real de publications ***** */
+
   function realOnSnapshot(documentFirebase) {
     const idPublication = documentFirebase.id;
     llenarPublications(documentFirebase, idPublication);
   }
 
-  // publicaciones realizadas
+  /* ***** publicaciones realizadas ***** */
+
   async function llenarPublications(documentFirebase, idPublication) {
     const userOfPublication = await getDoc(doc(db, 'users', documentFirebase.data().author));
     console.log(userOfPublication);
@@ -266,23 +287,46 @@ const Home = () => {
       const nameUser = userOfPublication.data().name;
       const publicationText = documentFirebase.data().publication;
 
-      // Only Delete or Edit Post for UserCurrent
+      /* ***** Only Delete or Edit Post for UserCurrent ***** */
+
       const authorPublication = userOfPublication.data().uid;
       const userCurrent = sessionStorage.getItem('key');
       const myPost = authorPublication === userCurrent;
-      let visibilityImg = 'hidden';
-      if (myPost) {
-        visibilityImg = 'visible';
-      }
 
-      // add componet publication
+      /* ***** add componet publication ***** */
+
       divPublicado.prepend(publicationComponent(nameUser,
         myPost,
-        visibilityImg,
         idPublication,
         publicationText));
 
-      // delete publication
+      const textPublication = document.querySelector('textArea[data-texto]');
+      const editsPublication = document.querySelector('img[data-edit]');
+      const savePublication = document.querySelector('img[data-save]');
+
+      editsPublication.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (myPost) {
+          savePublication.classList.remove('hide');
+          editsPublication.classList.add('hide');
+
+          textPublication.disabled = false;
+          textPublication.select();
+        }
+      });
+      // console.log(editsPublication);
+
+      savePublication.addEventListener('click', (e) => {
+        e.preventDefault();
+        editsPublication.classList.remove('hide');
+        savePublication.classList.add('hide');
+        // editPublication(idPublication, publicationText);
+        editPublication(idPublication, textPublication.value);
+        textPublication.disabled = true;
+      });
+
+      /* ***** delete publication ***** */
+
       const publication = divPublicado.querySelectorAll('img[data-ref]');
       console.log(divPublicado);
       publication.forEach((element) => {
@@ -345,7 +389,8 @@ const Home = () => {
     return userOfPublication;
   }
 
-  // leer datos desde Firebase de la colección Publicaciones y Usuarios
+  /* ***** leer datos desde Firebase de la colección Publicaciones y Usuarios ***** */
+
   async function reedPublications() {
     const querySnapshotPublications = await getDocs(collection(db, 'publications'));
 
