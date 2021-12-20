@@ -1,8 +1,9 @@
-import // db,
-// collection,
-// getDocs,
-// getDoc,
-// doc,
+import 
+{
+   db,
+   updateDoc,
+   doc,
+} from
 "../utils/firebaseconfig.js";
 
 import countries from "../utils/countries.js";
@@ -12,217 +13,210 @@ import countries from "../utils/countries.js";
 const EditProfile = () => {
   const viewEditProfile = ` 
   <body>
-    <section id="EditProfile" class="Box">
-      <div id="Profile">
-        <div class="titleEditProfile">
+    <section id='EditProfile' class='Box'>
+      <div id='Profile'>
+        <div class='titleEditProfile'>
           <h1>EDIT PROFILE</h1>
         </div>
-        <div class="containerSection">
-          <div class="bodyEditProfile">
-            <div class="nameUser">
+        <div class='containerSection'>
+          <div class='bodyEditProfile'>
+            <div class='nameUser'>
             </div>
-            <div class="profileAndInterest"></div>
-            <div class="interests">
+            <div class='profileAndInterest'></div>
+            <div class='interests'>
             </div>
-            <div class="photoProfile">
+            <div class='photoProfile'>
               <img
-                class="photo"
-                src=""
-                alt=""
-                srcset=""
+                class='photo'
+                src=''
+                alt=''
+                srcset=''
               />
             </div>
-            <div class="countryUser">
-              <div class="countryUserFlex">
+            <div class='countryUser'>
+              <div class='countryUserFlex'>
                 <h3>Country:</h3>
-                <div class="flag"></div>
-                <select class="selectCountry" name="select">
-                <option value="" selected>Select your Country</option>
+                <div class='flag'></div>
+                <select class='selectCountry' name='select'>
+                <option value='' selected>Select your Country</option>
                 </select>
               </div>
             </div>
-            <div class="titleWriteBio">
+            <div class='titleWriteBio'>
               <h3>Write your bio:</h3>
             </div>
-            <div class="bioUser">
-              <textarea name="comments" id="texta2" class="bio"></textarea>
-              <div class="buttonSave">
+            <div class='bioUser'>
+              <textarea name='comments' id='texta2' class='bio'></textarea>
+              <div class='buttonSave'>
                 <button>
                   <h2>SAVE</h2>
                 </button>
               </div>
             </div>
           </div>
-          <div class="selectProfile" class="Box">
-            <div id="selectPhoto" class="Box">
+          <div class='selectProfile' class='Box'>
+            <div id='selectPhoto' class='Box'>
               <h2>Choose your profile picture:</h2>
-              <div id="photos" class="Box">
-                  <div class="img0">
+              <div id='photos' class='Box'>
+                  <div class='img0'>
                     <img
-                    src="img/Avatares/Animals/AvatarA1.png"
-                    alt=""
-                    srcset=""
+                    src='img/Avatares/Animals/AvatarA1.png'
+                    alt=''
+                    srcset=''
                   />
                   </div>
-                  <div class="img1">
+                  <div class='img1'>
                     <img
-                    src="img/Avatares/Animals/AvatarA2.png"
-                    alt=""
-                    srcset=""
+                    src='img/Avatares/Animals/AvatarA2.png'
+                    alt=''
+                    srcset=''
                   />
                   </div>
-                  <div class="img2">
+                  <div class='img2'>
                     <img
-                    src="img/Avatares/Animals/AvatarA3.png"
-                    alt=""
-                    srcset=""
+                    src='img/Avatares/Animals/AvatarA3.png'
+                    alt=''
+                    srcset=''
                   />
                   </div>
-                  <div class="img3">
+                  <div class='img3'>
                     <img
-                    src="img/Avatares/Animals/AvatarA4.png"
-                    alt=""
-                    srcset=""
+                    src='img/Avatares/Animals/AvatarA4.png'
+                    alt=''
+                    srcset=''
                   />
                   </div>
-                  <div class="img4">
+                  <div class='img4'>
                     <img
-                    src="img/Avatares/Animals/AvatarA5.png"
-                    alt=""
-                    srcset=""
+                    src='img/Avatares/Animals/AvatarA5.png'
+                    alt=''
+                    srcset=''
                   />
                   </div>
-                  <div class="img5">
+                  <div class='img5'>
                     <img
-                    src="img/Avatares/Animals/AvatarA6.png"
-                    alt=""
-                    srcset=""
+                    src='img/Avatares/Animals/AvatarA6.png'
+                    alt=''
+                    srcset=''
                   />
                   </div>
-                  <div class="img6">
+                  <div class='img6'>
                     <img
-                    src="img/Avatares/Animals/AvatarA7.png"
-                    alt=""
-                    srcset=""
+                    src='img/Avatares/Animals/AvatarA7.png'
+                    alt=''
+                    srcset=''
                   />
                   </div>
-                  <div class="img7">
+                  <div class='img7'>
                     <img
-                    src="img/Avatares/Animals/AvatarA8.png"
-                    alt=""
-                    srcset=""
+                    src='img/Avatares/Animals/AvatarA8.png'
+                    alt=''
+                    srcset=''
                   />
                   </div>
-                  <div class="img8">
+                  <div class='img8'>
                     <img
-                    src="img/Avatares/Animals/AvatarA9.png"
-                    alt=""
-                    srcset=""
+                    src='img/Avatares/Animals/AvatarA9.png'
+                    alt=''
+                    srcset=''
                   />
                   </div>
-                  <div class="img9">
+                  <div class='img9'>
                     <img
-                    src="img/Avatares/Animals/AvatarA10.png"
-                    alt=""
-                    srcset=""
+                    src='img/Avatares/Animals/AvatarA10.png'
+                    alt=''
+                    srcset=''
                   />
                   </div>
-                  <div class="img10">
+                  <div class='img10'>
                     <img
-                    src="img/Avatares/Animals/AvatarA11.png"
-                    alt=""
-                    srcset=""
+                    src='img/Avatares/Animals/AvatarA11.png'
+                    alt=''
+                    srcset=''
                   />
                   </div>
                   
               </div>
           
           </div>
-            <div id="selectInterest" class="Box">
+            <div id='selectInterest' class='Box'>
               <h2>Pick 3 of your interests:</h2>
-              <div id="photos" class="Box">
-                <div class="img0">
+              <div id='photos' class='Box'>
+                <div class='img0' id='interest0'>
                   <img
-                  src="img/Intereses/Agua.png"
-                  alt=""
-                  srcset=""
+                  src='img/Intereses/Agua.png'
+                  alt=''
+                  srcset=''
                 />
                 </div>
-                <div class="img1">
+                <div class='img1' id='interest1'>
                   <img
-                  src="img/Intereses/Animal.png"
-                  alt=""
-                  srcset=""
+                  src='img/Intereses/Animal.png'
+                  alt=''
+                  srcset=''
                 />
                 </div>
-                <div class="img2">
+                <div class='img2' id='interest2'>
                   <img
-                  src="img/Intereses/Clima.png"
-                  alt=""
-                  srcset=""
+                  src='img/Intereses/Clima.png'
+                  alt=''
+                  srcset=''
                 />
                 </div>
-                <div class="img3">
+                <div class='img3' id='interest3'>
                   <img
-                  src="img/Intereses/Energia.png"
-                  alt=""
-                  srcset=""
+                  src='img/Intereses/Energia.png'
+                  alt=''
+                  srcset=''
                 />
                 </div>
-                <div class="img4">
+                <div class='img4' id='interest4'>
                   <img
-                  src="img/Intereses/Energia2.png"
-                  alt=""
-                  srcset=""
+                  src='img/Intereses/Energia2.png'
+                  alt=''
+                  srcset=''
                 />
                 </div>
-                <div class="img5">
+                <div class='img5' id='interest5'>
                   <img
-                  src="img/Intereses/Fabrica.png"
-                  alt=""
-                  srcset=""
+                  src='img/Intereses/Fabrica.png'
+                  alt=''
+                  srcset=''
                 />
                 </div>
-                <div class="img6">
+                <div class='img6' id='interest6'>
                   <img
-                  src="img/Intereses/Oceanos.png"
-                  alt=""
-                  srcset=""
+                  src='img/Intereses/Oceanos.png'
+                  alt=''
+                  srcset=''
                 />
                 </div>
-                <div class="img7">
+                <div class='img7' id='interest7'>
                   <img
-                  src="img/Intereses/Reciclaje.png"
-                  alt=""
-                  srcset=""
+                  src='img/Intereses/Reciclaje.png'
+                  alt=''
+                  srcset=''
                 />
                 </div>
-                <div class="img8">
+                <div class='img8' id='interest8'>
                   <img
-                  src="img/Intereses/ResiduosTóxicos.png"
-                  alt=""
-                  srcset=""
+                  src='img/Intereses/ResiduosTóxicos.png'
+                  alt=''
+                  srcset=''
                 />
                 </div>
-                <div class="img9">
+                <div class='img9' id='interest9'>
                   <img
-                  src="img/Intereses/Siembra.png"
-                  alt=""
-                  srcset=""
+                  src='img/Intereses/Siembra.png'
+                  alt=''
+                  srcset=''
                 />
                 </div>
-                <div class="img10">
+                <div class='img10' id='interest10'>
                   <img
-                  src="img/Intereses/Tala.png"
-                  alt=""
-                  srcset=""
-                />
-                </div>
-                <div class="img11">
-                  <img
-                  src=""
-                  alt=""
-                  srcset=""
+                  src='img/Intereses/Tala.png'
+                  alt=''
+                  srcset=''
                 />
                 </div>
             </div>
@@ -237,6 +231,35 @@ const EditProfile = () => {
   const divElemt = document.createElement("div");
   divElemt.innerHTML = viewEditProfile;
 
+  //Funtion of Photo Profile
+  function photoProfile(photo) {
+    divElemt.querySelector(".photo").src = photo;
+  }
+
+  //Funtion of Interests Profile
+  function interestsProfile(interests) {
+    console.log(interests);
+    let divInterestProfile = divElemt.querySelector(".interests");
+    while (divInterestProfile.firstChild) {
+      divInterestProfile.removeChild(divInterestProfile.firstChild);
+    }
+    
+    interests.forEach((element) => {
+      divInterestProfile.innerHTML += `<img src='${element}' alt='' />`;
+    });
+  }
+
+  //Update info user
+  function updateInfoUser (uid, bio, photo, interests, country) {
+    const userUpdate = doc(db, 'users', uid);
+    return updateDoc(userUpdate, {
+      bio: bio,
+      photo: photo,
+      interests: interests,
+      country: country,
+    });
+  };
+
   //Add info of User
   const infoUser = (info) => {
     console.log("info: ", info);
@@ -248,28 +271,26 @@ const EditProfile = () => {
     divElemt.querySelector(".bio").innerHTML += `${info.bio}`;
 
     //User Photo of Profile
-    divElemt.querySelector(".photo").src = info.photo;
+    photoProfile(info.photo);
 
     //User Interests
-    let interests = info.interests;
-    interests.forEach((element) => {
-      divElemt.querySelector(
-        ".interests"
-      ).innerHTML += `<img src="${element}" alt="" />`;
-    });
+    let arrayInterests = info.interests;
+    interestsProfile(arrayInterests);
 
     //User Country
-    let country = info.country.name;
-    let flag = info.country.flag;
-    if (country != "" && country != "") {
+    let country = info.country.split(':')[1];
+    let flag = info.country.split(':')[0];
+    // console.log('country:', country);
+    // console.log('flag:', flag);
+    if (country != "") {
       divElemt.querySelector(".flag").innerHTML = `
       <img
-      src="https://flagcdn.com/40x30/${flag}.png"
-      srcset="https://flagcdn.com/80x60/${flag}.png 2x,
-        https://flagcdn.com/120x90/${flag}.png 3x"
-      width="40"
-      height="30"
-      alt="${country}">
+      src='https://flagcdn.com/40x30/${flag}.png'
+      srcset='https://flagcdn.com/80x60/${flag}.png 2x,
+        https://flagcdn.com/120x90/${flag}.png 3x'
+      width='40'
+      height='30'
+      alt='${country}'>
     `;
     }
 
@@ -277,43 +298,78 @@ const EditProfile = () => {
     let arr = countries;
     for (let prop in arr) {
       const divElement = divElemt.querySelector(".selectCountry");
-      divElement.innerHTML += `<option value="${prop}:${arr[prop]}">${arr[prop]}</option>`;
-      }
+      divElement.innerHTML += `<option value='${prop}:${arr[prop]}'>${arr[prop]}</option>`;
+    }
 
     //Change Country - Change Flag
     const divFlag = divElemt.querySelector(".selectCountry");
     divFlag.addEventListener("change", (event) => {
-      let countryData = event.target.value.split(':');
+      let countryData = event.target.value.split(":");
       let code = countryData[0];
       let nameCountry = countryData[1];
       // console.log(code, nameCountry);
       // Change Flag
       divElemt.querySelector(".flag").innerHTML = `
       <img
-      src="https://flagcdn.com/40x30/${code}.png"
-      srcset="httpscountrycdn.com/80x60/${code}.png 2x,
-        https://flagcdn.com/120x90/${code}.png 3x"
-      width="40"
-      height="30"
-      alt="${nameCountry}">
+      src='https://flagcdn.com/40x30/${code}.png'
+      srcset='httpscountrycdn.com/80x60/${code}.png 2x,
+        https://flagcdn.com/120x90/${code}.png 3x'
+      width='40'
+      height='30'
+      alt='${nameCountry}'>
     `;
     });
 
-    //Show Photos
-    
-    // <div class="img0">
-    //                 <img
-    //                 src="img/Avatares/Animals/AvatarA1.png"
-    //                 alt=""
-    //                 srcset=""
-    //               />
-    //               </div>
+    //Select Photo Profile
+    for (let index = 0; index < 11; index++) {
+      const divAvatar = divElemt.querySelector(`.img${index}`);
+      divAvatar.addEventListener("click", (event) => {
+        let newPhoto = event.target.attributes.src.value;
+        // console.log(`click en img${index}`, newPhoto);
+        photoProfile(newPhoto);
+      });
+    }
 
+    //Select Interest
+    let arrayInterest = info.interests;
+    console.log(arrayInterest);
+    for (let index = 0; index < 11; index++) {
+      const divInterestsProfile = divElemt.querySelector(`#interest${index}`);
+      divInterestsProfile.addEventListener("click", (event) => {
+        let newInterest = event.target.attributes.src.value;
+        // console.log(`click en interest`, newInterest);
+        let validateInterest = arrayInterest.includes(newInterest);
+        
+        if(!validateInterest){
+          arrayInterest.pop();
+          arrayInterest.unshift(newInterest);
+          arrayInterests = arrayInterest;
+          interestsProfile(arrayInterest);
+        }
+        
+      }); 
+    }
+
+    //Button Save
+    let btnSave = divElemt.querySelector(".buttonSave");
+    btnSave.addEventListener("click", ()=> {
+      // console.log('save');
+      let uid, bio, photo, country, interests;
+      console.log("uidSS: ", sessionStorage.getItem("key"));
+      uid = sessionStorage.getItem("key");
+      bio = divElemt.querySelector(".bio").value;
+      photo =  divElemt.querySelector(".photo").src;
+      console.log(uid, bio, photo);
+      country = divElemt.querySelector(".selectCountry").value;
+      console.log(country.split(':'));
+      interests = arrayInterests;
+      updateInfoUser (uid, bio, photo, interests, country );
+    });    
   };
 
   const uid = () => {
     // const uidSS = sessionStorage.getItem('key');
-    console.log("uidSS: ", sessionStorage.getItem("user"));
+    // console.log("uidSS: ", sessionStorage.getItem("user"));
     const uidSS = JSON.parse(sessionStorage.getItem("user"));
 
     return uidSS;
