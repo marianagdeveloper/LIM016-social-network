@@ -302,11 +302,13 @@ const EditProfile = () => {
     }
 
     //Change Country - Change Flag
+    let code = flag;
+    let nameCountry = country;
     const divFlag = divElemt.querySelector(".selectCountry");
     divFlag.addEventListener("change", (event) => {
       let countryData = event.target.value.split(":");
-      let code = countryData[0];
-      let nameCountry = countryData[1];
+      code = countryData[0];
+      nameCountry = countryData[1];
       // console.log(code, nameCountry);
       // Change Flag
       divElemt.querySelector('.flag').innerHTML = `
@@ -321,11 +323,12 @@ const EditProfile = () => {
     });
 
     //Select Photo Profile
+    let newPhoto = info.photo;
     for (let index = 0; index < 11; index++) {
       const divAvatar = divElemt.querySelector(`.img${index}`);
       divAvatar.addEventListener("click", (event) => {
-        let newPhoto = event.target.attributes.src.value;
-        // console.log(`click en img${index}`, newPhoto);
+        newPhoto = event.target.attributes.src.value;
+        console.log(`click en img${index}`, newPhoto);
         photoProfile(newPhoto);
       });
     }
@@ -358,9 +361,10 @@ const EditProfile = () => {
       console.log("uidSS: ", sessionStorage.getItem("key"));
       uid = sessionStorage.getItem("key");
       bio = divElemt.querySelector(".bio").value;
-      photo =  divElemt.querySelector(".photo").src;
+      photo =  newPhoto;
       console.log(uid, bio, photo);
-      country = divElemt.querySelector(".selectCountry").value;
+      // country = divElemt.querySelector(".selectCountry").value;
+      country = code+':'+nameCountry;
       console.log(country.split(':'));
       interests = arrayInterests;
       updateInfoUser (uid, bio, photo, interests, country );
