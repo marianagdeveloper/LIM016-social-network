@@ -1,9 +1,10 @@
-import // db,
-// collection,
-// getDocs,
-// getDoc,
-// doc,
-'../utils/firebaseconfig.js';
+import 
+{
+   db,
+   updateDoc,
+   doc,
+} from
+"../utils/firebaseconfig.js";
 
 import countries from '../utils/countries.js';
 // console.log('countries', Object.values(countries));
@@ -141,86 +142,79 @@ const EditProfile = () => {
             <div id='selectInterest' class='Box'>
               <h2>Pick 3 of your interests:</h2>
               <div id='photos' class='Box'>
-                <div class='img0'>
+                <div class='img0' id='interest0'>
                   <img
                   src='img/Intereses/Agua.png'
                   alt=''
                   srcset=''
                 />
                 </div>
-                <div class='img1'>
+                <div class='img1' id='interest1'>
                   <img
                   src='img/Intereses/Animal.png'
                   alt=''
                   srcset=''
                 />
                 </div>
-                <div class='img2'>
+                <div class='img2' id='interest2'>
                   <img
                   src='img/Intereses/Clima.png'
                   alt=''
                   srcset=''
                 />
                 </div>
-                <div class='img3'>
+                <div class='img3' id='interest3'>
                   <img
                   src='img/Intereses/Energia.png'
                   alt=''
                   srcset=''
                 />
                 </div>
-                <div class='img4'>
+                <div class='img4' id='interest4'>
                   <img
                   src='img/Intereses/Energia2.png'
                   alt=''
                   srcset=''
                 />
                 </div>
-                <div class='img5'>
+                <div class='img5' id='interest5'>
                   <img
                   src='img/Intereses/Fabrica.png'
                   alt=''
                   srcset=''
                 />
                 </div>
-                <div class='img6'>
+                <div class='img6' id='interest6'>
                   <img
                   src='img/Intereses/Oceanos.png'
                   alt=''
                   srcset=''
                 />
                 </div>
-                <div class='img7'>
+                <div class='img7' id='interest7'>
                   <img
                   src='img/Intereses/Reciclaje.png'
                   alt=''
                   srcset=''
                 />
                 </div>
-                <div class='img8'>
+                <div class='img8' id='interest8'>
                   <img
                   src='img/Intereses/ResiduosTóxicos.png'
                   alt=''
                   srcset=''
                 />
                 </div>
-                <div class='img9'>
+                <div class='img9' id='interest9'>
                   <img
                   src='img/Intereses/Siembra.png'
                   alt=''
                   srcset=''
                 />
                 </div>
-                <div class='img10'>
+                <div class='img10' id='interest10'>
                   <img
                   src='img/Intereses/Tala.png'
-                  alt=''
-                  srcset=''
-                />
-                </div>
-                <div class='img11'>
-                  <img
-                  src=''
                   alt=''
                   srcset=''
                 />
@@ -237,6 +231,35 @@ const EditProfile = () => {
   const divElemt = document.createElement('div');
   divElemt.innerHTML = viewEditProfile;
 
+  //Funtion of Photo Profile
+  function photoProfile(photo) {
+    divElemt.querySelector(".photo").src = photo;
+  }
+
+  //Funtion of Interests Profile
+  function interestsProfile(interests) {
+    console.log(interests);
+    let divInterestProfile = divElemt.querySelector(".interests");
+    while (divInterestProfile.firstChild) {
+      divInterestProfile.removeChild(divInterestProfile.firstChild);
+    }
+    
+    interests.forEach((element) => {
+      divInterestProfile.innerHTML += `<img src='${element}' alt='' />`;
+    });
+  }
+
+  //Update info user
+  function updateInfoUser (uid, bio, photo, interests, country) {
+    const userUpdate = doc(db, 'users', uid);
+    return updateDoc(userUpdate, {
+      bio: bio,
+      photo: photo,
+      interests: interests,
+      country: country,
+    });
+  };
+
   //Add info of User
   const infoUser = (info) => {
     console.log('info: ', info);
@@ -248,21 +271,19 @@ const EditProfile = () => {
     divElemt.querySelector('.bio').innerHTML += `${info.bio}`;
 
     //User Photo of Profile
-    divElemt.querySelector('.photo').src = info.photo;
+    photoProfile(info.photo);
 
     //User Interests
-    let interests = info.interests;
-    interests.forEach((element) => {
-      divElemt.querySelector(
-        '.interests'
-      ).innerHTML += `<img src='${element}' alt='' />`;
-    });
+    let arrayInterests = info.interests;
+    interestsProfile(arrayInterests);
 
     //User Country
-    let country = info.country.name;
-    let flag = info.country.flag;
-    if (country != '' && country != '') {
-      divElemt.querySelector('.flag').innerHTML = `
+    let country = info.country.split(':')[1];
+    let flag = info.country.split(':')[0];
+    // console.log('country:', country);
+    // console.log('flag:', flag);
+    if (country != "") {
+      divElemt.querySelector(".flag").innerHTML = `
       <img
       src='https://flagcdn.com/40x30/${flag}.png'
       srcset='https://flagcdn.com/80x60/${flag}.png 2x,
@@ -276,16 +297,16 @@ const EditProfile = () => {
     // Show Select Country
     let arr = countries;
     for (let prop in arr) {
-      const divElement = divElemt.querySelector('.selectCountry');
+      const divElement = divElemt.querySelector(".selectCountry");
       divElement.innerHTML += `<option value='${prop}:${arr[prop]}'>${arr[prop]}</option>`;
     }
 
-    // Change Country - Change Flag
-    const divFlag = divElemt.querySelector('.selectCountry');
-    divFlag.addEventListener('change', (event) => {
-      const countryData = event.target.value.split(':');
-      const code = countryData[0];
-      const nameCountry = countryData[1];
+    //Change Country - Change Flag
+    const divFlag = divElemt.querySelector(".selectCountry");
+    divFlag.addEventListener("change", (event) => {
+      let countryData = event.target.value.split(":");
+      let code = countryData[0];
+      let nameCountry = countryData[1];
       // console.log(code, nameCountry);
       // Change Flag
       divElemt.querySelector('.flag').innerHTML = `
@@ -299,21 +320,57 @@ const EditProfile = () => {
     `;
     });
 
-    // Show Photos
-    // <div class='img0'>
-    //  <img
-    //                 src='img/Avatares/Animals/AvatarA1.png'
-    //                 alt=''
-    //                 srcset=''
-    //               />
-    //               </div>
+    //Select Photo Profile
+    for (let index = 0; index < 11; index++) {
+      const divAvatar = divElemt.querySelector(`.img${index}`);
+      divAvatar.addEventListener("click", (event) => {
+        let newPhoto = event.target.attributes.src.value;
+        // console.log(`click en img${index}`, newPhoto);
+        photoProfile(newPhoto);
+      });
+    }
 
+    //Select Interest
+    let arrayInterest = info.interests;
+    console.log(arrayInterest);
+    for (let index = 0; index < 11; index++) {
+      const divInterestsProfile = divElemt.querySelector(`#interest${index}`);
+      divInterestsProfile.addEventListener("click", (event) => {
+        let newInterest = event.target.attributes.src.value;
+        // console.log(`click en interest`, newInterest);
+        let validateInterest = arrayInterest.includes(newInterest);
+        
+        if(!validateInterest){
+          arrayInterest.pop();
+          arrayInterest.unshift(newInterest);
+          arrayInterests = arrayInterest;
+          interestsProfile(arrayInterest);
+        }
+        
+      }); 
+    }
+
+    //Button Save
+    let btnSave = divElemt.querySelector(".buttonSave");
+    btnSave.addEventListener("click", ()=> {
+      // console.log('save');
+      let uid, bio, photo, country, interests;
+      console.log("uidSS: ", sessionStorage.getItem("key"));
+      uid = sessionStorage.getItem("key");
+      bio = divElemt.querySelector(".bio").value;
+      photo =  divElemt.querySelector(".photo").src;
+      console.log(uid, bio, photo);
+      country = divElemt.querySelector(".selectCountry").value;
+      console.log(country.split(':'));
+      interests = arrayInterests;
+      updateInfoUser (uid, bio, photo, interests, country );
+    });    
   };
 
   const uid = () => {
     // const uidSS = sessionStorage.getItem('key');
-    console.log('uidSS: ', sessionStorage.getItem('user'));
-    const uidSS = JSON.parse(sessionStorage.getItem('user'));
+    // console.log("uidSS: ", sessionStorage.getItem("user"));
+    const uidSS = JSON.parse(sessionStorage.getItem("user"));
 
     return uidSS;
   };
