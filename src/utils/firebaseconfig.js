@@ -25,6 +25,7 @@ import {
   getDocs,
   onSnapshot,
   deleteDoc,
+  updateDoc,
   query,
   where,
 // eslint-disable-next-line import/no-unresolved
@@ -70,4 +71,5 @@ export {
   deleteDoc,
   query,
   where,
+  updateDoc,
 };

@@ -3,9 +3,9 @@ import {
   provider,
   auth,
   signInWithPopup,
-  // doc,
-  // getDoc,
-  // db,
+  doc,
+  getDoc,
+  db,
 } from '../utils/firebaseconfig.js';
 
 const handleError = (error) => {
@@ -47,14 +47,6 @@ export const handleCurrentUser = () => {
   return user;
 };
 
-// if (emailVerifiedUser !== false) {
-//   // eslint-disable-next-line no-unused-vars
-//   console.log('usuario verificado');
-//   // console.log(displayName, email, photoURL, emailVerified, uid);
-// } else {
-//   console.log('usuario noverificado');
-// }
-
 export const handleSignin = (e) => {
   e.preventDefault();
   const email = e.target.closest('form').querySelector('#email').value;
@@ -65,10 +57,10 @@ export const handleSignin = (e) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user.uid;
-      console.log('user:', user);
+      // console.log('user:', user);
       // Save data to sessionStorage
       sessionStorage.setItem('key', user);
-      console.log('userCredential.user.uid:', userCredential.user.uid);
+      // console.log('userCredential.user.uid:', userCredential.user.uid);
       handleCurrent(a);
     })
     .catch(handleError);
@@ -76,11 +68,36 @@ export const handleSignin = (e) => {
 
 export const handleSigninGoogle = (e) => {
   e.preventDefault();
+  const a = e.target.closest('form').querySelector('#btn-signin-google');
+
   signInWithPopup(auth, provider)
     .then((result) => {
       const user = result.user;
-      console.log(user.displayName);
-      window.location.href = '#/home';
+      // const email = user.email;
+      const uid = user.uid;
+      // eslint-disable-next-line no-shadow
+      async function readUser(uid) {
+        let data = '';
+        const docRef = doc(db, 'users', uid);
+        const docSnap = await getDoc(docRef);
+        data = docSnap.data();
+        if (docSnap.exists() && data.uid === uid) {
+          sessionStorage.setItem('key', uid);
+          // console.log('Document data:', docSnap.data());
+          sessionStorage.setItem('user', JSON.stringify(data));
+          a.href = '#/home';
+          window.location.href = a.href;
+          console.log('User dataUid:', data.uid);
+        } else {
+          // doc.data() will be undefined in this case
+          // eslint-disable-next-line no-alert
+          alert('correo no verificado');
+          console.log('No exist user!');
+        }
+        console.log(data);
+        return data;
+      }
+      readUser(uid);
     })
     .catch(handleError);
 };
@@ -141,8 +158,7 @@ const SignIn = () => {
 
             <div class="clearfix">
               <button id="btn-signin-signin" class="Loginbtn">Login</button>
-
-              
+              <button type="submit" id="btn-signin-google" class="LoginGooglebtn">Sign In with Google</button>
             </div>            
             <div id="modalSignIn" class="modalSignIn">
               <img src="img/Icons/Alert2.png" class="Alert" alt="Alert" />
@@ -176,8 +192,8 @@ const SignIn = () => {
 
   // Sign In with Google
   divElemt
-    .querySelector('#btn-signin-google');
-  // .addEventListener('click', handleSigninGoogle);
+    .querySelector('#btn-signin-google')
+    .addEventListener('click', handleSigninGoogle);
 
   return divElemt;
 };

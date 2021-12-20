@@ -14,8 +14,8 @@ a {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  background: rgba(66, 60, 60, 0.993);
+  width: 0px;
+  background: rgba(0, 0, 0, 0.993);
 }
 
 ::-webkit-scrollbar-track {

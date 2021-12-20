@@ -2,7 +2,7 @@ import {
   createUserWithEmailAndPassword,
   auth,
   sendEmailVerification,
-  doc, setDoc, db,
+  doc, setDoc, db, provider, signInWithPopup,
 } from '../utils/firebaseconfig.js';
 
 // Add a new document in collection "users"
@@ -46,6 +46,9 @@ export const handleSenEmailVerification = () => {
       // Email verification sent!
       // ...
       console.log('send email');
+    })
+    .catch(() => {
+      console.log('dont send email');
     });
 };
 
@@ -88,6 +91,79 @@ export const handleSingUp = (e) => {
       .getElementById('modalName')
       .classList.replace('modalName', 'alertmodalName');
   }
+};
+
+export const handleSingUpGoogle = (e) => {
+  e.preventDefault();
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const user = result.user;
+      const name = user.displayName;
+      const email = user.email;
+      const uid = user.uid;
+      console.log(user);
+      console.log(name);
+      console.log(email);
+      createNewUser(name, email, uid)
+        .then(() => {
+          cleanModal();
+          // Print notification: User created
+          document
+            .getElementById('modalCheck')
+            .classList.replace('modalCheck', 'alertmodalCheck');
+          handleSenEmailVerification();
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log('error en signup', errorMessage, errorCode);
+          // Print notification: error messeges
+          cleanModal();
+          document
+            .getElementById('modalSignUp')
+            .classList.replace('modalSignUp', 'alertMessageSignUp');
+          // Print text: error messages of Firebase
+          document.getElementById('errormessage').innerHTML = errorCode;
+        });
+    })
+    .catch(console.log('error en carga'));
+  // const name = '';
+  // const email = '';
+  // const password = '';
+
+  // if (name !== '') {
+  //   createUserWithEmailAndPassword(auth, email, password)
+  //     .then((userCredential) => {
+  //       // Add new user
+  //       const emailFS = userCredential.user.email;
+  //       const uidFS = userCredential.user.uid;
+  //       createNewUser(name, emailFS, uidFS);
+  //       cleanModal();
+  //       // Print notification: User created
+  //       document
+  //         .getElementById('modalCheck')
+  //         .classList.replace('modalCheck', 'alertmodalCheck');
+  //       handleSenEmailVerification();
+  //     })
+  //     .catch((error) => {
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       console.log('error en signup', errorMessage, errorCode);
+  //       // Print notification: error messeges
+  //       cleanModal();
+  //       document
+  //         .getElementById('modalSignUp')
+  //         .classList.replace('modalSignUp', 'alertMessageSignUp');
+  //       // Print text: error messages of Firebase
+  //       document.getElementById('errormessage').innerHTML = errorCode;
+  //     });
+  // } else if (name === '' || name == null) {
+  //   cleanModal();
+  //   // Print notification: name incompleted
+  //   document
+  //     .getElementById('modalName')
+  //     .classList.replace('modalName', 'alertmodalName');
+  // }
 };
 
 const SignUp = () => {
@@ -163,6 +239,10 @@ const SignUp = () => {
           <p id="verify-message" class="verify-message"></p>
           <div class="clearfix">
             <button type="submit" id="btn-welcome-signup" id="signup" class="signupbtn">Sign Up</button>
+            <button type="submit" id="btn-signup-google" class="LoginGooglebtn">Sign Up with Google</button>
+          </div>
+          <div class="clearfix">
+
           </div>
           <div id="modalSignUp" class="modalSignUp">
             <img src="img/Icons/Alert2.png" class="Alert" alt="Alert" />
@@ -194,6 +274,10 @@ const SignUp = () => {
   divElemt
     .querySelector('#btn-welcome-signup')
     .addEventListener('click', handleSingUp);
+
+  divElemt
+    .querySelector('#btn-signup-google')
+    .addEventListener('click', handleSingUpGoogle);
   return divElemt;
 };
 
