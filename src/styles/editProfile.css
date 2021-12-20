@@ -145,6 +145,7 @@
 .countryUserFlex select {
   width: 40%;
   border-radius: 10px;
+  font-weight: bold;
 }
 
 /* Bio */
@@ -170,6 +171,8 @@
   height: 80%;
   border-radius: 10px;
   resize: none;
+  padding: 3%;
+  font-weight: bold;
 }
 
 .buttonSave {

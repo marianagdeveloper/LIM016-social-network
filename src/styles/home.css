@@ -127,7 +127,8 @@ text-align: center;
 .Email { 
   grid-area: Country; 
   display: flex;
-  text-align: center;
+  flex-direction: column;
+  text-align: start;
   line-height: 160%;
   padding:  2% 5%;
   font-size: small;
