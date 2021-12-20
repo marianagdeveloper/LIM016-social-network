@@ -308,3 +308,10 @@
   font-weight: bold;
   margin-left: 1rem;
 }
+
+.userNamePublication p {
+  color: black;
+  font-weight: bold;
+  margin: 1rem;
+  font-size: medium;
+}
