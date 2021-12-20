@@ -115,6 +115,10 @@
 }
 
 /* Country */
+.flag{
+  margin-right: 11px;
+}
+
 .countryUser {
   grid-area: 4 / 1 / 5 / 3;
   /* border: 1px solid black; */
