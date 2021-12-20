@@ -7,25 +7,29 @@ import {
   getDoc,
   db,
 } from '../utils/firebaseconfig.js';
-
-const handleError = (error) => {
+// message of errorCode
+export const handleError = (error) => {
   const errorCode = error.code;
   const errorMessage = error.message;
   console.log('error en signin', errorMessage, errorCode);
-  // const errorModal = '333';
   document
     .getElementById('modalSignIn')
     .classList.replace('modalSignIn', 'alertMessageSignIn');
 
   document.getElementById('errormessage').innerHTML = errorCode;
 };
+// message of email not verified with google
+export const handleErrorVerificateGoogle = () => {
+  document
+    .getElementById('modalSignIn')
+    .classList.replace('modalSignIn', 'alertMessageSignIn');
 
-// eslint-disable-next-line consistent-return
+  document.getElementById('errormessage').innerHTML = 'Email not verified.Sign Up with Google to continue';
+};
+// acceso a la vista home solo a usuarios con google verificado
 export const handleCurrent = (a) => {
   const user = auth.currentUser;
   const emailVerified = auth.currentUser.emailVerified;
-  console.log('user', user);
-  console.log('emailVerified', emailVerified);
   if (user !== null && emailVerified === true) {
     user.providerData.forEach((profile) => {
       console.log(profile);
@@ -36,17 +40,20 @@ export const handleCurrent = (a) => {
     });
   } else {
     // eslint-disable-next-line no-alert
-    alert('Correo no verificado.Por favor ingresa al link de verificación enviado a tu correo para continuar');
-  }
-  // console.log(displayName, email, photoURL, emailVerified, uid);
-};
+    document
+      .getElementById('modalSignIn')
+      .classList.replace('modalSignIn', 'alertMessageSignIn');
 
+    document.getElementById('errormessage').innerHTML = 'Email not verified. Please enter the verification link sent to your email to continue';
+  }
+};
+// data del usuario extraido de firebase
 export const handleCurrentUser = () => {
   const user = auth.currentUser;
   console.log(user);
   return user;
 };
-
+// Se ingresa informacion de email y password para acceder a la vista home
 export const handleSignin = (e) => {
   e.preventDefault();
   const email = e.target.closest('form').querySelector('#email').value;
@@ -65,7 +72,7 @@ export const handleSignin = (e) => {
     })
     .catch(handleError);
 };
-
+// acceder a la vista home con google.
 export const handleSigninGoogle = (e) => {
   e.preventDefault();
   const a = e.target.closest('form').querySelector('#btn-signin-google');
@@ -87,12 +94,8 @@ export const handleSigninGoogle = (e) => {
           sessionStorage.setItem('user', JSON.stringify(data));
           a.href = '#/home';
           window.location.href = a.href;
-          console.log('User dataUid:', data.uid);
         } else {
-          // doc.data() will be undefined in this case
-          // eslint-disable-next-line no-alert
-          alert('correo no verificado');
-          console.log('No exist user!');
+          handleErrorVerificateGoogle();
         }
         console.log(data);
         return data;
@@ -199,7 +202,3 @@ const SignIn = () => {
 };
 
 export default SignIn;
-
-// Boton para iniciar sesion con Google - Linea 122
-// eslint-disable-next-line spaced-comment
-/*<button type="submit" id="btn-signin-google" class="LoginGooglebtn"> */

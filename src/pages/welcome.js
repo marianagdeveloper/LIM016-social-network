@@ -3,27 +3,43 @@ import {
   provider,
   auth,
   signInWithPopup,
+  doc,
+  db,
+  getDoc,
 } from '../utils/firebaseconfig.js';
 
+import { handleErrorVerificateGoogle, handleError } from './signin.js';
+// acceder a la vista home con google.
 export const handleSigninGoogle = (e) => {
   e.preventDefault();
+  const a = e.target.closest('div').querySelector('#btn-welcome-google');
+
   signInWithPopup(auth, provider)
     .then((result) => {
       const user = result.user;
-      console.log(user.displayName);
-      window.location.href = '#/home';
+      // const email = user.email;
+      const uid = user.uid;
+      // eslint-disable-next-line no-shadow
+      async function readUser(uid) {
+        let data = '';
+        const docRef = doc(db, 'users', uid);
+        const docSnap = await getDoc(docRef);
+        data = docSnap.data();
+        if (docSnap.exists() && data.uid === uid) {
+          sessionStorage.setItem('key', uid);
+          // console.log('Document data:', docSnap.data());
+          sessionStorage.setItem('user', JSON.stringify(data));
+          a.href = '#/home';
+          window.location.href = a.href;
+        } else {
+          handleErrorVerificateGoogle();
+        }
+        console.log(data);
+        return data;
+      }
+      readUser(uid);
     })
-    .catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      // const errorMessage = error.message;
-      // The email of the user's account used.
-      // const email = error.email;
-      // The AuthCredential type that was used.
-      // const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-      console.log(errorCode);
-    });
+    .catch(handleError);
 };
 
 export default () => {
@@ -43,7 +59,10 @@ export default () => {
             <button id="btn-welcome-signin" class="btn-welcome-signin"><a href="#/signin">Sign In</a></button>
             <button id="btn-welcome-signup" class="btn-welcome-signup"><a href="#/signup">Sign Up</a></button>
           </div>
-
+          <div id="modalSignIn" class="modalSignIn">
+              <img src="img/Icons/Alert2.png" class="Alert" alt="Alert" />
+              <p id="errormessage"> Error </p>
+          </div>
           <p class="kmr">
             KMR
           </p>
