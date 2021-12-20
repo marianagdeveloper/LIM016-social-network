@@ -142,10 +142,10 @@ const Home = () => {
             <div class='save'>
               <button id='btnSave' class='btnSave'>SAVE</button>
               <button id='btnCancel' class='btnCancel'>CANCEL</button>
-
             </div>
           </div>
           <div id='publicado'>
+
           </div>
         </div>
         </div>
@@ -220,7 +220,6 @@ const Home = () => {
   });
 
   /* *************** Agregars información sincronizada del usuario al perfil *************** */
-
   const infoUser = (info) => {
     containerHome.querySelector(
       '.UserName',
@@ -260,7 +259,7 @@ const Home = () => {
       reedPublications(info);
     });
   };
-
+  // devuelve el uid del usuario que se encuentra en sesionStorage
   const uid = () => {
     const uidSS = sessionStorage.getItem('key');
     return uidSS;
@@ -280,6 +279,7 @@ const Home = () => {
 
   async function llenarPublications(documentFirebase, idPublication) {
     const userOfPublication = await getDoc(doc(db, 'users', documentFirebase.data().author));
+    console.log(userOfPublication);
 
     if (userOfPublication.exists()) {
       const divPublicado = containerHome.querySelector('#publicado');
@@ -328,9 +328,11 @@ const Home = () => {
       /* ***** delete publication ***** */
 
       const publication = divPublicado.querySelectorAll('img[data-ref]');
+      console.log(divPublicado);
       publication.forEach((element) => {
         element.addEventListener('click', (e) => {
           e.preventDefault();
+          console.log('aqui va un delete prueba');
           const idPublicationRef = element.dataset.ref;
 
           // INIT - Modal for Vericate Delete Publication
@@ -370,6 +372,15 @@ const Home = () => {
             return stateModal;
           });
           // END - Modal for Vericate Delete Publication
+        });
+      });
+
+      // Botón para dar like a la publicación
+      const btnLikes = divPublicado.querySelectorAll('img[data-like]');
+      btnLikes.forEach((element) => {
+        element.addEventListener('click', (e) => {
+          e.preventDefault();
+          console.log('aqui va un like prueba');
         });
       });
     } else {
