@@ -1,15 +1,15 @@
-import 
+import
 {
-   db,
-   updateDoc,
-   doc,
+  db,
+  updateDoc,
+  doc,
 } from
-"../utils/firebaseconfig.js";
+  '../utils/firebaseconfig.js';
 
 import countries from '../utils/countries.js';
 // console.log('countries', Object.values(countries));
 
-//Template View Edit Profile
+// Template View Edit Profile
 const EditProfile = () => {
   const viewEditProfile = ` 
   <body>
@@ -231,59 +231,59 @@ const EditProfile = () => {
   const divElemt = document.createElement('div');
   divElemt.innerHTML = viewEditProfile;
 
-  //Funtion of Photo Profile
+  // Funtion of Photo Profile
   function photoProfile(photo) {
-    divElemt.querySelector(".photo").src = photo;
+    divElemt.querySelector('.photo').src = photo;
   }
 
-  //Funtion of Interests Profile
+  // Funtion of Interests Profile
   function interestsProfile(interests) {
     console.log(interests);
-    let divInterestProfile = divElemt.querySelector(".interests");
+    const divInterestProfile = divElemt.querySelector('.interests');
     while (divInterestProfile.firstChild) {
       divInterestProfile.removeChild(divInterestProfile.firstChild);
     }
-    
+
     interests.forEach((element) => {
       divInterestProfile.innerHTML += `<img src='${element}' alt='' />`;
     });
   }
 
-  //Update info user
-  function updateInfoUser (uid, bio, photo, interests, country) {
+  // Update info user
+  function updateInfoUser(uid, bio, photo, interests, country) {
     const userUpdate = doc(db, 'users', uid);
     return updateDoc(userUpdate, {
-      bio: bio,
-      photo: photo,
-      interests: interests,
-      country: country,
+      bio,
+      photo,
+      interests,
+      country,
     });
-  };
+  }
 
-  //Add info of User
+  // Add info of User
   const infoUser = (info) => {
     console.log('info: ', info);
 
-    //User Name
+    // User Name
     divElemt.querySelector('.nameUser').innerHTML += `<h3>${info.name}</h3>`;
 
-    //User Bio
+    // User Bio
     divElemt.querySelector('.bio').innerHTML += `${info.bio}`;
 
-    //User Photo of Profile
+    // User Photo of Profile
     photoProfile(info.photo);
 
-    //User Interests
+    // User Interests
     let arrayInterests = info.interests;
     interestsProfile(arrayInterests);
 
-    //User Country
-    let country = info.country.split(':')[1];
-    let flag = info.country.split(':')[0];
+    // User Country
+    const country = info.country.split(':')[1];
+    const flag = info.country.split(':')[0];
     // console.log('country:', country);
     // console.log('flag:', flag);
-    if (country != "") {
-      divElemt.querySelector(".flag").innerHTML = `
+    if (country != '') {
+      divElemt.querySelector('.flag').innerHTML = `
       <img
       src='https://flagcdn.com/40x30/${flag}.png'
       srcset='https://flagcdn.com/80x60/${flag}.png 2x,
@@ -295,18 +295,18 @@ const EditProfile = () => {
     }
 
     // Show Select Country
-    let arr = countries;
-    for (let prop in arr) {
-      const divElement = divElemt.querySelector(".selectCountry");
+    const arr = countries;
+    for (const prop in arr) {
+      const divElement = divElemt.querySelector('.selectCountry');
       divElement.innerHTML += `<option value='${prop}:${arr[prop]}'>${arr[prop]}</option>`;
     }
 
-    //Change Country - Change Flag
+    // Change Country - Change Flag
     let code = flag;
     let nameCountry = country;
-    const divFlag = divElemt.querySelector(".selectCountry");
-    divFlag.addEventListener("change", (event) => {
-      let countryData = event.target.value.split(":");
+    const divFlag = divElemt.querySelector('.selectCountry');
+    divFlag.addEventListener('change', (event) => {
+      const countryData = event.target.value.split(':');
       code = countryData[0];
       nameCountry = countryData[1];
       // console.log(code, nameCountry);
@@ -322,59 +322,59 @@ const EditProfile = () => {
     `;
     });
 
-    //Select Photo Profile
+    // Select Photo Profile
     let newPhoto = info.photo;
     for (let index = 0; index < 11; index++) {
       const divAvatar = divElemt.querySelector(`.img${index}`);
-      divAvatar.addEventListener("click", (event) => {
+      divAvatar.addEventListener('click', (event) => {
         newPhoto = event.target.attributes.src.value;
         console.log(`click en img${index}`, newPhoto);
         photoProfile(newPhoto);
       });
     }
 
-    //Select Interest
-    let arrayInterest = info.interests;
+    // Select Interest
+    const arrayInterest = info.interests;
     console.log(arrayInterest);
     for (let index = 0; index < 11; index++) {
       const divInterestsProfile = divElemt.querySelector(`#interest${index}`);
-      divInterestsProfile.addEventListener("click", (event) => {
-        let newInterest = event.target.attributes.src.value;
+      divInterestsProfile.addEventListener('click', (event) => {
+        const newInterest = event.target.attributes.src.value;
         // console.log(`click en interest`, newInterest);
-        let validateInterest = arrayInterest.includes(newInterest);
-        
-        if(!validateInterest){
+        const validateInterest = arrayInterest.includes(newInterest);
+
+        if (!validateInterest) {
           arrayInterest.pop();
           arrayInterest.unshift(newInterest);
           arrayInterests = arrayInterest;
           interestsProfile(arrayInterest);
         }
-        
-      }); 
+      });
     }
 
-    //Button Save
-    let btnSave = divElemt.querySelector(".buttonSave");
-    btnSave.addEventListener("click", ()=> {
+    // Button Save
+    const btnSave = divElemt.querySelector('.buttonSave');
+    btnSave.addEventListener('click', () => {
       // console.log('save');
-      let uid, bio, photo, country, interests;
-      console.log("uidSS: ", sessionStorage.getItem("key"));
-      uid = sessionStorage.getItem("key");
-      bio = divElemt.querySelector(".bio").value;
-      photo =  newPhoto;
+      let uid; let bio; let photo; let country; let
+        interests;
+      console.log('uidSS: ', sessionStorage.getItem('key'));
+      uid = sessionStorage.getItem('key');
+      bio = divElemt.querySelector('.bio').value;
+      photo = newPhoto;
       console.log(uid, bio, photo);
       // country = divElemt.querySelector(".selectCountry").value;
-      country = code+':'+nameCountry;
+      country = `${code}:${nameCountry}`;
       console.log(country.split(':'));
       interests = arrayInterests;
-      updateInfoUser (uid, bio, photo, interests, country );
-    });    
+      updateInfoUser(uid, bio, photo, interests, country);
+    });
   };
 
   const uid = () => {
     // const uidSS = sessionStorage.getItem('key');
     // console.log("uidSS: ", sessionStorage.getItem("user"));
-    const uidSS = JSON.parse(sessionStorage.getItem("user"));
+    const uidSS = JSON.parse(sessionStorage.getItem('user'));
 
     return uidSS;
   };

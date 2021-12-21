@@ -362,7 +362,7 @@ const Home = () => {
             modalC.style.opacity = '0';
             modalC.style.visibility = 'hidden';
             stateModal = true;
-
+            console.log('Boton de yes');
             // Delete publication for Firebase
             deletePublication(idPublicationRef, divPublicado);
 
