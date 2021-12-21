@@ -28,9 +28,15 @@ export function publicationComponent(nameUser,
         </div>
       </div>
 
-      <div class='saveN'>
-        <p>2</p>
-        <img src='img/Icons/WhiteTotal/Heart2.png' alt=''>
+      <div class='FlexBoxEditbtns'>
+        <div id='btnsEditContainer' class='hide btnsEditContainer'>
+          <button id='btnSaveEdit' class='btnSaveEdit' data-save='${idPublication}'>SAVE</button>
+          <button id='btnCancelEdit' class='btnCancelEdit' data-cancel='${idPublication}'>CANCEL</button>
+        </div>
+        <div class='saveN'>
+          <p>2</p>
+          <img src='img/Icons/WhiteTotal/Heart2.png' alt=''>
+        </div>
       </div>
     </div>`;
 
@@ -39,7 +45,6 @@ export function publicationComponent(nameUser,
 
   const btnsEditAndDeletePost = `
   <img id='btnEditPost' class='btnEditPost' data-edit='${idPublication}' src='img/Icons/Pencil.png' alt=''>
-  <img id='btnSavePost' class='hide btnSavePost' data-save='${idPublication}' src='img/Icons/Verify.png' alt=''>
   <img id='btnDelete' class='btnDelete' data-ref='${idPublication}' src='img/Icons/Delete.png' alt=''>`;
 
   const btnsContainer = divElemt.querySelector('.editPost');
