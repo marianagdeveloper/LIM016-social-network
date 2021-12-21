@@ -391,10 +391,22 @@
   margin: 10px;
 }
 
-.flag img {
+.flag img,
+.countryImg img {
   border-radius: 100%;
   width: 30px;
   height: 30px;
+}
+
+.countryText {
+  margin-left: 5%;
+  align-items: center;
+  display: flex;
+}
+
+.Country h3 {
+  align-items: center;
+  display: flex;
 }
 
 @media (max-width: 600px) {

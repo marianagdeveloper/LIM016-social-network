@@ -89,7 +89,9 @@ const Home = () => {
         <div class='Inf'>
           <div class='Country'>
             <h3>Country:</h3>
-            <p>Italia</p>
+            <div class='countryImg'>
+            </div>
+            <p class ='countryText'></p>
           </div>
           <div class='Email'>
 
@@ -100,9 +102,9 @@ const Home = () => {
             Interests:
           </h3><br>
           <div class='Interests-Box'>
-            <img src='img/Intereses/InteresesCN/AnimalCN.png' alt=''>
-            <img src='img/Intereses/InteresesCN/SiembraCN.png' alt=''>
-            <img src='img/Intereses/InteresesCN/ReciclajeCN.png' alt=''>
+            <img id='Interests-0' src='' alt=''>
+            <img id='Interests-1' src='' alt=''>
+            <img id='Interests-2' src='' alt=''>
           </div>
         </div>
       </div>
@@ -212,6 +214,7 @@ const Home = () => {
   });
 
   /* *************** Agregars información sincronizada del usuario al perfil *************** */
+
   const infoUser = (info) => {
     containerHome.querySelector(
       '.UserName',
@@ -225,18 +228,38 @@ const Home = () => {
     ).innerHTML += `
     <p>${info.name}</p>`;
 
-    //photo
+    // photo
     containerHome.querySelector(
       '.Avatar-img',
     ).src = `${info.photo}`;
 
-    //Bio
+    // Bio
     containerHome.querySelector(
       '.bioText',
     ).textContent = `${info.bio}`;
-    
 
-    
+    // Country
+    containerHome.querySelector(
+      '.countryText',
+    ).textContent = `${info.country.split(':')[1]}`;
+
+    // Country flag
+    containerHome.querySelector(
+      '.countryImg',
+    ).innerHTML += `
+    <img
+    src='https://flagcdn.com/40x30/${info.country.split(':')[0]}.png'
+    srcset='httpscountrycdn.com/80x60/${info.country.split(':')[0]}.png 2x,
+      https://flagcdn.com/120x90/${info.country.split(':')[0]}.png 3x'
+    width='40'
+    height='30'
+    alt='${info.country.split(':')[1]}'>
+  `;
+
+    // Interests
+    for (let index = 0; index < 3; index++) {
+      containerHome.querySelector(`#Interests-${index}`).src = info.interests[index];
+    }
 
     /* *************** evento de añadir publicación con save *************** */
 
@@ -296,12 +319,14 @@ const Home = () => {
       const authorPublication = userOfPublication.data().uid;
       const userCurrent = sessionStorage.getItem('key');
       const myPost = authorPublication === userCurrent;
-
+      const photo = userOfPublication.data().photo;
+      console.log('photo:', photo);
       /* ***** Agrega una nueva publicación por usuario de primera ***** */
       divPublicado.prepend(publicationComponent(nameUser,
         myPost,
         idPublication,
-        publicationText));
+        publicationText,
+        photo));
 
       const textPublication = document.querySelector('textArea[data-texto]');
       const editsPublication = document.querySelector('img[data-edit]');
@@ -339,16 +364,16 @@ const Home = () => {
         btnsEditPostBox.classList.add('hide');
       });
 
-      /* ***** delete publication ***** */ 
-       //import modal
-        const cerrar = document.getElementById('close');
-        const modalC = document.getElementById('modal-container');
-        const btnModalConfirmDelete = document.getElementById('btn-modal-yes');
-        const btnModalCancel = document.getElementById('btn-modal-no');
+      /* ***** delete publication ***** */
+      // import modal
+      const cerrar = document.getElementById('close');
+      const modalC = document.getElementById('modal-container');
+      const btnModalConfirmDelete = document.getElementById('btn-modal-yes');
+      const btnModalCancel = document.getElementById('btn-modal-no');
 
-        //delete
-        divPublicado.querySelector('.btnDelete')
-  .addEventListener("click", (event) => {
+      // delete
+      divPublicado.querySelector('.btnDelete')
+        .addEventListener("click", (event) => {
     let deleted = event.target.dataset.ref;
 
     // INIT - Modal for Vericate Delete Publication
