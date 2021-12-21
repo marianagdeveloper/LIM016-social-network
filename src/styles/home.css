@@ -127,7 +127,8 @@ text-align: center;
 .Email { 
   grid-area: Country; 
   display: flex;
-  text-align: center;
+  flex-direction: column;
+  text-align: start;
   line-height: 160%;
   padding:  2% 5%;
   font-size: small;
@@ -155,7 +156,7 @@ text-align: center;
   
 }
 .btnPublic img{
-  width: 7%;
+  width: 5%;
   border-radius: 100%;
   padding: 1%;
   background-color: rgb(123 123 123);

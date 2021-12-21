@@ -295,7 +295,6 @@ const Home = () => {
       const myPost = authorPublication === userCurrent;
 
       /* ***** add componet publication ***** */
-
       divPublicado.prepend(publicationComponent(nameUser,
         myPost,
         idPublication,
@@ -303,27 +302,38 @@ const Home = () => {
 
       const textPublication = document.querySelector('textArea[data-texto]');
       const editsPublication = document.querySelector('img[data-edit]');
-      const savePublication = document.querySelector('img[data-save]');
 
+      const savePublication = document.querySelector('button[data-save]');
+      const cancelPublication = document.querySelector('button[data-cancel]');
+
+      const btnsEditPostBox = document.querySelector('.btnsEditContainer');
+
+      /* ***** Block btns of save and cancel edit publication ***** */
       editsPublication.addEventListener('click', (e) => {
         e.preventDefault();
         if (myPost) {
-          savePublication.classList.remove('hide');
-          editsPublication.classList.add('hide');
-
+          btnsEditPostBox.classList.remove('hide');
           textPublication.disabled = false;
           textPublication.select();
         }
       });
       // console.log(editsPublication);
 
+      /* ***** save edit publication ***** */
       savePublication.addEventListener('click', (e) => {
         e.preventDefault();
-        editsPublication.classList.remove('hide');
-        savePublication.classList.add('hide');
         // editPublication(idPublication, publicationText);
         editPublication(idPublication, textPublication.value);
         textPublication.disabled = true;
+        btnsEditPostBox.classList.add('hide');
+      });
+
+      /* ***** cancel edit publication ***** */
+      cancelPublication.addEventListener('click', (e) => {
+        e.preventDefault();
+        // editPublication(idPublication, publicationText);
+        textPublication.disabled = true;
+        btnsEditPostBox.classList.add('hide');
       });
 
       /* ***** delete publication ***** */
