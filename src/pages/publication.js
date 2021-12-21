@@ -1,9 +1,20 @@
+import {
+  db,
+  doc,
+  deleteDoc,
+} from '../utils/firebaseconfig.js';
+
+  //functions
+  async function deletePublication(idPublicationRef){
+    await deleteDoc(doc(db, 'publications', idPublicationRef));
+  }
+
 export function publicationComponent(nameUser,
   myPost,
   idPublication,
   publicationText) {
   const componetPublication = `
-    <div class='boxPublicationsN'>
+    <div class='boxPublicationsN' id='${idPublication}'>
       <div class='boxPhotoandNameN'>
         <div class='boxInternoPhotoandNameN'>
           <div class='photoPerfilN'>
@@ -22,7 +33,7 @@ export function publicationComponent(nameUser,
       </div>
 
       <div class='publicationN'>
-        <div>
+        <div >
           <textArea class='contentPublicationN' data-texto='${publicationText}' disabled>${publicationText}
           </textArea>
         </div>
@@ -40,6 +51,7 @@ export function publicationComponent(nameUser,
       </div>
     </div>`;
 
+  //publication
   const divElemt = document.createElement('div');
   divElemt.innerHTML += componetPublication;
 
@@ -69,5 +81,6 @@ export function publicationComponent(nameUser,
   `;
   const dateconcat = divElemt.querySelector('.userNameN');
   dateconcat.innerHTML += dateconcatTemplate;
+
   return divElemt;
 }

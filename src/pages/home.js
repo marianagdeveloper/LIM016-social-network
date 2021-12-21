@@ -17,13 +17,6 @@ import {
   deleteDoc,
 } from '../utils/firebaseconfig.js';
 
-/* *************** Constantes para el modal "delete publication" *************** */
-
-const cerrar = document.getElementById('close');
-const modalC = document.getElementById('modal-container');
-const btnModalConfirmDelete = document.getElementById('btn-modal-yes');
-const btnModalCancel = document.getElementById('btn-modal-no');
-
 /* *************** Obtener un usuario de Firebase *************** */
 
 async function readUser(uid) {
@@ -44,7 +37,6 @@ async function readUser(uid) {
 }
 
 /* *************** Agregar publicacion a Firebase *************** */
-
 async function addPublication(publication) {
   try {
     // eslint-disable-next-line no-unused-vars
@@ -91,7 +83,7 @@ const Home = () => {
         <div class='Bio'>
           <h3>Biography:</h3><br>
           <div>
-            <p>Hola, soy amante del arte en reciclado. Hago muchas manualidades pro ambientales. Les invito a ver mi galeria. 🧮 </p>
+            <p class='bioText' >Hola, soy amante del arte en reciclado. Hago muchas manualidades pro ambientales. Les invito a ver mi galeria. 🧮 </p>
           </div>
         </div>
         <div class='Inf'>
@@ -233,6 +225,19 @@ const Home = () => {
     ).innerHTML += `
     <p>${info.name}</p>`;
 
+    //photo
+    containerHome.querySelector(
+      '.Avatar-img',
+    ).src = `${info.photo}`;
+
+    //Bio
+    containerHome.querySelector(
+      '.bioText',
+    ).textContent = `${info.bio}`;
+    
+
+    
+
     /* *************** evento de añadir publicación con save *************** */
 
     containerHome.querySelector('#btnSave').addEventListener('click', (e) => {
@@ -275,12 +280,11 @@ const Home = () => {
     llenarPublications(documentFirebase, idPublication);
   }
 
-  /* ***** publicaciones realizadas ***** */
+  /* ***** muestra publicaciones realizadas ***** */
 
   async function llenarPublications(documentFirebase, idPublication) {
     const userOfPublication = await getDoc(doc(db, 'users', documentFirebase.data().author));
-    // console.log(userOfPublication);
-
+  
     if (userOfPublication.exists()) {
       const divPublicado = containerHome.querySelector('#publicado');
 
@@ -289,12 +293,11 @@ const Home = () => {
       const publicationText = documentFirebase.data().publication;
 
       /* ***** Only Delete or Edit Post for UserCurrent ***** */
-
       const authorPublication = userOfPublication.data().uid;
       const userCurrent = sessionStorage.getItem('key');
       const myPost = authorPublication === userCurrent;
 
-      /* ***** add componet publication ***** */
+      /* ***** Agrega una nueva publicación por usuario de primera ***** */
       divPublicado.prepend(publicationComponent(nameUser,
         myPost,
         idPublication,
@@ -336,55 +339,60 @@ const Home = () => {
         btnsEditPostBox.classList.add('hide');
       });
 
-      /* ***** delete publication ***** */
+      /* ***** delete publication ***** */ 
+       //import modal
+        const cerrar = document.getElementById('close');
+        const modalC = document.getElementById('modal-container');
+        const btnModalConfirmDelete = document.getElementById('btn-modal-yes');
+        const btnModalCancel = document.getElementById('btn-modal-no');
 
-      const publication = divPublicado.querySelectorAll('img[data-ref]');
-      console.log(divPublicado);
-      publication.forEach((element) => {
-        element.addEventListener('click', (e) => {
-          e.preventDefault();
-          console.log('aqui va un delete prueba');
-          const idPublicationRef = element.dataset.ref;
+        //delete
+        divPublicado.querySelector('.btnDelete')
+  .addEventListener("click", (event) => {
+    let deleted = event.target.dataset.ref;
 
-          // INIT - Modal for Vericate Delete Publication
-          let stateModal = false;
+    // INIT - Modal for Vericate Delete Publication
+    let stateModal = false;
 
-          // view modal
-          modalC.style.opacity = '1';
-          modalC.style.visibility = 'visible';
+    // view modal
+    modalC.style.opacity = '1';
+    modalC.style.visibility = 'visible';
 
-          // close modal
-          cerrar.addEventListener('click', () => {
-            modalC.style.opacity = '0';
-            modalC.style.visibility = 'hidden';
-            return stateModal;
-          });
+    // close modal
+    cerrar.addEventListener('click', () => {
+      modalC.style.opacity = '0';
+      modalC.style.visibility = 'hidden';
+      deleted = '';
+      return stateModal;
+    });
 
-          // cancel modal
-          btnModalCancel.addEventListener('click', () => {
-            modalC.style.opacity = '0';
-            modalC.style.visibility = 'hidden';
-            return stateModal;
-          });
+    // cancel modal
+    btnModalCancel.addEventListener('click', () => {
+      modalC.style.opacity = '0';
+      modalC.style.visibility = 'hidden';
+      deleted = '';
+      return stateModal;
+    });
 
-          // confirm delete - YES
-          btnModalConfirmDelete.addEventListener('click', () => {
-            modalC.style.opacity = '0';
-            modalC.style.visibility = 'hidden';
-            stateModal = true;
+    // confirm delete - YES
+    btnModalConfirmDelete.addEventListener('click', () => {
+      modalC.style.opacity = '0';
+      modalC.style.visibility = 'hidden';
+      stateModal = true;
 
-            // Delete publication for Firebase
-            deletePublication(idPublicationRef, divPublicado);
+      // Delete publication for Firebase
+      if (deleted != '') {
+        deletePublication(deleted);
+        let removeDiv = divPublicado.querySelector(`#${deleted}`);
+     
+          // Delete div publication
+          removeDiv.remove();
+      }
 
-            // Delete box of publications
-            const elementDelete = element.parentNode.parentNode.parentNode;
-            elementDelete.remove();
-
-            return stateModal;
-          });
-          // END - Modal for Vericate Delete Publication
-        });
-      });
+      return stateModal;
+    });
+    // END - Modal for Vericate Delete Publication
+  });
 
       // Botón para dar like a la publicación
       const btnLikes = divPublicado.querySelectorAll('img[data-like]');
