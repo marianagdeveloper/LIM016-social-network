@@ -33,6 +33,22 @@ async function readUser(uid) {
   return data;
 }
 
+/* read text content of a publication */
+
+async function readAPost(uid, elmtTextContentPost) {
+  let data = '';
+  const docRef = doc(db, 'publications', uid);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    data = docSnap.data().publication;
+    elmtTextContentPost.value = data;
+    console.log('textPost:', elmtTextContentPost);
+  } else {
+    console.log('No exist post!');
+  }
+}
+
 /* *************** Agregar publicacion a Firebase *************** */
 async function addPublication(publication) {
   try {
@@ -359,10 +375,17 @@ const Home = () => {
 
       /* ***** cancel edit publication ***** */
       cancelPublication.addEventListener('click', (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         // editPublication(idPublication, publicationText);
         textPublication.disabled = true;
         btnsEditPostBox.classList.add('hide');
+
+        const cancelEdit = e.target.dataset.cancel;
+
+        if (cancelEdit == idPublication) {
+          console.log('e.target', cancelEdit);
+          readAPost(idPublication, textPublication);
+        }
       });
 
       /* ***** delete publication ***** */
@@ -376,14 +399,11 @@ const Home = () => {
       divPublicado.querySelector('.btnDelete')
         .addEventListener('click', (event) => {
           let deleted = event.target.dataset.ref;
-
           // INIT - Modal for Vericate Delete Publication
           let stateModal = false;
-
           // view modal
           modalC.style.opacity = '1';
           modalC.style.visibility = 'visible';
-
           // close modal
           cerrar.addEventListener('click', () => {
             modalC.style.opacity = '0';
@@ -391,7 +411,6 @@ const Home = () => {
             deleted = '';
             return stateModal;
           });
-
           // cancel modal
           btnModalCancel.addEventListener('click', () => {
             modalC.style.opacity = '0';
@@ -399,13 +418,11 @@ const Home = () => {
             deleted = '';
             return stateModal;
           });
-
           // confirm delete - YES
           btnModalConfirmDelete.addEventListener('click', () => {
             modalC.style.opacity = '0';
             modalC.style.visibility = 'hidden';
             stateModal = true;
-
             // Delete publication for Firebase
             if (deleted !== '') {
               deletePublication(deleted);
@@ -414,7 +431,6 @@ const Home = () => {
               // Delete div publication
               removeDiv.remove();
             }
-
             return stateModal;
           });
           // END - Modal for Vericate Delete Publication
