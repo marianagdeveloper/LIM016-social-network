@@ -1,4 +1,4 @@
-import { signInWithGmail } from '../view-controller/signin-controller.js';
+// import { signInWithGmail } from '../view-controller/signin-controller.js';
 import { signInWithEmailAndPassword, provider, auth } from '../utils/firebaseconfig.js';
 
 export const handleSignin = (e) => {
@@ -13,8 +13,7 @@ export const handleSignin = (e) => {
     })
     .catch((error) => {
       const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log('error en signin', errorMessage, errorCode);
+      console.log('error en signin', errorCode);
     });
 };
 

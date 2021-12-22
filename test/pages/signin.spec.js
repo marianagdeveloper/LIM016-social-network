@@ -13,6 +13,7 @@ describe('SignIn', () => {
     const btn = signInElem.querySelector('#btn-signin-signin');
     const evt = new Event('click');
     btn.dispatchEvent(evt);
+    console.log(signInWithEmailAndPassword.mock);
     expect(signInWithEmailAndPassword.mock.calls[0][1]).toBe('correao@mail.com');
     expect(signInWithEmailAndPassword.mock.calls[0][2]).toBe('pwd');
   });
