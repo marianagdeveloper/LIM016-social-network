@@ -135,6 +135,12 @@ const EditProfile = () => {
                     srcset=''
                   />
                   </div>
+                  <div class='img11'>
+                  <img
+                  src='img/Avatares/Animals/camera.png'
+                  alt=''
+                  srcset=''
+                /> </div>
                   
               </div>
           
@@ -236,6 +242,11 @@ const EditProfile = () => {
     divElemt.querySelector(".photo").src = photo;
   }
 
+  //Function camera with Avatar Personal
+  function avatarPersonal() {
+    alert('ko');
+  }
+
   //Funtion of Interests Profile
   function interestsProfile(interests) {
     console.log(interests);
@@ -259,6 +270,15 @@ const EditProfile = () => {
       country: country,
     });
   };
+
+  //Update info user in SessionStorage
+  function updateInfoUserSession(userData) {
+    console.log('userData', userData);
+    console.log(JSON.parse(sessionStorage.getItem('user')));
+    
+    sessionStorage.setItem('user', JSON.stringify(userData));
+    console.log(JSON.parse(sessionStorage.getItem('user')));
+  }
 
   //Add info of User
   const infoUser = (info) => {
@@ -333,6 +353,12 @@ const EditProfile = () => {
       });
     }
 
+    //Select camera
+    const divCamera = divElemt.querySelector('.img11');
+    divCamera.addEventListener("click", (event) => {
+      avatarPersonal();
+    });
+
     //Select Interest
     let arrayInterest = info.interests;
     console.log(arrayInterest);
@@ -367,7 +393,8 @@ const EditProfile = () => {
       country = code+':'+nameCountry;
       console.log(country.split(':'));
       interests = arrayInterests;
-      updateInfoUser (uid, bio, photo, interests, country );
+      updateInfoUser (uid, bio, photo, interests, country);
+      updateInfoUserSession({uid, bio, photo, interests, country})
     });    
   };
 

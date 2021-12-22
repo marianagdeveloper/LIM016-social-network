@@ -369,10 +369,9 @@
 
 .img11 img{
   grid-area: img11;
-  width: 80%;
+  width: 75%;
   display: block;
   margin: auto;
-  background: #000;
 }
 
 #selectInterest {
