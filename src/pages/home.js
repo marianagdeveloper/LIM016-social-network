@@ -1,8 +1,5 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-sequences */
 /* eslint-disable no-use-before-define */
-/* eslint-disable no-plusplus */
-
+/* eslint-disable no-unused-expressions */
 import { publicationComponent } from './publication.js';
 
 import {
@@ -16,13 +13,6 @@ import {
   // onSnapshot,
   deleteDoc,
 } from '../utils/firebaseconfig.js';
-
-/* *************** Constantes para el modal "delete publication" *************** */
-
-const cerrar = document.getElementById('close');
-const modalC = document.getElementById('modal-container');
-const btnModalConfirmDelete = document.getElementById('btn-modal-yes');
-const btnModalCancel = document.getElementById('btn-modal-no');
 
 /* *************** Obtener un usuario de Firebase *************** */
 
@@ -44,7 +34,6 @@ async function readUser(uid) {
 }
 
 /* *************** Agregar publicacion a Firebase *************** */
-
 async function addPublication(publication) {
   try {
     // eslint-disable-next-line no-unused-vars
@@ -91,13 +80,15 @@ const Home = () => {
         <div class='Bio'>
           <h3>Biography:</h3><br>
           <div>
-            <p>Hola, soy amante del arte en reciclado. Hago muchas manualidades pro ambientales. Les invito a ver mi galeria. 🧮 </p>
+            <p class='bioText' >Hola, soy amante del arte en reciclado. Hago muchas manualidades pro ambientales. Les invito a ver mi galeria. 🧮 </p>
           </div>
         </div>
         <div class='Inf'>
           <div class='Country'>
             <h3>Country:</h3>
-            <p>Italia</p>
+            <div class='countryImg'>
+            </div>
+            <p class ='countryText'></p>
           </div>
           <div class='Email'>
 
@@ -108,9 +99,9 @@ const Home = () => {
             Interests:
           </h3><br>
           <div class='Interests-Box'>
-            <img src='img/Intereses/InteresesCN/AnimalCN.png' alt=''>
-            <img src='img/Intereses/InteresesCN/SiembraCN.png' alt=''>
-            <img src='img/Intereses/InteresesCN/ReciclajeCN.png' alt=''>
+            <img id='Interests-0' src='' alt=''>
+            <img id='Interests-1' src='' alt=''>
+            <img id='Interests-2' src='' alt=''>
           </div>
         </div>
       </div>
@@ -220,6 +211,7 @@ const Home = () => {
   });
 
   /* *************** Agregars información sincronizada del usuario al perfil *************** */
+
   const infoUser = (info) => {
     containerHome.querySelector(
       '.UserName',
@@ -232,6 +224,41 @@ const Home = () => {
       '.userNamePublication',
     ).innerHTML += `
     <p>${info.name}</p>`;
+
+    // photo
+    containerHome.querySelector(
+      '.Avatar-img',
+    ).src = `${info.photo}`;
+
+    // Bio
+    containerHome.querySelector(
+      '.bioText',
+    ).textContent = `${info.bio}`;
+
+    // Country
+    containerHome.querySelector(
+      '.countryText',
+    ).textContent = `${info.country.split(':')[1]}`;
+
+    // Country flag
+    containerHome.querySelector(
+      '.countryImg',
+    ).innerHTML += `
+    <img
+    src='https://flagcdn.com/40x30/${info.country.split(':')[0]}.png'
+    srcset='httpscountrycdn.com/80x60/${info.country.split(':')[0]}.png 2x,
+      https://flagcdn.com/120x90/${info.country.split(':')[0]}.png 3x'
+    width='40'
+    height='30'
+    alt='${info.country.split(':')[1]}'>
+  `;
+
+    // Interests
+    // eslint-disable-next-line no-plusplus
+    for (let index = 0; index < 3; index++) {
+      containerHome.querySelector(`#Interests-${index}`).src = info.interests[index];
+      console.log(index);
+    }
 
     /* *************** evento de añadir publicación con save *************** */
 
@@ -265,6 +292,8 @@ const Home = () => {
     return uidSS;
   };
   readUser(uid())
+
+    // eslint-disable-next-line no-sequences
     .then((value) => { infoUser(value), reedPublications(value); })
     .catch((error) => console.log(error));
 
@@ -275,11 +304,10 @@ const Home = () => {
     llenarPublications(documentFirebase, idPublication);
   }
 
-  /* ***** publicaciones realizadas ***** */
+  /* ***** muestra publicaciones realizadas ***** */
 
   async function llenarPublications(documentFirebase, idPublication) {
     const userOfPublication = await getDoc(doc(db, 'users', documentFirebase.data().author));
-    // console.log(userOfPublication);
 
     if (userOfPublication.exists()) {
       const divPublicado = containerHome.querySelector('#publicado');
@@ -289,16 +317,17 @@ const Home = () => {
       const publicationText = documentFirebase.data().publication;
 
       /* ***** Only Delete or Edit Post for UserCurrent ***** */
-
       const authorPublication = userOfPublication.data().uid;
       const userCurrent = sessionStorage.getItem('key');
       const myPost = authorPublication === userCurrent;
-
-      /* ***** add componet publication ***** */
+      const photo = userOfPublication.data().photo;
+      console.log('photo:', photo);
+      /* ***** Agrega una nueva publicación por usuario de primera ***** */
       divPublicado.prepend(publicationComponent(nameUser,
         myPost,
         idPublication,
-        publicationText));
+        publicationText,
+        photo));
 
       const textPublication = document.querySelector('textArea[data-texto]');
       const editsPublication = document.querySelector('img[data-edit]');
@@ -337,14 +366,16 @@ const Home = () => {
       });
 
       /* ***** delete publication ***** */
+      // import modal
+      const cerrar = document.getElementById('close');
+      const modalC = document.getElementById('modal-container');
+      const btnModalConfirmDelete = document.getElementById('btn-modal-yes');
+      const btnModalCancel = document.getElementById('btn-modal-no');
 
-      const publication = divPublicado.querySelectorAll('img[data-ref]');
-      console.log(divPublicado);
-      publication.forEach((element) => {
-        element.addEventListener('click', (e) => {
-          e.preventDefault();
-          console.log('aqui va un delete prueba');
-          const idPublicationRef = element.dataset.ref;
+      // delete
+      divPublicado.querySelector('.btnDelete')
+        .addEventListener('click', (event) => {
+          let deleted = event.target.dataset.ref;
 
           // INIT - Modal for Vericate Delete Publication
           let stateModal = false;
@@ -357,6 +388,7 @@ const Home = () => {
           cerrar.addEventListener('click', () => {
             modalC.style.opacity = '0';
             modalC.style.visibility = 'hidden';
+            deleted = '';
             return stateModal;
           });
 
@@ -364,6 +396,7 @@ const Home = () => {
           btnModalCancel.addEventListener('click', () => {
             modalC.style.opacity = '0';
             modalC.style.visibility = 'hidden';
+            deleted = '';
             return stateModal;
           });
 
@@ -372,26 +405,29 @@ const Home = () => {
             modalC.style.opacity = '0';
             modalC.style.visibility = 'hidden';
             stateModal = true;
-            console.log('Boton de yes');
-            // Delete publication for Firebase
-            deletePublication(idPublicationRef, divPublicado);
 
-            // Delete box of publications
-            const elementDelete = element.parentNode.parentNode.parentNode;
-            elementDelete.remove();
+            // Delete publication for Firebase
+            if (deleted !== '') {
+              deletePublication(deleted);
+              const removeDiv = divPublicado.querySelector(`#${deleted}`);
+
+              // Delete div publication
+              removeDiv.remove();
+            }
 
             return stateModal;
           });
           // END - Modal for Vericate Delete Publication
         });
-      });
 
       // Botón para dar like a la publicación
-      const btnLikes = divPublicado.querySelectorAll('img[data-like]');
+      const btnLikes = divPublicado.querySelectorAll('div.saveN > img');
+      console.log(btnLikes);
       btnLikes.forEach((element) => {
         element.addEventListener('click', (e) => {
           e.preventDefault();
           console.log('aqui va un like prueba');
+          console.log(uid());
         });
       });
     } else {

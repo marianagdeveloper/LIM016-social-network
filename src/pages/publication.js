@@ -1,13 +1,17 @@
+  // const uidSS = sessionStorage.getItem('user');
+  // console.log('uidSS: ', uidSS);
+
 export function publicationComponent(nameUser,
   myPost,
   idPublication,
-  publicationText) {
+  publicationText,
+  photo) {
   const componetPublication = `
-    <div class='boxPublicationsN'>
+    <div class='boxPublicationsN' id='${idPublication}'>
       <div class='boxPhotoandNameN'>
         <div class='boxInternoPhotoandNameN'>
           <div class='photoPerfilN'>
-            <img src='img/Avatares/Animals/AvatarA7.png' alt=''>
+            <img class='Avatar-img' src='${photo}' alt='Avatar Profile'>
           </div>
 
           <div class="userNameN">
@@ -22,7 +26,7 @@ export function publicationComponent(nameUser,
       </div>
 
       <div class='publicationN'>
-        <div>
+        <div >
           <textArea class='contentPublicationN' data-texto='${publicationText}' disabled>${publicationText}
           </textArea>
         </div>
@@ -40,6 +44,7 @@ export function publicationComponent(nameUser,
       </div>
     </div>`;
 
+  // publication
   const divElemt = document.createElement('div');
   divElemt.innerHTML += componetPublication;
 
@@ -48,6 +53,11 @@ export function publicationComponent(nameUser,
   <img id='btnDelete' class='btnDelete' data-ref='${idPublication}' src='img/Icons/Delete.png' alt=''>`;
 
   const btnsContainer = divElemt.querySelector('.editPost');
+
+  // photo
+  // divElemt.querySelector(
+  //   '.Avatar-img',
+  // ).src = `${uidSS.photo}`;
 
   if (myPost) {
     //   componetPublication.querySelector('.editPost').innerHTML(btnsEditAndDeletePost);
@@ -69,5 +79,6 @@ export function publicationComponent(nameUser,
   `;
   const dateconcat = divElemt.querySelector('.userNameN');
   dateconcat.innerHTML += dateconcatTemplate;
+
   return divElemt;
 }

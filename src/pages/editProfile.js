@@ -1,3 +1,6 @@
+/* eslint-disable prefer-const */
+/* eslint-disable no-loop-func */
+/* eslint-disable guard-for-in */
 import
 {
   db,
@@ -6,7 +9,7 @@ import
 } from
   '../utils/firebaseconfig.js';
 
-import countries from '../utils/countries.js';
+import { countries } from '../utils/countries.js';
 // console.log('countries', Object.values(countries));
 
 // Template View Edit Profile
@@ -282,7 +285,7 @@ const EditProfile = () => {
     const flag = info.country.split(':')[0];
     // console.log('country:', country);
     // console.log('flag:', flag);
-    if (country != '') {
+    if (country !== '') {
       divElemt.querySelector('.flag').innerHTML = `
       <img
       src='https://flagcdn.com/40x30/${flag}.png'
@@ -296,6 +299,7 @@ const EditProfile = () => {
 
     // Show Select Country
     const arr = countries;
+    // eslint-disable-next-line no-restricted-syntax
     for (const prop in arr) {
       const divElement = divElemt.querySelector('.selectCountry');
       divElement.innerHTML += `<option value='${prop}:${arr[prop]}'>${arr[prop]}</option>`;
@@ -324,6 +328,7 @@ const EditProfile = () => {
 
     // Select Photo Profile
     let newPhoto = info.photo;
+    // eslint-disable-next-line no-plusplus
     for (let index = 0; index < 11; index++) {
       const divAvatar = divElemt.querySelector(`.img${index}`);
       divAvatar.addEventListener('click', (event) => {
@@ -336,6 +341,7 @@ const EditProfile = () => {
     // Select Interest
     const arrayInterest = info.interests;
     console.log(arrayInterest);
+    // eslint-disable-next-line no-plusplus
     for (let index = 0; index < 11; index++) {
       const divInterestsProfile = divElemt.querySelector(`#interest${index}`);
       divInterestsProfile.addEventListener('click', (event) => {
@@ -356,6 +362,7 @@ const EditProfile = () => {
     const btnSave = divElemt.querySelector('.buttonSave');
     btnSave.addEventListener('click', () => {
       // console.log('save');
+      // eslint-disable-next-line no-shadow
       let uid; let bio; let photo; let country; let
         interests;
       console.log('uidSS: ', sessionStorage.getItem('key'));
