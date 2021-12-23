@@ -86,12 +86,14 @@ export function publicationComponent(nameUser,
 
   element.addEventListener('click', () => {
     // ****se agrega o quita likes del usuario de acuerdo a la condicion****
+    const arrayLikes = [];
+    arrayLikes.push(userCurrent);
     if (activo) {
       likeRef = doc(db, 'publications', uidPostLikes);
       // eslint-disable-next-line no-inner-declarations
       async function arrayFirebase() {
         await updateDoc(likeRef, {
-          idUserLike: arrayUnion(userCurrent),
+          idUserLike: arrayUnion(...arrayLikes),
         });
       }
       arrayFirebase()
@@ -104,7 +106,7 @@ export function publicationComponent(nameUser,
       likeRef = doc(db, 'publications', uidPostLikes);
       async function arrayRemoveFirebase() {
         await updateDoc(likeRef, {
-          idUserLike: arrayRemove(userCurrent),
+          idUserLike: arrayRemove(...arrayLikes),
         });
       }
       arrayRemoveFirebase()
