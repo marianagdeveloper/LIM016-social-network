@@ -93,7 +93,7 @@ const Home = () => {
         <div class='UserName'>
         </div>
         <div class='Avatar'>
-          <img class='Avatar-img' src='img/Avatares/Animals/AvatarA7.png' alt='Avatar Profile'><br>
+          <img title='Your phofile picture' class='Avatar-img' src='img/Avatares/Animals/AvatarA7.png' alt='Avatar Profile'><br>
           <div class='linea2'>&nbsp;</div>
         </div>
         <div class='Bio'>
@@ -118,9 +118,9 @@ const Home = () => {
             Interests:
           </h3><br>
           <div class='Interests-Box'>
-            <img id='Interests-0' src='' alt=''>
-            <img id='Interests-1' src='' alt=''>
-            <img id='Interests-2' src='' alt=''>
+            <img title='Your interest' id='Interests-0' src='' alt=''>
+            <img title='Your interest' id='Interests-1' src='' alt=''>
+            <img title='Your interest' id='Interests-2' src='' alt=''>
           </div>
         </div>
       </div>
@@ -135,7 +135,7 @@ const Home = () => {
             <div class='boxPhotoandName'>
               <div class='boxInternoPhotoandName'>
                 <div class='photoPerfil'>
-                  <img src='img/Avatares/Animals/AvatarA7.png' alt=''>
+                  <img class='Avatar-img-Post' src='img/Avatares/Animals/AvatarA7.png' alt=''>
                 </div>
                 <div class="userNamePublication">
 
@@ -149,9 +149,14 @@ const Home = () => {
                 <p>Your post was published successfully</p> 
               </div>
             </div>
-            <div class='save'>
-              <button id='btnSave' class='btnSave'>SAVE</button>
-              <button id='btnCancel' class='btnCancel'>CANCEL</button>
+            <div class='opcionAddPost'>
+              <div class='AddPhotoPost'>
+              <img title='Add a picture' src="img/Icons/cameraPost.png"  alt="Add photo" />
+              </div>
+              <div class='save'>
+                <button id='btnSave' class='btnSave'>SAVE</button>
+                <button id='btnCancel' class='btnCancel'>CANCEL</button>
+              </div>
             </div>
           </div>
           <div id='publicado'>
@@ -249,6 +254,11 @@ const Home = () => {
       '.Avatar-img',
     ).src = `${info.photo}`;
 
+    // photo
+    containerHome.querySelector(
+      '.Avatar-img-Post',
+    ).src = `${info.photo}`;
+
     // Bio
     containerHome.querySelector(
       '.bioText',
@@ -259,11 +269,17 @@ const Home = () => {
       '.countryText',
     ).textContent = `${info.country.split(':')[1]}`;
 
+    // Country title
+    containerHome.querySelector(
+      '.countryText',
+    ).title = `${info.country.split(':')[1]}`;
+
     // Country flag
     containerHome.querySelector(
       '.countryImg',
     ).innerHTML += `
     <img
+    title='${info.country.split(':')[1]}'
     src='https://flagcdn.com/40x30/${info.country.split(':')[0]}.png'
     srcset='httpscountrycdn.com/80x60/${info.country.split(':')[0]}.png 2x,
       https://flagcdn.com/120x90/${info.country.split(':')[0]}.png 3x'

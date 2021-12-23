@@ -1,5 +1,5 @@
-  // const uidSS = sessionStorage.getItem('user');
-  // console.log('uidSS: ', uidSS);
+// const uidSS = sessionStorage.getItem('user');
+// console.log('uidSS: ', uidSS);
 
 export function publicationComponent(nameUser,
   myPost,
@@ -49,8 +49,8 @@ export function publicationComponent(nameUser,
   divElemt.innerHTML += componetPublication;
 
   const btnsEditAndDeletePost = `
-  <img id='btnEditPost' class='btnEditPost' data-edit='${idPublication}' src='img/Icons/Pencil.png' alt=''>
-  <img id='btnDelete' class='btnDelete' data-ref='${idPublication}' src='img/Icons/Delete.png' alt=''>`;
+  <img title='Edit your post' id='btnEditPost' class='btnEditPost' data-edit='${idPublication}' src='img/Icons/Pencil.png' alt=''>
+  <img title='Delete your post' id='btnDelete' class='btnDelete' data-ref='${idPublication}' src='img/Icons/Delete.png' alt=''>`;
 
   const btnsContainer = divElemt.querySelector('.editPost');
 

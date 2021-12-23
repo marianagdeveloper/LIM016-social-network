@@ -11,7 +11,7 @@ import {
 import countries from '../utils/countries.js';
 // console.log('countries', Object.values(countries));
 
-//Template View Edit Profile
+// Template View Edit Profile
 const EditProfile = () => {
   const viewEditProfile = ` 
   <body>
@@ -30,8 +30,9 @@ const EditProfile = () => {
             <div class='photoProfile'>
               <img
                 class='photo'
+                title='Your profile picture'
                 src=''
-                alt=''
+                alt='Your profile picture'
                 srcset=''
               />
             </div>
@@ -51,185 +52,229 @@ const EditProfile = () => {
               <textarea name='comments' id='texta2' class='bio'></textarea>
               <div class='buttonSave'>
                 <button>
-                  <h2>SAVE</h2>
+                  <h3>SAVE</h3>
                 </button>
               </div>
             </div>
           </div>
           <div class='selectProfile' class='Box'>
             <div id='selectPhoto' class='Box'>
-              <h2>Choose your profile picture:</h2>
-              <div id='photos' class='Box'>
+              <div id='boxBtnSelectAvatars' class='boxBtnSelectAvatars'>
+                <h2>Choose your profile picture:</h2>
+                <img
+                  class='OpenListAvatars'
+                  src='img/Icons/Up.png'
+                  title='Open Avatars list'
+                  alt='Open Avatars list'/>
+                <img
+                  class='None CloseListAvatars'
+                  src='img/Icons/Down.png'
+                  title='Close Interests list'
+                  alt='Close Interests list'/>
+              </div>
+              
+              <div id='photos' class='None Box-photos listAvatars'>
                   <div class='img0'>
                     <img
                     src='img/Avatares/Animals/AvatarA1.png'
-                    alt=''
-                    srcset=''
-                  />
+                    title='African Elephat'
+                    alt='African Elephat'
+                    srcset=''/>
+                    <p>African Elephat</p>
                   </div>
                   <div class='img1'>
                     <img
                     src='img/Avatares/Animals/AvatarA2.png'
-                    alt=''
-                    srcset=''
-                  />
+                    title='White Rhino'
+                    alt='White Rhino'
+                    srcset=''/>
+                    <p>White Rhino</p>
                   </div>
                   <div class='img2'>
                     <img
                     src='img/Avatares/Animals/AvatarA3.png'
-                    alt=''
-                    srcset=''
-                  />
+                    title='American Crocodile'
+                    alt='American Crocodile'
+                    srcset=''/>
+                    <p>American Crocodile</p>
                   </div>
                   <div class='img3'>
                     <img
                     src='img/Avatares/Animals/AvatarA4.png'
-                    alt=''
-                    srcset=''
-                  />
+                    title='Boa Constrictor'
+                    alt='Boa Constrictor'
+                    srcset=''/>
+                    <p>Boa Constrictor</p>
                   </div>
                   <div class='img4'>
                     <img
                     src='img/Avatares/Animals/AvatarA5.png'
-                    alt=''
-                    srcset=''
-                  />
+                    title='Sloth'
+                    alt='Sloth'
+                    srcset=''/>
+                    <p>Sloth</p>
                   </div>
                   <div class='img5'>
                     <img
                     src='img/Avatares/Animals/AvatarA6.png'
-                    alt=''
-                    srcset=''
-                  />
+                    title='Leopard'
+                    alt='Leopard'
+                    srcset=''/>
+                    <p>Leopard</p>
                   </div>
                   <div class='img6'>
                     <img
                     src='img/Avatares/Animals/AvatarA7.png'
-                    alt=''
-                    srcset=''
-                  />
+                    title='Angel Fish'
+                    alt='Angel Fish'
+                    srcset=''/>
+                    <p>Angel Fish</p>
                   </div>
                   <div class='img7'>
                     <img
                     src='img/Avatares/Animals/AvatarA8.png'
-                    alt=''
-                    srcset=''
-                  />
+                    title='Oophaga Lehmani'
+                    alt='Oophaga Lehmani'
+                    srcset=''/>
+                    <p>Oophaga Lehmani</p>
                   </div>
                   <div class='img8'>
                     <img
                     src='img/Avatares/Animals/AvatarA9.png'
-                    alt=''
-                    srcset=''
-                  />
+                    title='Akohekohe'
+                    alt='Akohekohe'
+                    srcset=''/>
+                    <p>Akohekohe</p>
                   </div>
                   <div class='img9'>
                     <img
                     src='img/Avatares/Animals/AvatarA10.png'
-                    alt=''
-                    srcset=''
-                  />
+                    title='Komodo Dragon'
+                    alt='Komodo Dragon'
+                    srcset=''/>
+                    <p>Komodo Dragon</p>
                   </div>
                   <div class='img10'>
                     <img
                     src='img/Avatares/Animals/AvatarA11.png'
-                    alt=''
-                    srcset=''
-                  />
+                    title='Bengal tiger'
+                    alt='Bengal tiger'
+                    srcset=''/>
+                    <p>Bengal tiger</p>
                   </div>
                   <div class='img11'>
-                  <img
-                  src='img/Avatares/Animals/camera.png'
-                  alt=''
-                  srcset=''
-                  /> 
-                  
-                </div>
-                <input type="file" id="edit-file" name="edit-file"/>
-               
-                  
+                    <img
+                    src='img/Icons/cameraProfile.png'
+                    title='Add image'
+                    alt='Add image'
+                    srcset=''/> 
+                    <input type="file" id="edit-file" name="edit-file"/>
+                  </div>                  
               </div>
           
           </div>
             <div id='selectInterest' class='Box'>
-              <h2>Pick 3 of your interests:</h2>
-              <div id='photos' class='Box'>
+              <div id='boxBtnSelectInterests' class='boxBtnSelectInterests'>
+                <h2>Pick 3 of your interests:</h2>
+                <img
+                  class='OpenListInterests'
+                  src='img/Icons/Up.png'
+                  title='Open Interests list'
+                  alt='Open Interests list'/>
+                <img
+                  class='None CloseListInterests'
+                  src='img/Icons/Down.png'
+                  title='Close Interests list'
+                  alt='Close Interests list'/>
+              </div>
+              <div id='photos' class='None Box-photos listInterests'>
                 <div class='img0' id='interest0'>
                   <img
                   src='img/Intereses/Agua.png'
-                  alt=''
-                  srcset=''
-                />
+                  title='Saving Water'
+                  alt='Saving Water'
+                  srcset=''/>
+                  <p>Saving Water</p>
                 </div>
                 <div class='img1' id='interest1'>
                   <img
                   src='img/Intereses/Animal.png'
-                  alt=''
-                  srcset=''
-                />
+                  title='Animals'
+                  alt='Animals'
+                  srcset=''/>
+                  <p>Animals</p>
                 </div>
                 <div class='img2' id='interest2'>
                   <img
                   src='img/Intereses/Clima.png'
-                  alt=''
-                  srcset=''
-                />
+                  title='Weather'
+                  alt='Weather'
+                  srcset=''/>
+                  <p>Weather</p>
                 </div>
                 <div class='img3' id='interest3'>
                   <img
                   src='img/Intereses/Energia.png'
-                  alt=''
-                  srcset=''
-                />
+                  title='Natural Energy'
+                  alt='Natural Energy'
+                  srcset=''/>
+                  <p>Natural Energy</p>
                 </div>
                 <div class='img4' id='interest4'>
                   <img
                   src='img/Intereses/Energia2.png'
-                  alt=''
-                  srcset=''
-                />
+                  title='Energy Saving'
+                  alt='Energy Saving'
+                  srcset=''/>
+                  <p>Energy Saving</p>
                 </div>
                 <div class='img5' id='interest5'>
                   <img
                   src='img/Intereses/Fabrica.png'
-                  alt=''
-                  srcset=''
-                />
+                  title='CO2 Emissions'
+                  alt='CO2 Emissions'
+                  srcset=''/>
+                  <p>CO2 Emissions</p>
                 </div>
                 <div class='img6' id='interest6'>
                   <img
                   src='img/Intereses/Oceanos.png'
-                  alt=''
-                  srcset=''
-                />
+                  title='Oceans'
+                  alt='Oceans'
+                  srcset=''/>
+                  <p>Oceans</p>
                 </div>
                 <div class='img7' id='interest7'>
                   <img
                   src='img/Intereses/Reciclaje.png'
-                  alt=''
-                  srcset=''
-                />
+                  title='Recycle'
+                  alt='Recycle'
+                  srcset=''/>
+                  <p>Recycle</p>
                 </div>
                 <div class='img8' id='interest8'>
                   <img
                   src='img/Intereses/ResiduosTóxicos.png'
-                  alt=''
-                  srcset=''
-                />
+                  title='Toxic Waste'
+                  alt='Toxic Waste'
+                  srcset=''/>
+                  <p>Toxic Waste</p>
                 </div>
                 <div class='img9' id='interest9'>
                   <img
                   src='img/Intereses/Siembra.png'
-                  alt=''
-                  srcset=''
-                />
+                  title='Farming'
+                  alt='Farming'
+                  srcset=''/>
+                  <p>Farming</p>
                 </div>
                 <div class='img10' id='interest10'>
                   <img
                   src='img/Intereses/Tala.png'
-                  alt=''
-                  srcset=''
-                />
+                  title='Deforestation'
+                  alt='Deforestation'
+                  srcset=''/>
+                  <p>Deforestation</p>
                 </div>
             </div>
             </div>
@@ -243,12 +288,51 @@ const EditProfile = () => {
   const divElemt = document.createElement('div');
   divElemt.innerHTML = viewEditProfile;
 
+  const btnOpenListAvatars = divElemt.querySelector('.OpenListAvatars');
+  const btnCloseListAvatars = divElemt.querySelector('.CloseListAvatars');
+  const btnOpenListInterests = divElemt.querySelector('.OpenListInterests');
+  const btnCloseListInterests = divElemt.querySelector('.CloseListInterests');
+  const listAvatars = divElemt.querySelector('.listAvatars');
+  const listInterests = divElemt.querySelector('.listInterests');
+
+  /* ***** Open Avatar List ***** */
+  btnOpenListAvatars.addEventListener('click', (e) => {
+    e.preventDefault();
+    btnCloseListAvatars.classList.remove('None');
+    btnOpenListAvatars.classList.add('None');
+    listAvatars.classList.remove('None');
+  });
+
+  /* ***** Close Avatar List ***** */
+  btnCloseListAvatars.addEventListener('click', (e) => {
+    e.preventDefault();
+    btnOpenListAvatars.classList.remove('None');
+    btnCloseListAvatars.classList.add('None');
+    listAvatars.classList.add('None');
+  });
+
+  /* ***** Open Interests List ***** */
+  btnOpenListInterests.addEventListener('click', (e) => {
+    e.preventDefault();
+    btnCloseListInterests.classList.remove('None');
+    btnOpenListInterests.classList.add('None');
+    listInterests.classList.remove('None');
+  });
+
+  /* ***** Close Interests List ***** */
+  btnCloseListInterests.addEventListener('click', (e) => {
+    e.preventDefault();
+    btnOpenListInterests.classList.remove('None');
+    btnCloseListInterests.classList.add('None');
+    listInterests.classList.add('None');
+  });
+
   //Funtion of Update Photo Profile in Left Component
   function photoProfile(photo) {
     divElemt.querySelector(".photo").src = photo;
   }
 
-  //Function camera with Avatar Personal - Save File in Avatar
+//Function camera with Avatar Personal - Save File in Avatar
   async function avatarPersonal(uid, avatar, file) {
     let spaceRef = ref(storage, `${uid}/img/Avatares/${avatar}`);
     await uploadBytes(spaceRef, file);
@@ -257,7 +341,7 @@ const EditProfile = () => {
     return urlIng
   }
 
-  //Funtion of Interests Profile
+  // Funtion of Interests Profile
   function interestsProfile(interests) {
     console.log(interests);
     let divInterestProfile = divElemt.querySelector(".interests");
@@ -265,11 +349,11 @@ const EditProfile = () => {
       divInterestProfile.removeChild(divInterestProfile.firstChild);
     }
     interests.forEach((element) => {
-      divInterestProfile.innerHTML += `<img src='${element}' alt='' />`;
+      divInterestProfile.innerHTML += `<img title='Your interest' src='${element}' alt='' />`;
     });
   }
 
-  //Update info user
+ //Update info user
   function updateInfoUser(uid, bio, photo, interests, country) {
     const userUpdate = doc(db, 'users', uid);
     return updateDoc(userUpdate, {
@@ -279,6 +363,7 @@ const EditProfile = () => {
       country: country,
     });
   };
+
 
   //Update info user
   function updatePhotoWithAvatar(uid, photo) {
@@ -296,37 +381,33 @@ const EditProfile = () => {
     console.log(JSON.parse(sessionStorage.getItem('user')));
   }
 
-  //Update Avatar user in SessionStorage
-  function updateAvatarUserSession(photoData) {
-    sessionStorage.setItem('user', JSON.stringify({ photo : photoData}));
-    console.log('updateAvatarUserSession:', JSON.parse(sessionStorage.getItem('user')));
-  }
-
-  //Add info of User
+ //Add info of User
   const infoUser = (info) => {
     console.log('info: ', info);
 
-    //User Name
+    // User Name
     divElemt.querySelector('.nameUser').innerHTML += `<h3>${info.name}</h3>`;
 
-    //User Bio
+    // User Bio
     divElemt.querySelector('.bio').innerHTML += `${info.bio}`;
 
-    //User Photo of Profile
+    // User Photo of Profile
     photoProfile(info.photo);
 
-    //User Interests
+    // User Interests
     let arrayInterests = info.interests;
     interestsProfile(arrayInterests);
 
-    //User Country
+    // User Country
     let country = info.country.split(':')[1];
     let flag = info.country.split(':')[0];
     // console.log('country:', country);
     // console.log('flag:', flag);
     if (country != "") {
+      
       divElemt.querySelector(".flag").innerHTML = `
       <img
+      title='${country}'
       src='https://flagcdn.com/40x30/${flag}.png'
       srcset='https://flagcdn.com/80x60/${flag}.png 2x,
         https://flagcdn.com/120x90/${flag}.png 3x'
@@ -355,6 +436,7 @@ const EditProfile = () => {
       // Change Flag
       divElemt.querySelector('.flag').innerHTML = `
       <img
+      title='${nameCountry}'
       src='https://flagcdn.com/40x30/${code}.png'
       srcset='httpscountrycdn.com/80x60/${code}.png 2x,
         https://flagcdn.com/120x90/${code}.png 3x'

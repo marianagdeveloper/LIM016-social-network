@@ -9,8 +9,8 @@
 }
 
 body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.87)),
-    url("../img/Photos/Gif1.gif");
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.87)),
+    url("../img/Photos/Gif1.gif"); */
   color: beige;
   background-size: cover;
   font-family: 'Roboto', sans-serif;
@@ -149,6 +149,21 @@ text-align: center;
   padding-bottom: 5%;
 }
 
+.opcionAddPost {
+  display: flex;
+  width: 100%;
+}
+
+.AddPhotoPost {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 2%;
+}
+.AddPhotoPost img {
+  width: 30%;
+}
+
 .btnPublic {
   display: flex;
   justify-content: flex-end;
@@ -220,11 +235,7 @@ text-align: center;
 } */
 .save {
   display: flex;
-  align-content: flex-start;
-  align-items: center;
   justify-content: flex-end;
-  flex-direction: row;
-  flex-wrap: nowrap;
   width: 100%;
 }
 
