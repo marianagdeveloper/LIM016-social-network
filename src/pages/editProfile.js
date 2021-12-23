@@ -64,13 +64,13 @@ const EditProfile = () => {
                   title='Open Avatars list'
                   alt='Open Avatars list'/>
                 <img
-                  class='CloseListAvatars'
+                  class='None CloseListAvatars'
                   src='img/Icons/Down.png'
                   title='Close Interests list'
                   alt='Close Interests list'/>
               </div>
               
-              <div id='photos' class='Box-photos'>
+              <div id='photos' class='None Box-photos listAvatars'>
                   <div class='img0'>
                     <img
                     src='img/Avatares/Animals/AvatarA1.png'
@@ -180,12 +180,12 @@ const EditProfile = () => {
                   title='Open Interests list'
                   alt='Open Interests list'/>
                 <img
-                  class='CloseListInterests'
+                  class='None CloseListInterests'
                   src='img/Icons/Down.png'
                   title='Close Interests list'
                   alt='Close Interests list'/>
               </div>
-              <div id='photos' class='Box-photos'>
+              <div id='photos' class='None Box-photos listInterests'>
                 <div class='img0' id='interest0'>
                   <img
                   src='img/Intereses/Agua.png'
@@ -285,6 +285,45 @@ const EditProfile = () => {
   `;
   const divElemt = document.createElement('div');
   divElemt.innerHTML = viewEditProfile;
+
+  const btnOpenListAvatars = divElemt.querySelector('.OpenListAvatars');
+  const btnCloseListAvatars = divElemt.querySelector('.CloseListAvatars');
+  const btnOpenListInterests = divElemt.querySelector('.OpenListInterests');
+  const btnCloseListInterests = divElemt.querySelector('.CloseListInterests');
+  const listAvatars = divElemt.querySelector('.listAvatars');
+  const listInterests = divElemt.querySelector('.listInterests');
+
+  /* ***** Open Avatar List ***** */
+  btnOpenListAvatars.addEventListener('click', (e) => {
+    e.preventDefault();
+    btnCloseListAvatars.classList.remove('None');
+    btnOpenListAvatars.classList.add('None');
+    listAvatars.classList.remove('None');
+  });
+
+  /* ***** Close Avatar List ***** */
+  btnCloseListAvatars.addEventListener('click', (e) => {
+    e.preventDefault();
+    btnOpenListAvatars.classList.remove('None');
+    btnCloseListAvatars.classList.add('None');
+    listAvatars.classList.add('None');
+  });
+
+  /* ***** Open Interests List ***** */
+  btnOpenListInterests.addEventListener('click', (e) => {
+    e.preventDefault();
+    btnCloseListInterests.classList.remove('None');
+    btnOpenListInterests.classList.add('None');
+    listInterests.classList.remove('None');
+  });
+
+  /* ***** Close Interests List ***** */
+  btnCloseListInterests.addEventListener('click', (e) => {
+    e.preventDefault();
+    btnOpenListInterests.classList.remove('None');
+    btnCloseListInterests.classList.add('None');
+    listInterests.classList.add('None');
+  });
 
   // Funtion of Photo Profile
   function photoProfile(photo) {

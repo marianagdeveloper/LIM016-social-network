@@ -330,7 +330,7 @@
   background-color: #3e6c43;
   width: 100%;
   /* height: 48%; */
-  height: 50%;
+  /* height: 50%; */
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -385,6 +385,10 @@
 .boxBtnSelectInterests img{
   width: 33px;
   height: 33px;
+}
+
+.None {
+  display: none !important;
 }
 @media (max-width: 600px) {
 
