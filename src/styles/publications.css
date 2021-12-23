@@ -27,8 +27,9 @@
   box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
   margin: 1rem;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: space-evenly;
 }
+
 
 .boxPublicationsN {
   display: flex;
