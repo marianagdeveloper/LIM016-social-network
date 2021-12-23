@@ -31,6 +31,11 @@ import {
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 
+import {
+  getStorage, ref, uploadBytes, getDownloadURL,
+// eslint-disable-next-line import/no-unresolved
+} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-storage.js';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyCk8ZsvxtMvGdSDjbG9qZwEtjRbW7ub9J4',
   authDomain: 'ecogram-5151.firebaseapp.com',
@@ -46,6 +51,8 @@ const provider = new GoogleAuthProvider(app);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
+// const storageRef = ref(storage);
 
 export {
   app,
@@ -72,4 +79,8 @@ export {
   query,
   where,
   updateDoc,
+  storage,
+  ref,
+  uploadBytes, 
+  getDownloadURL,
 };
