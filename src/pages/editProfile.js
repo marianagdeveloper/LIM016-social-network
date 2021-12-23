@@ -1,8 +1,7 @@
-import 
-{
-   db,
-   updateDoc,
-   doc,
+import {
+  db,
+  updateDoc,
+  doc,
 } from
 "../utils/firebaseconfig.js";
 
@@ -57,7 +56,20 @@ const EditProfile = () => {
           </div>
           <div class='selectProfile' class='Box'>
             <div id='selectPhoto' class='Box'>
-              <h2>Choose your profile picture:</h2>
+              <div id='boxBtnSelectAvatars' class='boxBtnSelectAvatars'>
+                <h2>Choose your profile picture:</h2>
+                <img
+                  class='OpenListAvatars'
+                  src='img/Icons/Up.png'
+                  title='Open Avatars list'
+                  alt='Open Avatars list'/>
+                <img
+                  class='CloseListAvatars'
+                  src='img/Icons/Down.png'
+                  title='Close Interests list'
+                  alt='Close Interests list'/>
+              </div>
+              
               <div id='photos' class='Box-photos'>
                   <div class='img0'>
                     <img
@@ -160,7 +172,19 @@ const EditProfile = () => {
           
           </div>
             <div id='selectInterest' class='Box'>
-              <h2>Pick 3 of your interests:</h2>
+              <div id='boxBtnSelectInterests' class='boxBtnSelectInterests'>
+                <h2>Pick 3 of your interests:</h2>
+                <img
+                  class='OpenListInterests'
+                  src='img/Icons/Up.png'
+                  title='Open Interests list'
+                  alt='Open Interests list'/>
+                <img
+                  class='CloseListInterests'
+                  src='img/Icons/Down.png'
+                  title='Close Interests list'
+                  alt='Close Interests list'/>
+              </div>
               <div id='photos' class='Box-photos'>
                 <div class='img0' id='interest0'>
                   <img

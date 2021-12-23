@@ -51,6 +51,7 @@
   align-self: center;
   justify-self: center;
   font-size: small;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
 .nameUser {
@@ -65,6 +66,7 @@
   width: 20vw;
   height: 7vh;
   margin-top: 10px;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
 .nameUser h3 {
@@ -100,6 +102,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
 .photoProfile img {
@@ -108,6 +111,7 @@
   border-width: 5px;
   border-color: rgb(10, 24, 6);
   border-style: solid;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
 /* Country */
@@ -139,8 +143,15 @@
   font-weight: bold;
   height: 100%;
   padding: 1%;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
-
+.countryUserFlex option{
+  font-weight: bolder;
+  background-color: #3a515e;
+  color: beige;
+  width: 100px;
+  font-size: small;
+}
 /* Bio */
 .titleWriteBio {
   grid-area: 5 / 1 / 6 / 3;
@@ -165,6 +176,7 @@
   resize: none;
   padding: 3%;
   font-weight: bold;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
 .buttonSave {
@@ -203,6 +215,7 @@
   align-items: center;
   font-size: small;
   padding: 2%;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
 #selectPhoto h2 {
@@ -240,7 +253,23 @@
   border-color: rgb(14, 44, 6);
   border-style: solid;
   background: #000;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
+
+.img0 img:hover,
+.img1 img:hover,
+.img2 img:hover,
+.img3 img:hover,
+.img4 img:hover,
+.img5 img:hover,
+.img6 img:hover,
+.img7 img:hover,
+.img8 img:hover,
+.img9 img:hover,
+.img10 img:hover{
+  border-color: rgb(61, 63, 73);
+}
+
 
 .img0 img{
   grid-area: img0;
@@ -308,6 +337,7 @@
   align-items: center;
   font-size: small;
   padding: 2%;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
 #selectInterest h2 {
@@ -320,6 +350,7 @@
   border-radius: 100%;
   width: 30px;
   height: 30px;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
 .countryText {
@@ -344,7 +375,17 @@
   font-size: x-small;
 }
 
+.boxBtnSelectAvatars,
+.boxBtnSelectInterests {
+  display: flex;
+  align-items: center;
+}
 
+.boxBtnSelectAvatars img,
+.boxBtnSelectInterests img{
+  width: 33px;
+  height: 33px;
+}
 @media (max-width: 600px) {
 
   #Profile {
@@ -364,6 +405,7 @@
     font-size: small;
     padding: 2%;
     margin-top: 5%;
+    box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
 #selectInterest {
@@ -374,6 +416,7 @@
   align-items: center;
   font-size: small;
   padding: 2%;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
   .selectProfile {
@@ -398,6 +441,7 @@
     grid-template-rows: 0.1fr 0.7fr 2.2fr 0.4fr 0.4fr 1.4fr;
     align-self: center;
     font-size: small;
+    box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
   .bodyEditProfile {
     width: 100%;
@@ -416,6 +460,19 @@
     margin-left: 0px;
   }
 
+  #selectInterest h2,
+  #selectPhoto h2  {
+    font-size: medium;
+}
+
+.titleEditProfile {
+  grid-area: 1 / 1 / 2 / 3;
+  align-self: center;
+  justify-self: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
   #texta2 {
     width: 70vw;
     /* resize: none; */
@@ -428,6 +485,7 @@
   .interests img {
     width: 55%;
     align-items: center;
+    margin: 4%;
   }
 
   .photoProfile img {
