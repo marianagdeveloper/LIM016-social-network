@@ -1,3 +1,6 @@
+/* eslint-disable no-inner-declarations */
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-unused-expressions */
 import { publicationComponent } from './publication.js';
@@ -12,6 +15,8 @@ import {
   updateDoc,
   // onSnapshot,
   deleteDoc,
+  arrayUnion,
+  arrayRemove,
 } from '../utils/firebaseconfig.js';
 
 /* *************** Obtener un usuario de Firebase *************** */
@@ -42,6 +47,7 @@ async function readAPost(uid, elmtTextContentPost) {
 
   if (docSnap.exists()) {
     data = docSnap.data().publication;
+    // eslint-disable-next-line no-param-reassign
     elmtTextContentPost.value = data;
     console.log('textPost:', elmtTextContentPost);
   } else {
@@ -324,9 +330,10 @@ const Home = () => {
 
   async function llenarPublications(documentFirebase, idPublication) {
     const userOfPublication = await getDoc(doc(db, 'users', documentFirebase.data().author));
-
     if (userOfPublication.exists()) {
       const divPublicado = containerHome.querySelector('#publicado');
+      // const publicationsForUid = await getDoc(doc(db, 'publications', documentFirebase.data()));
+      // log
 
       const nameUser = userOfPublication.data().name;
       console.log(nameUser);
@@ -337,13 +344,19 @@ const Home = () => {
       const userCurrent = sessionStorage.getItem('key');
       const myPost = authorPublication === userCurrent;
       const photo = userOfPublication.data().photo;
+      const likes = documentFirebase.data().idUserLike.length;
+      const likesForPublication = documentFirebase.data().idUserLike;
+      console.log(likesForPublication);
+
       console.log('photo:', photo);
       /* ***** Agrega una nueva publicación por usuario de primera ***** */
       divPublicado.prepend(publicationComponent(nameUser,
         myPost,
         idPublication,
         publicationText,
-        photo));
+        photo,
+        likes,
+        likesForPublication));
 
       const textPublication = document.querySelector('textArea[data-texto]');
       const editsPublication = document.querySelector('img[data-edit]');
@@ -352,7 +365,6 @@ const Home = () => {
       const cancelPublication = document.querySelector('button[data-cancel]');
 
       const btnsEditPostBox = document.querySelector('.btnsEditContainer');
-
       /* ***** Block btns of save and cancel edit publication ***** */
       editsPublication.addEventListener('click', (e) => {
         e.preventDefault();
@@ -382,6 +394,7 @@ const Home = () => {
 
         const cancelEdit = e.target.dataset.cancel;
 
+        // eslint-disable-next-line eqeqeq
         if (cancelEdit == idPublication) {
           console.log('e.target', cancelEdit);
           readAPost(idPublication, textPublication);
@@ -436,16 +449,73 @@ const Home = () => {
           // END - Modal for Vericate Delete Publication
         });
 
-      // Botón para dar like a la publicación
-      const btnLikes = divPublicado.querySelectorAll('div.saveN > img');
-      console.log(btnLikes);
-      btnLikes.forEach((element) => {
-        element.addEventListener('click', (e) => {
-          e.preventDefault();
-          console.log('aqui va un like prueba');
-          console.log(uid());
-        });
-      });
+      // ****likes****
+      // let activo = true;
+      // let likeRef;
+      // const arrayBtnLikes = divPublicado.querySelectorAll('.btnLikePublication');
+
+      // // ****evento ocurrido por cada like de un usuario*****
+      // arrayBtnLikes.forEach((element) => {
+      //   element.addEventListener('click', (e) => {
+      //     e.preventDefault();
+      //     const uidPostLikes = e.target.dataset.like;
+      //     // eslint-disable-next-line max-len
+      //     // eslint-disable-next-line no-plusplus
+      //     function contLikes(docSnap) {
+      //       // eslint-disable-next-line no-plusplus
+      //       const pDeLikePublication = divPublicado.querySelectorAll('.pLikePublication');
+      //       // eslint-disable-next-line no-plusplus
+      //       for (let i = 0; i < pDeLikePublication.length; i++) {
+      //         if (pDeLikePublication[i].dataset.totallike === uidPostLikes) {
+      //           pDeLikePublication[i].innerHTML = docSnap.data().idUserLike.length;
+      //         } else {
+      //           console.log('error wey');
+      //         }
+      //       }
+      //     }
+      //     // *****retorna el total de likes por post ****
+      //     async function lengthArrayLikes() {
+      //       const docSnap = await getDoc(likeRef);
+      //       contLikes(docSnap);
+      //       const totalLikesPorUidPost = docSnap.data().idUserLike.length;
+      //       return totalLikesPorUidPost;
+      //     }
+
+      //     // ****se agrega o quita likes del usuario de acuerdo a la condicion****
+      //     if (activo) {
+      //       likeRef = doc(db, 'publications', uidPostLikes);
+      //       async function arrayFirebase() {
+      //         await updateDoc(likeRef, {
+      //           idUserLike: arrayUnion(uid()),
+      //         });
+      //       }
+      //       arrayFirebase()
+      //         .then(
+      //           // console.log('se ejecutó'),
+      //         );
+      //       activo = false;
+      //       lengthArrayLikes()
+      //         .then((result) => {
+      //         });
+      //     } else if (activo === false) {
+      //       activo = true;
+      //       likeRef = doc(db, 'publications', uidPostLikes);
+      //       async function arrayRemoveFirebase() {
+      //         await updateDoc(likeRef, {
+      //           idUserLike: arrayRemove(uid()),
+      //         });
+      //       }
+      //       arrayRemoveFirebase()
+      //         .then(
+      //           console.log('se ha eliminado jeje'),
+      //         );
+      //       lengthArrayLikes()
+      //         .then((result) => {
+      //         });
+      //     }
+      //   });
+      // });
+      // contLikes(docSnap);
     } else {
       console.log('No such document!');
     }

@@ -28,6 +28,8 @@ import {
   updateDoc,
   query,
   where,
+  arrayUnion,
+  arrayRemove,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 
@@ -72,4 +74,6 @@ export {
   query,
   where,
   updateDoc,
+  arrayUnion,
+  arrayRemove,
 };
