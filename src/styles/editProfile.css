@@ -364,6 +364,11 @@
   display: flex;
 }
 
+.boxBtnSelectInterests img,
+.boxBtnSelectAvatars img {
+  display: none;
+}
+
 .Box-photos > div {
   display: flex;
   flex-direction: column;
@@ -387,9 +392,7 @@
   height: 33px;
 }
 
-.None {
-  display: none !important;
-}
+
 @media (max-width: 600px) {
 
   #Profile {
@@ -526,6 +529,15 @@
 
   .Profile h2{
     font-size: medium;
+  }
+
+  .boxBtnSelectInterests img,
+  .boxBtnSelectAvatars img {
+  display: block;
+  }
+
+  .None {
+    display: none !important;
   }
 }
 
