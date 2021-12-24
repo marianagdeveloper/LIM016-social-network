@@ -305,7 +305,7 @@ export const countries = {
   'yt': 'Mayotte',
   'za': 'Sudáfrica',
   'zm': 'Zambia',
-  'zw': 'Zimbabue'
+  'zw': 'Zimbabue',
 };
 
 export default countries;

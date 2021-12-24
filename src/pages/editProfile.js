@@ -8,7 +8,7 @@ import {
 } from
   "../utils/firebaseconfig.js";
 
-import countries from '../utils/countries.js';
+import { countries } from '../utils/countries.js';
 // console.log('countries', Object.values(countries));
 
 // Template View Edit Profile
@@ -324,7 +324,7 @@ const EditProfile = () => {
 
   //Funtion of Update Photo Profile in Left Component
   function photoProfile(photo) {
-    divElemt.querySelector(".photo").src = photo;
+    divElemt.querySelector('.photo').src = photo;
   }
 
 //Function camera with Avatar Personal - Save File in Avatar
@@ -339,10 +339,11 @@ const EditProfile = () => {
   // Funtion of Interests Profile
   function interestsProfile(interests) {
     console.log(interests);
-    let divInterestProfile = divElemt.querySelector(".interests");
+    const divInterestProfile = divElemt.querySelector('.interests');
     while (divInterestProfile.firstChild) {
       divInterestProfile.removeChild(divInterestProfile.firstChild);
     }
+    
     interests.forEach((element) => {
       divInterestProfile.innerHTML += `<img title='Your interest' src='${element}' alt='' />`;
     });
@@ -352,15 +353,14 @@ const EditProfile = () => {
   function updateInfoUser(uid, bio, photo, interests, country) {
     const userUpdate = doc(db, 'users', uid);
     return updateDoc(userUpdate, {
-      bio: bio,
-      photo: photo,
-      interests: interests,
-      country: country,
+      bio,
+      photo,
+      interests,
+      country,
     });
-  };
+  }
 
-
-  //Update info user
+ //Update info user
   function updatePhotoWithAvatar(uid, photo) {
     const userUpdate = doc(db, 'users', uid);
     return updateDoc(userUpdate, {
@@ -413,18 +413,19 @@ const EditProfile = () => {
     }
 
     // Show Select Country
-    let arr = countries;
-    for (let prop in arr) {
-      const divElement = divElemt.querySelector(".selectCountry");
+    const arr = countries;
+    // eslint-disable-next-line no-restricted-syntax
+    for (const prop in arr) {
+      const divElement = divElemt.querySelector('.selectCountry');
       divElement.innerHTML += `<option value='${prop}:${arr[prop]}'>${arr[prop]}</option>`;
     }
 
-    //Change Country - Change Flag
+    // Change Country - Change Flag
     let code = flag;
     let nameCountry = country;
-    const divFlag = divElemt.querySelector(".selectCountry");
-    divFlag.addEventListener("change", (event) => {
-      let countryData = event.target.value.split(":");
+    const divFlag = divElemt.querySelector('.selectCountry');
+    divFlag.addEventListener('change', (event) => {
+      const countryData = event.target.value.split(':');
       code = countryData[0];
       nameCountry = countryData[1];
       // console.log(code, nameCountry);
@@ -441,11 +442,12 @@ const EditProfile = () => {
     `;
     });
 
-    //Select Photo Profile
+    // Select Photo Profile
     let newPhoto = info.photo;
+    // eslint-disable-next-line no-plusplus
     for (let index = 0; index < 11; index++) {
       const divAvatar = divElemt.querySelector(`.img${index}`);
-      divAvatar.addEventListener("click", (event) => {
+      divAvatar.addEventListener('click', (event) => {
         newPhoto = event.target.attributes.src.value;
         console.log(`click en img${index}`, newPhoto);
         photoProfile(newPhoto);
@@ -480,12 +482,14 @@ const EditProfile = () => {
     //Select Interest
     let arrayInterest = info.interests;
     console.log(arrayInterest);
+    // eslint-disable-next-line no-plusplus
     for (let index = 0; index < 11; index++) {
       const divInterestsProfile = divElemt.querySelector(`#interest${index}`);
-      divInterestsProfile.addEventListener("click", (event) => {
-        let newInterest = event.target.attributes.src.value;
+      divInterestsProfile.addEventListener('click', (event) => {
+        const newInterest = event.target.attributes.src.value;
         // console.log(`click en interest`, newInterest);
         let validateInterest = arrayInterest.includes(newInterest);
+        
         if (!validateInterest) {
           arrayInterest.pop();
           arrayInterest.unshift(newInterest);
@@ -513,7 +517,8 @@ const EditProfile = () => {
   };
 
   const uid = () => {
-    const uidSS = JSON.parse(sessionStorage.getItem("user"));
+  const uidSS = JSON.parse(sessionStorage.getItem("user"));
+
     return uidSS;
   };
 

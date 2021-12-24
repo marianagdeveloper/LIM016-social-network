@@ -1,11 +1,16 @@
-// const uidSS = sessionStorage.getItem('user');
-// console.log('uidSS: ', uidSS);
+
+/* eslint-disable no-inner-declarations */
+import {
+  db, doc, updateDoc, arrayUnion, arrayRemove, getDoc,
+} from '../utils/firebaseconfig.js';
 
 export function publicationComponent(nameUser,
   myPost,
   idPublication,
   publicationText,
-  photo) {
+  photo,
+  likes,
+  likesForPublication) {
   const componetPublication = `
     <div class='boxPublicationsN' id='${idPublication}'>
       <div class='boxPhotoandNameN'>
@@ -38,15 +43,17 @@ export function publicationComponent(nameUser,
           <button id='btnCancelEdit' class='btnCancelEdit' data-cancel='${idPublication}'>CANCEL</button>
         </div>
         <div class='saveN'>
-          <p>2</p>
-          <img src='img/Icons/WhiteTotal/Heart2.png' alt=''>
+          <p class = 'pLikePublication' data-totalLike='${idPublication}'>${likes}</p>
+          <img class='btnLikePublication' id='imgHeartLike' src='img/Icons/WhiteTotal/Heart2.png' data-like='${idPublication}' alt=''>
         </div>
       </div>
     </div>`;
-
+  console.log(idPublication);
   // publication
   const divElemt = document.createElement('div');
   divElemt.innerHTML += componetPublication;
+
+  console.log(likesForPublication);
 
   const btnsEditAndDeletePost = `
   <img title='Edit your post' id='btnEditPost' class='btnEditPost' data-edit='${idPublication}' src='img/Icons/Pencil.png' alt=''>
@@ -54,16 +61,62 @@ export function publicationComponent(nameUser,
 
   const btnsContainer = divElemt.querySelector('.editPost');
 
-  // photo
-  // divElemt.querySelector(
-  //   '.Avatar-img',
-  // ).src = `${uidSS.photo}`;
-
   if (myPost) {
-    //   componetPublication.querySelector('.editPost').innerHTML(btnsEditAndDeletePost);
     btnsContainer.innerHTML += btnsEditAndDeletePost;
   }
 
+  // *******************************likes****************************************
+  let activo = true;
+  let likeRef;
+  const element = divElemt.querySelector('.btnLikePublication');
+  const uidPostLikes = divElemt.querySelector('.btnLikePublication').dataset.like;
+  const pLikePublication = divElemt.querySelector('.pLikePublication');
+  const imgHeartLike = divElemt.querySelector('#imgHeartLike');
+
+  const userCurrent = sessionStorage.getItem('key');
+
+  // *****retorna el total de likes por post ****
+  async function lengthArrayLikes() {
+    const docSnap = await getDoc(likeRef);
+    const totalLikesPorUidPost = docSnap.data().idUserLike.length;
+    return totalLikesPorUidPost;
+  }
+
+  // remover elemento array
+  async function subtractLikePost(likeReferenc, arrayLikes) {
+    await updateDoc(likeReferenc, {
+      idUserLike: arrayRemove(...arrayLikes),
+    });
+  }
+
+  // agregar elemento array
+  async function addLikePost(likeReferenc, arrayLikes) {
+    await updateDoc(likeReferenc, {
+      idUserLike: arrayUnion(...arrayLikes),
+    });
+  }
+
+  element.addEventListener('click', () => {
+    // ****se agrega o quita likes del usuario de acuerdo a la condicion****
+    const arrayLikes = [];
+    arrayLikes.push(userCurrent);
+    likeRef = doc(db, 'publications', uidPostLikes);
+    if (activo) {
+      addLikePost(likeRef, arrayLikes);
+      imgHeartLike.src = 'img/Icons/WhiteTotal/Heart2.png';
+      activo = false;
+    } else if (activo === false) {
+      activo = true;
+      subtractLikePost(likeRef, arrayLikes);
+      imgHeartLike.src = 'img/Icons/WhiteBorder/Heart1.png';
+    }
+    lengthArrayLikes()
+      .then((result) => {
+        pLikePublication.textContent = result;
+      });
+  });
+
+  // ***************************************************************************
   // print date time publicated
   const today = new Date();
   const m = today.getMonth() + 1;
