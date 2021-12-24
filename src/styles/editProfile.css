@@ -1,21 +1,16 @@
 #EditProfile {
-  /* background-color: rgb(50, 88, 172); */
-  width: 99vw;
-  height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
   color: #000;
+  justify-content: center;
 }
 
 #Profile {
-  background: #c4ddbf;
   width: 90vw;
-  height: 95vh;
+  height: 100%;
   border-radius: 30px;
   display: grid;
   grid-template-columns: 0.7fr 1.3fr;
-  grid-template-rows: 0.5fr 0.4fr 2.4fr 0.4fr 0.4fr 1.4fr;
+  grid-template-rows: 0fr 0fr 0fr 0fr 0fr 0.05fr;
   gap: 0px 0px;
   grid-auto-flow: row;
 }
@@ -23,7 +18,6 @@
 /* Title: Edit Profile */
 .titleEditProfile {
   grid-area: 1 / 1 / 2 / 3;
-  /* border: 1px solid black; */
   align-self: center;
   justify-self: center;
   margin-top: 20px;
@@ -32,22 +26,22 @@
 
 .titleEditProfile h1 {
   font-weight: bold;
+  color: beige;
 }
 
 .containerSection {
-  width: 90vw;
+  width: inherit;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 /* First Mobile - Body: Edit Profile */
 .bodyEditProfile {
   grid-area: 2 / 1 / 7 / 3;
-  /* border: 1px solid black; */
   background: #3e6c43;
-  width: 30vw;
-  height: 80vh;
+  width: 34vw;
+  height: 88vh;
   border-radius: 30px;
   display: grid;
   grid-template-columns: 0.7fr 1.3fr;
@@ -57,11 +51,11 @@
   align-self: center;
   justify-self: center;
   font-size: small;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
 .nameUser {
   grid-area: 2 / 1 / 3 / 3;
-  /* border: 1px solid black; */
   justify-self: center;
   align-self: center;
   display: flex;
@@ -72,6 +66,7 @@
   width: 20vw;
   height: 7vh;
   margin-top: 10px;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
 .nameUser h3 {
@@ -82,7 +77,6 @@
 /* Card: Interests and Photo Profile */
 .profileAndInterest {
   grid-area: 3 / 1 / 4 / 3;
-  /* border: 1px solid black; */
 }
 
 .interests {
@@ -91,7 +85,6 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-end;
-  /* border: 1px solid black; */
 }
 
 .interests img {
@@ -109,7 +102,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background: #3a515e; */
+  
 }
 
 .photoProfile img {
@@ -118,6 +111,7 @@
   border-width: 5px;
   border-color: rgb(10, 24, 6);
   border-style: solid;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
 /* Country */
@@ -127,7 +121,6 @@
 
 .countryUser {
   grid-area: 4 / 1 / 5 / 3;
-  /* border: 1px solid black; */
   color: rgb(250, 250, 250);
 }
 
@@ -150,8 +143,15 @@
   font-weight: bold;
   height: 100%;
   padding: 1%;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
-
+.countryUserFlex option{
+  font-weight: bolder;
+  background-color: #3a515e;
+  color: beige;
+  width: 100px;
+  font-size: small;
+}
 /* Bio */
 .titleWriteBio {
   grid-area: 5 / 1 / 6 / 3;
@@ -164,7 +164,6 @@
 .bioUser {
   grid-area: 6 / 1 / 7 / 3;
   margin: 0 10%;
-  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -177,43 +176,46 @@
   resize: none;
   padding: 3%;
   font-weight: bold;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
 .buttonSave {
   padding-top: 20px;
   padding-bottom: 20px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  font-size: medium;
 }
 
 .buttonSave button {
-  height: 120%;
+  width: 200%;
+  padding: 2%;
   border-radius: 20px;
   background: #a8a5a5;
 }
 
-.buttonSave h2 {
-  width: 10vw;
-}
-
 /* Section select Photo and Interest */
 .selectProfile {
-  /* background-color: #3a515e; */
   width: 60%;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  gap: 2%;
 }
 
 #selectPhoto {
   background-color: #3e6c43;
   width: 100%;
-  height: 48%;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: small;
+  padding: 2%;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
 #selectPhoto h2 {
@@ -222,9 +224,6 @@
 }
 
 #photos {
-  /* background: #c4ddbf; */
-  width: 90%;
-  height: 70%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -235,9 +234,18 @@
     "img6 img7 img8 img9 img10 img11";
 }
 
-.img0 img{
-  grid-area: img0;
-  width: 80%;
+.img0 img,
+.img1 img,
+.img2 img,
+.img3 img,
+.img4 img,
+.img5 img,
+.img6 img,
+.img7 img,
+.img8 img,
+.img9 img,
+.img10 img{
+  width: 70%;
   display: block;
   margin: auto;
   border-radius: 100%;
@@ -245,145 +253,91 @@
   border-color: rgb(14, 44, 6);
   border-style: solid;
   background: #000;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
+}
+
+.img0 img:hover,
+.img1 img:hover,
+.img2 img:hover,
+.img3 img:hover,
+.img4 img:hover,
+.img5 img:hover,
+.img6 img:hover,
+.img7 img:hover,
+.img8 img:hover,
+.img9 img:hover,
+.img10 img:hover{
+  border-color: rgb(61, 63, 73);
+}
+
+
+.img0 img{
+  grid-area: img0;
 }
 
 .img1 img {
   grid-area: img1;
-  width: 80%;
-  display: block;
-  margin: auto;
-  border-radius: 100%;
-  border-width: 3px;
-  border-color: rgb(10, 24, 6);
-  border-style: solid;
-  background: #000;
 }
 
 .img2 img{
   grid-area: img2;
-  width: 80%;
-  display: block;
-  margin: auto;
-  border-radius: 100%;
-  border-width: 3px;
-  border-color: rgb(10, 24, 6);
-  border-style: solid;
-  background: #000;
 }
 
 .img3 img{
   grid-area: img3;
-  width: 80%;
-  display: block;
-  margin: auto;
-  border-radius: 100%;
-  border-width: 3px;
-  border-color: rgb(10, 24, 6);
-  border-style: solid;
-  background: #000;
 }
 
 .img4 img{
   grid-area: img4;
-  width: 80%;
-  display: block;
-  margin: auto;
-  border-radius: 100%;
-  border-width: 3px;
-  border-color: rgb(10, 24, 6);
-  border-style: solid;
-  background: #000;
 }
 
 .img5 img{
   grid-area: img5;
-  width: 80%;
-  display: block;
-  margin: auto;
-  border-radius: 100%;
-  border-width: 3px;
-  border-color: rgb(10, 24, 6);
-  border-style: solid;
-  background: #000;
 }
 
 .img6 img{
   grid-area: img6;
-  width: 80%;
-  display: block;
-  margin: auto;
-  border-radius: 100%;
-  border-width: 3px;
-  border-color: rgb(10, 24, 6);
-  border-style: solid;
-  background: #000;
 }
 
 .img7 img{
   grid-area: img7;
-  width: 80%;
-  display: block;
-  margin: auto;
-  border-radius: 100%;
-  border-width: 3px;
-  border-color: rgb(10, 24, 6);
-  border-style: solid;
-  background: #000;
 }
 
 .img8 img{
   grid-area: img8;
-  width: 80%;
-  display: block;
-  margin: auto;
-  border-radius: 100%;
-  border-width: 3px;
-  border-color: rgb(10, 24, 6);
-  border-style: solid;
-  background: #000;
 }
 
 .img9 img{
   grid-area: img9;
-  width: 80%;
-  display: block;
-  margin: auto;
-  border-radius: 100%;
-  border-width: 3px;
-  border-color: rgb(10, 24, 6);
-  border-style: solid;
-  background: #000;
 }
 
 .img10 img{
   grid-area: img10;
-  width: 80%;
-  display: block;
-  margin: auto;
-  border-radius: 100%;
-  border-width: 3px;
-  border-color: rgb(10, 24, 6);
-  border-style: solid;
-  background: #000;
 }
 
 .img11 img{
   grid-area: img11;
-  width: 80%;
+  width: 70%;
   display: block;
   margin: auto;
-  background: #000;
+  border-width: 3px;
+  border-color: rgb(39, 41, 38);
+  border-style: solid;
+  border-radius: 100%;
 }
 
 #selectInterest {
   background-color: #3e6c43;
   width: 100%;
-  height: 48%;
+  /* height: 48%; */
+  /* height: 50%; */
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: small;
+  padding: 2%;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
 #selectInterest h2 {
@@ -396,6 +350,7 @@
   border-radius: 100%;
   width: 30px;
   height: 30px;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
 .countryText {
@@ -409,27 +364,101 @@
   display: flex;
 }
 
-@media (max-width: 600px) {
-  .selectProfile {
-    display: none;
-  }
+.boxBtnSelectInterests img,
+.boxBtnSelectAvatars img {
+  display: none;
+}
 
-  #EditProfile {
-    width: 100vw;
-  }
+.Box-photos > div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.Box-photos > div p {
+  color: beige;
+  font-size: x-small;
+}
+
+.boxBtnSelectAvatars,
+.boxBtnSelectInterests {
+  display: flex;
+  align-items: center;
+}
+
+.boxBtnSelectAvatars img,
+.boxBtnSelectInterests img{
+  width: 33px;
+  height: 33px;
+}
+
+
+@media (max-width: 600px) {
 
   #Profile {
     width: 90vw;
-    height: 90vh;
+    height: 100%;
+    border-radius: 30px;
+    display: grid;
+    grid-template-rows: 0fr 0fr 0fr 0fr 0fr 0.05fr;
   }
 
-  .bodyEditProfile {
-    width: 80vw;
-    height: 70vh;
+  #selectPhoto {
+    background-color: #3e6c43;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: small;
+    padding: 2%;
+    margin-top: 5%;
+    box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
+}
+
+#selectInterest {
+  background-color: #3e6c43;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: small;
+  padding: 2%;
+  margin-top: 5%;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
+}
+
+  .selectProfile {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
   }
+
+  #EditProfile {
+    display: flex;
+    justify-content: center;
+}
+  .bodyEditProfile {
+    grid-area: 2 / 1 / 7 / 3;
+    background: #3e6c43;
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    grid-template-rows: 0.1fr 0.7fr 2.2fr 0.4fr 0.4fr 1.4fr;
+    align-self: center;
+    font-size: small;
+    box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
+}
+  .bodyEditProfile {
+    width: 100%;
+    height: 100%;
+}
 
   .containerSection {
-    width: 90vw;
+    display: flex;
+    flex-direction: column;
   }
 
   .nameUser {
@@ -438,6 +467,19 @@
     justify-self: center;
     margin-left: 0px;
   }
+
+  #selectInterest h2,
+  #selectPhoto h2  {
+    font-size: medium;
+}
+
+.titleEditProfile {
+  grid-area: 1 / 1 / 2 / 3;
+  align-self: center;
+  justify-self: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
 
   #texta2 {
     width: 70vw;
@@ -451,6 +493,7 @@
   .interests img {
     width: 55%;
     align-items: center;
+    margin: 4%;
   }
 
   .photoProfile img {
@@ -471,6 +514,31 @@
     padding-top: 0px;
     padding-bottom: 0px;
     margin-left: 30px;
+  }
+
+  #photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "img0 img1 img2"
+      "img3 img4 img5"
+      "img6 img7 img8"
+      "img9 img10 img11";
+  }
+
+  .Profile h2{
+    font-size: medium;
+  }
+
+  .boxBtnSelectInterests img,
+  .boxBtnSelectAvatars img {
+  display: block;
+  }
+
+  .None {
+    display: none !important;
   }
 }
 

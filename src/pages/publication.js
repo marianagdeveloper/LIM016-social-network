@@ -1,6 +1,5 @@
+
 /* eslint-disable no-inner-declarations */
-// const uidSS = sessionStorage.getItem('user');
-// console.log('uidSS: ', uidSS);
 import {
   db, doc, updateDoc, arrayUnion, arrayRemove, getDoc,
 } from '../utils/firebaseconfig.js';
@@ -57,8 +56,8 @@ export function publicationComponent(nameUser,
   console.log(likesForPublication);
 
   const btnsEditAndDeletePost = `
-  <img id='btnEditPost' class='btnEditPost' data-edit='${idPublication}' src='img/Icons/Pencil.png' alt=''>
-  <img id='btnDelete' class='btnDelete' data-ref='${idPublication}' src='img/Icons/Delete.png' alt=''>`;
+  <img title='Edit your post' id='btnEditPost' class='btnEditPost' data-edit='${idPublication}' src='img/Icons/Pencil.png' alt=''>
+  <img title='Delete your post' id='btnDelete' class='btnDelete' data-ref='${idPublication}' src='img/Icons/Delete.png' alt=''>`;
 
   const btnsContainer = divElemt.querySelector('.editPost');
 
