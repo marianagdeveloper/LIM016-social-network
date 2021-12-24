@@ -161,17 +161,12 @@ const EditProfile = () => {
                     alt='Bengal tiger'
                     srcset=''/>
                     <p>Bengal tiger</p>
-                  </div>
-                  <div class='img11'>
-                    <img
-                    src='img/Icons/cameraProfile.png'
-                    title='Add image'
-                    alt='Add image'
-                    srcset=''/> 
-                    <input type="file" id="edit-file" name="edit-file"/>
-                  </div>                  
+                  </div>                 
               </div>
-          
+              <div class='UpdateProfilePhoto'>
+                <h2>Update you profile photo:</h2>
+                <input type="file" id="edit-file" name="edit-file"/>
+              </div> 
           </div>
             <div id='selectInterest' class='Box'>
               <div id='boxBtnSelectInterests' class='boxBtnSelectInterests'>

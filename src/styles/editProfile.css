@@ -41,7 +41,7 @@
   grid-area: 2 / 1 / 7 / 3;
   background: #3e6c43;
   width: 34vw;
-  height: 88vh;
+  height: 97vh;
   border-radius: 30px;
   display: grid;
   grid-template-columns: 0.7fr 1.3fr;
@@ -218,9 +218,22 @@
   box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
 }
 
-#selectPhoto h2 {
+#selectPhoto input {
+  border-radius: 20px;
+  background-color: beige;
+  padding: 1%;
+  width: 100%;
+  font-weight: bolder;
+  font-size: small;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
+}
+
+#selectPhoto h2,
+#selectInterest h2,
+.UpdateProfilePhoto h2 {
   color: white;
   margin: 10px;
+  font-size: small;
 }
 
 #photos {
@@ -231,7 +244,7 @@
   grid-auto-flow: row;
   grid-template-areas:
     "img0 img1 img2 img3 img4 img5"
-    "img6 img7 img8 img9 img10 img11";
+    "img6 img7 img8 img9 img10";
 }
 
 .img0 img,
@@ -315,34 +328,17 @@
   grid-area: img10;
 }
 
-.img11 img{
-  grid-area: img11;
-  width: 70%;
-  display: block;
-  margin: auto;
-  border-width: 3px;
-  border-color: rgb(39, 41, 38);
-  border-style: solid;
-  border-radius: 100%;
-}
-
 #selectInterest {
   background-color: #3e6c43;
   width: 100%;
-  /* height: 48%; */
-  /* height: 50%; */
   border-radius: 20px;
+  margin-top: 2%;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: small;
   padding: 2%;
   box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
-}
-
-#selectInterest h2 {
-  color: white;
-  margin: 10px;
 }
 
 .flag img,
@@ -391,6 +387,15 @@
   width: 33px;
   height: 33px;
 }
+
+.UpdateProfilePhoto {
+  display: flex;
+  width: 100%;
+  margin-top: 2%;
+  font-size: medium;
+  align-items: center;
+}
+
 
 
 @media (max-width: 600px) {
@@ -468,11 +473,6 @@
     margin-left: 0px;
   }
 
-  #selectInterest h2,
-  #selectPhoto h2  {
-    font-size: medium;
-}
-
 .titleEditProfile {
   grid-area: 1 / 1 / 2 / 3;
   align-self: center;
@@ -525,7 +525,7 @@
       "img0 img1 img2"
       "img3 img4 img5"
       "img6 img7 img8"
-      "img9 img10 img11";
+      "img9 img10";
   }
 
   .Profile h2{
@@ -540,5 +540,13 @@
   .None {
     display: none !important;
   }
+
+  .UpdateProfilePhoto {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%;
+    font-size: medium;
+    align-items: center;
+}
 }
 
