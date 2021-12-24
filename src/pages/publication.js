@@ -45,7 +45,7 @@ export function publicationComponent(nameUser,
         </div>
         <div class='saveN'>
           <p class = 'pLikePublication' data-totalLike='${idPublication}'>${likes}</p>
-          <img class='btnLikePublication' id='btnLikePublication' src='img/Icons/WhiteTotal/Heart2.png' data-like='${idPublication}' alt=''>
+          <img class='btnLikePublication' id='imgHeartLike' src='img/Icons/WhiteTotal/Heart2.png' data-like='${idPublication}' alt=''>
         </div>
       </div>
     </div>`;
@@ -72,51 +72,48 @@ export function publicationComponent(nameUser,
   const element = divElemt.querySelector('.btnLikePublication');
   const uidPostLikes = divElemt.querySelector('.btnLikePublication').dataset.like;
   const pLikePublication = divElemt.querySelector('.pLikePublication');
+  const imgHeartLike = divElemt.querySelector('#imgHeartLike');
 
   const userCurrent = sessionStorage.getItem('key');
 
   // *****retorna el total de likes por post ****
   async function lengthArrayLikes() {
     const docSnap = await getDoc(likeRef);
-    // contLikes(docSnap);
     const totalLikesPorUidPost = docSnap.data().idUserLike.length;
-    console.log('totalLikesPorUidPost', totalLikesPorUidPost);
     return totalLikesPorUidPost;
+  }
+
+  // remover elemento array
+  async function subtractLikePost(likeReferenc, arrayLikes) {
+    await updateDoc(likeReferenc, {
+      idUserLike: arrayRemove(...arrayLikes),
+    });
+  }
+
+  // agregar elemento array
+  async function addLikePost(likeReferenc, arrayLikes) {
+    await updateDoc(likeReferenc, {
+      idUserLike: arrayUnion(...arrayLikes),
+    });
   }
 
   element.addEventListener('click', () => {
     // ****se agrega o quita likes del usuario de acuerdo a la condicion****
     const arrayLikes = [];
     arrayLikes.push(userCurrent);
+    likeRef = doc(db, 'publications', uidPostLikes);
     if (activo) {
-      likeRef = doc(db, 'publications', uidPostLikes);
-      // eslint-disable-next-line no-inner-declarations
-      async function arrayFirebase() {
-        await updateDoc(likeRef, {
-          idUserLike: arrayUnion(...arrayLikes),
-        });
-      }
-      arrayFirebase()
-        .then(
-          console.log('se ejecutó el agregar firebase'),
-        );
+      addLikePost(likeRef, arrayLikes);
+      imgHeartLike.src = 'img/Icons/WhiteTotal/Heart2.png';
       activo = false;
     } else if (activo === false) {
       activo = true;
-      likeRef = doc(db, 'publications', uidPostLikes);
-      async function arrayRemoveFirebase() {
-        await updateDoc(likeRef, {
-          idUserLike: arrayRemove(...arrayLikes),
-        });
-      }
-      arrayRemoveFirebase()
-      // lengthArrayLikes()
-        .then(console.log('se ejecutó la removida'));
+      subtractLikePost(likeRef, arrayLikes);
+      imgHeartLike.src = 'img/Icons/WhiteBorder/Heart1.png';
     }
     lengthArrayLikes()
       .then((result) => {
         pLikePublication.textContent = result;
-        console.log(result);
       });
   });
 
