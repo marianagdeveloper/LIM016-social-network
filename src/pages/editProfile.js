@@ -488,7 +488,6 @@ const EditProfile = () => {
         const newInterest = event.target.attributes.src.value;
         // console.log(`click en interest`, newInterest);
         let validateInterest = arrayInterest.includes(newInterest);
-        
         if (!validateInterest) {
           arrayInterest.pop();
           arrayInterest.unshift(newInterest);
@@ -520,7 +519,6 @@ const EditProfile = () => {
 
   const uid = () => {
   const uidSS = JSON.parse(sessionStorage.getItem("user"));
-
     return uidSS;
   };
 
