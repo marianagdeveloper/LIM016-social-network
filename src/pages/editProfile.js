@@ -6,9 +6,9 @@ import {
   storage,
   uploadBytes, getDownloadURL,
 } from
-  "../utils/firebaseconfig.js";
+  '../utils/firebaseconfig.js';
 
-import { countries } from '../utils/countries.js';
+import countries from '../utils/countries.js';
 // console.log('countries', Object.values(countries));
 
 // Template View Edit Profile
@@ -327,18 +327,18 @@ const EditProfile = () => {
     listInterests.classList.add('None');
   });
 
-  //Funtion of Update Photo Profile in Left Component
+  // Funtion of Update Photo Profile in Left Component
   function photoProfile(photo) {
     divElemt.querySelector('.photo').src = photo;
   }
 
-//Function camera with Avatar Personal - Save File in Avatar
+  // Function camera with Avatar Personal - Save File in Avatar
   async function avatarPersonal(uid, avatar, file) {
-    let spaceRef = ref(storage, `${uid}/img/Avatares/${avatar}`);
+    const spaceRef = ref(storage, `${uid}/img/Avatares/${avatar}`);
     await uploadBytes(spaceRef, file);
     const urlIng = await getDownloadURL(spaceRef);
-    console.log("🚀 ~ file: editProfile.js ~ line 256 ~ avatarPersonal ~ urlIng", urlIng)
-    return urlIng
+    // // console.log('🚀 ~ file: editProfile.js ~ line 256 ~ avatarPersonal ~ urlIng', urlIng);
+    return urlIng;
   }
 
   // Funtion of Interests Profile
@@ -348,13 +348,12 @@ const EditProfile = () => {
     while (divInterestProfile.firstChild) {
       divInterestProfile.removeChild(divInterestProfile.firstChild);
     }
-    
     interests.forEach((element) => {
       divInterestProfile.innerHTML += `<img title='Your interest' src='${element}' alt='' />`;
     });
   }
 
- //Update info user
+  // Update info user
   function updateInfoUser(uid, bio, photo, interests, country) {
     const userUpdate = doc(db, 'users', uid);
     return updateDoc(userUpdate, {
@@ -365,15 +364,15 @@ const EditProfile = () => {
     });
   }
 
- //Update info user
+  // Update info user
   function updatePhotoWithAvatar(uid, photo) {
     const userUpdate = doc(db, 'users', uid);
     return updateDoc(userUpdate, {
-      photo: photo,
+      photo,
     });
-  };
+  }
 
-  //Update info user in SessionStorage
+  // Update info user in SessionStorage
   function updateInfoUserSession(userData) {
     console.log('userData:', userData);
     console.log(JSON.parse(sessionStorage.getItem('user')));
@@ -381,7 +380,7 @@ const EditProfile = () => {
     console.log(JSON.parse(sessionStorage.getItem('user')));
   }
 
- //Add info of User
+  // Add info of User
   const infoUser = (info) => {
     console.log('info: ', info);
 
@@ -399,13 +398,12 @@ const EditProfile = () => {
     interestsProfile(arrayInterests);
 
     // User Country
-    let country = info.country.split(':')[1];
-    let flag = info.country.split(':')[0];
+    const country = info.country.split(':')[1];
+    const flag = info.country.split(':')[0];
     // console.log('country:', country);
     // console.log('flag:', flag);
-    if (country != "") {
-      
-      divElemt.querySelector(".flag").innerHTML = `
+    if (country !== '') {
+      divElemt.querySelector('.flag').innerHTML = `
       <img
       title='${country}'
       src='https://flagcdn.com/40x30/${flag}.png'
@@ -419,7 +417,6 @@ const EditProfile = () => {
 
     // Show Select Country
     const arr = countries;
-    // eslint-disable-next-line no-restricted-syntax
     for (const prop in arr) {
       const divElement = divElemt.querySelector('.selectCountry');
       divElement.innerHTML += `<option value='${prop}:${arr[prop]}'>${arr[prop]}</option>`;
@@ -449,7 +446,6 @@ const EditProfile = () => {
 
     // Select Photo Profile
     let newPhoto = info.photo;
-    // eslint-disable-next-line no-plusplus
     for (let index = 0; index < 11; index++) {
       const divAvatar = divElemt.querySelector(`.img${index}`);
       divAvatar.addEventListener('click', (event) => {
@@ -459,42 +455,42 @@ const EditProfile = () => {
       });
     }
 
-    //Select Avatar personal
+    // Select Avatar personal
     const divCamera = divElemt.querySelector('#edit-file');
-    divCamera.addEventListener("change", (e) => {
-      let file = e.target.files[0];
+    divCamera.addEventListener('change', (e) => {
+      const file = e.target.files[0];
       console.log(file);
-      let uid = info.uid;
-      let avatar = file.name;
-     //Save Avatar personal in Storage of Firebase
+      const uid = info.uid;
+      const avatar = file.name;
+      // Save Avatar personal in Storage of Firebase
       avatarPersonal(uid, avatar, file)
-      .then((resolve) => {
-        console.log("obteniendo url:", resolve);
-        updatePhotoUserWithAvatarPersonal(resolve);
-      })
-      .catch(console.log);
+        .then((resolve) => {
+          console.log('obteniendo url:', resolve);
+          updatePhotoUserWithAvatarPersonal(resolve);
+        })
+        .catch(console.log);
     });
 
-    //Update Photo of User with personal Avatar
+    // Update Photo of User with personal Avatar
     function updatePhotoUserWithAvatarPersonal(params) {
-      let uid = sessionStorage.getItem("key");
+      const uid = sessionStorage.getItem('key');
       updatePhotoWithAvatar(uid, params);
       newPhoto = params;
       // updateAvatarUserSession(params);
       photoProfile(params);
     }
 
-    //Select Interest
-    let arrayInterest = info.interests;
+    // Select Interest
+    const arrayInterest = info.interests;
     console.log(arrayInterest);
     // eslint-disable-next-line no-plusplus
     for (let index = 0; index < 11; index++) {
       const divInterestsProfile = divElemt.querySelector(`#interest${index}`);
+      // eslint-disable-next-line no-loop-func
       divInterestsProfile.addEventListener('click', (event) => {
         const newInterest = event.target.attributes.src.value;
         // console.log(`click en interest`, newInterest);
-        let validateInterest = arrayInterest.includes(newInterest);
-        
+        const validateInterest = arrayInterest.includes(newInterest);
         if (!validateInterest) {
           arrayInterest.pop();
           arrayInterest.unshift(newInterest);
@@ -504,26 +500,28 @@ const EditProfile = () => {
       });
     }
 
-    //Button Save
-    let btnSave = divElemt.querySelector(".buttonSave");
-    btnSave.addEventListener("click", () => {
-      let uid, bio, photo, country, interests;
-      console.log("uidSS: ", sessionStorage.getItem("key"));
-      uid = sessionStorage.getItem("key");
-      bio = divElemt.querySelector(".bio").value;
+    // Button Save
+    const btnSave = divElemt.querySelector('.buttonSave');
+    btnSave.addEventListener('click', () => {
+      let uid; let bio; let photo; let country;
+      let interests;
+      console.log('uidSS: ', sessionStorage.getItem('key'));
+      uid = sessionStorage.getItem('key');
+      bio = divElemt.querySelector('.bio').value;
       photo = newPhoto;
       console.log(uid, bio, photo);
-      country = code + ':' + nameCountry;
+      country = `${code}:${nameCountry}`;
       console.log(country.split(':'));
       interests = arrayInterests;
       updateInfoUser(uid, bio, photo, interests, country);
-      updateInfoUserSession({ uid, bio, photo, interests, country })
+      updateInfoUserSession({
+        uid, bio, photo, interests, country,
+      });
     });
   };
 
   const uid = () => {
-  const uidSS = JSON.parse(sessionStorage.getItem("user"));
-
+    const uidSS = JSON.parse(sessionStorage.getItem('user'));
     return uidSS;
   };
 

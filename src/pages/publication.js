@@ -1,4 +1,3 @@
-
 /* eslint-disable no-inner-declarations */
 import {
   db, doc, updateDoc, arrayUnion, arrayRemove, getDoc,
@@ -44,7 +43,7 @@ export function publicationComponent(nameUser,
         </div>
         <div class='saveN'>
           <p class = 'pLikePublication' data-totalLike='${idPublication}'>${likes}</p>
-          <img class='btnLikePublication' id='imgHeartLike' src='img/Icons/WhiteTotal/Heart2.png' data-like='${idPublication}' alt=''>
+          <img class='btnLikePublication' id='imgHeartLike' src='img/Icons/WhiteBorder/Heart1.png' data-like='${idPublication}' alt=''>
         </div>
       </div>
     </div>`;
@@ -66,10 +65,10 @@ export function publicationComponent(nameUser,
   }
 
   // *******************************likes****************************************
-  let activo = true;
+  // let activo = true;
   let likeRef;
   const element = divElemt.querySelector('.btnLikePublication');
-  const uidPostLikes = divElemt.querySelector('.btnLikePublication').dataset.like;
+  const uidPostLikes = element.dataset.like;
   const pLikePublication = divElemt.querySelector('.pLikePublication');
   const imgHeartLike = divElemt.querySelector('#imgHeartLike');
 
@@ -79,6 +78,8 @@ export function publicationComponent(nameUser,
   async function lengthArrayLikes() {
     const docSnap = await getDoc(likeRef);
     const totalLikesPorUidPost = docSnap.data().idUserLike.length;
+    pLikePublication.textContent = totalLikesPorUidPost;
+    console.log(pLikePublication);
     return totalLikesPorUidPost;
   }
 
@@ -101,19 +102,19 @@ export function publicationComponent(nameUser,
     const arrayLikes = [];
     arrayLikes.push(userCurrent);
     likeRef = doc(db, 'publications', uidPostLikes);
-    if (activo) {
-      addLikePost(likeRef, arrayLikes);
-      imgHeartLike.src = 'img/Icons/WhiteTotal/Heart2.png';
-      activo = false;
-    } else if (activo === false) {
-      activo = true;
-      subtractLikePost(likeRef, arrayLikes);
-      imgHeartLike.src = 'img/Icons/WhiteBorder/Heart1.png';
+    async function btnLikes() {
+      const docSnap = await getDoc(likeRef);
+      console.log('🚀 ~ file: publication.js ~ line 107 ~ btnLikes ~ docSnap', docSnap.data().idUserLike);
+      if (docSnap.data().idUserLike.includes(userCurrent)) {
+        imgHeartLike.src = 'img/Icons/WhiteTotal/Heart2.png';
+        subtractLikePost(likeRef, arrayLikes);
+      } else {
+        imgHeartLike.src = 'img/Icons/WhiteBorder/Heart1.png';
+        addLikePost(likeRef, arrayLikes);
+      }
     }
-    lengthArrayLikes()
-      .then((result) => {
-        pLikePublication.textContent = result;
-      });
+    btnLikes();
+    lengthArrayLikes();
   });
 
   // ***************************************************************************
