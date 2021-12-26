@@ -227,7 +227,6 @@ const Home = () => {
 
   //Function - Filters
   function filterPost(filter) {
-    
     switch (filter) {
       case 'all':
         clearBoxPosts();
@@ -269,6 +268,23 @@ const Home = () => {
     document
       .getElementById('boxPublications')
       .classList.replace('NoneboxPublications', 'boxPublications');
+  });
+
+  //Add images in new post
+  let file, avatar;
+  const divCamera = containerHome.querySelector('.inputFilePost');
+  divCamera.addEventListener("change", (e) => {
+    let id = sessionStorage.getItem("key");
+    file = e.target.files[0];
+    console.log(file);
+    // avatar = file.name;
+    //Save Avatar personal in Storage of Firebase
+    // avatarPersonal(id, avatar, file)
+    //  .then((resolve) => {
+    //    console.log("obteniendo url:", resolve);
+    //    updatePhotoUserWithAvatarPersonal(resolve);
+    //  })
+    //  .catch(console.log);
   });
 
   // Función para eliminar el contenido del input al momento de cancelar
