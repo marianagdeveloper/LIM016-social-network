@@ -7,8 +7,7 @@ export function publicationComponent(nameUser,
   myPost,
   idPublication,
   publicationText,
-  photo,
-  likesPublication) {
+  photo) {
   const componetPublication = `
     <div class='boxPublicationsN' id='${idPublication}'>
       <div class='boxPhotoandNameN'>
@@ -41,7 +40,7 @@ export function publicationComponent(nameUser,
           <button id='btnCancelEdit' class='btnCancelEdit' data-cancel='${idPublication}'>CANCEL</button>
         </div>
         <div class='saveN'>
-          <p class = 'pLikePublication' data-totalLike='${idPublication}'>${likesPublication}</p>
+          <p class = 'pLikePublication' data-totalLike='${idPublication}'></p>
           <img class='btnLikePublication' id='imgHeartLike' src='img/Icons/WhiteBorder/Heart1.png' data-like='${idPublication}' alt=''>
         </div>
       </div>
@@ -62,7 +61,6 @@ export function publicationComponent(nameUser,
   }
 
   // *******************************likes****************************************
-  // let activo = true;
   let likeRef;
   const element = divElemt.querySelector('.btnLikePublication');
   const uidPostLikes = element.dataset.like;
