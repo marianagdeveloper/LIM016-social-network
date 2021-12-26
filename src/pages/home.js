@@ -96,7 +96,7 @@ const Home = () => {
         <div class='UserName'>
         </div>
         <div class='Avatar'>
-          <img title='Your phofile picture' class='Avatar-img' src='img/Avatares/Animals/AvatarA7.png' alt='Avatar Profile'><br>
+          <img title='My phofile picture' class='Avatar-img' src='img/Avatares/Animals/AvatarA7.png' alt='Avatar Profile'><br>
           <div class='linea2'>&nbsp;</div>
         </div>
         <div class='Bio'>
@@ -121,9 +121,9 @@ const Home = () => {
             Interests:
           </h3><br>
           <div class='Interests-Box'>
-            <img title='Your interest' id='Interests-0' src='' alt=''>
-            <img title='Your interest' id='Interests-1' src='' alt=''>
-            <img title='Your interest' id='Interests-2' src='' alt=''>
+            <img title='My interest' id='Interests-0' src='' alt=''>
+            <img title='My interest' id='Interests-1' src='' alt=''>
+            <img title='My interest' id='Interests-2' src='' alt=''>
           </div>
         </div>
       </div>
