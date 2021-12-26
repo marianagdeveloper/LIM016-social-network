@@ -223,17 +223,21 @@ const Home = () => {
 
   //Function - Filters
   function filterPost(filter) {
-    clearBoxPosts();
+    
     switch (filter) {
       case 'all':
-        reedPublications();
+        clearBoxPosts();
+        reedPublications({});
         break;
 
       case 'my':
-        reedPublications('my');
+        clearBoxPosts();
+        reedPublications({'my':''});
         break;
     
       case 'name':
+        clearBoxPosts();
+        reedPublications({'name':`${SearchName.value}`});
         break;
     }
   }
@@ -586,12 +590,32 @@ const Home = () => {
   async function reedPublications(filterMyPost) {
     let querySnapshotPublications = await getDocs(collection(db, 'publications'));
 
-    if(filterMyPost == 'my'){
-      let q = query(collection(db, "publications"), where("author", "==", '8cm4l6x9m8XLzHcQnUzoZUhciwk2'));
+    if(Object.keys(filterMyPost) == 'my'){
+      let q = query(collection(db, "publications"), where("author", "==", sessionStorage.getItem('key')));
       querySnapshotPublications = await getDocs(q);
     }
 
+    if(Object.keys(filterMyPost) == 'name'){
+      // let q = query(collection(db, "publications"), where("author", "==", '8cm4l6x9m8XLzHcQnUzoZUhciwk2'));
+      // querySnapshotPublications = await getDocs(q);
+      console.log('filter user: ', filterMyPost.name);
+      let q = query(collection(db, "users"), 
+        where('name', '>=', filterMyPost.name.capitalize()),
+        where('name', '<=', filterMyPost.name.capitalize()+ '\uf8ff'));
+
+        console.log('q', q);
+        const querySnapshot = await getDocs(q);
+        let uidUserFilter;
+        querySnapshot.forEach(element => {
+          uidUserFilter = element.data().uid
+        });
+        
+        let qa = query(collection(db, "publications"), where("author", "==", uidUserFilter));
+        querySnapshotPublications = await getDocs(qa);  
+    }
+
     querySnapshotPublications.forEach((documentFirebase) => {
+      clearBoxPosts();
       realOnSnapshot(documentFirebase);
     });
 
