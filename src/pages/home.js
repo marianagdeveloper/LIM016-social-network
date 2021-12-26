@@ -17,6 +17,8 @@ import {
   deleteDoc,
   arrayUnion,
   arrayRemove,
+  query,
+  where,
 } from '../utils/firebaseconfig.js';
 
 /* *************** Obtener un usuario de Firebase *************** */
@@ -131,6 +133,11 @@ const Home = () => {
       <div id='publications' class='Publications'>
         <div class='PublicationsContent'>
           <div class='btnPublic'>
+            <div class='btnsPublic'>
+              <button id='btnAllPost' class='btnAllPost'>All Posts</button>
+              <button id='btnMyPost' class='btnMyPost'>My Posts</button>
+              <input type='text' id='SearchName' name='firstname' class='SearchName' placeholder='User Name..'>
+            </div>
             <img id="NewPost" class="NewPost" src='img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
           </div>
           <div class='boxPublic'>
@@ -203,6 +210,46 @@ const Home = () => {
     </section>
   </main>`;
   containerHome.innerHTML = viewHome;
+
+  //Div - Filters
+  const boxPosts = containerHome.querySelector('#publicado');
+  const btnAllPost = containerHome.querySelector('.btnAllPost');
+  const btnMyPost = containerHome.querySelector('.btnMyPost');
+  const SearchName = containerHome.querySelector('.SearchName');
+
+  //Clear Posts
+  function clearBoxPosts() {
+    while (boxPosts.firstChild) {
+      boxPosts.firstChild.remove();
+    }
+    return
+  }
+
+  //Function - Filters
+  function filterPost(filter) {
+    
+    switch (filter) {
+      case 'all':
+        clearBoxPosts();
+        reedPublications({});
+        break;
+
+      case 'my':
+        clearBoxPosts();
+        reedPublications({'my':''});
+        break;
+    
+      case 'name':
+        clearBoxPosts();
+        reedPublications({'name':`${SearchName.value}`});
+        break;
+    }
+  }
+
+   //Events - Filters
+   btnAllPost.addEventListener('click', ()=>{filterPost('all')});
+   btnMyPost.addEventListener('click', ()=>{filterPost('my')});
+   SearchName.addEventListener('keyup', ()=>{clearBoxPosts();filterPost('name')});
 
   /* *************** Notificaciones de "post publicated" *************** */
 
@@ -544,10 +591,34 @@ const Home = () => {
 
   /* ***** leer datos desde Firebase de la colección Publicaciones y Usuarios ***** */
 
-  async function reedPublications() {
-    const querySnapshotPublications = await getDocs(collection(db, 'publications'));
+  async function reedPublications(filterMyPost) {
+    let querySnapshotPublications = await getDocs(collection(db, 'publications'));
+
+    if(Object.keys(filterMyPost) == 'my'){
+      let q = query(collection(db, "publications"), where("author", "==", sessionStorage.getItem('key')));
+      querySnapshotPublications = await getDocs(q);
+    }
+
+    if(Object.keys(filterMyPost) == 'name'){
+      
+      // console.log('filter user: ', filterMyPost.name);
+      let q = query(collection(db, "users"), 
+        where('name', '>=', filterMyPost.name.capitalize()),
+        where('name', '<=', filterMyPost.name.capitalize()+ '\uf8ff'));
+
+        console.log('q', q);
+        const querySnapshot = await getDocs(q);
+        let uidUserFilter;
+        querySnapshot.forEach(element => {
+          uidUserFilter = element.data().uid
+        });
+        
+        let qa = query(collection(db, "publications"), where("author", "==", uidUserFilter));
+        querySnapshotPublications = await getDocs(qa);  
+    }
 
     querySnapshotPublications.forEach((documentFirebase) => {
+      clearBoxPosts();
       realOnSnapshot(documentFirebase);
     });
 
