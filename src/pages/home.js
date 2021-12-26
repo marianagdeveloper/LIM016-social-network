@@ -14,6 +14,8 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  query,
+  where,
 } from '../utils/firebaseconfig.js';
 
 /* *************** Obtener un usuario de Firebase *************** */
@@ -90,7 +92,7 @@ const Home = () => {
         <div class='UserName'>
         </div>
         <div class='Avatar'>
-          <img title='Your phofile picture' class='Avatar-img' src='img/Avatares/Animals/AvatarA7.png' alt='Avatar Profile'><br>
+          <img title='My phofile picture' class='Avatar-img' src='img/Avatares/Animals/AvatarA7.png' alt='Avatar Profile'><br>
           <div class='linea2'>&nbsp;</div>
         </div>
         <div class='Bio'>
@@ -115,9 +117,9 @@ const Home = () => {
             Interests:
           </h3><br>
           <div class='Interests-Box'>
-            <img title='Your interest' id='Interests-0' src='' alt=''>
-            <img title='Your interest' id='Interests-1' src='' alt=''>
-            <img title='Your interest' id='Interests-2' src='' alt=''>
+            <img title='My interest' id='Interests-0' src='' alt=''>
+            <img title='My interest' id='Interests-1' src='' alt=''>
+            <img title='My interest' id='Interests-2' src='' alt=''>
           </div>
         </div>
       </div>
@@ -125,6 +127,11 @@ const Home = () => {
       <div id='publications' class='Publications'>
         <div class='PublicationsContent'>
           <div class='btnPublic'>
+            <div class='btnsPublic'>
+              <button id='btnAllPost' class='btnAllPost'>All Posts</button>
+              <button id='btnMyPost' class='btnMyPost'>My Posts</button>
+              <input type='text' id='SearchName' name='firstname' class='SearchName' placeholder='User Name..'>
+            </div>
             <img id="NewPost" class="NewPost" src='img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
           </div>
           <div class='boxPublic'>
@@ -148,7 +155,11 @@ const Home = () => {
             </div>
             <div class='opcionAddPost'>
               <div class='AddPhotoPost'>
-              <img title='Add a picture' src="img/Icons/cameraPost.png"  alt="Add photo" />
+                <input title="Add a photo" type="file" id="edit-file" class="inputFilePost"/>
+                <img class="inputFilePostIcon"
+                src="img/Icons/cameraPost.png"
+                title='Add a photo'
+                alt='Add a photo'/>
               </div>
               <div class='save'>
                 <button id='btnSave' class='btnSave'>SAVE</button>
@@ -193,6 +204,45 @@ const Home = () => {
     </section>
   </main>`;
   containerHome.innerHTML = viewHome;
+
+  // Div - Filters
+  const boxPosts = containerHome.querySelector('#publicado');
+  const btnAllPost = containerHome.querySelector('.btnAllPost');
+  const btnMyPost = containerHome.querySelector('.btnMyPost');
+  const SearchName = containerHome.querySelector('.SearchName');
+
+  // Clear Posts
+  function clearBoxPosts() {
+    while (boxPosts.firstChild) {
+      boxPosts.firstChild.remove();
+    }
+  }
+
+  // Function - Filters
+  function filterPost(filter) {
+    // eslint-disable-next-line default-case
+    switch (filter) {
+      case 'all':
+        clearBoxPosts();
+        reedPublications({});
+        break;
+
+      case 'my':
+        clearBoxPosts();
+        reedPublications({ my: '' });
+        break;
+
+      case 'name':
+        clearBoxPosts();
+        reedPublications({ name: `${SearchName.value}` });
+        break;
+    }
+  }
+
+  // Events - Filters
+  btnAllPost.addEventListener('click', () => { filterPost('all'); });
+  btnMyPost.addEventListener('click', () => { filterPost('my'); });
+  SearchName.addEventListener('keyup', () => { clearBoxPosts(); filterPost('name'); });
 
   /* *************** Notificaciones de "post publicated" *************** */
 
@@ -461,10 +511,33 @@ const Home = () => {
 
   /* ***** leer datos desde Firebase de la colección Publicaciones y Usuarios ***** */
 
-  async function reedPublications() {
-    const querySnapshotPublications = await getDocs(collection(db, 'publications'));
+  async function reedPublications(filterMyPost) {
+    let querySnapshotPublications = await getDocs(collection(db, 'publications'));
+
+    if (Object.keys(filterMyPost) === 'my') {
+      const q = query(collection(db, 'publications'), where('author', '==', sessionStorage.getItem('key')));
+      querySnapshotPublications = await getDocs(q);
+    }
+
+    if (Object.keys(filterMyPost) === 'name') {
+      // console.log('filter user: ', filterMyPost.name);
+      const q = query(collection(db, 'users'),
+        where('name', '>=', filterMyPost.name.capitalize()),
+        where('name', '<=', `${filterMyPost.name.capitalize()}\uf8ff`));
+
+      console.log('q', q);
+      const querySnapshot = await getDocs(q);
+      let uidUserFilter;
+      querySnapshot.forEach((element) => {
+        uidUserFilter = element.data().uid;
+      });
+
+      const qa = query(collection(db, 'publications'), where('author', '==', uidUserFilter));
+      querySnapshotPublications = await getDocs(qa);
+    }
 
     querySnapshotPublications.forEach((documentFirebase) => {
+      clearBoxPosts();
       realOnSnapshot(documentFirebase);
     });
 

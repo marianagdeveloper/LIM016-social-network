@@ -30,9 +30,9 @@ const EditProfile = () => {
             <div class='photoProfile'>
               <img
                 class='photo'
-                title='Your profile picture'
+                title='My profile picture'
                 src=''
-                alt='Your profile picture'
+                alt='My profile picture'
                 srcset=''
               />
             </div>
@@ -63,12 +63,12 @@ const EditProfile = () => {
                 <h2>Choose your profile picture:</h2>
                 <img
                   class='OpenListAvatars'
-                  src='img/Icons/Up.png'
+                  src='img/Icons/Up2.png'
                   title='Open Avatars list'
                   alt='Open Avatars list'/>
                 <img
                   class='None CloseListAvatars'
-                  src='img/Icons/Down.png'
+                  src='img/Icons/Down2.png'
                   title='Close Interests list'
                   alt='Close Interests list'/>
               </div>
@@ -161,29 +161,31 @@ const EditProfile = () => {
                     alt='Bengal tiger'
                     srcset=''/>
                     <p>Bengal tiger</p>
-                  </div>
-                  <div class='img11'>
-                    <img
-                    src='img/Icons/cameraProfile.png'
-                    title='Add image'
-                    alt='Add image'
-                    srcset=''/> 
-                    <input type="file" id="edit-file" name="edit-file"/>
-                  </div>                  
+                  </div>  
+                  <div title="Add a photo" class='img11'>
+                    <div title="Add a photo" class='UpdateProfilePhoto'>  
+                      <input title="Add a photo" type="file" id="edit-file" class="inputFileProfile"/>
+                      <img class="inputFileProfileIcon"
+                      src='img/Icons/cameraProfile.png'
+                      title='Add a photo'
+                      alt='Add a photo'/>
+                    </div>  
+                    <p>Add a photo</p>
+                  </div>                
               </div>
-          
+
           </div>
             <div id='selectInterest' class='Box'>
               <div id='boxBtnSelectInterests' class='boxBtnSelectInterests'>
                 <h2>Pick 3 of your interests:</h2>
                 <img
                   class='OpenListInterests'
-                  src='img/Icons/Up.png'
+                  src='img/Icons/Up2.png'
                   title='Open Interests list'
                   alt='Open Interests list'/>
                 <img
                   class='None CloseListInterests'
-                  src='img/Icons/Down.png'
+                  src='img/Icons/Down2.png'
                   title='Close Interests list'
                   alt='Close Interests list'/>
               </div>
@@ -332,7 +334,7 @@ const EditProfile = () => {
     divElemt.querySelector('.photo').src = photo;
   }
 
-  // Function camera with Avatar Personal - Save File in Avatar
+  // Function Save File Avatar in Firebase Storage
   async function avatarPersonal(uid, avatar, file) {
     const spaceRef = ref(storage, `${uid}/img/Avatares/${avatar}`);
     await uploadBytes(spaceRef, file);
@@ -349,7 +351,7 @@ const EditProfile = () => {
       divInterestProfile.removeChild(divInterestProfile.firstChild);
     }
     interests.forEach((element) => {
-      divInterestProfile.innerHTML += `<img title='Your interest' src='${element}' alt='' />`;
+      divInterestProfile.innerHTML += `<img title='My interest' src='${element}' alt='' />`;
     });
   }
 
@@ -364,7 +366,7 @@ const EditProfile = () => {
     });
   }
 
-  // Update info user
+  // Update Avatar in Collection Users
   function updatePhotoWithAvatar(uid, photo) {
     const userUpdate = doc(db, 'users', uid);
     return updateDoc(userUpdate, {
@@ -430,7 +432,6 @@ const EditProfile = () => {
       const countryData = event.target.value.split(':');
       code = countryData[0];
       nameCountry = countryData[1];
-      // console.log(code, nameCountry);
       // Change Flag
       divElemt.querySelector('.flag').innerHTML = `
       <img
@@ -456,14 +457,16 @@ const EditProfile = () => {
     }
 
     // Select Avatar personal
+    let file; let
+      avatar;
     const divCamera = divElemt.querySelector('#edit-file');
     divCamera.addEventListener('change', (e) => {
-      const file = e.target.files[0];
+      const id = sessionStorage.getItem('key');
+      file = e.target.files[0];
       console.log(file);
-      const uid = info.uid;
-      const avatar = file.name;
+      avatar = file.name;
       // Save Avatar personal in Storage of Firebase
-      avatarPersonal(uid, avatar, file)
+      avatarPersonal(id, avatar, file)
         .then((resolve) => {
           console.log('obteniendo url:', resolve);
           updatePhotoUserWithAvatarPersonal(resolve);
@@ -471,13 +474,12 @@ const EditProfile = () => {
         .catch(console.log);
     });
 
-    // Update Photo of User with personal Avatar
-    function updatePhotoUserWithAvatarPersonal(params) {
-      const uid = sessionStorage.getItem('key');
-      updatePhotoWithAvatar(uid, params);
-      newPhoto = params;
-      // updateAvatarUserSession(params);
-      photoProfile(params);
+    // Update URL Avatar Personal
+    let urlImg;
+    function updatePhotoUserWithAvatarPersonal(url) {
+      urlImg = url;
+      newPhoto = url;
+      photoProfile(url);
     }
 
     // Select Interest
@@ -503,8 +505,9 @@ const EditProfile = () => {
     // Button Save
     const btnSave = divElemt.querySelector('.buttonSave');
     btnSave.addEventListener('click', () => {
-      let uid; let bio; let photo; let country;
-      let interests;
+      // New Data
+      let uid; let bio; let photo; let country; let
+        interests;
       console.log('uidSS: ', sessionStorage.getItem('key'));
       uid = sessionStorage.getItem('key');
       bio = divElemt.querySelector('.bio').value;
@@ -517,6 +520,8 @@ const EditProfile = () => {
       updateInfoUserSession({
         uid, bio, photo, interests, country,
       });
+      // Save Avatar in Collection Users
+      updatePhotoWithAvatar(uid, photo);
     });
   };
 
