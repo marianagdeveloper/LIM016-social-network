@@ -1,6 +1,6 @@
 /* eslint-disable no-inner-declarations */
 import {
-  db, doc, updateDoc, arrayUnion, arrayRemove, getDoc,
+  db, doc, updateDoc, getDoc,
 } from '../utils/firebaseconfig.js';
 
 export function publicationComponent(nameUser,
@@ -8,8 +8,7 @@ export function publicationComponent(nameUser,
   idPublication,
   publicationText,
   photo,
-  likes,
-  likesForPublication) {
+  likesPublication) {
   const componetPublication = `
     <div class='boxPublicationsN' id='${idPublication}'>
       <div class='boxPhotoandNameN'>
@@ -42,7 +41,7 @@ export function publicationComponent(nameUser,
           <button id='btnCancelEdit' class='btnCancelEdit' data-cancel='${idPublication}'>CANCEL</button>
         </div>
         <div class='saveN'>
-          <p class = 'pLikePublication' data-totalLike='${idPublication}'>${likes}</p>
+          <p class = 'pLikePublication' data-totalLike='${idPublication}'>${likesPublication}</p>
           <img class='btnLikePublication' id='imgHeartLike' src='img/Icons/WhiteBorder/Heart1.png' data-like='${idPublication}' alt=''>
         </div>
       </div>
@@ -51,8 +50,6 @@ export function publicationComponent(nameUser,
   // publication
   const divElemt = document.createElement('div');
   divElemt.innerHTML += componetPublication;
-
-  console.log(likesForPublication);
 
   const btnsEditAndDeletePost = `
   <img title='Edit your post' id='btnEditPost' class='btnEditPost' data-edit='${idPublication}' src='img/Icons/Pencil.png' alt=''>
@@ -74,48 +71,49 @@ export function publicationComponent(nameUser,
 
   const userCurrent = sessionStorage.getItem('key');
 
-  // *****retorna el total de likes por post ****
-  async function lengthArrayLikes() {
-    const docSnap = await getDoc(likeRef);
-    const totalLikesPorUidPost = docSnap.data().idUserLike.length;
-    pLikePublication.textContent = totalLikesPorUidPost;
-    console.log(pLikePublication);
-    return totalLikesPorUidPost;
-  }
-
-  // remover elemento array
-  async function subtractLikePost(likeReferenc, arrayLikes) {
-    await updateDoc(likeReferenc, {
-      idUserLike: arrayRemove(...arrayLikes),
-    });
-  }
-
-  // agregar elemento array
+  // ****agrega el array de likes por idUser´s al campo idUserLike ****
   async function addLikePost(likeReferenc, arrayLikes) {
     await updateDoc(likeReferenc, {
-      idUserLike: arrayUnion(...arrayLikes),
+      idUserLike: arrayLikes,
     });
   }
 
+  // **** total de likes por post ****
+  async function lengthArrayLikes(arrayLikes) {
+    pLikePublication.textContent = arrayLikes.length;
+    console.log(pLikePublication);
+  }
+  // ****evento que suma o resta likes de acuerdo a la condicion ****
   element.addEventListener('click', () => {
-    // ****se agrega o quita likes del usuario de acuerdo a la condicion****
-    const arrayLikes = [];
-    arrayLikes.push(userCurrent);
-    likeRef = doc(db, 'publications', uidPostLikes);
     async function btnLikes() {
-      const docSnap = await getDoc(likeRef);
-      console.log('🚀 ~ file: publication.js ~ line 107 ~ btnLikes ~ docSnap', docSnap.data().idUserLike);
-      if (docSnap.data().idUserLike.includes(userCurrent)) {
-        imgHeartLike.src = 'img/Icons/WhiteTotal/Heart2.png';
-        subtractLikePost(likeRef, arrayLikes);
-      } else {
+      // ****se agrega o quita likes del usuario de acuerdo a la condicion***
+      likeRef = doc(db, 'publications', uidPostLikes);
+      const docSnap = await getDoc(likeRef).then((docs) => docs.data());
+      if (docSnap.idUserLike.includes(userCurrent)) {
         imgHeartLike.src = 'img/Icons/WhiteBorder/Heart1.png';
-        addLikePost(likeRef, arrayLikes);
+        addLikePost(likeRef, docSnap.idUserLike.filter((i) => i !== userCurrent));
+        lengthArrayLikes(docSnap.idUserLike.filter((i) => i !== userCurrent));
+      } else {
+        imgHeartLike.src = 'img/Icons/WhiteTotal/Heart2.png';
+        addLikePost(likeRef, [...docSnap.idUserLike, userCurrent]);
+        lengthArrayLikes([...docSnap.idUserLike, userCurrent]);
       }
+      return docSnap;
     }
     btnLikes();
-    lengthArrayLikes();
   });
+  // ****ver los likes cuando el usuario ingresa al home*******
+  async function viewLikesInSnapshot() {
+    const likeeRef = doc(db, 'publications', uidPostLikes);
+    const doocSnap = await getDoc(likeeRef).then((docs) => docs.data());
+    if (doocSnap.idUserLike.includes(userCurrent)) {
+      imgHeartLike.src = 'img/Icons/WhiteTotal/Heart2.png';
+    } else {
+      imgHeartLike.src = 'img/Icons/WhiteBorder/Heart1.png';
+    }
+    lengthArrayLikes(doocSnap.idUserLike);
+  }
+  viewLikesInSnapshot();
 
   // ***************************************************************************
   // print date time publicated
