@@ -154,7 +154,11 @@ const Home = () => {
             </div>
             <div class='opcionAddPost'>
               <div class='AddPhotoPost'>
-              <img title='Add a picture' src="img/Icons/cameraPost.png"  alt="Add photo" />
+                <input title="Add a photo" type="file" id="edit-file" class="inputFilePost"/>
+                <img class="inputFilePostIcon"
+                src="img/Icons/cameraPost.png"
+                title='Add a photo'
+                alt='Add a photo'/>
               </div>
               <div class='save'>
                 <button id='btnSave' class='btnSave'>SAVE</button>
