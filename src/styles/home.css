@@ -166,16 +166,28 @@ text-align: center;
 
 .btnPublic {
   display: flex;
-  justify-content: flex-end;
-  margin: 2%;
-  
+  justify-content: space-around;
+  margin: 2%;  
 }
+
 .btnPublic img{
   width: 5%;
   border-radius: 100%;
   padding: 1%;
   background-color: rgb(123 123 123);
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.btnAllPost, .btnMyPost {
+  background-color: rgba(123, 123, 123, 0.829);
+    border-radius: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    padding: 6px;
+    box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
+    margin-right: 12px;
 }
 
 .SliderNews {

@@ -17,6 +17,8 @@ import {
   deleteDoc,
   arrayUnion,
   arrayRemove,
+  query,
+  where,
 } from '../utils/firebaseconfig.js';
 
 /* *************** Obtener un usuario de Firebase *************** */
@@ -131,6 +133,11 @@ const Home = () => {
       <div id='publications' class='Publications'>
         <div class='PublicationsContent'>
           <div class='btnPublic'>
+            <div class='btnsPublic'>
+              <button id='btnAllPost' class='btnAllPost'>All Posts</button>
+              <button id='btnMyPost' class='btnMyPost'>My Posts</button>
+              <input type='text' id='SearchName' name='firstname' class='SearchName' placeholder='User Name..'>
+            </div>
             <img id="NewPost" class="NewPost" src='img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
           </div>
           <div class='boxPublic'>
@@ -199,6 +206,42 @@ const Home = () => {
     </section>
   </main>`;
   containerHome.innerHTML = viewHome;
+
+  //Div - Filters
+  const boxPosts = containerHome.querySelector('#publicado');
+  const btnAllPost = containerHome.querySelector('.btnAllPost');
+  const btnMyPost = containerHome.querySelector('.btnMyPost');
+  const SearchName = containerHome.querySelector('.SearchName');
+
+  //Clear Posts
+  function clearBoxPosts() {
+    while (boxPosts.firstChild) {
+      boxPosts.firstChild.remove();
+    }
+    return
+  }
+
+  //Function - Filters
+  function filterPost(filter) {
+    clearBoxPosts();
+    switch (filter) {
+      case 'all':
+        reedPublications();
+        break;
+
+      case 'my':
+        reedPublications('my');
+        break;
+    
+      case 'name':
+        break;
+    }
+  }
+
+   //Events - Filters
+   btnAllPost.addEventListener('click', ()=>{filterPost('all')});
+   btnMyPost.addEventListener('click', ()=>{filterPost('my')});
+   SearchName.addEventListener('keyup', ()=>{filterPost('name')});
 
   /* *************** Notificaciones de "post publicated" *************** */
 
@@ -540,8 +583,13 @@ const Home = () => {
 
   /* ***** leer datos desde Firebase de la colección Publicaciones y Usuarios ***** */
 
-  async function reedPublications() {
-    const querySnapshotPublications = await getDocs(collection(db, 'publications'));
+  async function reedPublications(filterMyPost) {
+    let querySnapshotPublications = await getDocs(collection(db, 'publications'));
+
+    if(filterMyPost == 'my'){
+      let q = query(collection(db, "publications"), where("author", "==", '8cm4l6x9m8XLzHcQnUzoZUhciwk2'));
+      querySnapshotPublications = await getDocs(q);
+    }
 
     querySnapshotPublications.forEach((documentFirebase) => {
       realOnSnapshot(documentFirebase);
