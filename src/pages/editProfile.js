@@ -30,9 +30,9 @@ const EditProfile = () => {
             <div class='photoProfile'>
               <img
                 class='photo'
-                title='Your profile picture'
+                title='My profile picture'
                 src=''
-                alt='Your profile picture'
+                alt='My profile picture'
                 srcset=''
               />
             </div>
@@ -63,12 +63,12 @@ const EditProfile = () => {
                 <h2>Choose your profile picture:</h2>
                 <img
                   class='OpenListAvatars'
-                  src='img/Icons/Up.png'
+                  src='img/Icons/Up2.png'
                   title='Open Avatars list'
                   alt='Open Avatars list'/>
                 <img
                   class='None CloseListAvatars'
-                  src='img/Icons/Down.png'
+                  src='img/Icons/Down2.png'
                   title='Close Interests list'
                   alt='Close Interests list'/>
               </div>
@@ -161,24 +161,31 @@ const EditProfile = () => {
                     alt='Bengal tiger'
                     srcset=''/>
                     <p>Bengal tiger</p>
-                  </div>                 
+                  </div>  
+                  <div title="Add a photo" class='img11'>
+                    <div title="Add a photo" class='UpdateProfilePhoto'>  
+                      <input title="Add a photo" type="file" id="edit-file" class="inputFileProfile"/>
+                      <img class="inputFileProfileIcon"
+                      src='img/Icons/cameraProfile.png'
+                      title='Add a photo'
+                      alt='Add a photo'/>
+                    </div>  
+                    <p>Add a photo</p>
+                  </div>                
               </div>
-              <div class='UpdateProfilePhoto'>
-                <h2>Update you profile photo:</h2>
-                <input type="file" id="edit-file" name="edit-file"/>
-              </div> 
+
           </div>
             <div id='selectInterest' class='Box'>
               <div id='boxBtnSelectInterests' class='boxBtnSelectInterests'>
                 <h2>Pick 3 of your interests:</h2>
                 <img
                   class='OpenListInterests'
-                  src='img/Icons/Up.png'
+                  src='img/Icons/Up2.png'
                   title='Open Interests list'
                   alt='Open Interests list'/>
                 <img
                   class='None CloseListInterests'
-                  src='img/Icons/Down.png'
+                  src='img/Icons/Down2.png'
                   title='Close Interests list'
                   alt='Close Interests list'/>
               </div>
@@ -345,7 +352,7 @@ const EditProfile = () => {
     }
     
     interests.forEach((element) => {
-      divInterestProfile.innerHTML += `<img title='Your interest' src='${element}' alt='' />`;
+      divInterestProfile.innerHTML += `<img title='My interest' src='${element}' alt='' />`;
     });
   }
 

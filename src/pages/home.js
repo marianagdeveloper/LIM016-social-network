@@ -98,7 +98,7 @@ const Home = () => {
         <div class='UserName'>
         </div>
         <div class='Avatar'>
-          <img title='Your phofile picture' class='Avatar-img' src='img/Avatares/Animals/AvatarA7.png' alt='Avatar Profile'><br>
+          <img title='My phofile picture' class='Avatar-img' src='img/Avatares/Animals/AvatarA7.png' alt='Avatar Profile'><br>
           <div class='linea2'>&nbsp;</div>
         </div>
         <div class='Bio'>
@@ -123,9 +123,9 @@ const Home = () => {
             Interests:
           </h3><br>
           <div class='Interests-Box'>
-            <img title='Your interest' id='Interests-0' src='' alt=''>
-            <img title='Your interest' id='Interests-1' src='' alt=''>
-            <img title='Your interest' id='Interests-2' src='' alt=''>
+            <img title='My interest' id='Interests-0' src='' alt=''>
+            <img title='My interest' id='Interests-1' src='' alt=''>
+            <img title='My interest' id='Interests-2' src='' alt=''>
           </div>
         </div>
       </div>
@@ -161,7 +161,11 @@ const Home = () => {
             </div>
             <div class='opcionAddPost'>
               <div class='AddPhotoPost'>
-              <img title='Add a picture' src="img/Icons/cameraPost.png"  alt="Add photo" />
+                <input title="Add a photo" type="file" id="edit-file" class="inputFilePost"/>
+                <img class="inputFilePostIcon"
+                src="img/Icons/cameraPost.png"
+                title='Add a photo'
+                alt='Add a photo'/>
               </div>
               <div class='save'>
                 <button id='btnSave' class='btnSave'>SAVE</button>
