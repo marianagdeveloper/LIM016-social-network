@@ -205,22 +205,23 @@ const Home = () => {
   </main>`;
   containerHome.innerHTML = viewHome;
 
-  // Div - Filters
+  //Div - Filters
   const boxPosts = containerHome.querySelector('#publicado');
   const btnAllPost = containerHome.querySelector('.btnAllPost');
   const btnMyPost = containerHome.querySelector('.btnMyPost');
   const SearchName = containerHome.querySelector('.SearchName');
 
-  // Clear Posts
+  //Clear Posts
   function clearBoxPosts() {
     while (boxPosts.firstChild) {
       boxPosts.firstChild.remove();
     }
+    return
   }
 
-  // Function - Filters
+  //Function - Filters
   function filterPost(filter) {
-    // eslint-disable-next-line default-case
+    
     switch (filter) {
       case 'all':
         clearBoxPosts();
@@ -229,20 +230,20 @@ const Home = () => {
 
       case 'my':
         clearBoxPosts();
-        reedPublications({ my: '' });
+        reedPublications({'my':''});
         break;
-
+    
       case 'name':
         clearBoxPosts();
-        reedPublications({ name: `${SearchName.value}` });
+        reedPublications({'name':`${SearchName.value}`});
         break;
     }
   }
 
-  // Events - Filters
-  btnAllPost.addEventListener('click', () => { filterPost('all'); });
-  btnMyPost.addEventListener('click', () => { filterPost('my'); });
-  SearchName.addEventListener('keyup', () => { clearBoxPosts(); filterPost('name'); });
+   //Events - Filters
+   btnAllPost.addEventListener('click', ()=>{filterPost('all')});
+   btnMyPost.addEventListener('click', ()=>{filterPost('my')});
+   SearchName.addEventListener('keyup', ()=>{clearBoxPosts();filterPost('name')});
 
   /* *************** Notificaciones de "post publicated" *************** */
 
@@ -514,26 +515,27 @@ const Home = () => {
   async function reedPublications(filterMyPost) {
     let querySnapshotPublications = await getDocs(collection(db, 'publications'));
 
-    if (Object.keys(filterMyPost) === 'my') {
-      const q = query(collection(db, 'publications'), where('author', '==', sessionStorage.getItem('key')));
+    if(Object.keys(filterMyPost) == 'my'){
+      let q = query(collection(db, "publications"), where("author", "==", sessionStorage.getItem('key')));
       querySnapshotPublications = await getDocs(q);
     }
 
-    if (Object.keys(filterMyPost) === 'name') {
+    if(Object.keys(filterMyPost) == 'name'){
+      
       // console.log('filter user: ', filterMyPost.name);
-      const q = query(collection(db, 'users'),
+      let q = query(collection(db, "users"), 
         where('name', '>=', filterMyPost.name.capitalize()),
-        where('name', '<=', `${filterMyPost.name.capitalize()}\uf8ff`));
+        where('name', '<=', filterMyPost.name.capitalize()+ '\uf8ff'));
 
-      console.log('q', q);
-      const querySnapshot = await getDocs(q);
-      let uidUserFilter;
-      querySnapshot.forEach((element) => {
-        uidUserFilter = element.data().uid;
-      });
-
-      const qa = query(collection(db, 'publications'), where('author', '==', uidUserFilter));
-      querySnapshotPublications = await getDocs(qa);
+        console.log('q', q);
+        const querySnapshot = await getDocs(q);
+        let uidUserFilter;
+        querySnapshot.forEach(element => {
+          uidUserFilter = element.data().uid
+        });
+        
+        let qa = query(collection(db, "publications"), where("author", "==", uidUserFilter));
+        querySnapshotPublications = await getDocs(qa);  
     }
 
     querySnapshotPublications.forEach((documentFirebase) => {
