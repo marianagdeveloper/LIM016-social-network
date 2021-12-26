@@ -13,10 +13,7 @@ import {
   getDoc,
   doc,
   updateDoc,
-  // onSnapshot,
   deleteDoc,
-  arrayUnion,
-  arrayRemove,
   query,
   where,
 } from '../utils/firebaseconfig.js';
@@ -64,6 +61,7 @@ async function addPublication(publication) {
     const docRef = await addDoc(collection(db, 'publications'), {
       author: sessionStorage.getItem('key'),
       publication,
+      idUserLike: '',
     });
   } catch (e) {
     console.error('Error adding document: ', e);
@@ -71,10 +69,6 @@ async function addPublication(publication) {
 }
 
 /* *************** Eliminar publicacion de Firebase *************** */
-
-// async function deletePublication(idPublicationRef) {
-//   await deleteDoc(doc(db, 'publications', idPublicationRef));
-// }
 
 export const deletePublication = (idPublicationRef) => deleteDoc(doc(db, 'publications', idPublicationRef));
 
@@ -211,23 +205,22 @@ const Home = () => {
   </main>`;
   containerHome.innerHTML = viewHome;
 
-  //Div - Filters
+  // Div - Filters
   const boxPosts = containerHome.querySelector('#publicado');
   const btnAllPost = containerHome.querySelector('.btnAllPost');
   const btnMyPost = containerHome.querySelector('.btnMyPost');
   const SearchName = containerHome.querySelector('.SearchName');
 
-  //Clear Posts
+  // Clear Posts
   function clearBoxPosts() {
     while (boxPosts.firstChild) {
       boxPosts.firstChild.remove();
     }
-    return
   }
 
-  //Function - Filters
+  // Function - Filters
   function filterPost(filter) {
-    
+    // eslint-disable-next-line default-case
     switch (filter) {
       case 'all':
         clearBoxPosts();
@@ -236,20 +229,20 @@ const Home = () => {
 
       case 'my':
         clearBoxPosts();
-        reedPublications({'my':''});
+        reedPublications({ my: '' });
         break;
-    
+
       case 'name':
         clearBoxPosts();
-        reedPublications({'name':`${SearchName.value}`});
+        reedPublications({ name: `${SearchName.value}` });
         break;
     }
   }
 
-   //Events - Filters
-   btnAllPost.addEventListener('click', ()=>{filterPost('all')});
-   btnMyPost.addEventListener('click', ()=>{filterPost('my')});
-   SearchName.addEventListener('keyup', ()=>{clearBoxPosts();filterPost('name')});
+  // Events - Filters
+  btnAllPost.addEventListener('click', () => { filterPost('all'); });
+  btnMyPost.addEventListener('click', () => { filterPost('my'); });
+  SearchName.addEventListener('keyup', () => { clearBoxPosts(); filterPost('name'); });
 
   /* *************** Notificaciones de "post publicated" *************** */
 
@@ -356,6 +349,7 @@ const Home = () => {
       const divPublicado = containerHome.querySelector('#publicado');
       const publication = containerHome.querySelector('#texta2').value;
       containerHome.querySelector('#texta2').value = containerHome.querySelector('#texta2').defaultValue;
+      // like.innerHTML = 'prueba';
       // console.log(publication);
 
       while (divPublicado.firstChild) {
@@ -411,19 +405,13 @@ const Home = () => {
       const userCurrent = sessionStorage.getItem('key');
       const myPost = authorPublication === userCurrent;
       const photo = userOfPublication.data().photo;
-      const likes = documentFirebase.data().idUserLike.length;
-      const likesForPublication = documentFirebase.data().idUserLike;
-      console.log(likesForPublication);
 
-      console.log('photo:', photo);
       /* ***** Agrega una nueva publicación por usuario de primera ***** */
       divPublicado.prepend(publicationComponent(nameUser,
         myPost,
         idPublication,
         publicationText,
-        photo,
-        likes,
-        likesForPublication));
+        photo));
 
       const textPublication = document.querySelector('textArea[data-texto]');
       const editsPublication = document.querySelector('img[data-edit]');
@@ -515,74 +503,6 @@ const Home = () => {
           });
           // END - Modal for Vericate Delete Publication
         });
-
-      // ****likes****
-      // let activo = true;
-      // let likeRef;
-      // const arrayBtnLikes = divPublicado.querySelectorAll('.btnLikePublication');
-
-      // // ****evento ocurrido por cada like de un usuario*****
-      // arrayBtnLikes.forEach((element) => {
-      //   element.addEventListener('click', (e) => {
-      //     e.preventDefault();
-      //     const uidPostLikes = e.target.dataset.like;
-      //     // eslint-disable-next-line max-len
-      //     // eslint-disable-next-line no-plusplus
-      //     function contLikes(docSnap) {
-      //       // eslint-disable-next-line no-plusplus
-      //       const pDeLikePublication = divPublicado.querySelectorAll('.pLikePublication');
-      //       // eslint-disable-next-line no-plusplus
-      //       for (let i = 0; i < pDeLikePublication.length; i++) {
-      //         if (pDeLikePublication[i].dataset.totallike === uidPostLikes) {
-      //           pDeLikePublication[i].innerHTML = docSnap.data().idUserLike.length;
-      //         } else {
-      //           console.log('error wey');
-      //         }
-      //       }
-      //     }
-      //     // *****retorna el total de likes por post ****
-      //     async function lengthArrayLikes() {
-      //       const docSnap = await getDoc(likeRef);
-      //       contLikes(docSnap);
-      //       const totalLikesPorUidPost = docSnap.data().idUserLike.length;
-      //       return totalLikesPorUidPost;
-      //     }
-
-      //     // ****se agrega o quita likes del usuario de acuerdo a la condicion****
-      //     if (activo) {
-      //       likeRef = doc(db, 'publications', uidPostLikes);
-      //       async function arrayFirebase() {
-      //         await updateDoc(likeRef, {
-      //           idUserLike: arrayUnion(uid()),
-      //         });
-      //       }
-      //       arrayFirebase()
-      //         .then(
-      //           // console.log('se ejecutó'),
-      //         );
-      //       activo = false;
-      //       lengthArrayLikes()
-      //         .then((result) => {
-      //         });
-      //     } else if (activo === false) {
-      //       activo = true;
-      //       likeRef = doc(db, 'publications', uidPostLikes);
-      //       async function arrayRemoveFirebase() {
-      //         await updateDoc(likeRef, {
-      //           idUserLike: arrayRemove(uid()),
-      //         });
-      //       }
-      //       arrayRemoveFirebase()
-      //         .then(
-      //           console.log('se ha eliminado jeje'),
-      //         );
-      //       lengthArrayLikes()
-      //         .then((result) => {
-      //         });
-      //     }
-      //   });
-      // });
-      // contLikes(docSnap);
     } else {
       console.log('No such document!');
     }
@@ -594,27 +514,26 @@ const Home = () => {
   async function reedPublications(filterMyPost) {
     let querySnapshotPublications = await getDocs(collection(db, 'publications'));
 
-    if(Object.keys(filterMyPost) == 'my'){
-      let q = query(collection(db, "publications"), where("author", "==", sessionStorage.getItem('key')));
+    if (Object.keys(filterMyPost) === 'my') {
+      const q = query(collection(db, 'publications'), where('author', '==', sessionStorage.getItem('key')));
       querySnapshotPublications = await getDocs(q);
     }
 
-    if(Object.keys(filterMyPost) == 'name'){
-      
+    if (Object.keys(filterMyPost) === 'name') {
       // console.log('filter user: ', filterMyPost.name);
-      let q = query(collection(db, "users"), 
+      const q = query(collection(db, 'users'),
         where('name', '>=', filterMyPost.name.capitalize()),
-        where('name', '<=', filterMyPost.name.capitalize()+ '\uf8ff'));
+        where('name', '<=', `${filterMyPost.name.capitalize()}\uf8ff`));
 
-        console.log('q', q);
-        const querySnapshot = await getDocs(q);
-        let uidUserFilter;
-        querySnapshot.forEach(element => {
-          uidUserFilter = element.data().uid
-        });
-        
-        let qa = query(collection(db, "publications"), where("author", "==", uidUserFilter));
-        querySnapshotPublications = await getDocs(qa);  
+      console.log('q', q);
+      const querySnapshot = await getDocs(q);
+      let uidUserFilter;
+      querySnapshot.forEach((element) => {
+        uidUserFilter = element.data().uid;
+      });
+
+      const qa = query(collection(db, 'publications'), where('author', '==', uidUserFilter));
+      querySnapshotPublications = await getDocs(qa);
     }
 
     querySnapshotPublications.forEach((documentFirebase) => {
