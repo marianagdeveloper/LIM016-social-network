@@ -249,7 +249,7 @@ const Home = () => {
    //Events - Filters
    btnAllPost.addEventListener('click', ()=>{filterPost('all')});
    btnMyPost.addEventListener('click', ()=>{filterPost('my')});
-   SearchName.addEventListener('keyup', ()=>{filterPost('name')});
+   SearchName.addEventListener('keyup', ()=>{clearBoxPosts();filterPost('name')});
 
   /* *************** Notificaciones de "post publicated" *************** */
 
@@ -600,9 +600,8 @@ const Home = () => {
     }
 
     if(Object.keys(filterMyPost) == 'name'){
-      // let q = query(collection(db, "publications"), where("author", "==", '8cm4l6x9m8XLzHcQnUzoZUhciwk2'));
-      // querySnapshotPublications = await getDocs(q);
-      console.log('filter user: ', filterMyPost.name);
+      
+      // console.log('filter user: ', filterMyPost.name);
       let q = query(collection(db, "users"), 
         where('name', '>=', filterMyPost.name.capitalize()),
         where('name', '<=', filterMyPost.name.capitalize()+ '\uf8ff'));
