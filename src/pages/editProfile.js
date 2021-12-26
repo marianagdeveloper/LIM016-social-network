@@ -52,7 +52,7 @@ const EditProfile = () => {
               <textarea name='comments' id='texta2' class='bio'></textarea>
               <div class='buttonSave'>
                 <button>
-                  <h3>SAVE</h3>
+                  <h3>Save</h3>
                 </button>
               </div>
             </div>
@@ -470,11 +470,11 @@ const EditProfile = () => {
       avatar = file.name;
       //Save Avatar personal in Storage of Firebase
       avatarPersonal(id, avatar, file)
-       .then((resolve) => {
-         console.log("obteniendo url:", resolve);
-         updatePhotoUserWithAvatarPersonal(resolve);
-       })
-       .catch(console.log);
+      .then((resolve) => {
+        console.log("obteniendo url:", resolve);
+        updatePhotoUserWithAvatarPersonal(resolve);
+      })
+      .catch(console.log);
     });
 
     //Update URL Avatar Personal

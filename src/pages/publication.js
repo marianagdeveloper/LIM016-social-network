@@ -39,8 +39,8 @@ export function publicationComponent(nameUser,
 
       <div class='FlexBoxEditbtns'>
         <div id='btnsEditContainer' class='hide btnsEditContainer'>
-          <button id='btnSaveEdit' class='btnSaveEdit' data-save='${idPublication}'>SAVE</button>
-          <button id='btnCancelEdit' class='btnCancelEdit' data-cancel='${idPublication}'>CANCEL</button>
+          <button id='btnSaveEdit' class='btnSaveEdit' data-save='${idPublication}'>Save</button>
+          <button id='btnCancelEdit' class='btnCancelEdit' data-cancel='${idPublication}'>Cancel</button>
         </div>
         <div class='saveN'>
           <p class = 'pLikePublication' data-totalLike='${idPublication}'>${likes}</p>

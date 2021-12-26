@@ -131,6 +131,10 @@ const Home = () => {
       <div id='publications' class='Publications'>
         <div class='PublicationsContent'>
           <div class='btnPublic'>
+            <div class='FilterPost'>
+              <button id='btnMyPost' class='btnMyPost'>My Posts</button>
+              <button id='btnAllPost' class='btnAllPost'>All Posts</button>
+            </div>
             <img id="NewPost" class="NewPost" src='img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
           </div>
           <div class='boxPublic'>
@@ -154,15 +158,15 @@ const Home = () => {
             </div>
             <div class='opcionAddPost'>
               <div class='AddPhotoPost'>
-                <input title="Add a photo" type="file" id="edit-file" class="inputFilePost"/>
+                <input title="Add a photo" type="file" id="add-photo-post" class="inputFilePost"/>
                 <img class="inputFilePostIcon"
                 src="img/Icons/cameraPost.png"
                 title='Add a photo'
                 alt='Add a photo'/>
               </div>
               <div class='save'>
-                <button id='btnSave' class='btnSave'>SAVE</button>
-                <button id='btnCancel' class='btnCancel'>CANCEL</button>
+                <button id='btnSave' class='btnSave'>Save</button>
+                <button id='btnCancel' class='btnCancel'>Cancel</button>
               </div>
             </div>
           </div>
