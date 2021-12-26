@@ -8,6 +8,11 @@ import {
 import { countries } from "../utils/countries.js";
 import { interests } from "../utils/interests.js";
 
+String.prototype.capitalize = function() {
+  // console.log(this.charAt(0).toUpperCase() + this.slice(1));
+  return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 //Function - Get Users data from Firestore
 async function usersInFirestore() {
   const usersData = await getDocs(collection(db, "users"));
@@ -50,6 +55,7 @@ const Search = () => {
 
   //Divs querySelector
   const divCardUser = divElemt.querySelector(".caja2");
+  const divInputName = divElemt.querySelector("#fname");
   const divSelectCountry = divElemt.querySelector(".selectCountry");
   const divSelectInterest = divElemt.querySelector(".selectInterest");
 
@@ -58,6 +64,13 @@ const Search = () => {
     clearCards();
     let filterInfo = divElem;
     let q =  query(collection(db, "users"));
+
+    if (key == 'username'){
+      console.log('filterInfo.value: ', filterInfo.value);
+      q = query(collection(db, "users"), 
+        where('name', '>=', filterInfo.value.capitalize()),
+        where('name', '<=', filterInfo.value.capitalize()+ '\uf8ff'));
+    }
     if (key == 'country'){
       q = query(collection(db, "users"), where("country", "==", filterInfo.value));
     }
@@ -68,6 +81,9 @@ const Search = () => {
     printDataUsers(querySnapshot)
   }
 
+  //Show input - filter Name
+  divInputName.addEventListener("keyup", () => {filterUsers('username', divInputName)});
+  
   //Show countries
   // eslint-disable-next-line no-restricted-syntax
   for (const prop in countries) {
@@ -85,11 +101,10 @@ const Search = () => {
     filterUsers('interests', divSelectInterest);
   });
 
-  //Print Users
+  //Print Users -> for user
   function printDataUsers(data) {
     // console.log('data: ', data);
     let dataUsers = data;
-    
     dataUsers.forEach((doc) => {
       // console.log(doc.id, " => ", doc.data());
       //Print One User
