@@ -407,10 +407,14 @@ const Home = () => {
       const publication = containerHome.querySelector("#texta2").value;
       containerHome.querySelector("#texta2").value =
       containerHome.querySelector("#texta2").defaultValue;
-     
-
+           
       while (divPublicado.firstChild) {
         divPublicado.removeChild(divPublicado.firstChild);
+      }
+
+      //Clean images in new post
+      while (imgPreview.firstChild) {
+        imgPreview.removeChild(imgPreview.firstChild);
       }
 
       if (publication !== "") {
@@ -419,7 +423,12 @@ const Home = () => {
           .classList.replace("modalCheckPost", "AlertmodalCheckPost");
 
         //Saved images in storage
-          switch (files.length) {
+        console.log('files sin imagen', files);
+          if (!files) {
+              //Add publication in firebase store
+              addPublication(publication, ['']);
+          }
+          switch (files.length > 0) {
             case 1:
               const p1 = urlStorage(files[0]);
               Promise.all([p1])
@@ -439,11 +448,6 @@ const Home = () => {
                 addPublication(publication, values);
                 })
               .catch(console.log);
-              break;
-          
-            default:
-              //Add publication in firebase store
-              addPublication(publication, []);
               break;
           }
       }
@@ -493,6 +497,7 @@ const Home = () => {
       const userCurrent = sessionStorage.getItem("key");
       const myPost = authorPublication === userCurrent;
       const photo = userOfPublication.data().photo;
+      const urls = documentFirebase.data().urlsImages;
 
       /* ***** Agrega una nueva publicación por usuario de primera ***** */
       divPublicado.prepend(
@@ -501,7 +506,8 @@ const Home = () => {
           myPost,
           idPublication,
           publicationText,
-          photo
+          photo,
+          urls,
         )
       );
 

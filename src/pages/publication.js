@@ -7,7 +7,8 @@ export function publicationComponent(nameUser,
   myPost,
   idPublication,
   publicationText,
-  photo) {
+  photo,
+  urls) {
   const componetPublication = `
     <div class='boxPublicationsN' id='${idPublication}'>
       <div class='boxPhotoandNameN'>
@@ -33,7 +34,7 @@ export function publicationComponent(nameUser,
           </textArea>
         </div>
       </div>
-
+      <div class='preview'></div> 
       <div class='FlexBoxEditbtns'>
         <div id='btnsEditContainer' class='hide btnsEditContainer'>
           <button id='btnSaveEdit' class='btnSaveEdit' data-save='${idPublication}'>SAVE</button>
@@ -58,6 +59,26 @@ export function publicationComponent(nameUser,
 
   if (myPost) {
     btnsContainer.innerHTML += btnsEditAndDeletePost;
+  }
+
+  //Images
+  const divImages = divElemt.querySelector('.preview');
+  console.log('urls', urls);
+
+    //Pre-view image in new post
+  
+    if (urls == []) {
+      console.log('no hay imagen');
+    }
+
+   if (urls.length > 0) {
+   urls.forEach(url => {
+    divImages.innerHTML += `
+    <img src='${url}' />
+    `
+   });
+  } else {
+    console.log('no hay imagen');
   }
 
   // *******************************likes****************************************
