@@ -301,7 +301,7 @@ const EditProfile = () => {
   const listAvatars = divElemt.querySelector('.listAvatars');
   const listInterests = divElemt.querySelector('.listInterests');
   const updateProdileModal = divElemt.querySelector('.modalProfileUpdated');
-
+  const bioValue = divElemt.querySelector('.bio').value;
   /* ***** Open Avatar List ***** */
   btnOpenListAvatars.addEventListener('click', (e) => {
     e.preventDefault();
@@ -474,14 +474,13 @@ const EditProfile = () => {
     const divCamera = divElemt.querySelector('#edit-file');
     divCamera.addEventListener('change', (e) => {
       updateProdileModal.classList.add('hide');
-      let id = sessionStorage.getItem("key");
+      let id = sessionStorage.getItem('key');
       file = e.target.files[0];
       console.log(file);
       avatar = file.name;
-      //Save Avatar personal in Storage of Firebase
+      // Save Avatar personal in Storage of Firebase
       avatarPersonal(id, avatar, file)
       .then((resolve) => {
-        console.log("obteniendo url:", resolve);
         updatePhotoUserWithAvatarPersonal(resolve);
       })
       .catch(console.log);
@@ -500,6 +499,7 @@ const EditProfile = () => {
     console.log(arrayInterest);
     // eslint-disable-next-line no-plusplus
     for (let index = 0; index < 11; index++) {
+      updateProdileModal.classList.add('hide');
       const divInterestsProfile = divElemt.querySelector(`#interest${index}`);
       // eslint-disable-next-line no-loop-func
       divInterestsProfile.addEventListener('click', (event) => {
@@ -522,11 +522,10 @@ const EditProfile = () => {
       let uid, bio, photo, country, interests;
       console.log('uidSS: ', sessionStorage.getItem('key'));
       uid = sessionStorage.getItem('key');
-      bio = divElemt.querySelector('.bio').value;
+      bio = bioValue;
       photo = newPhoto;
       console.log(uid, bio, photo);
       country = `${code}:${nameCountry}`;
-      console.log(country.split(':'));
       interests = arrayInterests;
       updateInfoUser(uid, bio, photo, interests, country);
       updateInfoUserSession({ uid, bio, photo, interests, country });
