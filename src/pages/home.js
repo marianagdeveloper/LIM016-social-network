@@ -130,7 +130,7 @@ const Home = () => {
             <div class='btnsPublic'>
               <button id='btnAllPost' class='btnAllPost'>All Posts</button>
               <button id='btnMyPost' class='btnMyPost'>My Posts</button>
-              <input type='text' id='SearchName' name='firstname' class='SearchName' placeholder='User Name..'>
+              <input type='text' id='SearchName' name='firstname' class='SearchName' placeholder='🔍 User Name..'>
             </div>
             <img id="NewPost" class="NewPost" src='img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
           </div>
