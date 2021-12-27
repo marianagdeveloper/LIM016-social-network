@@ -8,7 +8,7 @@ import {
 } from
   '../utils/firebaseconfig.js';
 
-import countries from '../utils/countries.js';
+import { countries } from '../utils/countries.js';
 // console.log('countries', Object.values(countries));
 
 // Template View Edit Profile
@@ -301,7 +301,7 @@ const EditProfile = () => {
   const listAvatars = divElemt.querySelector('.listAvatars');
   const listInterests = divElemt.querySelector('.listInterests');
   const updateProdileModal = divElemt.querySelector('.modalProfileUpdated');
-  const bioValue = divElemt.querySelector('.bio').value;
+
   /* ***** Open Avatar List ***** */
   btnOpenListAvatars.addEventListener('click', (e) => {
     e.preventDefault();
@@ -522,7 +522,7 @@ const EditProfile = () => {
       let uid, bio, photo, country, interests;
       console.log('uidSS: ', sessionStorage.getItem('key'));
       uid = sessionStorage.getItem('key');
-      bio = bioValue;
+      bio = divElemt.querySelector('.bio').value;
       photo = newPhoto;
       console.log(uid, bio, photo);
       country = `${code}:${nameCountry}`;
