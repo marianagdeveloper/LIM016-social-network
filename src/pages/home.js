@@ -62,6 +62,7 @@ async function addPublication(publication) {
       author: sessionStorage.getItem('key'),
       publication,
       idUserLike: '',
+      dateCreated: new Date(),
     });
   } catch (e) {
     console.error('Error adding document: ', e);
@@ -338,7 +339,6 @@ const Home = () => {
     // eslint-disable-next-line no-plusplus
     for (let index = 0; index < 3; index++) {
       containerHome.querySelector(`#Interests-${index}`).src = info.interests[index];
-      console.log(index);
     }
 
     /* *************** evento de añadir publicación con save *************** */
@@ -347,9 +347,8 @@ const Home = () => {
       e.preventDefault();
       const divPublicado = containerHome.querySelector('#publicado');
       const publication = containerHome.querySelector('#texta2').value;
+
       containerHome.querySelector('#texta2').value = containerHome.querySelector('#texta2').defaultValue;
-      // like.innerHTML = 'prueba';
-      // console.log(publication);
 
       while (divPublicado.firstChild) {
         divPublicado.removeChild(divPublicado.firstChild);
@@ -392,12 +391,15 @@ const Home = () => {
     const userOfPublication = await getDoc(doc(db, 'users', documentFirebase.data().author));
     if (userOfPublication.exists()) {
       const divPublicado = containerHome.querySelector('#publicado');
-      // const publicationsForUid = await getDoc(doc(db, 'publications', documentFirebase.data()));
-      // log
-
       const nameUser = userOfPublication.data().name;
-      console.log(nameUser);
+
       const publicationText = documentFirebase.data().publication;
+
+      /* ***** Constantes de fecha y hora por publicación ***** */
+      const publicationDate = documentFirebase.data().dateCreated.toDate().toDateString();
+      const publicationTime = documentFirebase.data().dateCreated.toDate().toLocaleTimeString('en-US');
+
+      console.log('date: ', publicationDate);
 
       /* ***** Only Delete or Edit Post for UserCurrent ***** */
       const authorPublication = userOfPublication.data().uid;
@@ -410,8 +412,11 @@ const Home = () => {
         myPost,
         idPublication,
         publicationText,
-        photo));
+        photo,
+        publicationDate,
+        publicationTime));
 
+      /* ***** Constantes para editar publicación ***** */
       const textPublication = document.querySelector('textArea[data-texto]');
       const editsPublication = document.querySelector('img[data-edit]');
 
