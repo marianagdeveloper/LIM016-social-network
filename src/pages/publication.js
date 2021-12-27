@@ -45,7 +45,7 @@ export function publicationComponent(nameUser,
         </div>
       </div>
     </div>`;
-  console.log(idPublication);
+  // console.log(idPublication);
   // publication
   const divElemt = document.createElement('div');
   divElemt.innerHTML += componetPublication;
@@ -79,7 +79,7 @@ export function publicationComponent(nameUser,
   // **** total de likes por post ****
   async function lengthArrayLikes(arrayLikes) {
     pLikePublication.textContent = arrayLikes.length;
-    console.log(pLikePublication);
+    // console.log(pLikePublication);
   }
   // ****evento que suma o resta likes de acuerdo a la condicion ****
   element.addEventListener('click', () => {
