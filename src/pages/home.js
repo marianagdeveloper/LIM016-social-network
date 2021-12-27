@@ -130,7 +130,7 @@ const Home = () => {
             <div class='btnsPublic'>
               <button id='btnAllPost' class='btnAllPost'>All Posts</button>
               <button id='btnMyPost' class='btnMyPost'>My Posts</button>
-              <input type='text' id='SearchName' name='firstname' class='SearchName' placeholder='User Name..'>
+              <input type='text' id='SearchName' name='firstname' class='SearchName' placeholder='🔍 User Name..'>
             </div>
             <img id="NewPost" class="NewPost" src='img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
           </div>
@@ -155,15 +155,15 @@ const Home = () => {
             </div>
             <div class='opcionAddPost'>
               <div class='AddPhotoPost'>
-                <input title="Add a photo" type="file" id="edit-file" class="inputFilePost"/>
+                <input title="Add a photo" type="file" id="add-photo-post" class="inputFilePost"/>
                 <img class="inputFilePostIcon"
                 src="img/Icons/cameraPost.png"
                 title='Add a photo'
                 alt='Add a photo'/>
               </div>
               <div class='save'>
-                <button id='btnSave' class='btnSave'>SAVE</button>
-                <button id='btnCancel' class='btnCancel'>CANCEL</button>
+                <button id='btnSave' class='btnSave'>Save</button>
+                <button id='btnCancel' class='btnCancel'>Cancel</button>
               </div>
             </div>
           </div>
@@ -205,13 +205,13 @@ const Home = () => {
   </main>`;
   containerHome.innerHTML = viewHome;
 
-  //Div - Filters
+  // Div - Filters
   const boxPosts = containerHome.querySelector('#publicado');
   const btnAllPost = containerHome.querySelector('.btnAllPost');
   const btnMyPost = containerHome.querySelector('.btnMyPost');
   const SearchName = containerHome.querySelector('.SearchName');
 
-  //Clear Posts
+  // Clear Posts
   function clearBoxPosts() {
     while (boxPosts.firstChild) {
       boxPosts.firstChild.remove();
@@ -219,31 +219,29 @@ const Home = () => {
     return
   }
 
-  //Function - Filters
+  // Function - Filters
   function filterPost(filter) {
-    
     switch (filter) {
       case 'all':
         clearBoxPosts();
         reedPublications({});
-        break;
-
+      break;
       case 'my':
         clearBoxPosts();
         reedPublications({'my':''});
-        break;
+      break;
     
       case 'name':
         clearBoxPosts();
         reedPublications({'name':`${SearchName.value}`});
-        break;
+      break;
     }
   }
 
-   //Events - Filters
-   btnAllPost.addEventListener('click', ()=>{filterPost('all')});
-   btnMyPost.addEventListener('click', ()=>{filterPost('my')});
-   SearchName.addEventListener('keyup', ()=>{clearBoxPosts();filterPost('name')});
+  // Events - Filters
+  btnAllPost.addEventListener('click', () => { filterPost('all')});
+  btnMyPost.addEventListener('click', () => { filterPost('my')});
+  SearchName.addEventListener('keyup', () => { clearBoxPosts();filterPost('name')});
 
   /* *************** Notificaciones de "post publicated" *************** */
 
@@ -515,27 +513,25 @@ const Home = () => {
   async function reedPublications(filterMyPost) {
     let querySnapshotPublications = await getDocs(collection(db, 'publications'));
 
-    if(Object.keys(filterMyPost) == 'my'){
-      let q = query(collection(db, "publications"), where("author", "==", sessionStorage.getItem('key')));
+    if (Object.keys(filterMyPost) == 'my') {
+      let q = query(collection(db, 'publications'), where('author', '==', sessionStorage.getItem('key')));
       querySnapshotPublications = await getDocs(q);
     }
 
-    if(Object.keys(filterMyPost) == 'name'){
-      
+    if (Object.keys(filterMyPost) == 'name') {
       // console.log('filter user: ', filterMyPost.name);
-      let q = query(collection(db, "users"), 
+      let q = query(collection(db, 'users'),
         where('name', '>=', filterMyPost.name.capitalize()),
         where('name', '<=', filterMyPost.name.capitalize()+ '\uf8ff'));
 
-        console.log('q', q);
-        const querySnapshot = await getDocs(q);
-        let uidUserFilter;
-        querySnapshot.forEach(element => {
-          uidUserFilter = element.data().uid
-        });
-        
-        let qa = query(collection(db, "publications"), where("author", "==", uidUserFilter));
-        querySnapshotPublications = await getDocs(qa);  
+      console.log('q', q);
+      const querySnapshot = await getDocs(q);
+      let uidUserFilter;
+      querySnapshot.forEach(element => {
+        uidUserFilter = element.data().uid;
+      });
+      let qa = query(collection(db, 'publications'), where('author', '==', uidUserFilter));
+      querySnapshotPublications = await getDocs(qa);
     }
 
     querySnapshotPublications.forEach((documentFirebase) => {

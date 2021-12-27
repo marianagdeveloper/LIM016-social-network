@@ -52,7 +52,7 @@ const EditProfile = () => {
               <textarea name='comments' id='texta2' class='bio'></textarea>
               <div class='buttonSave'>
                 <button>
-                  <h3>SAVE</h3>
+                  <h3>Save</h3>
                 </button>
               </div>
             </div>

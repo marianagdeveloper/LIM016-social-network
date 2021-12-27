@@ -34,12 +34,10 @@ body {
 }
 
 .UserName {
-text-align: center;
-
+  text-align: center;
 }
 
 .Avatar {
-
   display: flex;
   text-align: center;
   align-items: center;
@@ -176,18 +174,45 @@ text-align: center;
   border-radius: 100%;
   opacity: 0;
 }
-}
 
 .inputFilePostIcon {
   position:relative;
 }
 
+.FilterPost {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 2%;
+}
+
+.btnAllPost,
+.btnMyPost {
+  border: none;
+  background-color: #7b7b7b;
+  color: beige;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 40%) 0px 2px 4px, rgb(0 0 0 / 30%) 0px 7px 13px -3px, rgb(0 0 0 / 20%) 0px -3px 0px inset;
+  padding: 1% 2%;
+}
+
+.btnAllPost:hover,
+.btnMyPost:hover,
+.btnPublic img:hover {
+  background-color: #3f3c3c;
+}
+
 .btnPublic {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 2%;  
 }
 
+.btnPublic input {
+  border: none;
+  padding: 6px;
+  border-radius: 10px;
+}
 .btnPublic img{
   width: 5%;
   border-radius: 100%;
@@ -202,8 +227,9 @@ text-align: center;
     color: white;
     border: none;
     cursor: pointer;
-    opacity: 0.9;
+    width: 100px;
     padding: 6px;
+    opacity: 0.9;
     box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
     margin-right: 12px;
 }
@@ -363,8 +389,7 @@ text-align: center;
     position: relative;
   }
   
-  .Bio {
-  
+  .Bio {  
     justify-self: stretch;
     align-self: stretch;
     grid-area: Bio;
@@ -376,8 +401,7 @@ text-align: center;
     font-size: small;
   }
   
-  .Inf {
-  
+  .Inf {  
     justify-self: stretch;
     align-self: stretch;
     grid-area: Inf;
@@ -388,7 +412,6 @@ text-align: center;
   }
   
   .Interests {
-  
     justify-self: stretch;
     align-self: stretch;
     grid-area: Interests;
@@ -433,7 +456,7 @@ text-align: center;
   }
 
   .PublicationsContent {
-    background-color: gray;
+    background-color: #C4C4C4;
     width: 100%;
   }
   .SliderNews {
@@ -442,6 +465,5 @@ text-align: center;
   }
   .Avatar .linea2 {
     display: none;
-}
-
+  }
 }
