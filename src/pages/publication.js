@@ -9,7 +9,9 @@ export function publicationComponent(nameUser,
   publicationText,
   photo,
   publicationDate,
-  publicationTime) {
+  publicationTime,
+  urls) {
+
   const componetPublication = `
     <div class='boxPublicationsN' id='${idPublication}'>
       <div class='boxPhotoandNameN'>
@@ -35,7 +37,7 @@ export function publicationComponent(nameUser,
           </textArea>
         </div>
       </div>
-
+      <div class='preview'></div> 
       <div class='FlexBoxEditbtns'>
         <div id='btnsEditContainer' class='hide btnsEditContainer'>
           <button id='btnSaveEdit' class='btnSaveEdit' data-save='${idPublication}'>Save</button>
@@ -77,6 +79,35 @@ export function publicationComponent(nameUser,
     btnsContainer.innerHTML += btnsEditAndDeletePost;
   }
 
+  //Images
+  const divImages = divElemt.querySelector('.preview');
+  console.log('urls', urls);
+
+    //Pre-view image in new post
+    if (urls == []) {
+      console.log('no hay imagen');
+    }
+
+   if (urls.length > 0) {
+   urls.forEach(url => {
+    divImages.innerHTML += `
+    <img src='${url}' />
+    `
+   });
+  } else {
+    console.log('no hay imagen');
+  }
+
+  // *******************************likes****************************************
+  let likeRef;
+  const element = divElemt.querySelector('.btnLikePublication');
+  const uidPostLikes = element.dataset.like;
+  const pLikePublication = divElemt.querySelector('.pLikePublication');
+  const imgHeartLike = divElemt.querySelector('#imgHeartLike');
+
+  const userCurrent = sessionStorage.getItem('key');
+
+
   // ****agrega el array de likes por idUser´s al campo idUserLike ****
   async function addLikePost(likeReferenc, arrayLikes) {
     await updateDoc(likeReferenc, {
@@ -87,6 +118,7 @@ export function publicationComponent(nameUser,
   // **** total de likes por post ****
   async function lengthArrayLikes(arrayLikes) {
     pLikePublication.textContent = arrayLikes.length;
+
   }
   // ****evento que suma o resta likes de acuerdo a la condicion ****
   element.addEventListener('click', () => {

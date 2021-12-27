@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-unused-expressions */
-import { publicationComponent } from './publication.js';
+import { publicationComponent } from "./publication.js";
 
 import {
   db,
@@ -16,23 +16,33 @@ import {
   deleteDoc,
   query,
   where,
-} from '../utils/firebaseconfig.js';
+  storage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "../utils/firebaseconfig.js";
+
+import {
+  storageRef,
+  getFileURL,
+  uploadBytes1,
+} from "../utils/firebase_storage.js";
 
 /* *************** Obtener un usuario de Firebase *************** */
 
 async function readUser(uid) {
-  let data = '';
-  const docRef = doc(db, 'users', uid);
+  let data = "";
+  const docRef = doc(db, "users", uid);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
     // console.log('Document data:', docSnap.data());
     data = docSnap.data();
-    console.log('User data:', data);
-    sessionStorage.setItem('user', JSON.stringify(data));
+    console.log("User data:", data);
+    sessionStorage.setItem("user", JSON.stringify(data));
   } else {
     // doc.data() will be undefined in this case
-    console.log('No exist user!');
+    console.log("No exist user!");
   }
   return data;
 }
@@ -40,41 +50,52 @@ async function readUser(uid) {
 /* read text content of a publication */
 
 async function readAPost(uid, elmtTextContentPost) {
-  let data = '';
-  const docRef = doc(db, 'publications', uid);
+  let data = "";
+  const docRef = doc(db, "publications", uid);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
     data = docSnap.data().publication;
     // eslint-disable-next-line no-param-reassign
     elmtTextContentPost.value = data;
-    console.log('textPost:', elmtTextContentPost);
+    console.log("textPost:", elmtTextContentPost);
   } else {
-    console.log('No exist post!');
+    console.log("No exist post!");
   }
 }
 
+//obtener url de firebase
+async function urlStorage(params) {
+  const refStorage = storageRef(params);
+  await uploadBytes1(refStorage, params);
+  return await getFileURL(refStorage);
+}
+
 /* *************** Agregar publicacion a Firebase *************** */
-async function addPublication(publication) {
+async function addPublication(publication, urlsImg) {
   try {
     // eslint-disable-next-line no-unused-vars
-    const docRef = await addDoc(collection(db, 'publications'), {
-      author: sessionStorage.getItem('key'),
+    await addDoc(collection(db, "publications"), {
+      author: sessionStorage.getItem("key"),
       publication,
       idUserLike: '',
       dateCreated: new Date(),
+      urlsImages: urlsImg,
     });
   } catch (e) {
-    console.error('Error adding document: ', e);
+    console.error("Error adding document: ", e);
   }
 }
 
 /* *************** Eliminar publicacion de Firebase *************** */
 
-export const deletePublication = (idPublicationRef) => deleteDoc(doc(db, 'publications', idPublicationRef));
+export const deletePublication = (idPublicationRef) =>
+  deleteDoc(doc(db, "publications", idPublicationRef));
+
+/* *************** Editar publicacion de Firebase *************** */
 
 export const editPublication = (idPublicationRef, postEdit) => {
-  const publiUpdate = doc(db, 'publications', idPublicationRef);
+  const publiUpdate = doc(db, "publications", idPublicationRef);
   return updateDoc(publiUpdate, {
     publication: postEdit,
   });
@@ -82,8 +103,8 @@ export const editPublication = (idPublicationRef, postEdit) => {
 
 /* *************** Template del Home *************** */
 const Home = () => {
-  const containerHome = document.createElement('div');
-  containerHome.classList.add('positionHome');
+  const containerHome = document.createElement("div");
+  containerHome.classList.add("positionHome");
   const viewHome = `
   <main>
     <!-- HOME PAGE -->
@@ -154,9 +175,11 @@ const Home = () => {
                 <p>Your post was published successfully</p> 
               </div>
             </div>
+            <div class='preview'></div> 
             <div class='opcionAddPost'>
               <div class='AddPhotoPost'>
                 <input title="Add a photo" type="file" id="add-photo-post" class="inputFilePost"/>
+                <input title="Add a photo" type="file" id="edit-file" class="inputFilePost" multiple/>
                 <img class="inputFilePostIcon"
                 src="img/Icons/cameraPost.png"
                 title='Add a photo'
@@ -206,77 +229,123 @@ const Home = () => {
   </main>`;
   containerHome.innerHTML = viewHome;
 
-  // Div - Filters
-  const boxPosts = containerHome.querySelector('#publicado');
-  const btnAllPost = containerHome.querySelector('.btnAllPost');
-  const btnMyPost = containerHome.querySelector('.btnMyPost');
-  const SearchName = containerHome.querySelector('.SearchName');
+
+  //Div - Filters
+  const boxPosts = containerHome.querySelector("#publicado");
+  const btnAllPost = containerHome.querySelector(".btnAllPost");
+  const btnMyPost = containerHome.querySelector(".btnMyPost");
+  const SearchName = containerHome.querySelector(".SearchName");
+
+  //Div - img
+  const imgPreview = containerHome.querySelector(".preview");
 
   // Clear Posts
   function clearBoxPosts() {
     while (boxPosts.firstChild) {
       boxPosts.firstChild.remove();
     }
-    return
+    return;
   }
 
   // Function - Filters
   function filterPost(filter) {
     switch (filter) {
-      case 'all':
+      case "all":
         clearBoxPosts();
         reedPublications({});
-      break;
-      case 'my':
+        break;
+
+      case "my":
         clearBoxPosts();
-        reedPublications({'my':''});
-      break;
-    
-      case 'name':
+        reedPublications({ my: "" });
+        break;
+
+      case "name":
         clearBoxPosts();
-        reedPublications({'name':`${SearchName.value}`});
-      break;
+        reedPublications({ name: `${SearchName.value}` });
+        break;
     }
   }
 
-  // Events - Filters
-  btnAllPost.addEventListener('click', () => { filterPost('all')});
-  btnMyPost.addEventListener('click', () => { filterPost('my')});
-  SearchName.addEventListener('keyup', () => { clearBoxPosts();filterPost('name')});
+  //Events for Filters
+  btnAllPost.addEventListener("click", () => {
+    filterPost("all");
+  });
+  btnMyPost.addEventListener("click", () => {
+    filterPost("my");
+  });
+  SearchName.addEventListener("keyup", () => {
+    clearBoxPosts();
+    filterPost("name");
+  });
 
   /* *************** Notificaciones de "post publicated" *************** */
 
   const cleanModal = () => {
-    const check = document.getElementById('modalCheckPost');
+    const check = document.getElementById("modalCheckPost");
     if (check) {
       document
-        .getElementById('modalCheckPost')
-        .classList.replace('AlertmodalCheckPost', 'modalCheckPost');
+        .getElementById("modalCheckPost")
+        .classList.replace("AlertmodalCheckPost", "modalCheckPost");
     }
   };
 
   /* ***** Botón para mostrar la caja de agregar publicación ***** */
 
-  containerHome.querySelector('.NewPost').addEventListener('click', (e) => {
+  containerHome.querySelector(".NewPost").addEventListener("click", (e) => {
     e.preventDefault();
     document
-      .getElementById('boxPublications')
-      .classList.replace('NoneboxPublications', 'boxPublications');
+      .getElementById("boxPublications")
+      .classList.replace("NoneboxPublications", "boxPublications");
+  });
+
+  //Pre-view image in new post
+  function previewPost(file) {
+    if (file) {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.addEventListener("load", function () {
+        imgPreview.style.display = "block";
+        imgPreview.innerHTML += '<img src="' + this.result + '" />';
+      });
+    }
+  }
+
+  //Add images in new post
+  const divCamera = containerHome.querySelector(".inputFilePost");
+  let files, arr = [];
+  divCamera.addEventListener("change", (e) => {
+    files = Object.values(e.target.files);
+    let countFiles = imgPreview.childElementCount + 1;
+    console.log("countFiles", countFiles);
+    if (files.length > 2 || countFiles > 2) {
+      alert("max 2 images");
+    } else {
+      files.forEach((file) => {
+        //Preview images
+        previewPost(file);
+        arr.push(file)
+      });
+      //Add second img in array files
+      if (arr.length == 2) {
+        files = arr;
+      }
+    }
   });
 
   // Función para eliminar el contenido del input al momento de cancelar
   const deleteContentInput = () => {
-    containerHome.querySelector('#texta2').value = '';
+    containerHome.querySelector("#texta2").value = "";
   };
 
   /* ***** Botón para ocultar la caja de agregar publicación ***** */
-  containerHome.querySelector('.btnCancel').addEventListener('click', (e) => {
+  containerHome.querySelector(".btnCancel").addEventListener("click", (e) => {
     e.preventDefault();
     document
-      .getElementById('boxPublications')
-      .classList.replace('boxPublications', 'NoneboxPublications');
+      .getElementById("boxPublications")
+      .classList.replace("boxPublications", "NoneboxPublications");
     // eslint-disable-next-line no-unused-expressions
-    containerHome.querySelector('#texta2').value;
+    containerHome.querySelector("#texta2").value;
     deleteContentInput();
     cleanModal();
   });
@@ -285,82 +354,108 @@ const Home = () => {
 
   const infoUser = (info) => {
     containerHome.querySelector(
-      '.UserName',
+      ".UserName"
     ).innerHTML += `<br><h1>${info.name}</h1><br>
     <div class='linea2'>&nbsp;</div>`;
-    containerHome.querySelector('.Email').innerHTML += `<h3>Email:</h3>
+    containerHome.querySelector(".Email").innerHTML += `<h3>Email:</h3>
     <p>${info.email}</p>`;
 
-    containerHome.querySelector(
-      '.userNamePublication',
-    ).innerHTML += `
+    containerHome.querySelector(".userNamePublication").innerHTML += `
     <p>${info.name}</p>`;
 
     // photo
-    containerHome.querySelector(
-      '.Avatar-img',
-    ).src = `${info.photo}`;
+    containerHome.querySelector(".Avatar-img").src = `${info.photo}`;
 
     // photo
-    containerHome.querySelector(
-      '.Avatar-img-Post',
-    ).src = `${info.photo}`;
+    containerHome.querySelector(".Avatar-img-Post").src = `${info.photo}`;
 
     // Bio
-    containerHome.querySelector(
-      '.bioText',
-    ).textContent = `${info.bio}`;
+    containerHome.querySelector(".bioText").textContent = `${info.bio}`;
 
     // Country
-    containerHome.querySelector(
-      '.countryText',
-    ).textContent = `${info.country.split(':')[1]}`;
+    containerHome.querySelector(".countryText").textContent = `${
+      info.country.split(":")[1]
+    }`;
 
     // Country title
-    containerHome.querySelector(
-      '.countryText',
-    ).title = `${info.country.split(':')[1]}`;
+    containerHome.querySelector(".countryText").title = `${
+      info.country.split(":")[1]
+    }`;
 
     // Country flag
-    containerHome.querySelector(
-      '.countryImg',
-    ).innerHTML += `
+    containerHome.querySelector(".countryImg").innerHTML += `
     <img
-    title='${info.country.split(':')[1]}'
-    src='https://flagcdn.com/40x30/${info.country.split(':')[0]}.png'
-    srcset='httpscountrycdn.com/80x60/${info.country.split(':')[0]}.png 2x,
-      https://flagcdn.com/120x90/${info.country.split(':')[0]}.png 3x'
+    title='${info.country.split(":")[1]}'
+    src='https://flagcdn.com/40x30/${info.country.split(":")[0]}.png'
+    srcset='httpscountrycdn.com/80x60/${info.country.split(":")[0]}.png 2x,
+      https://flagcdn.com/120x90/${info.country.split(":")[0]}.png 3x'
     width='40'
     height='30'
-    alt='${info.country.split(':')[1]}'>
+    alt='${info.country.split(":")[1]}'>
   `;
 
     // Interests
     // eslint-disable-next-line no-plusplus
     for (let index = 0; index < 3; index++) {
-      containerHome.querySelector(`#Interests-${index}`).src = info.interests[index];
+
+      containerHome.querySelector(`#Interests-${index}`).src =
+        info.interests[index];
+      console.log(index);
     }
 
     /* *************** evento de añadir publicación con save *************** */
 
-    containerHome.querySelector('#btnSave').addEventListener('click', (e) => {
+    containerHome.querySelector("#btnSave").addEventListener("click", (e) => {
       e.preventDefault();
-      const divPublicado = containerHome.querySelector('#publicado');
-      const publication = containerHome.querySelector('#texta2').value;
-
-      containerHome.querySelector('#texta2').value = containerHome.querySelector('#texta2').defaultValue;
-
+      const divPublicado = containerHome.querySelector("#publicado");
+      const publication = containerHome.querySelector("#texta2").value;
+      containerHome.querySelector("#texta2").value =
+      containerHome.querySelector("#texta2").defaultValue;
+           
       while (divPublicado.firstChild) {
         divPublicado.removeChild(divPublicado.firstChild);
       }
 
-      if (publication !== '') {
-        document
-          .getElementById('modalCheckPost')
-          .classList.replace('modalCheckPost', 'AlertmodalCheckPost');
-        addPublication(publication);
+      //Clean images in new post
+      while (imgPreview.firstChild) {
+        imgPreview.removeChild(imgPreview.firstChild);
       }
-      if (publication === '') {
+
+      if (publication !== "") {
+        document
+          .getElementById("modalCheckPost")
+          .classList.replace("modalCheckPost", "AlertmodalCheckPost");
+
+        //Saved images in storage
+        console.log('files sin imagen', files);
+          if (!files) {
+              //Add publication in firebase store
+              addPublication(publication, ['']);
+          }
+          switch (files.length > 0) {
+            case 1:
+              const p1 = urlStorage(files[0]);
+              Promise.all([p1])
+              .then((values) => {
+                console.log(values)
+                addPublication(publication, values);
+                })
+              .catch(console.log);
+              break;
+
+            case 2:
+              const p_1 = urlStorage(files[0]);
+              const p_2 = urlStorage(files[1]);
+              Promise.all([p_1, p_2])
+              .then((values) => {
+                console.log(values)
+                addPublication(publication, values);
+                })
+              .catch(console.log);
+              break;
+          }
+      }
+      if (publication === "") {
         cleanModal();
       }
       // eslint-disable-next-line no-use-before-define
@@ -369,13 +464,14 @@ const Home = () => {
   };
   // devuelve el uid del usuario que se encuentra en sesionStorage
   const uid = () => {
-    const uidSS = sessionStorage.getItem('key');
+    const uidSS = sessionStorage.getItem("key");
     return uidSS;
   };
   readUser(uid())
-
     // eslint-disable-next-line no-sequences
-    .then((value) => { infoUser(value), reedPublications(value); })
+    .then((value) => {
+      infoUser(value), reedPublications(value);
+    })
     .catch((error) => console.log(error));
 
   /* ***** actualizacion tiempo real de publications ***** */
@@ -388,11 +484,12 @@ const Home = () => {
   /* ***** muestra publicaciones realizadas ***** */
 
   async function llenarPublications(documentFirebase, idPublication) {
-    const userOfPublication = await getDoc(doc(db, 'users', documentFirebase.data().author));
+    const userOfPublication = await getDoc(
+      doc(db, "users", documentFirebase.data().author)
+    );
     if (userOfPublication.exists()) {
       const divPublicado = containerHome.querySelector('#publicado');
       const nameUser = userOfPublication.data().name;
-
       const publicationText = documentFirebase.data().publication;
 
       /* ***** Constantes de fecha y hora por publicación ***** */
@@ -403,11 +500,13 @@ const Home = () => {
 
       /* ***** Only Delete or Edit Post for UserCurrent ***** */
       const authorPublication = userOfPublication.data().uid;
-      const userCurrent = sessionStorage.getItem('key');
+      const userCurrent = sessionStorage.getItem("key");
       const myPost = authorPublication === userCurrent;
       const photo = userOfPublication.data().photo;
+      const urls = documentFirebase.data().urlsImages;
 
       /* ***** Agrega una nueva publicación por usuario de primera ***** */
+
       divPublicado.prepend(publicationComponent(nameUser,
         myPost,
         idPublication,
@@ -419,16 +518,15 @@ const Home = () => {
       /* ***** Constantes para editar publicación ***** */
       const textPublication = document.querySelector('textArea[data-texto]');
       const editsPublication = document.querySelector('img[data-edit]');
-
       const savePublication = document.querySelector('button[data-save]');
       const cancelPublication = document.querySelector('button[data-cancel]');
-
       const btnsEditPostBox = document.querySelector('.btnsEditContainer');
+
       /* ***** Block btns of save and cancel edit publication ***** */
-      editsPublication.addEventListener('click', (e) => {
+      editsPublication.addEventListener("click", (e) => {
         e.preventDefault();
         if (myPost) {
-          btnsEditPostBox.classList.remove('hide');
+          btnsEditPostBox.classList.remove("hide");
           textPublication.disabled = false;
           textPublication.select();
         }
@@ -436,67 +534,68 @@ const Home = () => {
       // console.log(editsPublication);
 
       /* ***** save edit publication ***** */
-      savePublication.addEventListener('click', (e) => {
+      savePublication.addEventListener("click", (e) => {
         e.preventDefault();
         // editPublication(idPublication, publicationText);
         editPublication(idPublication, textPublication.value);
         textPublication.disabled = true;
-        btnsEditPostBox.classList.add('hide');
+        btnsEditPostBox.classList.add("hide");
       });
 
       /* ***** cancel edit publication ***** */
-      cancelPublication.addEventListener('click', (e) => {
+      cancelPublication.addEventListener("click", (e) => {
         // e.preventDefault();
         // editPublication(idPublication, publicationText);
         textPublication.disabled = true;
-        btnsEditPostBox.classList.add('hide');
+        btnsEditPostBox.classList.add("hide");
 
         const cancelEdit = e.target.dataset.cancel;
 
         // eslint-disable-next-line eqeqeq
         if (cancelEdit == idPublication) {
-          console.log('e.target', cancelEdit);
+          console.log("e.target", cancelEdit);
           readAPost(idPublication, textPublication);
         }
       });
 
       /* ***** delete publication ***** */
       // import modal
-      const cerrar = document.getElementById('close');
-      const modalC = document.getElementById('modal-container');
-      const btnModalConfirmDelete = document.getElementById('btn-modal-yes');
-      const btnModalCancel = document.getElementById('btn-modal-no');
+      const cerrar = document.getElementById("close");
+      const modalC = document.getElementById("modal-container");
+      const btnModalConfirmDelete = document.getElementById("btn-modal-yes");
+      const btnModalCancel = document.getElementById("btn-modal-no");
 
       // delete
-      divPublicado.querySelector('.btnDelete')
-        .addEventListener('click', (event) => {
+      divPublicado
+        .querySelector(".btnDelete")
+        .addEventListener("click", (event) => {
           let deleted = event.target.dataset.ref;
           // INIT - Modal for Vericate Delete Publication
           let stateModal = false;
           // view modal
-          modalC.style.opacity = '1';
-          modalC.style.visibility = 'visible';
+          modalC.style.opacity = "1";
+          modalC.style.visibility = "visible";
           // close modal
-          cerrar.addEventListener('click', () => {
-            modalC.style.opacity = '0';
-            modalC.style.visibility = 'hidden';
-            deleted = '';
+          cerrar.addEventListener("click", () => {
+            modalC.style.opacity = "0";
+            modalC.style.visibility = "hidden";
+            deleted = "";
             return stateModal;
           });
           // cancel modal
-          btnModalCancel.addEventListener('click', () => {
-            modalC.style.opacity = '0';
-            modalC.style.visibility = 'hidden';
-            deleted = '';
+          btnModalCancel.addEventListener("click", () => {
+            modalC.style.opacity = "0";
+            modalC.style.visibility = "hidden";
+            deleted = "";
             return stateModal;
           });
           // confirm delete - YES
-          btnModalConfirmDelete.addEventListener('click', () => {
-            modalC.style.opacity = '0';
-            modalC.style.visibility = 'hidden';
+          btnModalConfirmDelete.addEventListener("click", () => {
+            modalC.style.opacity = "0";
+            modalC.style.visibility = "hidden";
             stateModal = true;
             // Delete publication for Firebase
-            if (deleted !== '') {
+            if (deleted !== "") {
               deletePublication(deleted);
               const removeDiv = divPublicado.querySelector(`#${deleted}`);
 
@@ -508,7 +607,7 @@ const Home = () => {
           // END - Modal for Vericate Delete Publication
         });
     } else {
-      console.log('No such document!');
+      console.log("No such document!");
     }
     return userOfPublication;
   }
@@ -516,26 +615,39 @@ const Home = () => {
   /* ***** leer datos desde Firebase de la colección Publicaciones y Usuarios ***** */
 
   async function reedPublications(filterMyPost) {
-    let querySnapshotPublications = await getDocs(collection(db, 'publications'));
 
-    if (Object.keys(filterMyPost) == 'my') {
-      let q = query(collection(db, 'publications'), where('author', '==', sessionStorage.getItem('key')));
+    let querySnapshotPublications = await getDocs(
+      collection(db, "publications")
+    );
+
+    if (Object.keys(filterMyPost) == "my") {
+      let q = query(
+        collection(db, "publications"),
+        where("author", "==", sessionStorage.getItem("key"))
+      );
       querySnapshotPublications = await getDocs(q);
     }
 
-    if (Object.keys(filterMyPost) == 'name') {
+    if (Object.keys(filterMyPost) == "name") {
       // console.log('filter user: ', filterMyPost.name);
-      let q = query(collection(db, 'users'),
-        where('name', '>=', filterMyPost.name.capitalize()),
-        where('name', '<=', filterMyPost.name.capitalize()+ '\uf8ff'));
+      let q = query(
+        collection(db, "users"),
+        where("name", ">=", filterMyPost.name.capitalize()),
+        where("name", "<=", filterMyPost.name.capitalize() + "\uf8ff")
+      );
 
-      console.log('q', q);
+      console.log("q", q);
       const querySnapshot = await getDocs(q);
       let uidUserFilter;
-      querySnapshot.forEach(element => {
+      querySnapshot.forEach((element) => {
         uidUserFilter = element.data().uid;
       });
-      let qa = query(collection(db, 'publications'), where('author', '==', uidUserFilter));
+
+      let qa = query(
+        collection(db, "publications"),
+        where("author", "==", uidUserFilter)
+      );
+
       querySnapshotPublications = await getDocs(qa);
     }
 
