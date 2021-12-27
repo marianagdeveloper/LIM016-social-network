@@ -78,7 +78,8 @@ async function addPublication(publication, urlsImg) {
     await addDoc(collection(db, "publications"), {
       author: sessionStorage.getItem("key"),
       publication,
-      idUserLike: "",
+      idUserLike: '',
+      dateCreated: new Date(),
       urlsImages: urlsImg,
     });
   } catch (e) {
@@ -151,7 +152,7 @@ const Home = () => {
             <div class='btnsPublic'>
               <button id='btnAllPost' class='btnAllPost'>All Posts</button>
               <button id='btnMyPost' class='btnMyPost'>My Posts</button>
-              <input type='text' id='SearchName' name='firstname' class='SearchName' placeholder='User Name..'>
+              <input type='text' id='SearchName' name='firstname' class='SearchName' placeholder='🔍 User Name..'>
             </div>
             <img id="NewPost" class="NewPost" src='img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
           </div>
@@ -177,6 +178,7 @@ const Home = () => {
             <div class='preview'></div> 
             <div class='opcionAddPost'>
               <div class='AddPhotoPost'>
+                <input title="Add a photo" type="file" id="add-photo-post" class="inputFilePost"/>
                 <input title="Add a photo" type="file" id="edit-file" class="inputFilePost" multiple/>
                 <img class="inputFilePostIcon"
                 src="img/Icons/cameraPost.png"
@@ -184,8 +186,8 @@ const Home = () => {
                 alt='Add a photo'/>
               </div>
               <div class='save'>
-                <button id='btnSave' class='btnSave'>SAVE</button>
-                <button id='btnCancel' class='btnCancel'>CANCEL</button>
+                <button id='btnSave' class='btnSave'>Save</button>
+                <button id='btnCancel' class='btnCancel'>Cancel</button>
               </div>
             </div>
           </div>
@@ -227,6 +229,7 @@ const Home = () => {
   </main>`;
   containerHome.innerHTML = viewHome;
 
+
   //Div - Filters
   const boxPosts = containerHome.querySelector("#publicado");
   const btnAllPost = containerHome.querySelector(".btnAllPost");
@@ -236,7 +239,7 @@ const Home = () => {
   //Div - img
   const imgPreview = containerHome.querySelector(".preview");
 
-  //Clear Posts
+  // Clear Posts
   function clearBoxPosts() {
     while (boxPosts.firstChild) {
       boxPosts.firstChild.remove();
@@ -244,7 +247,7 @@ const Home = () => {
     return;
   }
 
-  //Function - Filters
+  // Function - Filters
   function filterPost(filter) {
     switch (filter) {
       case "all":
@@ -394,6 +397,7 @@ const Home = () => {
     // Interests
     // eslint-disable-next-line no-plusplus
     for (let index = 0; index < 3; index++) {
+
       containerHome.querySelector(`#Interests-${index}`).src =
         info.interests[index];
       console.log(index);
@@ -484,13 +488,15 @@ const Home = () => {
       doc(db, "users", documentFirebase.data().author)
     );
     if (userOfPublication.exists()) {
-      const divPublicado = containerHome.querySelector("#publicado");
-      // const publicationsForUid = await getDoc(doc(db, 'publications', documentFirebase.data()));
-      // log
-
+      const divPublicado = containerHome.querySelector('#publicado');
       const nameUser = userOfPublication.data().name;
-      // console.log(nameUser);
       const publicationText = documentFirebase.data().publication;
+
+      /* ***** Constantes de fecha y hora por publicación ***** */
+      const publicationDate = documentFirebase.data().dateCreated.toDate().toDateString();
+      const publicationTime = documentFirebase.data().dateCreated.toDate().toLocaleTimeString('en-US');
+
+      console.log('date: ', publicationDate);
 
       /* ***** Only Delete or Edit Post for UserCurrent ***** */
       const authorPublication = userOfPublication.data().uid;
@@ -500,24 +506,22 @@ const Home = () => {
       const urls = documentFirebase.data().urlsImages;
 
       /* ***** Agrega una nueva publicación por usuario de primera ***** */
-      divPublicado.prepend(
-        publicationComponent(
-          nameUser,
-          myPost,
-          idPublication,
-          publicationText,
-          photo,
-          urls,
-        )
-      );
 
-      const textPublication = document.querySelector("textArea[data-texto]");
-      const editsPublication = document.querySelector("img[data-edit]");
+      divPublicado.prepend(publicationComponent(nameUser,
+        myPost,
+        idPublication,
+        publicationText,
+        photo,
+        publicationDate,
+        publicationTime));
 
-      const savePublication = document.querySelector("button[data-save]");
-      const cancelPublication = document.querySelector("button[data-cancel]");
+      /* ***** Constantes para editar publicación ***** */
+      const textPublication = document.querySelector('textArea[data-texto]');
+      const editsPublication = document.querySelector('img[data-edit]');
+      const savePublication = document.querySelector('button[data-save]');
+      const cancelPublication = document.querySelector('button[data-cancel]');
+      const btnsEditPostBox = document.querySelector('.btnsEditContainer');
 
-      const btnsEditPostBox = document.querySelector(".btnsEditContainer");
       /* ***** Block btns of save and cancel edit publication ***** */
       editsPublication.addEventListener("click", (e) => {
         e.preventDefault();
@@ -611,6 +615,7 @@ const Home = () => {
   /* ***** leer datos desde Firebase de la colección Publicaciones y Usuarios ***** */
 
   async function reedPublications(filterMyPost) {
+
     let querySnapshotPublications = await getDocs(
       collection(db, "publications")
     );
@@ -642,6 +647,7 @@ const Home = () => {
         collection(db, "publications"),
         where("author", "==", uidUserFilter)
       );
+
       querySnapshotPublications = await getDocs(qa);
     }
 

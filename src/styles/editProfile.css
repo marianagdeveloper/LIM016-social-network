@@ -182,18 +182,42 @@
   padding-top: 20px;
   padding-bottom: 20px;
   display: flex;
+  flex-direction: column;
   text-align: center;
   justify-content: center;
   align-items: center;
-  width: 40%;
+  width: 100%;
   font-size: medium;
 }
 
+.modalProfileUpdated {
+  display: flex;
+  align-items: center;
+  margin-top: 1%;
+  column-gap: 2%;
+  justify-content: center;
+}
+
+.modalProfileUpdated p {
+  font-weight: bold;
+  font-size: small;
+  text-align: initial;
+  color: #5dcf5d;
+}
+
+.modalProfileUpdated img {
+  width: 10%;
+}
+
 .buttonSave button {
-  width: 200%;
-  padding: 2%;
-  border-radius: 20px;
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1%;
+  border-radius: 10px;
   background: #a8a5a5;
+  justify-content: center;
 }
 
 /* Section select Photo and Interest */

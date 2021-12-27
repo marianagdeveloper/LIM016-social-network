@@ -88,15 +88,24 @@ main {
     background-color: black;
     position: absolute;
     top: 62px;
+    /* top: 114px; */
     width: 100%;
     /* padding: 20px 0; */
     height: calc(100% - 80px);
     /* overflow-y: auto; */
-    left: 100%;
-    transition: left 0.3s;
+    right: 100%;
+    transition: right 0.3s;
     z-index: 5;
     /* padding: 10% 0% 0% 10.7%;*/
   }
+
+  /* ** */
+  /* overflow-y: auto; */
+    /* right: 100%;
+    transition: right 0.3s;
+    z-index: 5; */ */
+    /* padding: 10% 0% 0% 10.7%;
+  /* *** */
 
   .nav-menu-item {
     display: flex;
@@ -121,7 +130,7 @@ main {
   }
 
   .nav-menu_visible {
-    left: 0;
+    right: 0;
     width: -webkit-fill-available;
     display: inline-grid;
     /* justify-items: start; */

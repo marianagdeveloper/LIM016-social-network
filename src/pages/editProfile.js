@@ -8,7 +8,7 @@ import {
 } from
   '../utils/firebaseconfig.js';
 
-import countries from '../utils/countries.js';
+import { countries } from '../utils/countries.js';
 // console.log('countries', Object.values(countries));
 
 // Template View Edit Profile
@@ -52,8 +52,12 @@ const EditProfile = () => {
               <textarea name='comments' id='texta2' class='bio'></textarea>
               <div class='buttonSave'>
                 <button>
-                  <h3>SAVE</h3>
+                  <h3>Save</h3>
                 </button>
+                <div id="modalProfileUpdated" class=" hide modalProfileUpdated">
+                    <img src="img/Icons/Verify.png"  alt="profile updated" />
+                    <p>Your profile was updated successfully</p> 
+                </div>
               </div>
             </div>
           </div>
@@ -296,6 +300,7 @@ const EditProfile = () => {
   const btnCloseListInterests = divElemt.querySelector('.CloseListInterests');
   const listAvatars = divElemt.querySelector('.listAvatars');
   const listInterests = divElemt.querySelector('.listInterests');
+  const updateProdileModal = divElemt.querySelector('.modalProfileUpdated');
 
   /* ***** Open Avatar List ***** */
   btnOpenListAvatars.addEventListener('click', (e) => {
@@ -336,7 +341,8 @@ const EditProfile = () => {
 
   // Function Save File Avatar in Firebase Storage
   async function avatarPersonal(uid, avatar, file) {
-    const spaceRef = ref(storage, `users/${uid}/img/Avatares/${avatar}`);
+    updateProdileModal.classList.add('hide');
+    const spaceRef = ref(storage, `${uid}/img/Avatares/${avatar}`);
     await uploadBytes(spaceRef, file);
     const urlIng = await getDownloadURL(spaceRef);
     // // console.log('🚀 ~ file: editProfile.js ~ line 256 ~ avatarPersonal ~ urlIng', urlIng);
@@ -346,6 +352,7 @@ const EditProfile = () => {
   // Funtion of Interests Profile
   function interestsProfile(interests) {
     console.log(interests);
+    updateProdileModal.classList.add('hide');
     const divInterestProfile = divElemt.querySelector('.interests');
     while (divInterestProfile.firstChild) {
       divInterestProfile.removeChild(divInterestProfile.firstChild);
@@ -357,6 +364,7 @@ const EditProfile = () => {
 
   // Update info user
   function updateInfoUser(uid, bio, photo, interests, country) {
+    updateProdileModal.classList.add('hide');
     const userUpdate = doc(db, 'users', uid);
     return updateDoc(userUpdate, {
       bio,
@@ -420,8 +428,11 @@ const EditProfile = () => {
     // Show Select Country
     const arr = countries;
     for (const prop in arr) {
+      updateProdileModal.classList.add('hide');
       const divElement = divElemt.querySelector('.selectCountry');
-      divElement.innerHTML += `<option value='${prop}:${arr[prop]}'>${arr[prop]}</option>`;
+      divElement.innerHTML += `<option value='${prop}:${arr[prop]}'>
+        ${arr[prop]}
+      </option>`;
     }
 
     // Change Country - Change Flag
@@ -429,6 +440,7 @@ const EditProfile = () => {
     let nameCountry = country;
     const divFlag = divElemt.querySelector('.selectCountry');
     divFlag.addEventListener('change', (event) => {
+      updateProdileModal.classList.add('hide');
       const countryData = event.target.value.split(':');
       code = countryData[0];
       nameCountry = countryData[1];
@@ -450,6 +462,7 @@ const EditProfile = () => {
     for (let index = 0; index < 11; index++) {
       const divAvatar = divElemt.querySelector(`.img${index}`);
       divAvatar.addEventListener('click', (event) => {
+        updateProdileModal.classList.add('hide');
         newPhoto = event.target.attributes.src.value;
         console.log(`click en img${index}`, newPhoto);
         photoProfile(newPhoto);
@@ -457,21 +470,20 @@ const EditProfile = () => {
     }
 
     // Select Avatar personal
-    let file; let
-      avatar;
+    let file, avatar;
     const divCamera = divElemt.querySelector('#edit-file');
     divCamera.addEventListener('change', (e) => {
-      const id = sessionStorage.getItem('key');
+      updateProdileModal.classList.add('hide');
+      let id = sessionStorage.getItem('key');
       file = e.target.files[0];
       console.log(file);
       avatar = file.name;
       // Save Avatar personal in Storage of Firebase
       avatarPersonal(id, avatar, file)
-        .then((resolve) => {
-          console.log('obteniendo url:', resolve);
-          updatePhotoUserWithAvatarPersonal(resolve);
-        })
-        .catch(console.log);
+      .then((resolve) => {
+        updatePhotoUserWithAvatarPersonal(resolve);
+      })
+      .catch(console.log);
     });
 
     // Update URL Avatar Personal
@@ -487,12 +499,13 @@ const EditProfile = () => {
     console.log(arrayInterest);
     // eslint-disable-next-line no-plusplus
     for (let index = 0; index < 11; index++) {
+      updateProdileModal.classList.add('hide');
       const divInterestsProfile = divElemt.querySelector(`#interest${index}`);
       // eslint-disable-next-line no-loop-func
       divInterestsProfile.addEventListener('click', (event) => {
         const newInterest = event.target.attributes.src.value;
         // console.log(`click en interest`, newInterest);
-        const validateInterest = arrayInterest.includes(newInterest);
+        let validateInterest = arrayInterest.includes(newInterest);
         if (!validateInterest) {
           arrayInterest.pop();
           arrayInterest.unshift(newInterest);
@@ -503,25 +516,22 @@ const EditProfile = () => {
     }
 
     // Button Save
-    const btnSave = divElemt.querySelector('.buttonSave');
+    let btnSave = divElemt.querySelector('.buttonSave');
     btnSave.addEventListener('click', () => {
       // New Data
-      let uid; let bio; let photo; let country; let
-        interests;
+      let uid, bio, photo, country, interests;
       console.log('uidSS: ', sessionStorage.getItem('key'));
       uid = sessionStorage.getItem('key');
       bio = divElemt.querySelector('.bio').value;
       photo = newPhoto;
       console.log(uid, bio, photo);
       country = `${code}:${nameCountry}`;
-      console.log(country.split(':'));
       interests = arrayInterests;
       updateInfoUser(uid, bio, photo, interests, country);
-      updateInfoUserSession({
-        uid, bio, photo, interests, country,
-      });
+      updateInfoUserSession({ uid, bio, photo, interests, country });
       // Save Avatar in Collection Users
       updatePhotoWithAvatar(uid, photo);
+      updateProdileModal.classList.remove('hide');
     });
   };
 
