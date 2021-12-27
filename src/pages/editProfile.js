@@ -334,7 +334,7 @@ const EditProfile = () => {
     divElemt.querySelector('.photo').src = photo;
   }
 
-  // Function Save File Avatar in Firebase Storage
+  //Function Save File Avatar in Firebase Storage
   async function avatarPersonal(uid, avatar, file) {
     const spaceRef = ref(storage, `${uid}/img/Avatares/${avatar}`);
     await uploadBytes(spaceRef, file);
@@ -366,7 +366,7 @@ const EditProfile = () => {
     });
   }
 
-  // Update Avatar in Collection Users
+ //Update Avatar in Collection Users
   function updatePhotoWithAvatar(uid, photo) {
     const userUpdate = doc(db, 'users', uid);
     return updateDoc(userUpdate, {
@@ -456,25 +456,24 @@ const EditProfile = () => {
       });
     }
 
-    // Select Avatar personal
-    let file; let
-      avatar;
+    //Select Avatar personal
+    let file, avatar;
     const divCamera = divElemt.querySelector('#edit-file');
-    divCamera.addEventListener('change', (e) => {
-      const id = sessionStorage.getItem('key');
+    divCamera.addEventListener("change", (e) => {
+      let id = sessionStorage.getItem("key");
       file = e.target.files[0];
       console.log(file);
       avatar = file.name;
-      // Save Avatar personal in Storage of Firebase
+      //Save Avatar personal in Storage of Firebase
       avatarPersonal(id, avatar, file)
-        .then((resolve) => {
-          console.log('obteniendo url:', resolve);
-          updatePhotoUserWithAvatarPersonal(resolve);
-        })
-        .catch(console.log);
+       .then((resolve) => {
+         console.log("obteniendo url:", resolve);
+         updatePhotoUserWithAvatarPersonal(resolve);
+       })
+       .catch(console.log);
     });
 
-    // Update URL Avatar Personal
+    //Update URL Avatar Personal
     let urlImg;
     function updatePhotoUserWithAvatarPersonal(url) {
       urlImg = url;
@@ -492,7 +491,7 @@ const EditProfile = () => {
       divInterestsProfile.addEventListener('click', (event) => {
         const newInterest = event.target.attributes.src.value;
         // console.log(`click en interest`, newInterest);
-        const validateInterest = arrayInterest.includes(newInterest);
+        let validateInterest = arrayInterest.includes(newInterest);
         if (!validateInterest) {
           arrayInterest.pop();
           arrayInterest.unshift(newInterest);
@@ -502,25 +501,22 @@ const EditProfile = () => {
       });
     }
 
-    // Button Save
-    const btnSave = divElemt.querySelector('.buttonSave');
-    btnSave.addEventListener('click', () => {
-      // New Data
-      let uid; let bio; let photo; let country; let
-        interests;
-      console.log('uidSS: ', sessionStorage.getItem('key'));
-      uid = sessionStorage.getItem('key');
-      bio = divElemt.querySelector('.bio').value;
+    //Button Save
+    let btnSave = divElemt.querySelector(".buttonSave");
+    btnSave.addEventListener("click", () => {
+      //New Data
+      let uid, bio, photo, country, interests;
+      console.log("uidSS: ", sessionStorage.getItem("key"));
+      uid = sessionStorage.getItem("key");
+      bio = divElemt.querySelector(".bio").value;
       photo = newPhoto;
       console.log(uid, bio, photo);
       country = `${code}:${nameCountry}`;
       console.log(country.split(':'));
       interests = arrayInterests;
       updateInfoUser(uid, bio, photo, interests, country);
-      updateInfoUserSession({
-        uid, bio, photo, interests, country,
-      });
-      // Save Avatar in Collection Users
+      updateInfoUserSession({ uid, bio, photo, interests, country });
+      //Save Avatar in Collection Users
       updatePhotoWithAvatar(uid, photo);
     });
   };
