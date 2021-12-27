@@ -85,6 +85,6 @@ export {
   arrayRemove,
   storage,
   ref,
-  uploadBytes, 
+  uploadBytes,
   getDownloadURL,
 };
