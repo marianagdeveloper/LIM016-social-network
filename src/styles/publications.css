@@ -260,8 +260,12 @@
 .btnCancelEdit,
 .save .btnSave,
 .btnSaveEdit {
-  width: 50%;
+  width: 40%;
+  height: 80%;
   font-size: small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 }
 
@@ -360,4 +364,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 760px) {
+  .preview img {
+    margin-top: 0rem;
+  }
 }
