@@ -313,9 +313,7 @@ const Home = () => {
       fileReader.readAsDataURL(file);
       fileReader.addEventListener('load', function () {
         imgPreview.style.display = 'block';
-        // quita los espacios del nombre del archivo
-        //  let fileName = file.name.trim();
-        let fileName = 'ejemplo';
+        let fileName = `${file.name}`.replace(/\s+/g, '').split('.')[0].replace(/[.*+\-?^${}()|[\]\\]/g, '');
         console.log('🚀 ~ file: home.js ~ line 309 ~ fileName', fileName);
         
         imgPreview.innerHTML += `
@@ -325,27 +323,23 @@ const Home = () => {
         </div>
         `;
 
-        /* ***** Botón para quitar la imagen de una nueva publicación ***** */
-        imgPreview
-          .querySelector('#btnDeleteImg')
-          .addEventListener('click', (e) => {
-            e.preventDefault();
-            cleanModal();
-            const divDelete = imgPreview.querySelector(`#${fileName}`);
-            console.log('🚀 ~ file: home.js ~ line 324 ~ .addEventListener ~ divDelete', divDelete)
-            
-            //  const divDelete = e.target.dataset.ref; 
-            //  const divDelete = e.target.parentNode.dataset.ref; 
-            //  console.log('🚀 ~ file: home.js ~ line 322 ~ .addEventListener ~ divDelete', divDelete)
-            
-            const removeImg = imgPreview.querySelector(`#${fileName}`);      
-            console.log('🚀 ~ file: home.js ~ line 333 ~ .addEventListener ~ removeImg', removeImg)
-            //  const removeImg = imgPreview.querySelector(`[data-ref]='${fileName}'`).dataset('dataRef')      
-            //  console.log('🚀 ~ file: home.js ~ line 324 ~ .addEventListener ~ removeImg', removeImg)
+        //Div's images
+        const elementsImages = imgPreview.querySelectorAll(`[data-ref]`);     
 
-              //  Delete div publication
-              removeImg.remove();
-          });
+        elementsImages.forEach(element => {
+        element.querySelector('#btnDeleteImg').addEventListener('click', (e) => {
+          e.preventDefault();
+          cleanModal();
+          
+          //  const divDelete = e.target.dataset.ref; 
+           let divDelete = e.target.parentNode.dataset.ref;
+           const removeImg = imgPreview.querySelector(`#${divDelete}`); 
+          
+          //  Delete div publication
+          removeImg.remove();
+          deleteOneImage();
+        });
+        });
       });
     }
   }
@@ -401,11 +395,10 @@ const Home = () => {
     }
   };
 
-  const deleteOneImage = (divImg) => {
+  const deleteOneImage = () => {
     files = [];
     arr = [];
     countFiles = 0;
-    divImg.remove();
   };
 
   /* ***** Botón para ocultar la caja de agregar publicación ***** */
