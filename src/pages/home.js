@@ -127,9 +127,11 @@ const Home = () => {
         <div class='Inf'>
           <div class='Country'>
             <h3>Country:</h3>
-            <div class='countryImg'>
+            <div class='CountryFlex'>
+              <div class='countryImg'>
+              </div>
+              <p class ='countryText'></p>
             </div>
-            <p class ='countryText'></p>
           </div>
           <div class='Email'>
 

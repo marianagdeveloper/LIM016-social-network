@@ -312,6 +312,19 @@ body {
 
 .btnsPublic {
   display: flex;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 5%;
+}
+
+.flexFilterBtns {
+  gap: 5%;
+  display: flex;
+}
+
+.CountryFlex {
+  display: flex;
 }
 /***************** PAGE HOME GRID RESPONSIVE ******************/
 
@@ -474,6 +487,7 @@ body {
   .btnsPublic {
     display: flex;
     flex-direction: column;
+    width: 60%;
   }
 
   .flexFilterBtns {
@@ -485,5 +499,9 @@ body {
 
   .btnPublic input {
     margin-top: 5%;
+  }
+
+  .CountryFlex {
+    display: flex;
   }
 }
