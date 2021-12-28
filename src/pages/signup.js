@@ -6,11 +6,15 @@ import {
 } from '../utils/firebaseconfig.js';
 
 // Add a new document in collection "users"
-async function createNewUser(name, email, uid) {
+async function createNewUser(bio, country, interests, name, email, uid, photo) {
   await setDoc(doc(db, 'users', uid), {
+    bio,
+    country,
+    interests,
     uid,
     name,
     email,
+    photo,
   });
 }
 
@@ -61,9 +65,13 @@ export const handleSingUp = (e) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Add new user
+        const bio = "Let's build a better world together.ECOGRAM";
+        const country = 'aq:Antártida';
+        const interests = ['img/Icons/interestsNuevo.png', 'img/Icons/interestsNuevo.png', 'img/Icons/interestsNuevo.png'];
         const emailFS = userCredential.user.email;
         const uidFS = userCredential.user.uid;
-        createNewUser(name, emailFS, uidFS);
+        const photo = 'img/Icons/usuarioNuevo5.png';
+        createNewUser(bio, country, interests, name, emailFS, uidFS, photo);
         cleanModal();
         // Print notification: User created
         document
@@ -96,16 +104,20 @@ export const handleSingUpGoogle = (e) => {
   e.preventDefault();
   signInWithPopup(auth, provider)
     .then((result) => {
+      const bio = "Let's build a better world together.ECOGRAM";
+      const country = 'aq:Antártida';
+      const interests = ['img/Icons/interestsNuevo.png', 'img/Icons/interestsNuevo.png', 'img/Icons/interestsNuevo.png'];
       const user = result.user;
       const name = user.displayName;
       const email = user.email;
       const uid = user.uid;
-      createNewUser(name, email, uid)
+      const photo = 'img/Icons/usuarioNuevo5.png';
+      createNewUser(bio, country, interests, name, email, uid, photo)
         .then(() => {
           cleanModal();
           // Print notification: User created
           document
-            .getElementById('modalCheck')
+            .getElementById('modalCheckWithGoogle')
             .classList.replace('modalCheck', 'alertmodalCheck');
         })
         .catch((error) => {
@@ -210,6 +222,10 @@ const SignUp = () => {
             <img src="img/Icons/Verify.png" class="Check" alt="User Created" />
             <p id="CheckMessage"> Your username was created successfully. Check your email.</p>
           </div>
+          <div id="modalCheckWithGoogle" class="modalCheck">
+          <img src="img/Icons/Verify.png" class="Check" alt="User Created with Google" />
+          <p id="CheckMessageWithGoogle"> Your username was created successfully.</p>
+          </div>
           <div id="modalName" class="modalName">
             <img src="img/Icons/Alert2.png" class="Alert" alt="You need enter your name" />
             <p id="nameMessage"> Required your name </p>
@@ -240,18 +256,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-
-export const actionCodeSettings = () => ({
-  url: 'katerint.github.io',
-  // This must be true.
-  handleCodeInApp: true,
-  iOS: {
-    bundleId: 'com.example.ios',
-  },
-  android: {
-    packageName: 'com.example.android',
-    installApp: true,
-    minimumVersion: '12',
-  },
-  dynamicLinkDomain: 'katerint.github.io',
-});
