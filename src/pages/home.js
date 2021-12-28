@@ -16,10 +16,6 @@ import {
   deleteDoc,
   query,
   where,
-  storage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
 } from "../utils/firebaseconfig.js";
 
 import {
@@ -309,7 +305,12 @@ const Home = () => {
       fileReader.readAsDataURL(file);
       fileReader.addEventListener("load", function () {
         imgPreview.style.display = "block";
-        imgPreview.innerHTML += '<img src="' + this.result + '" />';
+        imgPreview.innerHTML += `
+        <div>
+        <button id='btnDeleteImg' class='btnDeleteImg'>x</button>
+        <img src="${this.result}"/>
+        </div>
+        `;
       });
     }
   }
@@ -329,8 +330,9 @@ const Home = () => {
     } 
     
     if (countFiles == 1) {
+      //Convert files in array with Object.values
       files = Object.values(e.target.files);
-      console.log('1 archivo', files);
+      // console.log('1 archivo', files);
         previewPost(files[0]);
         arr.push(files[0])
       }
@@ -339,21 +341,10 @@ const Home = () => {
         files = Object.values(e.target.files);
         console.log('2 archivos arr', files);
         previewPost(files[0]);
-        arr.push(files[0])
+        arr.push(files[0]);
         console.log('total files', arr);
         files = arr;
-        // arr.forEach((i) => {
-        //   //Preview images
-        //   previewPost([i][0]);
-        // });
-        // Add second img in array files
-        // if (arr.length == 2) {
-        //   files = arr;
-        // }
       }
-
-      
-    
     });
 
 
@@ -364,6 +355,15 @@ const Home = () => {
     containerHome.querySelector("#texta2").value = "";
   };
 
+  const deleteImage = () => {
+    files = [];
+    arr = [];
+    countFiles = 0;
+    while (imgPreview.firstChild) {
+      imgPreview.removeChild(imgPreview.firstChild);
+    }
+  }
+
   /* ***** Botón para ocultar la caja de agregar publicación ***** */
   containerHome.querySelector(".btnCancel").addEventListener("click", (e) => {
     e.preventDefault();
@@ -373,6 +373,7 @@ const Home = () => {
     // eslint-disable-next-line no-unused-expressions
     containerHome.querySelector("#texta2").value;
     deleteContentInput();
+    deleteImage();
     cleanModal();
   });
 
@@ -382,7 +383,6 @@ const Home = () => {
       if(countFiles == 0){
         console.log("0 imagen");
         files = [];
-        console.log('filessssssssssss:', files);
       }
       e.preventDefault();
       const divPublicado = containerHome.querySelector("#publicado");
@@ -457,14 +457,6 @@ const Home = () => {
         cleanModal();
 
       }
-      // eslint-disable-next-line no-use-before-define
-      // reedPublications(info);
-    //   readUser(uid())
-    // // eslint-disable-next-line no-sequences
-    // .then((value) => {
-    //   reedPublications(value);
-    // })
-    // .catch((error) => console.log(error));
     });
 
   /* *************** Agregars información sincronizada del usuario al perfil *************** */

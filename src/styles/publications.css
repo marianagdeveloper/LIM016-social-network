@@ -361,4 +361,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 760px) {
+  .preview img {
+    margin-top: 0rem;
+  }
 }
