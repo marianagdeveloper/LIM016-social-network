@@ -138,6 +138,9 @@ const Search = () => {
               <div class='imgCaracteres'><img src='${interests[1]}' alt=''></div>
               <div class='imgCaracteres'><img src='${interests[2]}' alt=''></div>
             </div>
+            <div class='flexBtn'>
+              <button id="btnSeeUserPost" class="btnSeeUserPost" data-userPost:  ><a href="#/home">See Posts</a></button>
+            </div>
           </div>  
         </div>
   `;

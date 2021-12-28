@@ -15,7 +15,7 @@
 
 # 1. Ecogram
 
-♻️ **Ecogram** (Enveronmental Social Network) es una red social enfocada en crear una comunidad interesada en la preservación de nuestro único hogar "🌎El Planeta Tierra". Permite al cualquier usuario crearse una cuenta de acceso y loguearse con ella; crear, editar, borrar y "likear" publicacciones.
+♻️ **Ecogram** (Enveronmental Social Network) es una red social enfocada en crear una comunidad interesada en la preservación de nuestro único hogar "🌎El Planeta Tierra". Permite a cualquier usuario crearse una cuenta de acceso y loguearse con ella; crear, editar, borrar y "likear" publicacciones.
 
 El objetivo principal de aprendizaje de este proyecto es construir una **Single-page Application** (SPA) responsive (con más de una vista / página) en la que podamos leer y escribir datos.
 
@@ -101,11 +101,10 @@ A continuación, se mostrará parte del prototipado de alta fidelidad, si desea 
 ### Para la funcionalidad:
 -   [Javascript:](https://developer.mozilla.org/es/docs/Web/JavaScript)  Para dar la funcionalidad a la plataforma.
 -   [Firebase:](https://firebase.google.com)Se trata de una plataforma móvil creada por Google, cuya principal función es desarrollar y facilitar la creación de apps de elevada calidad de una forma rápida. Para este proyecto se uso lo siguiente:
-    -   [Cloud Firestore:](https://firebase.google.com/products/firestore)Es una base de datos NoSQL orientada a los documentos. A diferencia de una base de datos SQL, no hay tablas ni filas; En su lugar, almacenas los datos en documentos, que se organizan en colecciones. Cada documento contiene un conjunto de pares clave-valor.
-    -   [Cloud Storage:](https://firebase.google.com/products/storage)Almacena las fotos y los videos de tus usuarios
-    Cloud Storage se diseñó para ayudarte a almacenar y procesar con rapidez y facilidad el contenido generado por usuarios, como fotos y videos.
-    -   [Authentication:](https://firebase.google.com/products/auth)Busca facilitar la creación de sistemas de autenticación seguros, a la vez que mejora la experiencia de integración y acceso para los usuarios finales. Proporciona una solución de identidad de extremo a extremo, compatible con cuentas de correo electrónico y contraseñas, autenticación telefónica, acceso mediante Google, Twitter, Facebook y GitHub, y mucho más.
-    -   [Realtime Database:](https://firebase.google.com/products/realtime-database)Sincronización en tiempo real para datos JSON. Firebase Realtime Database es una base de datos NoSQL alojada en la nube que te permite almacenar y sincronizar datos entre tus usuarios en tiempo real.
+    -   [Cloud Firestore:](https://firebase.google.com/products/firestore)  Es una base de datos NoSQL orientada a los documentos. A diferencia de una base de datos SQL, no hay tablas ni filas; En su lugar, almacenas los datos en documentos, que se organizan en colecciones. Cada documento contiene un conjunto de pares clave-valor.
+    -   [Cloud Storage:](https://firebase.google.com/products/storage)  Cloud Storage se diseñó para ayudarte a almacenar y procesar con rapidez y facilidad el contenido generado por usuarios, como fotos y videos.
+    -   [Authentication:](https://firebase.google.com/products/auth)  Busca facilitar la creación de sistemas de autenticación seguros, a la vez que mejora la experiencia de integración y acceso para los usuarios finales. Proporciona una solución de identidad de extremo a extremo, compatible con cuentas de correo electrónico y contraseñas, autenticación telefónica, acceso mediante Google, Twitter, Facebook y GitHub, y mucho más.
+    -   [Realtime Database:](https://firebase.google.com/products/realtime-database)  Sincronización en tiempo real para datos JSON. Firebase Realtime Database es una base de datos NoSQL alojada en la nube que te permite almacenar y sincronizar datos entre tus usuarios en tiempo real.
 
 ***
 ## 5. Fuentes 📚
