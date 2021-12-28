@@ -316,7 +316,7 @@ const Home = () => {
 
   //Add images in new post
   let arr = [];
-  let files, file2 = [];
+  let files = [];
   let countFiles = 0;
   const divCamera = containerHome.querySelector(".inputFilePost");
   divCamera.addEventListener("change", (e) => {
@@ -331,18 +331,21 @@ const Home = () => {
     if (countFiles == 1) {
       files = Object.values(e.target.files);
       console.log('1 archivo', files);
-      arr.push(files)
         previewPost(files[0]);
+        arr.push(files[0])
       }
 
       if (countFiles == 2) {
-        file2 = Object.values(e.target.files);
-        files.push(file2);
-        console.log('2 archivos', files);
-        files.forEach((file) => {
-          //Preview images
-          previewPost(file);
-        });
+        files = Object.values(e.target.files);
+        console.log('2 archivos arr', files);
+        previewPost(files[0]);
+        arr.push(files[0])
+        console.log('total files', arr);
+        files = arr;
+        // arr.forEach((i) => {
+        //   //Preview images
+        //   previewPost([i][0]);
+        // });
         // Add second img in array files
         // if (arr.length == 2) {
         //   files = arr;
@@ -440,6 +443,12 @@ const Home = () => {
               .then((values) => {
                 console.log('caso 2222222222222222', values)
                 addPublication(publication, values);
+                readUser(uid())
+                  .then((value) => {
+                    reedPublications(value);
+                    files = [];
+                  })
+                  .catch((error) => console.log(error));
                 })
               .catch(console.log);
           }
