@@ -1,8 +1,3 @@
-/* * {
-  font-family: 'Roboto', sans-serif;
-  /* font-weight: 600;
-  background-repeat: repeat; 
-} */
 
 .filtros input,
 .filtros select,
@@ -41,19 +36,12 @@
   height: 40rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  /* grid-auto-rows: 150px;
-  /* grid-template-columns: repeat(4,auto);*/
   grid-auto-rows: auto;
   grid-gap: 40px 40px;
   padding: 40px;
   justify-items: center;
-  /* align-items: stretch;
-  justify-content: stretch; */
 }
-/* .search {
-  background: blue;
-  width: 20%;
-} */
+
 [class^="search"] {
   color: rgb(250, 246, 246);
   /* border: 2rem solid rgb(207, 47, 47); */
@@ -68,12 +56,13 @@
   background: #f4fffe;
   display: grid;
   grid-auto-flow: column dense;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
+  /* grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr; */
   /* gap: 15px 15px; */
   grid-template-areas: "perfil caracteres";
   padding: 0.4rem;
   box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
+  font-size: small;
 }
 
 .perfil {
@@ -101,7 +90,7 @@
 }
 
 .caracteres img {
-  height: 3.5rem;
+  height: 2.5rem;
   margin: 0 0.2rem;
   border-radius: 100%;
   border-width: 3px;
@@ -112,6 +101,18 @@
 
 .intereses {
   display: flex;
+}
+
+.flexBtn {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+.btnSeeUserPost{
+  background-color: gray;
+    border-radius: 5px;
+    font-size: x-small;
+    padding: 2%;
 }
 
 @media (max-width: 900px) {
