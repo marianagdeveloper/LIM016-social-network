@@ -11,7 +11,6 @@ export function publicationComponent(nameUser,
   publicationDate,
   publicationTime,
   urls) {
-
   const componetPublication = `
     <div class='boxPublicationsN' id='${idPublication}'>
       <div class='boxPhotoandNameN'>
@@ -79,21 +78,21 @@ export function publicationComponent(nameUser,
     btnsContainer.innerHTML += btnsEditAndDeletePost;
   }
 
-  //Images
+  // Images
   const divImages = divElemt.querySelector('.preview');
   console.log('urls en el componente publication:', urls);
 
-    //Pre-view image in new post
-    if (urls == []) {
-      console.log('no hay imagen');
-    }
+  // Pre-view image in new post
+  if (urls == []) {
+    console.log('no hay imagen');
+  }
 
-   if (urls.length > 0) {
-   urls.forEach(url => {
-    divImages.innerHTML += `
+  if (urls.length > 0) {
+    urls.forEach(url => {
+      divImages.innerHTML += `
     <img src='${url}' />
-    `
-   });
+    `;
+    });
   } else {
     console.log('no hay imagen');
   }
@@ -118,7 +117,6 @@ export function publicationComponent(nameUser,
   // **** total de likes por post ****
   async function lengthArrayLikes(arrayLikes) {
     pLikePublication.textContent = arrayLikes.length;
-
   }
   // ****evento que suma o resta likes de acuerdo a la condicion ****
   element.addEventListener('click', () => {

@@ -64,7 +64,7 @@ async function readAPost(uid, elmtTextContentPost) {
   }
 }
 
-//obtener url de firebase
+// obtener url de firebase
 async function urlStorage(params) {
   const refStorage = storageRef(params);
   await uploadBytes1(refStorage, params);
@@ -74,7 +74,7 @@ async function urlStorage(params) {
 /* *************** Agregar publicacion a Firebase *************** */
 async function addPublication(publication, urlsImg) {
   try {
-    console.log('addPublication:',urlsImg );
+    console.log('addPublication:',urlsImg);
     // eslint-disable-next-line no-unused-vars
     await addDoc(collection(db, "publications"), {
       author: sessionStorage.getItem("key"),
@@ -151,8 +151,10 @@ const Home = () => {
         <div class='PublicationsContent'>
           <div class='btnPublic'>
             <div class='btnsPublic'>
-              <button id='btnAllPost' class='btnAllPost'>All Posts</button>
-              <button id='btnMyPost' class='btnMyPost'>My Posts</button>
+              <div class='flexFilterBtns'>
+                <button id='btnAllPost' class='btnAllPost'>All Posts</button>
+                <button id='btnMyPost' class='btnMyPost'>My Posts</button>
+              </div>
               <input type='text' id='SearchName' name='firstname' class='SearchName' placeholder='🔍 User Name..'>
             </div>
             <img id="NewPost" class="NewPost" src='img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
@@ -229,14 +231,13 @@ const Home = () => {
   </main>`;
   containerHome.innerHTML = viewHome;
 
-
-  //Div - Filters
-  const boxPosts = containerHome.querySelector("#publicado");
-  const btnAllPost = containerHome.querySelector(".btnAllPost");
-  const btnMyPost = containerHome.querySelector(".btnMyPost");
+  // Div - Filters
+  const boxPosts = containerHome.querySelector('#publicado');
+  const btnAllPost = containerHome.querySelector('.btnAllPost');
+  const btnMyPost = containerHome.querySelector('.btnMyPost');
   const SearchName = containerHome.querySelector(".SearchName");
 
-  //Div - img
+  // Div - img
   const imgPreview = containerHome.querySelector(".preview");
 
   // Clear Posts
