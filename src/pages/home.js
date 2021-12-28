@@ -70,12 +70,12 @@ async function urlStorage(params) {
 /* *************** Agregar publicacion a Firebase *************** */
 async function addPublication(publication, urlsImg) {
   try {
-    console.log('addPublication:',urlsImg);
+    console.log("addPublication:", urlsImg);
     // eslint-disable-next-line no-unused-vars
     await addDoc(collection(db, "publications"), {
       author: sessionStorage.getItem("key"),
       publication,
-      idUserLike: '',
+      idUserLike: "",
       dateCreated: new Date(),
       urlsImages: urlsImg,
     });
@@ -230,9 +230,9 @@ const Home = () => {
   containerHome.innerHTML = viewHome;
 
   // Div - Filters
-  const boxPosts = containerHome.querySelector('#publicado');
-  const btnAllPost = containerHome.querySelector('.btnAllPost');
-  const btnMyPost = containerHome.querySelector('.btnMyPost');
+  const boxPosts = containerHome.querySelector("#publicado");
+  const btnAllPost = containerHome.querySelector(".btnAllPost");
+  const btnMyPost = containerHome.querySelector(".btnMyPost");
   const SearchName = containerHome.querySelector(".SearchName");
 
   // Div - img
@@ -305,12 +305,38 @@ const Home = () => {
       fileReader.readAsDataURL(file);
       fileReader.addEventListener("load", function () {
         imgPreview.style.display = "block";
+        //quita los espacios del nombre del archivo
+        // let fileName = file.name.trim();
+        let fileName = 'ejemplo';
+        console.log("🚀 ~ file: home.js ~ line 309 ~ fileName", fileName);
+        
         imgPreview.innerHTML += `
-        <div>
-        <button id='btnDeleteImg' class='btnDeleteImg'>x</button>
+        <div id='${fileName}' data-ref='${fileName}'>
+        <button id='btnDeleteImg' class='btnDeleteImg'>X</button>
         <img src="${this.result}"/>
         </div>
         `;
+
+        /* ***** Botón para quitar la imagen de una nueva publicación ***** */
+        imgPreview
+          .querySelector("#btnDeleteImg")
+          .addEventListener("click", (e) => {
+            e.preventDefault();
+            const divDelete = imgPreview.querySelector(`#${fileName}`);
+            console.log("🚀 ~ file: home.js ~ line 324 ~ .addEventListener ~ divDelete", divDelete)
+            
+            // const divDelete = e.target.dataset.ref; 
+            // const divDelete = e.target.parentNode.dataset.ref; 
+            // console.log("🚀 ~ file: home.js ~ line 322 ~ .addEventListener ~ divDelete", divDelete)
+            
+            const removeImg = imgPreview.querySelector(`#${fileName}`);      
+            console.log("🚀 ~ file: home.js ~ line 333 ~ .addEventListener ~ removeImg", removeImg)
+            // const removeImg = imgPreview.querySelector(`[data-ref]="${fileName}"`).dataset('dataRef')      
+            // console.log("🚀 ~ file: home.js ~ line 324 ~ .addEventListener ~ removeImg", removeImg)
+
+              // Delete div publication
+              removeImg.remove();
+          });
       });
     }
   }
@@ -325,30 +351,29 @@ const Home = () => {
     countFiles = imgPreview.childElementCount + 1;
     console.log("countFiles", countFiles);
 
-    if ( countFiles > 2) {
-      alert("max 2 images")
-    } 
-    
+    if (countFiles > 2) {
+      alert("max 2 images");
+    }
+
     if (countFiles == 1) {
       //Convert files in array with Object.values
       files = Object.values(e.target.files);
       // console.log('1 archivo', files);
-        previewPost(files[0]);
-        arr.push(files[0])
-      }
+      previewPost(files[0]);
+      arr.push(files[0]);
+    }
 
-      if (countFiles == 2) {
-        files = Object.values(e.target.files);
-        console.log('2 archivos arr', files);
-        previewPost(files[0]);
-        arr.push(files[0]);
-        console.log('total files', arr);
-        files = arr;
-      }
-    });
+    if (countFiles == 2) {
+      files = Object.values(e.target.files);
+      console.log("2 archivos arr", files);
+      previewPost(files[0]);
+      arr.push(files[0]);
+      console.log("total files", arr);
+      files = arr;
+    }
+  });
 
-
-  console.log('files.......', files);
+  console.log("files.......", files);
 
   // Función para eliminar el contenido del input al momento de cancelar
   const deleteContentInput = () => {
@@ -362,6 +387,13 @@ const Home = () => {
     while (imgPreview.firstChild) {
       imgPreview.removeChild(imgPreview.firstChild);
     }
+  };
+
+  const deleteOneImage = (divImg) => {
+    files = [];
+    arr = [];
+    countFiles = 0;
+    divImg.remove();
   }
 
   /* ***** Botón para ocultar la caja de agregar publicación ***** */
@@ -377,87 +409,86 @@ const Home = () => {
     cleanModal();
   });
 
-    /* *************** evento de añadir publicación con save *************** */
+  /* *************** evento de añadir publicación con save *************** */
 
-    containerHome.querySelector("#btnSave").addEventListener("click", (e) => {
-      if(countFiles == 0){
-        console.log("0 imagen");
-        files = [];
-      }
-      e.preventDefault();
-      const divPublicado = containerHome.querySelector("#publicado");
-      const publication = containerHome.querySelector("#texta2").value;
-      containerHome.querySelector("#texta2").value =
+  containerHome.querySelector("#btnSave").addEventListener("click", (e) => {
+    if (countFiles == 0) {
+      console.log("0 imagen");
+      files = [];
+    }
+    e.preventDefault();
+    const divPublicado = containerHome.querySelector("#publicado");
+    const publication = containerHome.querySelector("#texta2").value;
+    containerHome.querySelector("#texta2").value =
       containerHome.querySelector("#texta2").defaultValue;
-           
-      while (divPublicado.firstChild) {
-        divPublicado.removeChild(divPublicado.firstChild);
+
+    while (divPublicado.firstChild) {
+      divPublicado.removeChild(divPublicado.firstChild);
+    }
+
+    //Clean images in new post
+    while (imgPreview.firstChild) {
+      imgPreview.removeChild(imgPreview.firstChild);
+    }
+
+    if (publication !== "") {
+      document
+        .getElementById("modalCheckPost")
+        .classList.replace("modalCheckPost", "AlertmodalCheckPost");
+
+      //Saved images in storage
+      console.log("files:", files);
+      if (files.length == 0) {
+        //Add publication in firebase store
+        console.log("agregando post con 0 imagen");
+        addPublication(publication, [""]);
+
+        readUser(uid())
+          // eslint-disable-next-line no-sequences
+          .then((value) => {
+            reedPublications(value);
+          })
+          .catch((error) => console.log(error));
       }
 
-      //Clean images in new post
-      while (imgPreview.firstChild) {
-        imgPreview.removeChild(imgPreview.firstChild);
-      }
-
-      if (publication !== "") {
-        document
-          .getElementById("modalCheckPost")
-          .classList.replace("modalCheckPost", "AlertmodalCheckPost");
-
-        //Saved images in storage
-        console.log('files:', files);
-          if (files.length == 0) {
-              //Add publication in firebase store
-              console.log('agregando post con 0 imagen');
-              addPublication(publication, ['']);
-
-              readUser(uid())
-              // eslint-disable-next-line no-sequences
+      if (files.length == 1) {
+        console.log("caso 1");
+        const p1 = urlStorage(files[0]);
+        Promise.all([p1])
+          .then((values) => {
+            addPublication(publication, values);
+            readUser(uid())
               .then((value) => {
                 reedPublications(value);
+                files = [];
               })
               .catch((error) => console.log(error));
-          }
-
-          if (files.length == 1) {
-            console.log('caso 1')
-              const p1 = urlStorage(files[0]);
-              Promise.all([p1])
-              .then((values) => {
-                addPublication(publication, values);
-                readUser(uid())
-                  .then((value) => {
-                    reedPublications(value);
-                    files = [];
-                  })
-                  .catch((error) => console.log(error));
-                })
-              .catch(console.log);
-          }
-
-          if (files.length == 2) {
-            console.log('caso 2')
-              const p_1 = urlStorage(files[0]);
-              const p_2 = urlStorage(files[1]);
-              Promise.all([p_1, p_2])
-              .then((values) => {
-                console.log('caso 2222222222222222', values)
-                addPublication(publication, values);
-                readUser(uid())
-                  .then((value) => {
-                    reedPublications(value);
-                    files = [];
-                  })
-                  .catch((error) => console.log(error));
-                })
-              .catch(console.log);
-          }
+          })
+          .catch(console.log);
       }
-      if (publication === "") {
-        cleanModal();
 
+      if (files.length == 2) {
+        console.log("caso 2");
+        const p_1 = urlStorage(files[0]);
+        const p_2 = urlStorage(files[1]);
+        Promise.all([p_1, p_2])
+          .then((values) => {
+            console.log("caso 2222222222222222", values);
+            addPublication(publication, values);
+            readUser(uid())
+              .then((value) => {
+                reedPublications(value);
+                files = [];
+              })
+              .catch((error) => console.log(error));
+          })
+          .catch(console.log);
       }
-    });
+    }
+    if (publication === "") {
+      cleanModal();
+    }
+  });
 
   /* *************** Agregars información sincronizada del usuario al perfil *************** */
 
@@ -506,13 +537,10 @@ const Home = () => {
     // Interests
     // eslint-disable-next-line no-plusplus
     for (let index = 0; index < 3; index++) {
-
       containerHome.querySelector(`#Interests-${index}`).src =
         info.interests[index];
       console.log(index);
     }
-
-  
   };
   // devuelve el uid del usuario que se encuentra en sesionStorage
   const uid = () => {
@@ -530,7 +558,7 @@ const Home = () => {
 
   function realOnSnapshot(documentFirebase) {
     const idPublication = documentFirebase.id;
-    
+
     llenarPublications(documentFirebase, idPublication);
   }
 
@@ -541,15 +569,21 @@ const Home = () => {
       doc(db, "users", documentFirebase.data().author)
     );
     if (userOfPublication.exists()) {
-      const divPublicado = containerHome.querySelector('#publicado');
+      const divPublicado = containerHome.querySelector("#publicado");
       const nameUser = userOfPublication.data().name;
       const publicationText = documentFirebase.data().publication;
 
       /* ***** Constantes de fecha y hora por publicación ***** */
-      const publicationDate = documentFirebase.data().dateCreated.toDate().toDateString();
-      const publicationTime = documentFirebase.data().dateCreated.toDate().toLocaleTimeString('en-US');
+      const publicationDate = documentFirebase
+        .data()
+        .dateCreated.toDate()
+        .toDateString();
+      const publicationTime = documentFirebase
+        .data()
+        .dateCreated.toDate()
+        .toLocaleTimeString("en-US");
 
-      console.log('date: ', publicationDate);
+      console.log("date: ", publicationDate);
 
       /* ***** Only Delete or Edit Post for UserCurrent ***** */
       const authorPublication = userOfPublication.data().uid;
@@ -558,25 +592,29 @@ const Home = () => {
       const photo = userOfPublication.data().photo;
       const urls = documentFirebase.data().urlsImages;
 
-      console.log('urls', documentFirebase.data());
+      console.log("urls", documentFirebase.data());
 
       /* ***** Agrega una nueva publicación por usuario de primera ***** */
 
-      divPublicado.prepend(publicationComponent(nameUser,
-        myPost,
-        idPublication,
-        publicationText,
-        photo,
-        publicationDate,
-        publicationTime,
-        urls));
+      divPublicado.prepend(
+        publicationComponent(
+          nameUser,
+          myPost,
+          idPublication,
+          publicationText,
+          photo,
+          publicationDate,
+          publicationTime,
+          urls
+        )
+      );
 
       /* ***** Constantes para editar publicación ***** */
-      const textPublication = document.querySelector('textArea[data-texto]');
-      const editsPublication = document.querySelector('img[data-edit]');
-      const savePublication = document.querySelector('button[data-save]');
-      const cancelPublication = document.querySelector('button[data-cancel]');
-      const btnsEditPostBox = document.querySelector('.btnsEditContainer');
+      const textPublication = document.querySelector("textArea[data-texto]");
+      const editsPublication = document.querySelector("img[data-edit]");
+      const savePublication = document.querySelector("button[data-save]");
+      const cancelPublication = document.querySelector("button[data-cancel]");
+      const btnsEditPostBox = document.querySelector(".btnsEditContainer");
 
       /* ***** Block btns of save and cancel edit publication ***** */
       editsPublication.addEventListener("click", (e) => {
@@ -671,8 +709,7 @@ const Home = () => {
   /* ***** leer datos desde Firebase de la colección Publicaciones y Usuarios ***** */
 
   async function reedPublications(filterMyPost) {
-
-    console.log('filterMyPost', filterMyPost);
+    console.log("filterMyPost", filterMyPost);
 
     let querySnapshotPublications = await getDocs(
       collection(db, "publications")
