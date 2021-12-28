@@ -49,7 +49,7 @@ const EditProfile = () => {
               <h3>Write your bio:</h3>
             </div>
             <div class='bioUser'>
-              <textarea name='comments' id='texta2' class='bio'></textarea>
+              <textarea name='comments' id='texta2' class='bio' maxlength='120' placeholder = 'Max. 120 characters'></textarea>
               <div class='buttonSave'>
                 <button>
                   <h3>Save</h3>
@@ -470,20 +470,21 @@ const EditProfile = () => {
     }
 
     // Select Avatar personal
-    let file, avatar;
+    let file;
+    let avatar;
     const divCamera = divElemt.querySelector('#edit-file');
     divCamera.addEventListener('change', (e) => {
       updateProdileModal.classList.add('hide');
-      let id = sessionStorage.getItem('key');
+      const id = sessionStorage.getItem('key');
       file = e.target.files[0];
       console.log(file);
       avatar = file.name;
       // Save Avatar personal in Storage of Firebase
       avatarPersonal(id, avatar, file)
-      .then((resolve) => {
-        updatePhotoUserWithAvatarPersonal(resolve);
-      })
-      .catch(console.log);
+        .then((resolve) => {
+          updatePhotoUserWithAvatarPersonal(resolve);
+        })
+        .catch(console.log);
     });
 
     // Update URL Avatar Personal
@@ -505,7 +506,7 @@ const EditProfile = () => {
       divInterestsProfile.addEventListener('click', (event) => {
         const newInterest = event.target.attributes.src.value;
         // console.log(`click en interest`, newInterest);
-        let validateInterest = arrayInterest.includes(newInterest);
+        const validateInterest = arrayInterest.includes(newInterest);
         if (!validateInterest) {
           arrayInterest.pop();
           arrayInterest.unshift(newInterest);
@@ -516,10 +517,14 @@ const EditProfile = () => {
     }
 
     // Button Save
-    let btnSave = divElemt.querySelector('.buttonSave');
+    const btnSave = divElemt.querySelector('.buttonSave');
     btnSave.addEventListener('click', () => {
       // New Data
-      let uid, bio, photo, country, interests;
+      let uid;
+      let bio;
+      let photo;
+      let country;
+      let interests;
       console.log('uidSS: ', sessionStorage.getItem('key'));
       uid = sessionStorage.getItem('key');
       bio = divElemt.querySelector('.bio').value;
@@ -528,7 +533,7 @@ const EditProfile = () => {
       country = `${code}:${nameCountry}`;
       interests = arrayInterests;
       updateInfoUser(uid, bio, photo, interests, country);
-      updateInfoUserSession({ uid, bio, photo, interests, country });
+      updateInfoUserSession(uid, bio, photo, interests, country);
       // Save Avatar in Collection Users
       updatePhotoWithAvatar(uid, photo);
       updateProdileModal.classList.remove('hide');
