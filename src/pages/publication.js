@@ -81,7 +81,7 @@ export function publicationComponent(nameUser,
 
   //Images
   const divImages = divElemt.querySelector('.preview');
-  console.log('urls', urls);
+  console.log('urls en el componente publication:', urls);
 
     //Pre-view image in new post
     if (urls == []) {
@@ -99,13 +99,13 @@ export function publicationComponent(nameUser,
   }
 
   // *******************************likes****************************************
-  let likeRef;
-  const element = divElemt.querySelector('.btnLikePublication');
-  const uidPostLikes = element.dataset.like;
-  const pLikePublication = divElemt.querySelector('.pLikePublication');
-  const imgHeartLike = divElemt.querySelector('#imgHeartLike');
+  // let likeRef;
+  // const element = divElemt.querySelector('.btnLikePublication');
+  // const uidPostLikes = element.dataset.like;
+  // const pLikePublication = divElemt.querySelector('.pLikePublication');
+  // const imgHeartLike = divElemt.querySelector('#imgHeartLike');
 
-  const userCurrent = sessionStorage.getItem('key');
+  // const userCurrent = sessionStorage.getItem('key');
 
 
   // ****agrega el array de likes por idUser´s al campo idUserLike ****
