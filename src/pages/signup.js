@@ -67,10 +67,10 @@ export const handleSingUp = (e) => {
         // Add new user
         const bio = "Let's build a better world together.ECOGRAM";
         const country = 'aq:Antártida';
-        const interests = ['img/Icons/interestsNuevo.png', 'img/Icons/interestsNuevo.png', 'img/Icons/interestsNuevo.png'];
+        const interests = ['img/Icons/interestNull.png', 'img/Icons/interestNull.png', 'img/Icons/interestNull.png'];
         const emailFS = userCredential.user.email;
         const uidFS = userCredential.user.uid;
-        const photo = 'img/Icons/usuarioNuevo5.png';
+        const photo = 'img/Icons/newUser.png';
         createNewUser(bio, country, interests, name, emailFS, uidFS, photo);
         cleanModal();
         // Print notification: User created
@@ -106,12 +106,12 @@ export const handleSingUpGoogle = (e) => {
     .then((result) => {
       const bio = "Let's build a better world together.ECOGRAM";
       const country = 'aq:Antártida';
-      const interests = ['img/Icons/interestsNuevo.png', 'img/Icons/interestsNuevo.png', 'img/Icons/interestsNuevo.png'];
+      const interests = ['img/Icons/interestNull.png', 'img/Icons/interestNull.png', 'img/Icons/interestNull.png'];
       const user = result.user;
       const name = user.displayName;
       const email = user.email;
       const uid = user.uid;
-      const photo = 'img/Icons/usuarioNuevo5.png';
+      const photo = 'img/Icons/newUser.png';
       createNewUser(bio, country, interests, name, email, uid, photo)
         .then(() => {
           cleanModal();

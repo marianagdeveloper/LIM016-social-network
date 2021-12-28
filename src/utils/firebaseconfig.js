@@ -34,7 +34,7 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 
 import {
-  getStorage, ref, uploadBytes, getDownloadURL,
+  getStorage, ref, uploadBytes, getDownloadURL, uploadBytesResumable,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-storage.js';
 
@@ -87,4 +87,5 @@ export {
   ref,
   uploadBytes,
   getDownloadURL,
+  uploadBytesResumable,
 };

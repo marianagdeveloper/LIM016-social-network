@@ -7,7 +7,10 @@ export function publicationComponent(nameUser,
   myPost,
   idPublication,
   publicationText,
-  photo) {
+  photo,
+  publicationDate,
+  publicationTime,
+  urls) {
   const componetPublication = `
     <div class='boxPublicationsN' id='${idPublication}'>
       <div class='boxPhotoandNameN'>
@@ -33,7 +36,7 @@ export function publicationComponent(nameUser,
           </textArea>
         </div>
       </div>
-
+      <div class='preview'></div> 
       <div class='FlexBoxEditbtns'>
         <div id='btnsEditContainer' class='hide btnsEditContainer'>
           <button id='btnSaveEdit' class='btnSaveEdit' data-save='${idPublication}'>Save</button>
@@ -45,10 +48,25 @@ export function publicationComponent(nameUser,
         </div>
       </div>
     </div>`;
-  console.log(idPublication);
+
   // publication
   const divElemt = document.createElement('div');
   divElemt.innerHTML += componetPublication;
+
+  const dateconcatTemplate = `
+    <p class:"date">${publicationDate}</p>
+    <p class:"date">${publicationTime}</p>
+    `;
+  const dateconcat = divElemt.querySelector('.userNameN');
+  dateconcat.innerHTML += dateconcatTemplate;
+
+  let likeRef;
+  const element = divElemt.querySelector('.btnLikePublication');
+  const uidPostLikes = element.dataset.like;
+  const pLikePublication = divElemt.querySelector('.pLikePublication');
+  const imgHeartLike = divElemt.querySelector('#imgHeartLike');
+
+  const userCurrent = sessionStorage.getItem('key');
 
   const btnsEditAndDeletePost = `
   <img title='Edit your post' id='btnEditPost' class='btnEditPost' data-edit='${idPublication}' src='img/Icons/Pencil.png' alt=''>
@@ -60,14 +78,34 @@ export function publicationComponent(nameUser,
     btnsContainer.innerHTML += btnsEditAndDeletePost;
   }
 
-  // *******************************likes****************************************
-  let likeRef;
-  const element = divElemt.querySelector('.btnLikePublication');
-  const uidPostLikes = element.dataset.like;
-  const pLikePublication = divElemt.querySelector('.pLikePublication');
-  const imgHeartLike = divElemt.querySelector('#imgHeartLike');
+  // Images
+  const divImages = divElemt.querySelector('.preview');
+  console.log('urls en el componente publication:', urls);
 
-  const userCurrent = sessionStorage.getItem('key');
+  // Pre-view image in new post
+  if (urls == []) {
+    console.log('no hay imagen');
+  }
+
+  if (urls.length > 0) {
+    urls.forEach(url => {
+      divImages.innerHTML += `
+    <img src='${url}' />
+    `;
+    });
+  } else {
+    console.log('no hay imagen');
+  }
+
+  // *******************************likes****************************************
+  // let likeRef;
+  // const element = divElemt.querySelector('.btnLikePublication');
+  // const uidPostLikes = element.dataset.like;
+  // const pLikePublication = divElemt.querySelector('.pLikePublication');
+  // const imgHeartLike = divElemt.querySelector('#imgHeartLike');
+
+  // const userCurrent = sessionStorage.getItem('key');
+
 
   // ****agrega el array de likes por idUser´s al campo idUserLike ****
   async function addLikePost(likeReferenc, arrayLikes) {
@@ -79,7 +117,6 @@ export function publicationComponent(nameUser,
   // **** total de likes por post ****
   async function lengthArrayLikes(arrayLikes) {
     pLikePublication.textContent = arrayLikes.length;
-    console.log(pLikePublication);
   }
   // ****evento que suma o resta likes de acuerdo a la condicion ****
   element.addEventListener('click', () => {
@@ -112,23 +149,6 @@ export function publicationComponent(nameUser,
     lengthArrayLikes(doocSnap.idUserLike);
   }
   viewLikesInSnapshot();
-
-  // ***************************************************************************
-  // print date time publicated
-  const today = new Date();
-  const m = today.getMonth() + 1;
-  // eslint-disable-next-line prefer-template
-  const mm = (m < 10) ? '0' + m : m;
-  const dd = today.getDate();
-  const year = today.getFullYear();
-  const hour = today.getHours();
-  const minutes = today.getMinutes();
-  const dateconcatTemplate = `
-  <p class:"date">${dd}/${mm}/${year}</p>
-  <p class:"date">${hour}h ${minutes}min</p>
-  `;
-  const dateconcat = divElemt.querySelector('.userNameN');
-  dateconcat.innerHTML += dateconcatTemplate;
 
   return divElemt;
 }
