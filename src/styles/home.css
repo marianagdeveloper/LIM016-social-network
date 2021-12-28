@@ -350,6 +350,15 @@ body {
 .btnDeleteImg:hover {
   background-color: rgb(146, 26, 26);
 }
+
+.modalNoMoreTwoPost {
+  color: #f1ff75;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+}
+
 /***************** PAGE HOME GRID RESPONSIVE ******************/
 
 @media screen and (max-width: 760px) {

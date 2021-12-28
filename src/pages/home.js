@@ -190,6 +190,10 @@ const Home = () => {
                 <button id='btnCancel' class='btnCancel'>Cancel</button>
               </div>
             </div>
+            <div id='modalNoMoreTwoPost' class='hide modalNoMoreTwoPost'>
+              <img src="img/Icons/Alert2.png" class="Alert" alt="Alert" />
+              <p>You can't add more two images</p> 
+            </div>
           </div>
           <div id='publicado'>
 
@@ -238,6 +242,9 @@ const Home = () => {
   //  Div - img
   const imgPreview = containerHome.querySelector('.preview');
 
+  //  Alert no more two posts
+  const alertNoMoreImgs = containerHome.querySelector('#modalNoMoreTwoPost');
+  const check = document.getElementById('modalCheckPost');
   //  Clear Posts
   function clearBoxPosts() {
     while (boxPosts.firstChild) {
@@ -281,11 +288,12 @@ const Home = () => {
   /* *************** Notificaciones de 'post publicated' *************** */
 
   const cleanModal = () => {
-    const check = document.getElementById('modalCheckPost');
     if (check) {
       document
         .getElementById('modalCheckPost')
         .classList.replace('AlertmodalCheckPost', 'modalCheckPost');
+    } if (alertNoMoreImgs) {
+      alertNoMoreImgs.classList.add('hide');
     }
   };
 
@@ -312,8 +320,8 @@ const Home = () => {
         
         imgPreview.innerHTML += `
         <div id='${fileName}' data-ref='${fileName}'>
-        <button title='Delete image' id='btnDeleteImg' class='btnDeleteImg'>X</button>
-        <img src='${this.result}'/>
+          <button title='Delete image' id='btnDeleteImg' class='btnDeleteImg'>X</button>
+          <img src='${this.result}'/>
         </div>
         `;
 
@@ -322,6 +330,7 @@ const Home = () => {
           .querySelector('#btnDeleteImg')
           .addEventListener('click', (e) => {
             e.preventDefault();
+            cleanModal();
             const divDelete = imgPreview.querySelector(`#${fileName}`);
             console.log('🚀 ~ file: home.js ~ line 324 ~ .addEventListener ~ divDelete', divDelete)
             
@@ -352,10 +361,11 @@ const Home = () => {
     console.log('countFiles', countFiles);
 
     if (countFiles > 2) {
-      alert('max 2 images');
+      alertNoMoreImgs.classList.remove('hide');
     }
 
     if (countFiles == 1) {
+      cleanModal();
       // Convert files in array with Object.values
       files = Object.values(e.target.files);
       //  console.log('1 archivo', files);
@@ -364,6 +374,7 @@ const Home = () => {
     }
 
     if (countFiles == 2) {
+      cleanModal();
       files = Object.values(e.target.files);
       console.log('2 archivos arr', files);
       previewPost(files[0]);
@@ -384,6 +395,7 @@ const Home = () => {
     files = [];
     arr = [];
     countFiles = 0;
+    cleanModal();
     while (imgPreview.firstChild) {
       imgPreview.removeChild(imgPreview.firstChild);
     }
@@ -441,6 +453,7 @@ const Home = () => {
       if (files.length == 0) {
         // Add publication in firebase store
         console.log('agregando post con 0 imagen');
+        cleanModal();
         addPublication(publication, ['']);
 
         readUser(uid())
@@ -454,6 +467,7 @@ const Home = () => {
       if (files.length == 1) {
         console.log('caso 1');
         const p1 = urlStorage(files[0]);
+        cleanModal();
         Promise.all([p1])
           .then((values) => {
             addPublication(publication, values);
@@ -471,6 +485,7 @@ const Home = () => {
         console.log('caso 2');
         const p_1 = urlStorage(files[0]);
         const p_2 = urlStorage(files[1]);
+        cleanModal();
         Promise.all([p_1, p_2])
           .then((values) => {
             console.log('caso 2222222222222222', values);
