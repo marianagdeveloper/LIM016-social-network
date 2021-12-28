@@ -326,6 +326,11 @@ body {
 .CountryFlex {
   display: flex;
 }
+
+.CountryFlex img {
+  width: 30px;
+  height: 30px;
+}
 /***************** PAGE HOME GRID RESPONSIVE ******************/
 
 @media screen and (max-width: 760px) {
