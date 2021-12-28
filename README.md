@@ -10,7 +10,7 @@
 ***
 
 <div align="center">
-<img src="/src/img/Logos/LogoG7.png" width="400">
+<img src="/src/img/Logos/LogoG7.png" width="800">
 </div>
 
 # 1. Ecogram
@@ -62,11 +62,13 @@ A continuación, mostraremos algunas de las historias de Usuario:
 ## 3. Realización del Proyecto
 ## 3.1 Diseño 📱
 ### 3.1.1 Flowchart: 📝
-Para definir las páginas y su contenido se realizó un mapa semántico del mismo. Si desea visualizarlo puededar click [Aquí]().
+Para definir las páginas y su contenido se realizó un mapa semántico del mismo. Si desea visualizarlo puededar click [Aquí](https://raw.githubusercontent.com/RJRCH123/LIM016-social-network/dev/practicekmr/src/img/Readme/Flowchart/Flowchart.png).
 
 ### 3.1.2 Wireframe: 🙋🏼
 Por consiguiente, en esta fase se busca realizar un esquema virtual de distribución más detallado en Figma.
-A continuación, se mostrará parte del Wireframe; si desea puede verlo completo dando click [Aquí]().
+A continuación, se mostrará parte del Wireframe; si desea puede verlo completo dando click en:
+-  [Prototipado mobile](https://github.com/RJRCH123/LIM016-social-network/blob/dev/practicekmr/src/img/Readme/Wireframe/wireframeDesktop.png)
+-  [Prototipado desktop](https://github.com/RJRCH123/LIM016-social-network/blob/dev/practicekmr/src/img/Readme/Wireframe/wireframeDesktop.png)
 
 <div align="center">
 <img src="/src/img/Readme/Wireframe/Example-WF.png" width="800">
@@ -74,7 +76,9 @@ A continuación, se mostrará parte del Wireframe; si desea puede verlo completo
 
 ### 3.1.3 Prototipado de Alta Fidelidad: 💁🏼
 Luego de ya tener el Wireframe, se realiza el diseño de la web en base a estilos, paleta de colores, entre otros recursos.
-A continuación, se mostrará parte del prototipado de alta fidelidad, si desea puede verlo completo dando click [Aquí]().
+A continuación, se mostrará parte del prototipado de alta fidelidad, si desea puede verlo completo dando click en:
+-  [Prototipado mobile](https://github.com/RJRCH123/LIM016-social-network/blob/dev/practicekmr/src/img/Readme/HighFidelity/HF-Mobile.png)
+-  [Prototipado desktop](https://github.com/RJRCH123/LIM016-social-network/blob/dev/practicekmr/src/img/Readme/HighFidelity/HF-Desktop.png)
 
 <div align="center">
 <img src="/src/img/Readme/HighFidelity/Example-HF.png" width="800">
