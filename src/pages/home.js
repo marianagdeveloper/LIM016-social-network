@@ -317,7 +317,7 @@ const Home = () => {
         //  let fileName = file.name.trim();
         let fileName = 'ejemplo';
         console.log('🚀 ~ file: home.js ~ line 309 ~ fileName', fileName);
-        
+
         imgPreview.innerHTML += `
         <div id='${fileName}' data-ref='${fileName}'>
           <button title='Delete image' id='btnDeleteImg' class='btnDeleteImg'>X</button>
@@ -509,7 +509,7 @@ const Home = () => {
 
   const infoUser = (info) => {
     containerHome.querySelector(
-      '.UserName'
+      '.UserName',
     ).innerHTML += `<br><h1>${info.name}</h1><br>
     <div class='linea2'>&nbsp;</div>`;
     containerHome.querySelector('.Email').innerHTML += `<h3>Email:</h3>
@@ -630,11 +630,13 @@ const Home = () => {
       const savePublication = document.querySelector('button[data-save]');
       const cancelPublication = document.querySelector('button[data-cancel]');
       const btnsEditPostBox = document.querySelector('.btnsEditContainer');
+      const btnsDeleteImgs = document.querySelector('#btnDeteleImgEdit');
 
       /* ***** Block btns of save and cancel edit publication ***** */
       editsPublication.addEventListener('click', (e) => {
         e.preventDefault();
         if (myPost) {
+          btnsDeleteImgs.classList.remove('hide');
           btnsEditPostBox.classList.remove('hide');
           textPublication.disabled = false;
           textPublication.select();
@@ -649,6 +651,7 @@ const Home = () => {
         editPublication(idPublication, textPublication.value);
         textPublication.disabled = true;
         btnsEditPostBox.classList.add('hide');
+        btnsDeleteImgs.classList.add('hide');
       });
 
       /* ***** cancel edit publication ***** */
@@ -657,6 +660,7 @@ const Home = () => {
         //  editPublication(idPublication, publicationText);
         textPublication.disabled = true;
         btnsEditPostBox.classList.add('hide');
+        btnsDeleteImgs.classList.add('hide');
 
         const cancelEdit = e.target.dataset.cancel;
 

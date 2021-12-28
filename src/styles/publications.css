@@ -179,8 +179,9 @@
 
 .editPost {
   display: flex;
-  justify-content: space-between;
-  /* visibility: visible; */
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: 20%;
 }
 
 .editPost img {
