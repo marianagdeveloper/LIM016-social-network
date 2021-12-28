@@ -152,7 +152,7 @@ body {
   width: 100%;
 }
 
-.AddPhotoPost {
+.AddPhotoPostEdit {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -160,6 +160,15 @@ body {
   height: 20px;
   margin: 5%;
 }
+
+.AddPhotoPost {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 15%;
+  margin-left: 2%;
+}
+
 .AddPhotoPost img {
   width: 30%;
 }
@@ -169,6 +178,15 @@ body {
   height: 100%;
 }
 .inputFilePost {
+  position: absolute;
+  width: 2%;
+  height: 4%;
+  z-index: 10;
+  border-radius: 100%;
+  opacity: 0;
+}
+
+.inputFilePostEdit {
   position: absolute;
   width: 2%;
   height: 4%;

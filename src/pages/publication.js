@@ -69,7 +69,7 @@ export function publicationComponent(nameUser,
   const userCurrent = sessionStorage.getItem('key');
 
   const btnsEditAndDeletePost = `
-  <div class='AddPhotoPost'>
+  <div class='AddPhotoPostEdit'>
     <input title='Add a photo' type='file' id='edit-file' class='inputFilePost' data-newImg='${idPublication}'/>
       <img class='inputFilePostIcon'
       src='img/Icons/cameraPost.png'
