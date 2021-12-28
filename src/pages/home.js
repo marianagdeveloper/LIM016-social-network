@@ -74,6 +74,7 @@ async function urlStorage(params) {
 /* *************** Agregar publicacion a Firebase *************** */
 async function addPublication(publication, urlsImg) {
   try {
+    console.log('addPublication:',urlsImg );
     // eslint-disable-next-line no-unused-vars
     await addDoc(collection(db, "publications"), {
       author: sessionStorage.getItem("key"),
@@ -178,7 +179,6 @@ const Home = () => {
             <div class='preview'></div> 
             <div class='opcionAddPost'>
               <div class='AddPhotoPost'>
-                <input title="Add a photo" type="file" id="add-photo-post" class="inputFilePost"/>
                 <input title="Add a photo" type="file" id="edit-file" class="inputFilePost" multiple/>
                 <img class="inputFilePostIcon"
                 src="img/Icons/cameraPost.png"
@@ -313,25 +313,29 @@ const Home = () => {
 
   //Add images in new post
   const divCamera = containerHome.querySelector(".inputFilePost");
-  let files, arr = [];
+  let arr = [];
+  let files = [];
   divCamera.addEventListener("change", (e) => {
     files = Object.values(e.target.files);
     let countFiles = imgPreview.childElementCount + 1;
     console.log("countFiles", countFiles);
+
     if (files.length > 2 || countFiles > 2) {
       alert("max 2 images");
     } else {
+      console.log('antes del for each', files);
       files.forEach((file) => {
         //Preview images
         previewPost(file);
-        arr.push(file)
+        arr.push(file);
       });
-      //Add second img in array files
+      // Add second img in array files
       if (arr.length == 2) {
         files = arr;
       }
     }
   });
+
 
   // Función para eliminar el contenido del input al momento de cancelar
   const deleteContentInput = () => {
@@ -427,32 +431,33 @@ const Home = () => {
           .classList.replace("modalCheckPost", "AlertmodalCheckPost");
 
         //Saved images in storage
-        console.log('files sin imagen', files);
-          if (!files) {
+        console.log('files:', files);
+          if (files == 0) {
               //Add publication in firebase store
               addPublication(publication, ['']);
           }
-          switch (files.length > 0) {
-            case 1:
+
+          if (files.length == 1) {
+            console.log('caso 1')
               const p1 = urlStorage(files[0]);
               Promise.all([p1])
               .then((values) => {
-                console.log(values)
+                console.log('url file..............:', values)
                 addPublication(publication, values);
+                
                 })
               .catch(console.log);
-              break;
+          }
 
-            case 2:
-              const p_1 = urlStorage(files[0]);
+          if (files.length == 2) {
+            const p_1 = urlStorage(files[0]);
               const p_2 = urlStorage(files[1]);
               Promise.all([p_1, p_2])
               .then((values) => {
-                console.log(values)
+                console.log('caso 2222222222222222', values)
                 addPublication(publication, values);
                 })
               .catch(console.log);
-              break;
           }
       }
       if (publication === "") {
@@ -478,6 +483,7 @@ const Home = () => {
 
   function realOnSnapshot(documentFirebase) {
     const idPublication = documentFirebase.id;
+    
     llenarPublications(documentFirebase, idPublication);
   }
 
@@ -505,6 +511,8 @@ const Home = () => {
       const photo = userOfPublication.data().photo;
       const urls = documentFirebase.data().urlsImages;
 
+      console.log('urls', documentFirebase.data());
+
       /* ***** Agrega una nueva publicación por usuario de primera ***** */
 
       divPublicado.prepend(publicationComponent(nameUser,
@@ -513,7 +521,8 @@ const Home = () => {
         publicationText,
         photo,
         publicationDate,
-        publicationTime));
+        publicationTime,
+        urls));
 
       /* ***** Constantes para editar publicación ***** */
       const textPublication = document.querySelector('textArea[data-texto]');
@@ -615,6 +624,8 @@ const Home = () => {
   /* ***** leer datos desde Firebase de la colección Publicaciones y Usuarios ***** */
 
   async function reedPublications(filterMyPost) {
+
+    console.log('filterMyPost', filterMyPost);
 
     let querySnapshotPublications = await getDocs(
       collection(db, "publications")
