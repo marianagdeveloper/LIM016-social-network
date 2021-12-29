@@ -65,8 +65,8 @@ export const handleSingUp = (e) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Add new user
-        const bio = "Let's build a better world together.ECOGRAM";
-        const country = 'aq:Antártida';
+        const bio = 'Ecogram non-profit association. We exist to serve planet earth. 🌎';
+        const country = 'pe:Perú';
         const interests = ['img/Icons/interestNull.png', 'img/Icons/interestNull.png', 'img/Icons/interestNull.png'];
         const emailFS = userCredential.user.email;
         const uidFS = userCredential.user.uid;
@@ -104,8 +104,8 @@ export const handleSingUpGoogle = (e) => {
   e.preventDefault();
   signInWithPopup(auth, provider)
     .then((result) => {
-      const bio = "Let's build a better world together.ECOGRAM";
-      const country = 'aq:Antártida';
+      const bio = 'Ecogram non-profit association. We exist to serve planet earth. 🌎';
+      const country = 'pe:Perú';
       const interests = ['img/Icons/interestNull.png', 'img/Icons/interestNull.png', 'img/Icons/interestNull.png'];
       const user = result.user;
       const name = user.displayName;
