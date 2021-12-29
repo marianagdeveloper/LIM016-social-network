@@ -114,11 +114,16 @@ body {
   grid-area: Country; 
   display: flex;
   text-align: center;
+  flex-direction: column;
   line-height: 160%;
   padding:  2% 5%;
   font-size: small;
 }
 
+.countryImg {
+  display: flex;
+  justify-content: flex-start;
+}
 .Country h3 {
   margin-right: 5%;
 }
@@ -351,12 +356,18 @@ body {
 
 .CountryFlex {
   display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  /* flex-direction: column; */
+  gap: 2%;
+  margin-top: 2%;
 }
 
-.CountryFlex img {
+/* .CountryFlex img {
   width: 30px;
   height: 30px;
-}
+} */
 
 .btnDeleteImg,
 .btnDeteleImgEdit {
