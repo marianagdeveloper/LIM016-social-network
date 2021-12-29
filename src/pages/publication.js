@@ -88,7 +88,6 @@ export function publicationComponent(nameUser,
   // Images
   const divImages = divElemt.querySelector('.preview');
   console.log('urls en el componente publication:', urls);
-  // const btnsDeleteImgs = document.querySelector('#btnDeteleImgEdit');
   // Pre-view image in new post
   if (urls == []) {
     // btnsDeleteImgs.classList.add('hide');
@@ -100,7 +99,7 @@ export function publicationComponent(nameUser,
       divImages.innerHTML += `
       <div class='boxFlexbtnX'>
         <button title='Delete image' id='btnDeteleImgEdit' class='hide btnDeteleImgEdit''>X</button>
-        <img src='${url}' />
+        <img src='${url}'/>
       </div>
     `;
     });

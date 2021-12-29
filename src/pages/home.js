@@ -86,8 +86,8 @@ async function addPublication(publication, urlsImg) {
 
 /* *************** Eliminar publicacion de Firebase *************** */
 
-export const deletePublication = (idPublicationRef) =>
-  deleteDoc(doc(db, 'publications', idPublicationRef));
+export const deletePublication = (idPublicationRef) => deleteDoc(doc(db, 'publications', idPublicationRef));
+export const deleteUrl = (idPublicationRef) => deleteDoc(doc(db, 'publications', idPublicationRef));
 
 /* *************** Editar publicacion de Firebase *************** */
 
@@ -95,6 +95,7 @@ export const editPublication = (idPublicationRef, postEdit) => {
   const publiUpdate = doc(db, 'publications', idPublicationRef);
   return updateDoc(publiUpdate, {
     publication: postEdit,
+    urls: postEdit,
   });
 };
 
