@@ -505,41 +505,32 @@ const Home = () => {
     <div class='linea2'>&nbsp;</div>`;
     containerHome.querySelector('.Email').innerHTML += `<h3>Email:</h3>
     <p>${info.email}</p>`;
-
     containerHome.querySelector('.userNamePublication').innerHTML += `
     <p>${info.name}</p>`;
 
     //  photo
     containerHome.querySelector('.Avatar-img').src = `${info.photo}`;
-
     //  photo
     containerHome.querySelector('.Avatar-img-Post').src = `${info.photo}`;
-
     //  Bio
     containerHome.querySelector('.bioText').textContent = `${info.bio}`;
-
     //  Country
     containerHome.querySelector('.countryText').textContent = `${
       info.country.split(':')[1]
     }`;
-
     //  Country title
     containerHome.querySelector('.countryText').title = `${
       info.country.split(':')[1]
     }`;
-
     //  Country flag
     containerHome.querySelector('.countryImg').innerHTML += `
     <img
     title='${info.country.split(':')[1]}'
-    src='https:// flagcdn.com/40x30/${info.country.split(':')[0]}.png'
+    src='https://flagcdn.com/40x30/${info.country.split(':')[0]}.png'
     srcset='httpscountrycdn.com/80x60/${info.country.split(':')[0]}.png 2x,
-      https:// flagcdn.com/120x90/${info.country.split(':')[0]}.png 3x'
-    width='40'
-    height='30'
+      https://flagcdn.com/120x90/${info.country.split(':')[0]}.png 3x'
     alt='${info.country.split(':')[1]}'>
   `;
-
     //  Interests
     //  eslint-disable-next-line no-plusplus
     for (let index = 0; index < 3; index++) {
