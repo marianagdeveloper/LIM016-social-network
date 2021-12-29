@@ -95,6 +95,7 @@
   background-color: rgb(126, 126, 126);
   width: 100px;
   height: 100%;
+  /* height: 100%; */
   border-radius: 10px;
   color: white;
   border: none;
@@ -178,8 +179,9 @@
 
 .editPost {
   display: flex;
-  justify-content: space-between;
-  /* visibility: visible; */
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: 20%;
 }
 
 .editPost img {

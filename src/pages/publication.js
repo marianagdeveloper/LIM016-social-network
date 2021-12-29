@@ -69,6 +69,13 @@ export function publicationComponent(nameUser,
   const userCurrent = sessionStorage.getItem('key');
 
   const btnsEditAndDeletePost = `
+  <div class='AddPhotoPostEdit'>
+    <input title='Add a photo' type='file' id='edit-file' class='inputFilePost' data-newImg='${idPublication}'/>
+      <img class='inputFilePostIcon'
+      src='img/Icons/cameraPost.png'
+      title='Add a photo'
+      alt='Add a photo'/>
+  </div>
   <img title='Edit your post' id='btnEditPost' class='btnEditPost' data-edit='${idPublication}' src='img/Icons/Pencil.png' alt=''>
   <img title='Delete your post' id='btnDelete' class='btnDelete' data-ref='${idPublication}' src='img/Icons/Delete.png' alt=''>`;
 
@@ -90,22 +97,15 @@ export function publicationComponent(nameUser,
   if (urls.length > 0) {
     urls.forEach(url => {
       divImages.innerHTML += `
-    <img src='${url}' />
+      <div>
+        <button title='Delete image' id='btnDeteleImgEdit' class='hide btnDeteleImgEdit''>X</button>
+        <img src='${url}' />
+      </div>
     `;
     });
   } else {
     console.log('no hay imagen');
   }
-
-  // *******************************likes****************************************
-  // let likeRef;
-  // const element = divElemt.querySelector('.btnLikePublication');
-  // const uidPostLikes = element.dataset.like;
-  // const pLikePublication = divElemt.querySelector('.pLikePublication');
-  // const imgHeartLike = divElemt.querySelector('#imgHeartLike');
-
-  // const userCurrent = sessionStorage.getItem('key');
-
 
   // ****agrega el array de likes por idUser´s al campo idUserLike ****
   async function addLikePost(likeReferenc, arrayLikes) {

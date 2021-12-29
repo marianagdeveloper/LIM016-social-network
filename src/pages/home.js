@@ -190,6 +190,10 @@ const Home = () => {
                 <button id='btnCancel' class='btnCancel'>Cancel</button>
               </div>
             </div>
+            <div id='modalNoMoreTwoPost' class='hide modalNoMoreTwoPost'>
+              <img src="img/Icons/Alert2.png" class="Alert" alt="Alert" />
+              <p>You can't add more two images</p> 
+            </div>
           </div>
           <div id='publicado'>
 
@@ -238,6 +242,9 @@ const Home = () => {
   //  Div - img
   const imgPreview = containerHome.querySelector('.preview');
 
+  //  Alert no more two posts
+  const alertNoMoreImgs = containerHome.querySelector('#modalNoMoreTwoPost');
+  const check = document.getElementById('modalCheckPost');
   //  Clear Posts
   function clearBoxPosts() {
     while (boxPosts.firstChild) {
@@ -281,11 +288,12 @@ const Home = () => {
   /* *************** Notificaciones de 'post publicated' *************** */
 
   const cleanModal = () => {
-    const check = document.getElementById('modalCheckPost');
     if (check) {
       document
         .getElementById('modalCheckPost')
         .classList.replace('AlertmodalCheckPost', 'modalCheckPost');
+    } if (alertNoMoreImgs) {
+      alertNoMoreImgs.classList.add('hide');
     }
   };
 
@@ -305,38 +313,33 @@ const Home = () => {
       fileReader.readAsDataURL(file);
       fileReader.addEventListener('load', function () {
         imgPreview.style.display = 'block';
-        // quita los espacios del nombre del archivo
-        //  let fileName = file.name.trim();
-        let fileName = 'ejemplo';
+        let fileName = `${file.name}`.replace(/\s+/g, '').split('.')[0].replace(/[.*+\-?^${}()|[\]\\]/g, '');
         console.log('🚀 ~ file: home.js ~ line 309 ~ fileName', fileName);
-        
+
         imgPreview.innerHTML += `
         <div id='${fileName}' data-ref='${fileName}'>
-        <button title='Delete image' id='btnDeleteImg' class='btnDeleteImg'>X</button>
-        <img src='${this.result}'/>
+          <button title='Delete image' id='btnDeleteImg' class='btnDeleteImg'>X</button>
+          <img src='${this.result}'/>
         </div>
         `;
 
-        /* ***** Botón para quitar la imagen de una nueva publicación ***** */
-        imgPreview
-          .querySelector('#btnDeleteImg')
-          .addEventListener('click', (e) => {
-            e.preventDefault();
-            const divDelete = imgPreview.querySelector(`#${fileName}`);
-            console.log('🚀 ~ file: home.js ~ line 324 ~ .addEventListener ~ divDelete', divDelete)
-            
-            //  const divDelete = e.target.dataset.ref; 
-            //  const divDelete = e.target.parentNode.dataset.ref; 
-            //  console.log('🚀 ~ file: home.js ~ line 322 ~ .addEventListener ~ divDelete', divDelete)
-            
-            const removeImg = imgPreview.querySelector(`#${fileName}`);      
-            console.log('🚀 ~ file: home.js ~ line 333 ~ .addEventListener ~ removeImg', removeImg)
-            //  const removeImg = imgPreview.querySelector(`[data-ref]='${fileName}'`).dataset('dataRef')      
-            //  console.log('🚀 ~ file: home.js ~ line 324 ~ .addEventListener ~ removeImg', removeImg)
+        //Div's images
+        const elementsImages = imgPreview.querySelectorAll(`[data-ref]`);     
 
-              //  Delete div publication
-              removeImg.remove();
-          });
+        elementsImages.forEach(element => {
+        element.querySelector('#btnDeleteImg').addEventListener('click', (e) => {
+          e.preventDefault();
+          cleanModal();
+          
+          //  const divDelete = e.target.dataset.ref; 
+           let divDelete = e.target.parentNode.dataset.ref;
+           const removeImg = imgPreview.querySelector(`#${divDelete}`); 
+          
+          //  Delete div publication
+          removeImg.remove();
+          deleteOneImage();
+        });
+        });
       });
     }
   }
@@ -352,10 +355,11 @@ const Home = () => {
     console.log('countFiles', countFiles);
 
     if (countFiles > 2) {
-      alert('max 2 images');
+      alertNoMoreImgs.classList.remove('hide');
     }
 
     if (countFiles == 1) {
+      cleanModal();
       // Convert files in array with Object.values
       files = Object.values(e.target.files);
       //  console.log('1 archivo', files);
@@ -364,6 +368,7 @@ const Home = () => {
     }
 
     if (countFiles == 2) {
+      cleanModal();
       files = Object.values(e.target.files);
       console.log('2 archivos arr', files);
       previewPost(files[0]);
@@ -384,16 +389,16 @@ const Home = () => {
     files = [];
     arr = [];
     countFiles = 0;
+    cleanModal();
     while (imgPreview.firstChild) {
       imgPreview.removeChild(imgPreview.firstChild);
     }
   };
 
-  const deleteOneImage = (divImg) => {
+  const deleteOneImage = () => {
     files = [];
     arr = [];
     countFiles = 0;
-    divImg.remove();
   };
 
   /* ***** Botón para ocultar la caja de agregar publicación ***** */
@@ -441,6 +446,7 @@ const Home = () => {
       if (files.length == 0) {
         // Add publication in firebase store
         console.log('agregando post con 0 imagen');
+        cleanModal();
         addPublication(publication, ['']);
 
         readUser(uid())
@@ -454,6 +460,7 @@ const Home = () => {
       if (files.length == 1) {
         console.log('caso 1');
         const p1 = urlStorage(files[0]);
+        cleanModal();
         Promise.all([p1])
           .then((values) => {
             addPublication(publication, values);
@@ -471,6 +478,7 @@ const Home = () => {
         console.log('caso 2');
         const p_1 = urlStorage(files[0]);
         const p_2 = urlStorage(files[1]);
+        cleanModal();
         Promise.all([p_1, p_2])
           .then((values) => {
             console.log('caso 2222222222222222', values);
@@ -494,7 +502,7 @@ const Home = () => {
 
   const infoUser = (info) => {
     containerHome.querySelector(
-      '.UserName'
+      '.UserName',
     ).innerHTML += `<br><h1>${info.name}</h1><br>
     <div class='linea2'>&nbsp;</div>`;
     containerHome.querySelector('.Email').innerHTML += `<h3>Email:</h3>
@@ -615,11 +623,13 @@ const Home = () => {
       const savePublication = document.querySelector('button[data-save]');
       const cancelPublication = document.querySelector('button[data-cancel]');
       const btnsEditPostBox = document.querySelector('.btnsEditContainer');
+      const btnsDeleteImgs = document.querySelector('#btnDeteleImgEdit');
 
       /* ***** Block btns of save and cancel edit publication ***** */
       editsPublication.addEventListener('click', (e) => {
         e.preventDefault();
         if (myPost) {
+          btnsDeleteImgs.classList.remove('hide');
           btnsEditPostBox.classList.remove('hide');
           textPublication.disabled = false;
           textPublication.select();
@@ -634,6 +644,7 @@ const Home = () => {
         editPublication(idPublication, textPublication.value);
         textPublication.disabled = true;
         btnsEditPostBox.classList.add('hide');
+        btnsDeleteImgs.classList.add('hide');
       });
 
       /* ***** cancel edit publication ***** */
@@ -642,6 +653,7 @@ const Home = () => {
         //  editPublication(idPublication, publicationText);
         textPublication.disabled = true;
         btnsEditPostBox.classList.add('hide');
+        btnsDeleteImgs.classList.add('hide');
 
         const cancelEdit = e.target.dataset.cancel;
 

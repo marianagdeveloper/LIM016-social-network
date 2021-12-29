@@ -152,12 +152,23 @@ body {
   width: 100%;
 }
 
+.AddPhotoPostEdit {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  margin: 5%;
+}
+
 .AddPhotoPost {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  width: 15%;
   margin-left: 2%;
 }
+
 .AddPhotoPost img {
   width: 30%;
 }
@@ -167,6 +178,15 @@ body {
   height: 100%;
 }
 .inputFilePost {
+  position: absolute;
+  width: 2%;
+  height: 4%;
+  z-index: 10;
+  border-radius: 100%;
+  opacity: 0;
+}
+
+.inputFilePostEdit {
   position: absolute;
   width: 2%;
   height: 4%;
@@ -333,7 +353,8 @@ body {
   height: 30px;
 }
 
-.btnDeleteImg {
+.btnDeleteImg,
+.btnDeteleImgEdit {
   border-radius: 100%;
   width: 30px;
   height: 30px;
@@ -344,12 +365,22 @@ body {
   box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
   z-index: 1;
   position: absolute;
-  margin: 2%;
+  /* margin: 2%; */
 }
 
-.btnDeleteImg:hover {
+.btnDeleteImg:hover,
+.btnDeteleImgEdit:hover {
   background-color: rgb(146, 26, 26);
 }
+
+.modalNoMoreTwoPost {
+  color: #f1ff75;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+}
+
 /***************** PAGE HOME GRID RESPONSIVE ******************/
 
 @media screen and (max-width: 760px) {
