@@ -69,7 +69,7 @@ export function publicationComponent(nameUser,
   const userCurrent = sessionStorage.getItem('key');
 
   const btnsEditAndDeletePost = `
-  <div class='AddPhotoPostEdit'>
+  <div id='AddPhotoPostEdit' class='hide AddPhotoPostEdit'>
     <input title='Add a photo' type='file' id='edit-file' class='inputFilePost' data-newImg='${idPublication}'/>
       <img class='inputFilePostIcon'
       src='img/Icons/cameraPost.png'
@@ -88,16 +88,17 @@ export function publicationComponent(nameUser,
   // Images
   const divImages = divElemt.querySelector('.preview');
   console.log('urls en el componente publication:', urls);
-
+  // const btnsDeleteImgs = document.querySelector('#btnDeteleImgEdit');
   // Pre-view image in new post
   if (urls == []) {
+    // btnsDeleteImgs.classList.add('hide');
     console.log('no hay imagen');
   }
 
   if (urls.length > 0) {
     urls.forEach(url => {
       divImages.innerHTML += `
-      <div>
+      <div class='boxFlexbtnX'>
         <button title='Delete image' id='btnDeteleImgEdit' class='hide btnDeteleImgEdit''>X</button>
         <img src='${url}' />
       </div>
