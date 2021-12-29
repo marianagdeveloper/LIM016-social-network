@@ -162,6 +162,22 @@ const Search = () => {
   // Users
   infoUsers();
 
+  // Guarda nombre en sessionStorange
+
+
+  // const nameUserSessionStorange = () => {
+  //   usersInFirestore()
+  //     .then((querySnapshot) => {
+  //       const data = querySnapshot;
+  //       // Print
+  //       printDataUsers(data);
+  //     })
+  //     .catch((err) => {
+  //       console.log('err: ', err);
+  //     });
+  // };
+
+
   return divElemt;
 };
 

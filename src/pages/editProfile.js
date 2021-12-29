@@ -342,10 +342,9 @@ const EditProfile = () => {
   // Function Save File Avatar in Firebase Storage
   async function avatarPersonal(uid, avatar, file) {
     updateProdileModal.classList.add('hide');
-    const spaceRef = ref(storage, `${uid}/img/Avatares/${avatar}`);
+    const spaceRef = ref(storage, `users/${uid}/img/Avatares/${avatar}`);
     await uploadBytes(spaceRef, file);
     const urlIng = await getDownloadURL(spaceRef);
-    // // console.log('🚀 ~ file: editProfile.js ~ line 256 ~ avatarPersonal ~ urlIng', urlIng);
     return urlIng;
   }
 
