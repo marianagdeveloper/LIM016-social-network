@@ -627,9 +627,16 @@ const Home = () => {
       /* ***** Block btns of save and cancel edit publication ***** */
       editsPublication.addEventListener('click', (e) => {
         e.preventDefault();
-        if (myPost) {
+        if (myPost && urls[0] !== '') {
           btnCameraEdit.classList.remove('hide');
           btnsDeleteImgs.classList.remove('hide');
+          btnsEditPostBox.classList.remove('hide');
+          textPublication.disabled = false;
+          textPublication.select();
+        }
+        if (myPost && urls[0] == '') {
+          btnCameraEdit.classList.remove('hide');
+          btnsDeleteImgs.classList.add('hide');
           btnsEditPostBox.classList.remove('hide');
           textPublication.disabled = false;
           textPublication.select();
