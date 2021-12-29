@@ -317,28 +317,26 @@ const Home = () => {
         console.log('🚀 ~ file: home.js ~ line 309 ~ fileName', fileName);
 
         imgPreview.innerHTML += `
-        <div id='${fileName}' data-ref='${fileName}'>
+        <div id='${fileName}' data-ref='${fileName}' class='boxFlexbtnX'>
           <button title='Delete image' id='btnDeleteImg' class='btnDeleteImg'>X</button>
           <img src='${this.result}'/>
         </div>
         `;
 
-        //Div's images
-        const elementsImages = imgPreview.querySelectorAll(`[data-ref]`);     
+        // Div's images
+        const elementsImages = imgPreview.querySelectorAll(`[data-ref]`);
 
         elementsImages.forEach(element => {
-        element.querySelector('#btnDeleteImg').addEventListener('click', (e) => {
-          e.preventDefault();
-          cleanModal();
-          
-          //  const divDelete = e.target.dataset.ref; 
-           let divDelete = e.target.parentNode.dataset.ref;
-           const removeImg = imgPreview.querySelector(`#${divDelete}`); 
-          
-          //  Delete div publication
-          removeImg.remove();
-          deleteOneImage();
-        });
+          element.querySelector('#btnDeleteImg').addEventListener('click', (e) => {
+            e.preventDefault();
+            cleanModal();
+            //  const divDelete = e.target.dataset.ref;
+            let divDelete = e.target.parentNode.dataset.ref;
+            const removeImg = imgPreview.querySelector(`#${divDelete}`);
+            //  Delete div publication
+            removeImg.remove();
+            deleteOneImage();
+          });
         });
       });
     }
@@ -624,11 +622,13 @@ const Home = () => {
       const cancelPublication = document.querySelector('button[data-cancel]');
       const btnsEditPostBox = document.querySelector('.btnsEditContainer');
       const btnsDeleteImgs = document.querySelector('#btnDeteleImgEdit');
+      const btnCameraEdit = document.querySelector('#AddPhotoPostEdit');
 
       /* ***** Block btns of save and cancel edit publication ***** */
       editsPublication.addEventListener('click', (e) => {
         e.preventDefault();
         if (myPost) {
+          btnCameraEdit.classList.remove('hide');
           btnsDeleteImgs.classList.remove('hide');
           btnsEditPostBox.classList.remove('hide');
           textPublication.disabled = false;
@@ -643,6 +643,7 @@ const Home = () => {
         //  editPublication(idPublication, publicationText);
         editPublication(idPublication, textPublication.value);
         textPublication.disabled = true;
+        btnCameraEdit.classList.add('hide');
         btnsEditPostBox.classList.add('hide');
         btnsDeleteImgs.classList.add('hide');
       });
@@ -652,6 +653,7 @@ const Home = () => {
         //  e.preventDefault();
         //  editPublication(idPublication, publicationText);
         textPublication.disabled = true;
+        btnCameraEdit.classList.add('hide');
         btnsEditPostBox.classList.add('hide');
         btnsDeleteImgs.classList.add('hide');
 

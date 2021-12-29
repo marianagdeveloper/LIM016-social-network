@@ -161,6 +161,11 @@ body {
   margin: 5%;
 }
 
+.boxFlexbtnX{
+  display: flex;
+  justify-content: flex-end;
+}
+
 .AddPhotoPost {
   display: flex;
   justify-content: flex-start;
@@ -356,8 +361,8 @@ body {
 .btnDeleteImg,
 .btnDeteleImgEdit {
   border-radius: 100%;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   font-weight: bold;
   border: none;
   color: beige;
@@ -365,6 +370,7 @@ body {
   box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
   z-index: 1;
   position: absolute;
+  margin-top: 1.5%;
   /* margin: 2%; */
 }
 
@@ -374,11 +380,13 @@ body {
 }
 
 .modalNoMoreTwoPost {
-  color: #f1ff75;
+  color: #d5e267;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 3%;
+  font-weight: bold;
+  filter: drop-shadow(2px 4px 6px black);
 }
 
 /***************** PAGE HOME GRID RESPONSIVE ******************/

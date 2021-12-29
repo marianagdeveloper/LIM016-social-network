@@ -69,7 +69,7 @@ export function publicationComponent(nameUser,
   const userCurrent = sessionStorage.getItem('key');
 
   const btnsEditAndDeletePost = `
-  <div class='AddPhotoPostEdit'>
+  <div id='AddPhotoPostEdit' class='hide AddPhotoPostEdit'>
     <input title='Add a photo' type='file' id='edit-file' class='inputFilePost' data-newImg='${idPublication}'/>
       <img class='inputFilePostIcon'
       src='img/Icons/cameraPost.png'
@@ -97,7 +97,7 @@ export function publicationComponent(nameUser,
   if (urls.length > 0) {
     urls.forEach(url => {
       divImages.innerHTML += `
-      <div>
+      <div class='boxFlexbtnX'>
         <button title='Delete image' id='btnDeteleImgEdit' class='hide btnDeteleImgEdit''>X</button>
         <img src='${url}' />
       </div>
