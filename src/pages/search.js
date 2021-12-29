@@ -1,3 +1,5 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-extend-native */
 import {
   getDocs,
   collection,
@@ -132,7 +134,7 @@ const Search = () => {
           <div class='perfil'>
           <img class='imgPerfil' src='${photo}' alt=''>
           <button id="btnSeeUserPost" class="btnSeeUserPost">
-            <a href="#/home">See Posts</a>
+            <a href='#/home'>See Posts</a>
           </button></div>
           <div class='caracteres'>
             <div class='nombre'>${fullname}</div>
