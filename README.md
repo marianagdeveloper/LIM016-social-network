@@ -23,16 +23,16 @@ El objetivo principal de aprendizaje de este proyecto es construir una **Single-
 
 ## 2. Estudio de Usuario ✍🏼
 
-### 🕵🏼 ¿Quienes son los principales usuarios?
+###  🕵🏼 ¿Quienes son los principales usuarios?
 Los principales usuarios del producto son aquellas personas interesadas en encontrar una comunidad enfocada en la preservación del medio ambiente.
-### 🕵🏼‍♀️ ¿Cuáles son los objetivos de estos usuarios en relación con el producto?
+###  🕵🏼‍♀️ ¿Cuáles son los objetivos de estos usuarios en relación con el producto?
   - Buscar usuarios con intereses afines.
   - Poder publicar posts con información relevante sobre eventos, voluntariados o tips para el cuidado ambiental.
   - Poder dar "me gusta" a las publicaciones.
   - Poder Eliminar su publicaión.
   - Poder editar su información personal que muestra en el perfil.
 
-### 🕵🏽‍♂️ ¿Cuáles son los secciones más relevantes que quieren ver en la interfaz y por qué?
+###  🕵🏽‍♂️ ¿Cuáles son los secciones más relevantes que quieren ver en la interfaz y por qué?
 Según algunas encuestas que realizamos, los usuarios están interesados en ver:
   - Un muro para visualizar las publicaciones de todos los usuarios.
   - Noticias globales relacionadas al medio ambiente.
@@ -44,7 +44,7 @@ Según algunas encuestas que realizamos, los usuarios están interesados en ver:
   - Correo por cada usuario.
   - Una sección para buscar a los usuarios por nombre, intereses o nacionalidad.
 
-### 🕵🏾‍♀️ ¿Cuándo utilizan o utilizarían el producto?
+###  🕵🏾‍♀️ ¿Cuándo utilizan o utilizarían el producto?
 Utilizarían el producto para publicar, encontrar información y conocer usuarios con el mismo afin ambiental.
 
 ### 2.1 Historia de Usuario ✍
