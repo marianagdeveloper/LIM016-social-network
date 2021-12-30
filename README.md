@@ -1,7 +1,7 @@
 
 ## ÍNDICE
 * [1. Ecogram](#1-Ecogram )
-* [2. Historia de Usuario](#2-historia-de-usuario)
+* [2. Estudio de Usuario](#2-historia-de-usuario)
 * [3. Realización del Diseño](#3-realizacion-del-proyecto)
 * [4. Tecnologías empleadas](#4-tecnologias-empleadas)
 * [5. Fuentes](#5-fuentes)
@@ -21,7 +21,7 @@ El objetivo principal de aprendizaje de este proyecto es construir una **Single-
 
 ***
 
-## 2. Historia de Usuario ✍🏼
+## 2. Estudio de Usuario ✍🏼
 
 ### 🕵🏼 ¿Quienes son los principales usuarios?
 Los principales usuarios del producto son aquellas personas interesadas en encontrar una comunidad enfocada en la preservación del medio ambiente.
@@ -34,20 +34,20 @@ Los principales usuarios del producto son aquellas personas interesadas en encon
 
 ### 🕵🏽‍♂️ ¿Cuáles son los secciones más relevantes que quieren ver en la interfaz y por qué?
 Según algunas encuestas que realizamos, los usuarios están interesados en ver:
-- Un muro para visualizar las publicaciones de todos los usuarios.
-- Noticias globales relacionadas al medio ambiente.
-- Nombre por cada usuario.
-- Foto de perfil por cada usuario.
-- Intereses por cada usuario.
-- Nacionalidad de cada usuario.
-- Biografía de cada usuario.
-- Correo por cada usuario.
-- Una sección para buscar a los usuarios por nombre, intereses o nacionalidad.
+  - Un muro para visualizar las publicaciones de todos los usuarios.
+  - Noticias globales relacionadas al medio ambiente.
+  - Nombre por cada usuario.
+  - Foto de perfil por cada usuario.
+  - Intereses por cada usuario.
+  - Nacionalidad de cada usuario.
+  - Biografía de cada usuario.
+  - Correo por cada usuario.
+  - Una sección para buscar a los usuarios por nombre, intereses o nacionalidad.
 
 ### 🕵🏾‍♀️ ¿Cuándo utilizan o utilizarían el producto?
 Utilizarían el producto para publicar, encontrar información y conocer usuarios con el mismo afin ambiental.
 
-### HISTORIAS DE USUARIO:
+### 2.1 Historia de Usuario ✍
 
 Realizamos una investigación mediante un [formulario](https://docs.google.com/forms/d/1BrhtlpXD5XL9ctElupPEY35oIijw0oQSvmwU9qWYkoM/edit?ts=619fbadf) en el cual fueron participes un total de 30 usuarios.
 
@@ -100,7 +100,7 @@ A continuación, se mostrará parte del prototipado de alta fidelidad, si desea 
 -   [Eslint:](https://jestjs.io/docs/es-ES/getting-started)  Herramienta de linting para analizar el código en busca de errores.
 ### Para la funcionalidad:
 -   [Javascript:](https://developer.mozilla.org/es/docs/Web/JavaScript)  Para dar la funcionalidad a la plataforma.
--   [Firebase:](https://firebase.google.com)Se trata de una plataforma móvil creada por Google, cuya principal función es desarrollar y facilitar la creación de apps de elevada calidad de una forma rápida. Para este proyecto se uso lo siguiente:
+-   [Firebase:](https://firebase.google.com) Se trata de una plataforma móvil creada por Google, cuya principal función es desarrollar y facilitar la creación de apps de elevada calidad de una forma rápida. Para este proyecto se uso lo siguiente:
     -   [Cloud Firestore:](https://firebase.google.com/products/firestore)  Es una base de datos NoSQL orientada a los documentos. A diferencia de una base de datos SQL, no hay tablas ni filas; En su lugar, almacenas los datos en documentos, que se organizan en colecciones. Cada documento contiene un conjunto de pares clave-valor.
     -   [Cloud Storage:](https://firebase.google.com/products/storage)  Cloud Storage se diseñó para ayudarte a almacenar y procesar con rapidez y facilidad el contenido generado por usuarios, como fotos y videos.
     -   [Authentication:](https://firebase.google.com/products/auth)  Busca facilitar la creación de sistemas de autenticación seguros, a la vez que mejora la experiencia de integración y acceso para los usuarios finales. Proporciona una solución de identidad de extremo a extremo, compatible con cuentas de correo electrónico y contraseñas, autenticación telefónica, acceso mediante Google, Twitter, Facebook y GitHub, y mucho más.
