@@ -1,3 +1,6 @@
+/* eslint-disable func-names */
+/* eslint-disable no-use-before-define */
+/* eslint-disable prefer-const */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-extend-native */
 import {
@@ -104,6 +107,8 @@ const Search = () => {
       ${prop}
     </option>`;
   }
+
+  // Select interest
   divSelectInterest.addEventListener('change', () => {
     // console.log('divSelectInterest:', divSelectInterest.value);
     filterUsers('interests', divSelectInterest);
@@ -114,7 +119,6 @@ const Search = () => {
     // console.log('data: ', data);
     const dataUsers = data;
     dataUsers.forEach((doc) => {
-      // console.log(doc.id, ' => ', doc.data());
       // Print One User
       let user; let photo; let fullname; let country; let interests; let bio;
       user = doc.data();
@@ -134,7 +138,7 @@ const Search = () => {
           <div class='perfil'>
           <img class='imgPerfil' src='${photo}' alt=''>
           <button id="btnSeeUserPost" class="btnSeeUserPost">
-            <a href='#/home'>See Posts</a>
+            <a id="btnSeeUser" href="#/home" data-ref='${fullname}'>See Posts</a>
           </button></div>
           <div class='caracteres'>
             <div class='nombre'>${fullname}</div>
@@ -150,6 +154,19 @@ const Search = () => {
           </div>  
         </div>
   `;
+
+    // Button See Post
+    const btnSeeUserPosts = divCardUser.querySelectorAll('#btnSeeUser');
+
+    btnSeeUserPosts.forEach((element) => {
+      element.addEventListener('click', (e) => {
+        let userSearch = e.target.dataset.ref;
+        let objName = {
+          name: `${userSearch}`,
+        };
+        sessionStorage.setItem('userSearch', (JSON.stringify(objName)));
+      });
+    });
   }
 
   // Users in Firestore and print
@@ -167,22 +184,6 @@ const Search = () => {
 
   // Users
   infoUsers();
-
-  // Guarda nombre en sessionStorange
-
-
-  // const nameUserSessionStorange = () => {
-  //   usersInFirestore()
-  //     .then((querySnapshot) => {
-  //       const data = querySnapshot;
-  //       // Print
-  //       printDataUsers(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log('err: ', err);
-  //     });
-  // };
-
 
   return divElemt;
 };

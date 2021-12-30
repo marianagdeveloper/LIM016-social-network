@@ -33,6 +33,9 @@ export const handleCurrent = (a) => {
   if (user !== null && emailVerified === true) {
     user.providerData.forEach((profile) => {
       console.log(profile);
+      // Search User
+      const objName = { name: '' };
+      sessionStorage.setItem('userSearch', (JSON.stringify(objName)));
       // eslint-disable-next-line no-param-reassign
       a.href = '#/home';
       window.location.href = a.href;
@@ -92,6 +95,9 @@ export const handleSigninGoogle = (e) => {
           sessionStorage.setItem('key', uid);
           // console.log('Document data:', docSnap.data());
           sessionStorage.setItem('user', JSON.stringify(data));
+          // Search User
+          const objName = { name: '' };
+          sessionStorage.setItem('userSearch', (JSON.stringify(objName)));
           a.href = '#/home';
           window.location.href = a.href;
         } else {
