@@ -689,11 +689,10 @@ const Home = () => {
             stateModal = true;
             //  Delete publication for Firebase
             if (deleted !== '') {
-              deletePublication(deleted);
               const removeDiv = divPublicado.querySelector(`#${deleted}`);
-
               //  Delete div publication
               removeDiv.remove();
+              deletePublication(deleted);
             }
             return stateModal;
           });
