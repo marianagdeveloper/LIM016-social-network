@@ -37,7 +37,6 @@ async function readUser(uid) {
   if (docSnap.exists()) {
     //  console.log('Document data:', docSnap.data());
     data = docSnap.data();
-    console.log('User data:', data);
     sessionStorage.setItem('user', JSON.stringify(data));
   } else {
     //  doc.data() will be undefined in this case
@@ -90,7 +89,6 @@ async function addPublication(publication, urlsImg) {
 /* *************** Eliminar publicacion de Firebase *************** */
 
 export const deletePublication = (idPublicationRef) => deleteDoc(doc(db, 'publications', idPublicationRef));
-export const deleteUrl = (idPublicationRef) => deleteDoc(doc(db, 'publications', idPublicationRef));
 
 /* *************** Editar publicacion de Firebase *************** */
 
@@ -238,7 +236,7 @@ const Home = () => {
   containerHome.innerHTML = viewHome;
 
   //  Div - Filters
-  const boxPosts = containerHome.querySelector('#publicado');
+  const divPublicado = containerHome.querySelector('#publicado');
   const btnAllPost = containerHome.querySelector('.btnAllPost');
   const btnMyPost = containerHome.querySelector('.btnMyPost');
   const SearchName = containerHome.querySelector('.SearchName');
@@ -251,8 +249,8 @@ const Home = () => {
   const check = document.getElementById('modalCheckPost');
   //  Clear Posts
   function clearBoxPosts() {
-    while (boxPosts.firstChild) {
-      boxPosts.firstChild.remove();
+    while (divPublicado.firstChild) {
+      divPublicado.firstChild.remove();
     }
   }
 
@@ -351,7 +349,6 @@ const Home = () => {
   let countFiles = 0;
   const divCamera = containerHome.querySelector('.inputFilePost');
   divCamera.addEventListener('change', (e) => {
-    //  files = Object.values(e.target.files);
     countFiles = imgPreview.childElementCount + 1;
     console.log('countFiles', countFiles);
 
@@ -361,7 +358,6 @@ const Home = () => {
 
     if (countFiles == 1) {
       cleanModal();
-      // Convert files in array with Object.values
       files = Object.values(e.target.files);
       //  console.log('1 archivo', files);
       previewPost(files[0]);
@@ -423,7 +419,6 @@ const Home = () => {
       files = [];
     }
     e.preventDefault();
-    const divPublicado = containerHome.querySelector('#publicado');
     const publication = containerHome.querySelector('#texta2').value;
     containerHome.querySelector('#texta2').value = containerHome.querySelector('#texta2').defaultValue;
 
@@ -466,10 +461,10 @@ const Home = () => {
 
       if (files.length == 2) {
         console.log('caso 2');
-        const p_1 = urlStorage(files[0]);
-        const p_2 = urlStorage(files[1]);
+        const p1 = urlStorage(files[0]);
+        const p2 = urlStorage(files[1]);
         cleanModal();
-        Promise.all([p_1, p_2])
+        Promise.all([p1, p2])
           .then((values) => {
             console.log('caso 2222222222222222', values);
             addPublication(publication, values);
@@ -534,7 +529,8 @@ const Home = () => {
   readUser(uid())
     //  eslint-disable-next-line no-sequences
     .then((value) => {
-      infoUser(value), reedPublications(value);
+      infoUser(value);
+      reedPublications(value);
     })
     .catch((error) => console.log(error));
 
@@ -553,7 +549,6 @@ const Home = () => {
       doc(db, 'users', documentFirebase.data().author),
     );
     if (userOfPublication.exists()) {
-      const divPublicado = containerHome.querySelector('#publicado');
       const nameUser = userOfPublication.data().name;
       const publicationText = documentFirebase.data().publication;
 
@@ -751,7 +746,7 @@ const Home = () => {
       const q = query(
         collection(db, 'users'),
         where('name', '>=', filterMyPost.name.capitalize()),
-        where('name', '<=', `${filterMyPost.name.capitalize()}\uf8ff`), 
+        where('name', '<=', `${filterMyPost.name.capitalize()}\uf8ff`),
       );
 
       // console.log('q', q);
