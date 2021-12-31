@@ -139,4 +139,13 @@
   .filtros input {
     width: 12rem;
   }
+  .caja2 {
+    /* height: 40rem; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: auto;
+    grid-gap: 40px 40px;
+    padding: 40px;
+    justify-items: center;
+  }
 }
