@@ -16,9 +16,9 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-.js-focus-visible {
+/* .js-focus-visible {
   height: 100%;
-}
+} */
 /***************** PAGE HOME FLEX ******************/
 .Home {
   display: flex;
