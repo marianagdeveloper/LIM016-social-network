@@ -157,6 +157,13 @@ const Home = () => {
               </div>
               <input type='text' id='SearchName' name='firstname' class='SearchName' placeholder='🔍 User Name..'>
             </div>
+            <div class='btnMode'>
+              <button id='switch' class='switch'>
+                <span><img title='Light mode' id='light' src='img/Icons/sun.png' alt='Light mode'></span>
+                <span><img title='Dark mode' id='Dark' src='img/Icons/moon.png' alt='Dark mode'></span>
+              </button>
+            </div>
+
             <img id='NewPost' class='NewPost' src='img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
           </div>
           <div class='boxPublic'>
@@ -247,6 +254,13 @@ const Home = () => {
   //  Alert no more two posts
   const alertNoMoreImgs = containerHome.querySelector('#modalNoMoreTwoPost');
   const check = document.getElementById('modalCheckPost');
+
+  // Dark and Light mode
+  const btnSwitch = containerHome.querySelector('#switch');
+  const boxFather = containerHome.querySelector('#publicado');
+
+
+
   //  Clear Posts
   function clearBoxPosts() {
     while (divPublicado.firstChild) {
@@ -305,6 +319,13 @@ const Home = () => {
     document
       .getElementById('boxPublications')
       .classList.replace('NoneboxPublications', 'boxPublications');
+  });
+
+  // Dark and Light mode function
+  btnSwitch.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.body.classList.toggle('dark');
+    btnSwitch.classList.toggle('active');
   });
 
   // Pre-view image in new post

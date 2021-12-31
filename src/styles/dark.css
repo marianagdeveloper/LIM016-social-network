@@ -1,0 +1,69 @@
+body.dark .PublicationsContent {
+  background-color: #161515;
+  box-shadow: inset 5px 5px 10px #181717, inset -5px -5px 10px #121212;
+}
+
+body.dark .boxPublications{
+  background: #191919;
+  box-shadow: 1px 1px 2px 1px rgb(101 106 109 / 60%);
+}
+
+body.dark .boxPublicationsN {
+  background: #2f2f2f;
+  box-shadow: 1px 1px 2px 1px rgb(98 99 99 / 60%);
+}
+
+body.dark .userNameN p,
+body.dark .contentPublicationN,
+body.dark .search,
+body.dark #AboutUs  {
+  color: #e1dcdc;
+  background-color: #2f2f2f;
+  font-weight: normal;
+}
+
+body.dark #AboutUs p,
+body.dark #AboutUs ul {
+  color: #e1dcdc;
+  font-weight: normal;
+}
+
+body.dark .boxPublicationsN h2,
+body.dark .userNamePublication p,
+body.dark .caracteres {
+  color: #e1dcdc;
+}
+
+body.dark .saveN p,
+body.dark #AboutUs h1 {
+  color: rgb(116 184 116);
+}
+
+body.dark #AboutUs h3 {
+  color: rgb(113 143 113);
+}
+
+body.dark .btnAllPost,
+body.dark .btnMyPost,
+body.dark .NewPost {
+  background-color: rgb(27 78 10);
+}
+
+body.dark .editPost img {
+  background-color: beige;
+  padding: 5%;
+  border-radius: 100%;
+}
+
+body.dark .caracteres img,
+body.dark .perfil img,
+body.dark .photoPerfilN img,
+body.dark .photoPerfil img {
+  border-color: rgb(27 78 10);
+}
+
+body.dark .AddPhotoPost img {
+  background-color: beige;
+  padding: 5%;
+  border-radius: 100%;
+}

@@ -16,7 +16,9 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-
+.js-focus-visible {
+  height: 100%;
+}
 /***************** PAGE HOME FLEX ******************/
 .Home {
   display: flex;
@@ -175,7 +177,7 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 15%;
+  /* width: 15%; */
   margin-left: 2%;
 }
 
@@ -228,15 +230,82 @@ body {
 
 .btnAllPost:hover,
 .btnMyPost:hover,
-.btnPublic img:hover {
+.NewPost:hover {
   background-color: #3f3c3c;
 }
+
+.btnMode {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* .btnMode button {
+  width: 100%;
+  height: 100%;
+} */
+
+.switch {
+  background-color: gray;
+  border-radius: 50px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+}
+
+.switch span {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.switch span img {
+  width: 20px;
+  height: 20px;
+}
+
+.switch::after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  background: #e2e2e2;
+  top: 0;
+  left: 0;
+  right: unset;
+  border-radius: 100px;
+  transition: .3s ease all;
+  box-shadow: 0 0 2px 2px #00000033;
+}
+.switch.active {
+  background-color: hsl(47deg 100% 39%);
+}
+
+.switch.active::after {
+  right: 0;
+  left: unset;
+}
+
+
+/* .switch::after {
+  right: 0;
+  left: unset;
+} */
 
 .btnPublic {
   display: flex;
   justify-content: space-between;
   margin: 2%;  
   align-items: center;
+  gap: 2%;
 }
 
 .btnPublic input {
@@ -244,7 +313,7 @@ body {
   padding: 6px;
   border-radius: 10px;
 }
-.btnPublic img{
+.NewPost{
   width: 5%;
   border-radius: 100%;
   padding: 1%;
@@ -560,7 +629,7 @@ body {
 
   .btnsPublic {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     width: 60%;
   }
 
@@ -573,6 +642,7 @@ body {
 
   .btnPublic input {
     margin-top: 5%;
+    margin-bottom: 5%;
   }
 
   .CountryFlex {
@@ -585,4 +655,11 @@ body {
     margin: 4%;
     font-size: x-small;
   }
+
+  .btnMode {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
 }
