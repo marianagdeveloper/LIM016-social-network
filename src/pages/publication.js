@@ -1,7 +1,11 @@
+/* eslint-disable no-console */
+/* eslint-disable no-multi-spaces */
 /* eslint-disable no-inner-declarations */
 import {
-  db, doc, updateDoc, getDoc,
+  db, doc, updateDoc, getDoc, deleteDoc,
 } from '../utils/firebaseconfig.js';
+
+const deletePublication = (idPublicationRef) => deleteDoc(doc(db, 'publications', idPublicationRef));
 
 export function publicationComponent(nameUser,
   myPost,
@@ -89,13 +93,13 @@ export function publicationComponent(nameUser,
   const divImages = divElemt.querySelector('.preview');
   console.log('urls en el componente publication:', urls);
   // Pre-view image in new post
-  if (urls == []) {
+  if (urls.length === 0) {
     // btnsDeleteImgs.classList.add('hide');
     console.log('no hay imagen');
   }
 
   if (urls.length > 0) {
-    urls.forEach(url => {
+    urls.forEach((url) => {
       divImages.innerHTML += `
       <div class='boxFlexbtnX'>
         <button title='Delete image' id='btnDeteleImgEdit' class='hide btnDeteleImgEdit''>X</button>
@@ -149,6 +153,58 @@ export function publicationComponent(nameUser,
     lengthArrayLikes(doocSnap.idUserLike);
   }
   viewLikesInSnapshot();
+
+  /* ***** delete publication ***** */
+  //  import modal
+  const cerrar = document.getElementById('close');
+  const modalC = document.getElementById('modal-container');
+  const btnModalConfirmDelete = document.getElementById('btn-modal-yes');
+  const btnModalCancel = document.getElementById('btn-modal-no');
+
+  const allBtnDelete = divElemt.querySelectorAll('.btnDelete');
+  let deleted = '';
+  let removeDiv  = '';
+  allBtnDelete.forEach((elm) => {
+    elm.addEventListener('click', (event) => {
+      deleted = event.target.dataset.ref;
+      console.log('deleted', deleted);
+      //  INIT - Modal for Vericate Delete Publication
+      let stateModal = false;
+      //  view modal
+      modalC.style.opacity = '1';
+      modalC.style.visibility = 'visible';
+      //  close modal
+      cerrar.addEventListener('click', () => {
+        modalC.style.opacity = '0';
+        modalC.style.visibility = 'hidden';
+        deleted = '';
+        return stateModal;
+      });
+      //  cancel modal
+      btnModalCancel.addEventListener('click', () => {
+        modalC.style.opacity = '0';
+        modalC.style.visibility = 'hidden';
+        deleted = '';
+        return stateModal;
+      });
+      //  confirm delete - YES
+      btnModalConfirmDelete.addEventListener('click', () => {
+        modalC.style.opacity = '0';
+        modalC.style.visibility = 'hidden';
+        stateModal = true;
+        //  Delete publication for Firebase
+        if (deleted !== '') {
+          // removeDiv = divElemt.querySelector(`#${deleted}`);
+          removeDiv = event.target.parentElement.parentElement.parentElement.parentElement;
+          removeDiv.remove();
+          deletePublication(deleted);
+          deleted = '';
+          removeDiv = '';
+        }
+        return stateModal;
+      });
+    });
+  });
 
   return divElemt;
 }
