@@ -47,6 +47,13 @@ body.dark .btnAllPost,
 body.dark .btnMyPost,
 body.dark .NewPost {
   background-color: rgb(27 78 10);
+  box-shadow: 1px 1px 2px 1px rgb(8 8 8);
+}
+
+body.dark .btnAllPost:hover,
+body.dark .btnMyPost:hover,
+body.dark .NewPost:hover {
+  background-color: rgb(51, 119, 28);
 }
 
 body.dark .btnEditPost,
@@ -95,7 +102,9 @@ body.dark .AddPhotoPost img {
   padding: 5%;
   border-radius: 100%;
 }
-
+body.dark .btnPublic{
+  background-color: #161515;
+}
 @media screen and (max-width: 760px) {
   body.dark .btnEditPost,
   body.dark .btnDelete {

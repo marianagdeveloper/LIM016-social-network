@@ -35,6 +35,11 @@ body {
   
 }
 
+#container {
+  /* padding-top: 7%; */
+  padding-top: 4.5%;
+}
+
 .UserName {
   text-align: center;
 }
@@ -65,7 +70,8 @@ body {
   margin: 0rem 1rem;
   width: 100%;
   border-top:0.03rem solid #999;
-  position: relative;
+  /* position: relative; */
+  position: static;
 }
 
 .Bio {
@@ -299,18 +305,32 @@ body {
   left: unset;
 } */
 
-.btnPublic {
+/* .btnPublic {
   display: flex;
   justify-content: space-between;
   margin: 2%;  
   align-items: center;
   gap: 2%;
+} */
+
+.btnPublic {
+  display: flex;
+  justify-content: space-between;
+  /* margin: 2%; */
+  align-items: center;
+  gap: 2%;
+  position: fixed;
+  padding: 1%;
+  width: 56%;
+  background-color: #c4c4c4;
+  top: 90%;
 }
 
 .btnPublic input {
   border: none;
   padding: 6px;
   border-radius: 10px;
+  box-shadow: inset 5px 5px 10px #dcd4d4, inset -5px -5px 10px #d2d2d2;
 }
 .NewPost{
   width: 5%;
@@ -403,10 +423,18 @@ body {
   font-weight: bold;
 }
 
+/* .boxPublic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+
 .boxPublic {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
 .btnsPublic {
@@ -545,7 +573,8 @@ body {
     margin: 0rem 1rem;
     width: 100%;
     border-top:0.03rem solid #999;
-    position: relative;
+    /* position: relative; */
+    position: static;
   }
   
   .Bio {  
@@ -602,11 +631,11 @@ body {
   .Country { 
     grid-area: Country; 
     display: flex;
-      text-align: center;
-      align-items: start;
-      justify-content: center;
-      flex-direction: column;
-      line-height: 160%;
+    text-align: center;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 160%;
   }
   .Publications { 
     height: 100%;
@@ -660,5 +689,31 @@ body {
     height: 100%;
     display: flex;
     justify-content: center;
-}
+  }
+
+  .btnPublic {
+    display: flex;
+    justify-content: space-between;
+    /* margin: 2%; */
+    align-items: center;
+    gap: 2%;
+    position: fixed;
+    padding: 2% 2% 4% 2%;
+    width: 100%;
+    /* height: 0%; */
+    background-color: #c4c4c4;
+    top: 86%;
+  }
+
+  .boxPublic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5%;
+    padding-bottom: 20%;
+  }
+
+  #container {
+    padding-top: 17.8%;
+  }
 }

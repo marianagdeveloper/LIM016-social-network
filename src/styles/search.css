@@ -141,6 +141,8 @@
   }
   .caja2 {
     /* height: 40rem; */
+    height: 100%;
+    background-color: black;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-auto-rows: auto;

@@ -19,8 +19,9 @@ main {
 .nav {
   display: flex;
   justify-content: space-between;
+  position: fixed;
   margin: 0 auto;
-  background-color: #000000bf;
+  background-color: black;
 }
 
 .nav-link {
@@ -29,7 +30,7 @@ main {
 }
 
 .logo {
-  width: 30%;
+  width: 20%;
 }
 
 .nav-menu {
@@ -186,7 +187,13 @@ main {
   .logo {
     width: 60%;
   } 
+  /* .nav-menu {
+    top: 61px;
+  }  */
   .nav-menu {
     top: 61px;
-  } 
+    position: fixed;
+    height: auto;
+    padding: 5%;
+  }
 }
