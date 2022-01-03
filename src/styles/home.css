@@ -107,10 +107,9 @@ body {
 
 .Interests-Box img {
   width: 20%;
+  background-color: black;
   border-radius: 100%;
-  border-width: 2px;
-  border-color: rgb(34, 100, 13);
-  border-style: solid;
+  border: 2px solid rgb(34, 100, 13);
 }
 .Country { 
   grid-area: Country; 
