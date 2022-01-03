@@ -237,6 +237,7 @@ body {
 .btnMyPost:hover,
 .NewPost:hover {
   background-color: #3f3c3c;
+  transform: scale(1.1);
 }
 
 .btnMode {
@@ -496,6 +497,48 @@ body {
   filter: drop-shadow(2px 4px 6px black);
 }
 
+.scrollUpContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: 4%; */
+  opacity: 1;
+  visibility: visible;
+}
+
+.btnScrollTop {
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #e2e2e2;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60);
+  transition: all .2s;
+  position: fixed;
+  z-index: 2;
+  margin-top: 4%;
+}
+
+.btnScrollTop:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.btnScrollTop img {
+  width: 30px;
+  height: 30px;
+}
+
+.hideBtnUp {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* .showBtnUp {
+  opacity: 1;
+  visibility: visible;
+} */
+
 /***************** PAGE HOME GRID RESPONSIVE ******************/
 
 @media screen and (max-width: 760px) {
@@ -716,5 +759,9 @@ body {
 
   #container {
     padding-top: 17.8%;
+  }
+
+  .btnScrollTop {
+    margin-top: -184%;
   }
 }

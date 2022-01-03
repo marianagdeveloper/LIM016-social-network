@@ -45,10 +45,11 @@ main {
   /* margin: 0 10px;
   line-height: 80px; */
   width: max-content;
+  text-align: center;
 }
 
 .nav-menu-item img {
-  width: 40%;
+  width: 30%;
 }
 
 .nav-menu-item p {

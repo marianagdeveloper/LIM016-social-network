@@ -149,6 +149,9 @@ const Home = () => {
 
       <div id='publications' class='Publications'>
         <div class='PublicationsContent'>
+          <div id="scrollUpContainer" class="hideBtnUp scrollUpContainer">
+            <button id="btnScrollTop" class="btnScrollTop"><img src="img/Icons/Up.png"></button>
+          </div>
           <div class='btnPublic'>
             <div class='btnsPublic'>
               <div class='flexFilterBtns'>
@@ -205,7 +208,6 @@ const Home = () => {
             </div>
           </div>
           <div id='publicado'>
-
           </div>
         </div>
         </div>
@@ -242,6 +244,10 @@ const Home = () => {
   </main>`;
   containerHome.innerHTML = viewHome;
 
+  // btn Scroll Up
+  const scrollUpContainer = containerHome.querySelector('#scrollUpContainer');
+  const scrollUpbtn = containerHome.querySelector('#btnScrollTop');
+
   //  Div - Filters
   const divPublicado = containerHome.querySelector('#publicado');
   const btnAllPost = containerHome.querySelector('.btnAllPost');
@@ -259,7 +265,26 @@ const Home = () => {
   const btnSwitch = containerHome.querySelector('#switch');
   const boxFather = containerHome.querySelector('#publicado');
 
+  // btn Scroll Up functions
+  const getPixels = () => document.documentElement.scrollTop || document.body.scrollTop;
+  const up = () => {
+    if (getPixels() > 0) {
+      requestAnimationFrame(up);
+      // eslint-disable-next-line no-restricted-globals
+      scrollTo(0, getPixels() - (getPixels() / 20));
+    }
+  };
 
+  const indicatedScroll = () => {
+    if (getPixels() > 50) {
+      scrollUpContainer.classList.remove('hideBtnUp');
+    } else {
+      scrollUpContainer.classList.add('hideBtnUp');
+    }
+  };
+
+  scrollUpbtn.addEventListener('click', up);
+  window.addEventListener('scroll', indicatedScroll);
 
   //  Clear Posts
   function clearBoxPosts() {
