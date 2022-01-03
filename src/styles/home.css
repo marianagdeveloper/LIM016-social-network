@@ -9,16 +9,11 @@
 }
 
 body {
-  /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.87)),
-    url("../img/Photos/Gif1.gif"); */
   color: beige;
   background-size: cover;
   font-family: 'Roboto', sans-serif;
 }
 
-/* .js-focus-visible {
-  height: 100%;
-} */
 /***************** PAGE HOME FLEX ******************/
 .Home {
   display: flex;
@@ -28,17 +23,10 @@ body {
   display: flex;
   flex-direction: column;
   width: 20%;
-  /* box-shadow: inset 5px 5px 10px #000000,
-  inset -5px -5px 10px #000000; */
   background-image: linear-gradient(rgba(0, 0, 0, 0.842), rgba(0, 0, 0, 0.87)),
   url("../img/Photos/img-10.jpg");
   
 }
-
-/* #container { */
-  /* padding-top: 7%; */
-  /* padding-top: 4.5%; */
-/* } */
 
 .UserName {
   text-align: center;
@@ -70,7 +58,6 @@ body {
   margin: 0rem 1rem;
   width: 100%;
   border-top:0.03rem solid #999;
-  /* position: relative; */
   position: static;
 }
 
@@ -182,7 +169,6 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  /* width: 15%; */
   margin-left: 2%;
 }
 
@@ -247,11 +233,6 @@ body {
   justify-content: flex-end;
 }
 
-/* .btnMode button {
-  width: 100%;
-  height: 100%;
-} */
-
 .switch {
   background-color: gray;
   border-radius: 50px;
@@ -299,20 +280,6 @@ body {
   right: 0;
   left: unset;
 }
-
-
-/* .switch::after {
-  right: 0;
-  left: unset;
-} */
-
-/* .btnPublic {
-  display: flex;
-  justify-content: space-between;
-  margin: 2%;  
-  align-items: center;
-  gap: 2%;
-} */
 
 .btnPublic {
   display: flex;
@@ -369,8 +336,6 @@ body {
 .NewsContainer{
   text-align: center;
   padding: 5%;
-  /* box-shadow: inset 5px 5px 10px #000000,
-  inset -5px -5px 10px #000000; */
   background-image: linear-gradient(rgba(0, 0, 0, 0.842), rgba(0, 0, 0, 0.87)),
   url("../img/Photos/img-5.jpg");
   
