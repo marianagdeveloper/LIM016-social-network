@@ -32,17 +32,27 @@ Los principales usuarios del producto son aquellas personas interesadas en encon
   - Poder Eliminar su publicaión.
   - Poder editar su información personal que muestra en el perfil.
 
-###  🕵🏽‍♂️ ¿Cuáles son los secciones más relevantes que quieren ver en la interfaz y por qué?
+###  🕵🏽‍♂️ ¿Cuáles son las secciones más relevantes que quieren ver en la interfaz? y ¿por qué?
 Según algunas encuestas que realizamos, los usuarios están interesados en ver:
-  - Un muro para visualizar las publicaciones de todos los usuarios.
-  - Noticias globales relacionadas al medio ambiente.
-  - Nombre por cada usuario.
-  - Foto de perfil por cada usuario.
-  - Intereses por cada usuario.
-  - Nacionalidad de cada usuario.
-  - Biografía de cada usuario.
-  - Correo por cada usuario.
-  - Una sección para buscar a los usuarios por nombre, intereses o nacionalidad.
+  
+  - **📌 Sección de publicaciones:**
+    - Un muro 📃 para visualizar las publicaciones de todos los usuarios.
+    - Sistema de filtrados para las publicaciones 📝: por nombre de usuario y por fecha 📅.
+  - **📌 Sección de perfil:** 
+    - Se visualizará la información 🗂 del usuario: nombre, correo 📪, país, biografía e intereses.
+  - **📌 Sección para búsqueda de usuarios:**
+    - Contendrá todos los usuarios existentes. 🧔 👨‍🦱 👴 👩‍🦰 👱‍♂️ 👳 👲
+    - Sistema de filtrados según intereses, país y nombre.
+    - Opción para visualizar los posts según el usuario.
+  - **📌 Sección para editar el perfil:**
+    - Tendrá opciones para editar la biografía.
+    - Tendrá opciones para escoger el país.
+    - Tendrá opciones para escoger el avatar o adjuntar uno personalizado.
+    - Tendrá opciones para escoger los intereses. 👨‍🌾 👩‍🔬 👨‍🚀
+  - **📌 Sección de información 📚 sobre Ecogram:**
+    - Contendrá enfoque, objetivo y fundadores de Ecogram.
+  - **📌 Sección de noticias globales sobre el medio ambiente:**
+    - Contendrá fuente oficial de la noticia 📰 publicada y tendra la opción de reedirigirte a la misma. 
 
 ###  🕵🏾‍♀️ ¿Cuándo utilizan o utilizarían el producto?
 Utilizarían el producto para publicar, encontrar información y conocer usuarios con el mismo afin ambiental.
