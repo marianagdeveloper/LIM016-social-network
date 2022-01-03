@@ -402,12 +402,7 @@ body {
   padding: 2% 7%;
   
 }
-/* .News {
-  border-width: 1px;
-  border-color: rgb(255, 255, 255);
-  border-style: solid;
-  padding: 7%;
-} */
+
 .save {
   display: flex;
   justify-content: flex-end;
@@ -424,17 +419,10 @@ body {
   font-weight: bold;
 }
 
-/* .boxPublic {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
-
 .boxPublic {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 15%;
   padding-bottom: 5%;
 }
 
@@ -456,15 +444,9 @@ body {
   width: 100%;
   justify-content: flex-start;
   align-items: center;
-  /* flex-direction: column; */
   gap: 2%;
   margin-top: 2%;
 }
-
-/* .CountryFlex img {
-  width: 30px;
-  height: 30px;
-} */
 
 .btnDeleteImg,
 .btnDeteleImgEdit {
@@ -479,7 +461,6 @@ body {
   z-index: 1;
   position: absolute;
   margin-top: 1.5%;
-  /* margin: 2%; */
 }
 
 .btnDeleteImg:hover,
@@ -501,7 +482,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-top: 4%; */
+  padding-top: 15%;
   opacity: 1;
   visibility: visible;
 }
@@ -534,11 +515,6 @@ body {
   visibility: hidden;
 }
 
-/* .showBtnUp {
-  opacity: 1;
-  visibility: visible;
-} */
-
 /***************** PAGE HOME GRID RESPONSIVE ******************/
 
 @media screen and (max-width: 760px) {
@@ -566,6 +542,7 @@ body {
       "Avatar Bio"
       "Inf Interests";
     width: 100%;
+    z-index: 3;
   }
   
   .UserName {
@@ -582,7 +559,6 @@ body {
     line-height: 160%;
   }
   .Avatar {
-  
     justify-self: stretch;
     align-self: stretch;
     grid-area: Avatar;
@@ -761,5 +737,15 @@ body {
 
   .btnScrollTop {
     margin-top: -184%;
+  }
+
+  .scrollUpContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 4%; */
+    padding-top: 0%;
+    opacity: 1;
+    visibility: visible;
   }
 }

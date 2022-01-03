@@ -282,7 +282,7 @@ const Home = () => {
   };
 
   const indicatedScroll = () => {
-    if (getPixels() > 50) {
+    if (getPixels() > 80) {
       scrollUpContainer.classList.remove('hideBtnUp');
     } else {
       scrollUpContainer.classList.add('hideBtnUp');
