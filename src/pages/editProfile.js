@@ -1,3 +1,9 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-plusplus */
+/* eslint-disable no-loop-func */
+/* eslint-disable no-console */
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
 import {
   db,
   updateDoc,
@@ -407,20 +413,20 @@ const EditProfile = () => {
     interestsProfile(arrayInterests);
 
     // User Country
-    const country = info.country.split(':')[1];
+    const countryName = info.country.split(':')[1];
     const flag = info.country.split(':')[0];
-    // console.log('country:', country);
+    // console.log('countryName:', countryName);
     // console.log('flag:', flag);
-    if (country !== '') {
+    if (countryName !== '') {
       divElemt.querySelector('.flag').innerHTML = `
       <img
-      title='${country}'
+      title='${countryName}'
       src='https://flagcdn.com/40x30/${flag}.png'
       srcset='https://flagcdn.com/80x60/${flag}.png 2x,
         https://flagcdn.com/120x90/${flag}.png 3x'
       width='40'
       height='30'
-      alt='${country}'>
+      alt='${countryName}'>
     `;
     }
 
@@ -436,7 +442,7 @@ const EditProfile = () => {
 
     // Change Country - Change Flag
     let code = flag;
-    let nameCountry = country;
+    let nameCountry = countryName;
     const divFlag = divElemt.querySelector('.selectCountry');
     divFlag.addEventListener('change', (event) => {
       updateProdileModal.classList.add('hide');
@@ -487,9 +493,7 @@ const EditProfile = () => {
     });
 
     // Update URL Avatar Personal
-    let urlImg;
     function updatePhotoUserWithAvatarPersonal(url) {
-      urlImg = url;
       newPhoto = url;
       photoProfile(url);
     }
@@ -519,18 +523,11 @@ const EditProfile = () => {
     const btnSave = divElemt.querySelector('.buttonSave');
     btnSave.addEventListener('click', () => {
       // New Data
-      let uid;
-      let bio;
-      let photo;
-      let country;
-      let interests;
-      console.log('uidSS: ', sessionStorage.getItem('key'));
-      uid = sessionStorage.getItem('key');
-      bio = divElemt.querySelector('.bio').value;
-      photo = newPhoto;
-      console.log(uid, bio, photo);
-      country = `${code}:${nameCountry}`;
-      interests = arrayInterests;
+      const uid = sessionStorage.getItem('key');
+      const bio = divElemt.querySelector('.bio').value;
+      const photo = newPhoto;
+      const country = `${code}:${nameCountry}`;
+      const interests = arrayInterests;
       updateInfoUser(uid, bio, photo, interests, country);
       updateInfoUserSession(uid, bio, photo, interests, country);
       // Save Avatar in Collection Users

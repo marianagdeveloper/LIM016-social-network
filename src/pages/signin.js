@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
   signInWithEmailAndPassword,
   provider,
@@ -75,38 +76,40 @@ export const handleSignin = (e) => {
     })
     .catch(handleError);
 };
+
+async function readUser(e, uid) {
+  const a = e.target.closest('form').querySelector('#btn-signin-google');
+  let data = '';
+  const docRef = doc(db, 'users', uid);
+  const docSnap = await getDoc(docRef);
+  data = docSnap.data();
+  if (docSnap.exists() && data.uid === uid) {
+    sessionStorage.setItem('key', uid);
+    // console.log('Document data:', docSnap.data());
+    sessionStorage.setItem('user', JSON.stringify(data));
+    // Assign Search User Vacio
+    // const objName = { name: '' };
+    // sessionStorage.setItem('userSearch', (JSON.stringify(objName)));
+    a.href = '#/home';
+    window.location.href = a.href;
+  } else {
+    handleErrorVerificateGoogle();
+  }
+  console.log(data);
+  return data;
+}
 // acceder a la vista home con google.
 export const handleSigninGoogle = (e) => {
   e.preventDefault();
-  const a = e.target.closest('form').querySelector('#btn-signin-google');
-
   signInWithPopup(auth, provider)
     .then((result) => {
-      const user = result.user;
-      // const email = user.email;
-      const uid = user.uid;
+      const uid = result.user.uid;
+      console.log('uid', uid);
+      // Assign Search User Vacio
+      const objName = { name: '' };
+      sessionStorage.setItem('userSearch', (JSON.stringify(objName)));
       // eslint-disable-next-line no-shadow
-      async function readUser(uid) {
-        let data = '';
-        const docRef = doc(db, 'users', uid);
-        const docSnap = await getDoc(docRef);
-        data = docSnap.data();
-        if (docSnap.exists() && data.uid === uid) {
-          sessionStorage.setItem('key', uid);
-          // console.log('Document data:', docSnap.data());
-          sessionStorage.setItem('user', JSON.stringify(data));
-          // Search User
-          const objName = { name: '' };
-          sessionStorage.setItem('userSearch', (JSON.stringify(objName)));
-          a.href = '#/home';
-          window.location.href = a.href;
-        } else {
-          handleErrorVerificateGoogle();
-        }
-        console.log(data);
-        return data;
-      }
-      readUser(uid);
+      readUser(e, uid);
     })
     .catch(handleError);
 };

@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable func-names */
 /* eslint-disable no-use-before-define */
 /* eslint-disable prefer-const */
@@ -11,7 +12,10 @@ import {
   where,
 } from '../utils/firebaseconfig.js';
 import { countries } from '../utils/countries.js';
-import { dataInterests } from '../utils/interests.js';
+
+// import { dataInterests } from '../utils/interests.js';
+import { nameInterests } from '../utils/interests.js';
+
 
 String.prototype.capitalize = function () {
 // console.log(this.charAt(0).toUpperCase() + this.slice(1));
@@ -101,9 +105,14 @@ const Search = () => {
 
   // Show Select Interest
   // eslint-disable-next-line no-restricted-syntax
-  for (const prop in dataInterests) {
+
+//   for (const prop in dataInterests) {
+//     divSelectInterest.innerHTML += `
+//     <option value='${dataInterests[prop]}'>
+
+  for (const prop in nameInterests) {
     divSelectInterest.innerHTML += `
-    <option value='${dataInterests[prop]}'>
+    <option value='${nameInterests[prop]}'>
       ${prop}
     </option>`;
   }
