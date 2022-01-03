@@ -344,6 +344,8 @@ const Home = () => {
     document
       .getElementById('boxPublications')
       .classList.replace('NoneboxPublications', 'boxPublications');
+    up();
+    window.addEventListener('scroll', indicatedScroll);
   });
 
   // Dark and Light mode function
