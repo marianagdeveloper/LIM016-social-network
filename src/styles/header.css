@@ -30,8 +30,16 @@ main {
   color: beige;
 }
 
+#OpenDefault {
+  width: 5%;
+}
+
 .logo {
-  width: 20%;
+  /* width: 20%; */
+  /* width: 6%;
+  margin: 0.5%; */
+  width: 80%;
+  margin: 0% 25%;
 }
 
 .nav-menu {
@@ -81,7 +89,9 @@ main {
 
 @media (max-width: 768px) {
   .logo {
-    width: 60%;
+    /* width: 60%; */
+    width: 14%;
+    margin: 1% 2%;
   }
 
   .nav-menu {
@@ -187,7 +197,9 @@ main {
 
 @media (max-width: 400px) {
   .logo {
-    width: 60%;
+    /* width: 60%; */
+    width: 14%;
+    margin: 1% 2%;
   } 
   /* .nav-menu {
     top: 61px;

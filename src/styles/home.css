@@ -64,7 +64,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 24%;
+  margin-top: 20%;
 }
 .linea2 {
   margin: 0rem 1rem;
@@ -361,7 +361,7 @@ body {
   text-align: center;
   color: rgb(255, 255, 255);
   padding: 5%;
-  margin-top: 19%;
+  margin-top: 18%;
   background-color: rgb(28, 122, 33);
   box-shadow: inset 5px 5px 10px rgb(20, 92, 24),
   inset -5px -5px 10px rgb(9, 58, 11);
