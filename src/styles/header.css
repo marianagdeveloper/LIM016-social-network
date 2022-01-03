@@ -22,6 +22,7 @@ main {
   position: fixed;
   margin: 0 auto;
   background-color: black;
+  z-index: 2;
 }
 
 .nav-link {
