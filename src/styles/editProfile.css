@@ -20,7 +20,7 @@
   grid-area: 1 / 1 / 2 / 3;
   align-self: center;
   justify-self: center;
-  margin-top: 20px;
+  margin-top: 6%;
   margin-bottom: 20px;
 }
 
@@ -39,7 +39,6 @@
 /* First Mobile - Body: Edit Profile */
 .bodyEditProfile {
   grid-area: 2 / 1 / 7 / 3;
-  /* background: #3e6c43; */
   background-color: #3e6c439e;
   width: 34vw;
   height: 88vh;
@@ -52,8 +51,6 @@
   align-self: center;
   justify-self: center;
   font-size: small;
-  /* box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%); */
-  /* border: 2px solid #dfe2d6; */
   box-shadow: #000000 0px 4px 16px, rgb(0 0 0) 0px 8px 32px;
 }
 
@@ -230,7 +227,6 @@
 }
 
 #selectPhoto {
-  /* background-color: #3e6c43; */
   background-color: #3e6c439e;
   width: 100%;
   border-radius: 20px;
@@ -239,9 +235,7 @@
   align-items: center;
   font-size: small;
   padding: 2%;
-  /* box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%); */
   box-shadow: #000000 0px 4px 16px, rgb(0 0 0) 0px 8px 32px;
-  /* border: 2px solid #dfe2d6; */
 }
 
 .img11 {
@@ -375,7 +369,6 @@
 }
 
 #selectInterest {
-  /* background-color: #3e6c43; */
   background-color: #3e6c439e;
   width: 100%;
   border-radius: 20px;
@@ -385,9 +378,7 @@
   align-items: center;
   font-size: small;
   padding: 2%;
-  /* box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%); */
   box-shadow: #000000 0px 4px 16px, rgb(0 0 0) 0px 8px 32px;
-  /* border: 2px solid #dfe2d6; */
 }
 
 .flag img,
@@ -449,7 +440,6 @@
   }
 
   #selectPhoto {
-    /* background-color: #3e6c43; */
     background-color: #3e6c439e;
     width: 100%;
     display: flex;
@@ -458,12 +448,10 @@
     font-size: small;
     padding: 2%;
     margin-top: 5%;
-    /* box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%); */
     box-shadow: #000000 0px 4px 16px, rgb(0 0 0) 0px 8px 32px;
 }
 
 #selectInterest {
-  /* background-color: #3e6c43; */
   background-color: #3e6c439e;
   width: 100%;
   display: flex;
@@ -472,9 +460,7 @@
   font-size: small;
   padding: 2%;
   margin-top: 5%;
-  /* box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%); */
   box-shadow: #000000 0px 4px 16px, rgb(0 0 0) 0px 8px 32px;
-  /* border: 2px solid #dfe2d6; */
 }
 
   .selectProfile {
@@ -493,14 +479,12 @@
 }
   .bodyEditProfile {
     grid-area: 2 / 1 / 7 / 3;
-    /* background: #3e6c43; */
     background-color: #3e6c439e;
     display: grid;
     grid-template-columns: 0.7fr 1.3fr;
     grid-template-rows: 0.1fr 0.7fr 2.2fr 0.4fr 0.4fr 1.4fr;
     align-self: center;
     font-size: small;
-    /* box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%); */
     box-shadow: #000000 0px 4px 16px, rgb(0 0 0) 0px 8px 32px;
 }
   .bodyEditProfile {

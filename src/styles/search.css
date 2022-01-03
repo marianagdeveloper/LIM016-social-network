@@ -26,6 +26,11 @@
   padding: 0.7rem 3%;
 }
 
+.input,
+.filtros {
+  margin-top: 4.5%;
+}
+
 .filtros {
   display: flex;
   justify-content: space-around;
@@ -149,5 +154,9 @@
     grid-gap: 40px 40px;
     padding: 40px;
     justify-items: center;
+  }
+  .input,
+  .filtros {
+    margin-top: 0%;
   }
 }
