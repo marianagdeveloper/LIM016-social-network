@@ -35,10 +35,10 @@ body {
   
 }
 
-#container {
+/* #container { */
   /* padding-top: 7%; */
-  padding-top: 4.5%;
-}
+  /* padding-top: 4.5%; */
+/* } */
 
 .UserName {
   text-align: center;
@@ -64,7 +64,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  margin-top: 24%;
 }
 .linea2 {
   margin: 0rem 1rem;
@@ -317,15 +317,14 @@ body {
 .btnPublic {
   display: flex;
   justify-content: space-between;
-  /* margin: 2%; */
   align-items: center;
   gap: 2%;
   position: fixed;
   padding: 1%;
   width: 56%;
   background-color: #c4c4c4;
-  top: 90%;
-}
+  top: 9%;
+} 
 
 .btnPublic input {
   border: none;
@@ -362,6 +361,7 @@ body {
   text-align: center;
   color: rgb(255, 255, 255);
   padding: 5%;
+  margin-top: 19%;
   background-color: rgb(28, 122, 33);
   box-shadow: inset 5px 5px 10px rgb(20, 92, 24),
   inset -5px -5px 10px rgb(9, 58, 11);
@@ -434,7 +434,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 5%;
+  padding-top: 15%;
   padding-bottom: 5%;
 }
 
@@ -569,11 +569,9 @@ body {
   }
   
   .UserName {
-  
     justify-self: stretch;
     align-self: stretch;
     grid-area: UserName;
-    
   }
 
   .Email { 
@@ -610,7 +608,7 @@ body {
     align-items: center;
     justify-content: center;
     justify-content: space-evenly;
-    
+    margin-top: 0;
   }
   .linea2 {
     margin: 0rem 1rem;

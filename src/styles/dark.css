@@ -97,6 +97,10 @@ body.dark .AddPhotoPostEdit {
   margin: 5% 11% 5% 5%;
 }
 
+body.dark #EditProfile {
+  background-color: #161515;
+}
+
 body.dark .AddPhotoPost img {
   background-color: beige;
   /* padding: 5%; */
@@ -106,6 +110,13 @@ body.dark .AddPhotoPost img {
 body.dark .btnPublic{
   background-color: #161515;
 }
+
+body.dark .bodyEditProfile,
+body.dark #selectPhoto,
+body.dark #selectInterest {
+  background-color: #2f2f2f;
+}
+
 @media screen and (max-width: 760px) {
   body.dark .btnEditPost,
   body.dark .btnDelete {
