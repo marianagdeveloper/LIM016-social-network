@@ -29,6 +29,9 @@ export const handleSigninGoogle = (e) => {
           sessionStorage.setItem('key', uid);
           // console.log('Document data:', docSnap.data());
           sessionStorage.setItem('user', JSON.stringify(data));
+          // Assign Search User Vacio
+          const objName = { name: '' };
+          sessionStorage.setItem('userSearch', (JSON.stringify(objName)));
           a.href = '#/home';
           window.location.href = a.href;
         } else {
