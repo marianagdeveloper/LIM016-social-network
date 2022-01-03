@@ -104,7 +104,6 @@ export const handleSigninGoogle = (e) => {
   signInWithPopup(auth, provider)
     .then((result) => {
       const uid = result.user.uid;
-      console.log('uid', uid);
       // Assign Search User Vacio
       const objName = { name: '' };
       sessionStorage.setItem('userSearch', (JSON.stringify(objName)));

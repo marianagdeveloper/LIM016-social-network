@@ -91,10 +91,9 @@ async function addPublication(publication, urlsImg) {
 
 /* *************** Eliminar url de Firebase *************** */
 
-
 export const deletePublication = (idPublicationRef) => deleteDoc(doc(db, 'publications', idPublicationRef));
+// eslint-disable-next-line max-len
 // export const deleteUrl = (idPublicationRef) => deleteDoc(doc(db, 'publications', idPublicationRef));
-
 
 /* *************** Editar publicacion de Firebase *************** */
 
