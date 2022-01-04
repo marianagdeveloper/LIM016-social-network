@@ -99,7 +99,7 @@ A continuación, se mostrará parte del prototipado de alta fidelidad, si desea 
 A continuación se adjuntará una videodemostración del resultado final tanto en diseño como en funcionalidad.
 
 <div align="center">
-<video src="/src/img/Readme/screen-recorder-mon-jan-03-2022-22-22-16.mp4" width="800"></video>
+<video src="/src/img/Readme/screen-recorder-mon-jan-03-2022-22-22-16.mp4" width="800"/>
 </div>
 
 ## 4. Tecnologías empleadas 👩🏾‍💻
