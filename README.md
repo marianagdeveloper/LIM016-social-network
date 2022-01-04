@@ -95,6 +95,12 @@ A continuación, se mostrará parte del prototipado de alta fidelidad, si desea 
 </div>
 
 ***
+## 3.2 Resultado final: 💁🏼
+A continuación se adjuntará una videmostración del resultado final tanto en diseño como en funcionalidad.
+
+<div align="center">
+<video src="/src/img/Readme/screen-recorder-mon-jan-03-2022-22-22-16.mp4" width="800"></video>
+</div>
 
 ## 4. Tecnologías empleadas 👩🏾‍💻
 ### Para la estructura y diseño:
