@@ -131,6 +131,43 @@
   /* height: 45px; */
 }
 
+.scrollUpContainerSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding-top: 15%; */
+  opacity: 1;
+  visibility: visible;
+}
+
+.btnScrollTopSearch {
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #e2e2e2;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60);
+  transition: all .1s;
+  position: fixed;
+  z-index: 2;
+  /* margin-top: 4%; */
+}
+
+.btnScrollTopSearch:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.btnScrollTopSearch img {
+  width: 30px;
+  height: 30px;
+}
+
+.hideBtnUpSearch {
+  opacity: 0;
+  visibility: hidden;
+}
+
 @media (max-width: 900px) {
   .filtros {
     display: flex;

@@ -16,7 +16,6 @@ import { countries } from '../utils/countries.js';
 // import { dataInterests } from '../utils/interests.js';
 import { nameInterests } from '../utils/interests.js';
 
-
 String.prototype.capitalize = function () {
 // console.log(this.charAt(0).toUpperCase() + this.slice(1));
   return this.charAt(0).toUpperCase() + this.slice(1);
@@ -32,6 +31,9 @@ async function usersInFirestore() {
 const Search = () => {
   const viewSearch = `      
     <div class='container'>
+      <div id="scrollUpContainerSearch" class="hideBtnUpSearch scrollUpContainerSearch">
+        <button id="btnScrollTopSearch" class="btnScrollTopSearch"><img src="img/Icons/Up.png"></button>
+      </div>
       <div class='caja1'>
         <div class='input'>
           <input type='text' id='fname' name='firstname' placeholder='🔍 User name..'>
@@ -67,6 +69,31 @@ const Search = () => {
   const divInputName = divElemt.querySelector('#fname');
   const divSelectCountry = divElemt.querySelector('.selectCountry');
   const divSelectInterest = divElemt.querySelector('.selectInterest');
+
+  // btn Scroll Up
+  const scrollUpContainer = divElemt.querySelector('#scrollUpContainerSearch');
+  const scrollUpbtn = divElemt.querySelector('#btnScrollTopSearch');
+
+  // btn Scroll Up functions
+  const getPixels = () => document.documentElement.scrollTop || document.body.scrollTop;
+  const up = () => {
+    if (getPixels() > 0) {
+      requestAnimationFrame(up);
+      // eslint-disable-next-line no-restricted-globals
+      scrollTo(0, getPixels() - (getPixels() / 20));
+    }
+  };
+
+  const indicatedScroll = () => {
+    if (getPixels() > 80) {
+      scrollUpContainer.classList.remove('hideBtnUpSearch');
+    } else {
+      scrollUpContainer.classList.add('hideBtnUpSearch');
+    }
+  };
+
+  scrollUpbtn.addEventListener('click', up);
+  window.addEventListener('scroll', indicatedScroll);
 
   // Filter
   async function filterUsers(key, divElem) {
@@ -106,10 +133,11 @@ const Search = () => {
   // Show Select Interest
   // eslint-disable-next-line no-restricted-syntax
 
-//   for (const prop in dataInterests) {
-//     divSelectInterest.innerHTML += `
-//     <option value='${dataInterests[prop]}'>
+  //   for (const prop in dataInterests) {
+  //     divSelectInterest.innerHTML += `
+  //     <option value='${dataInterests[prop]}'>
 
+  // eslint-disable-next-line no-restricted-syntax
   for (const prop in nameInterests) {
     divSelectInterest.innerHTML += `
     <option value='${nameInterests[prop]}'>
