@@ -785,7 +785,7 @@ const Home = () => {
     if (Object.keys(filterMyPost) == 'name') {
       //  console.log('filter user: ', filterMyPost.name);
       const q = query(
-        collection(db, 'users'), orderBy('dateCreated', 'desc'),
+        collection(db, 'users'), 
         where('name', '>=', filterMyPost.name.capitalize()),
         where('name', '<=', `${filterMyPost.name.capitalize()}\uf8ff`),
       );
