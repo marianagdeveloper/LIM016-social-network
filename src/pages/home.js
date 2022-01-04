@@ -755,7 +755,7 @@ const Home = () => {
     const nameSearch = userSearchSession.name;
     if (nameSearch !== '') {
       const q = query(
-        collection(db, 'users'), orderBy('dateCreated', 'desc'),
+        collection(db, 'users'),
         where('name', '>=', nameSearch),
         where('name', '<=', `${nameSearch}\uf8ff`),
       );
