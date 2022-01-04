@@ -1,4 +1,3 @@
-
 // export const dataInterests = {
 //   Animals: 'img/Intereses/Animal.png',
 //   Oceans: 'img/Intereses/Oceanos.png',
@@ -23,4 +22,3 @@ export const nameInterests = {
 };
 
 // export default nameInterests;
-
