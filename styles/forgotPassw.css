@@ -1,0 +1,132 @@
+/* h1 {
+    color: #9effc3;
+} */
+
+.formForgotPass {
+  display: flex;
+  flex-direction: column;
+}
+
+.BoxContainerSignIn i {
+  font-weight: 900;
+  margin: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.containerSignInForgotPass {
+  box-shadow: 1px 1px 2px 1px #5aff99;
+}
+
+.forgotPass label {
+  text-align: center;
+}
+
+.clearfixForgotPass {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 5%;
+  width: 100%;
+}
+
+.inputSignInForgotPass {
+  width: 100%;
+  height: 2.4rem;
+  font-weight: bolder;
+  cursor: pointer;
+  margin: 0.7rem;
+}
+
+.LoginbtnForgotPass,
+.LoginGooglebtnForgotPass {
+  width: 150px;
+  height: 2.4rem;
+  font-weight: bolder;
+  cursor: pointer;
+  margin: 0.7rem;
+}
+
+.alertMessage {
+  font-family: "Roboto", sans-serif;
+  font-weight: bolder;
+  color: rgb(212, 233, 220);
+}
+.ocultAlertMessage {
+  display: none;
+}
+
+.entreLineas {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.linea {
+  margin: 0rem 1rem;
+  width: 5.7rem;
+  border-top: 0.03rem solid #999;
+  position: relative;
+  top: 0.9rem;
+}
+
+.o {
+  font-weight: bold;
+  margin: 0.4rem 0rem;
+}
+
+.modalErrorMessage {
+  display: none;
+}
+
+.alertmodalErrorMessage {
+  color: #f1ff75;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+@media (max-width: 768px) {
+  .BoxWelcome1 {
+    display: none;
+  }
+
+  .formForgotPass {
+    flex-direction: column;
+  }
+}
+
+.modalCheckP {
+  display: none;
+}
+
+.alertmodalCheckP {
+  color: #4fe24f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.CheckP {
+  width: 8%;
+  margin-right: 3%;
+}
+
+.modalCheckPA {
+  display: none;
+}
+
+.alertmodalCheckPA {
+  color: #f1ff75;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.AlertP {
+  width: 8%;
+  margin-right: 3%;
+}

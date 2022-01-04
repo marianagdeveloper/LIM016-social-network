@@ -1,0 +1,172 @@
+/* * {
+  margin: 0px;
+} */
+
+.BoxSignUp {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas: "BoxWelcome1 BoxFormLogin";
+  justify-content: stretch;
+  align-content: stretch;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+@media (max-width: 768px) {
+  .BoxSignUp {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.BoxFormSignUp {
+  justify-self: stretch;
+  align-self: stretch;
+  grid-area: BoxFormLogin;
+  background-color: rgb(7 65 23 / 53%);
+  height: 100vh;
+  display: flex;
+}
+
+.logoSignUp {
+  background-color: #000000c4;
+  border-radius: 100%;
+  border: 1px solid rgba(128, 128, 128, 0);
+  width: 30%;
+  padding: 3%;
+}
+
+.containerSignUp {
+  border: 1px solid gray;
+  height: 33rem;
+  width: 24rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  align-items: stretch;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 1px 1px 2px 1px #5aff99;
+}
+
+.containerSignUp h1 {
+  margin: 0.5rem;
+}
+
+.inputSignUp {
+  border-radius: 10px;
+  width: 18rem;
+  height: 2.4rem;
+  border-color: 1px solid gray;
+  margin: 0.5rem 0.3rem;
+  padding: 1rem;
+}
+
+.signupbtn {
+  border: none;
+  background-color: gray;
+  width: 150px;
+  height:2.4rem;
+  align-items: center;
+  border-radius: 10px;
+  margin: 5px;
+  color: white;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
+}
+
+.LoginGooglebtn {
+  background-color: rgb(194, 53, 53);
+  width: 150px;
+  height: 2.4rem;
+  align-items: center;
+  border-radius: 10px;
+  margin: 5px;
+  color: white;
+  border: none;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
+}
+
+.LoginGooglebtn:hover,
+.signupbtn:hover {
+  opacity: 8;
+}
+
+.clearfix {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  /* margin: 3%; */
+}
+
+@media (max-width: 375px) {
+  .containerSignUp {
+    border: 1px solid gray;
+    width: 18rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    align-items: stretch;
+    justify-content: center;
+    text-align: center;
+  }
+  .inputSignUp{
+    border-radius: 10px;
+    width: 14rem;
+    height: 1rem;
+    border-color: 1px solid gray;
+    margin: 0.5rem 0.3rem;
+    padding: 1rem;
+  }
+}
+
+
+.modalSignUp {
+  display: none;
+}
+
+.alertMessageSignUp {
+  color: #f1ff75;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.Alert {
+  width: 8%;
+  margin-right: 3%;
+}
+
+.modalCheck {
+  display: none;
+}
+
+.alertmodalCheck {
+  color: #4fe24f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.Check {
+  width: 8%;
+  margin-right: 3%;
+}
+
+.modalName{
+  display: none;
+}
+
+.alertmodalName {
+  color: #f1ff75;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
+}

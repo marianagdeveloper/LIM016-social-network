@@ -1,0 +1,712 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
+
+* {
+  margin: 0;
+}
+
+.publication h3 {
+  color: rgb(37, 33, 33);
+}
+
+body {
+  color: beige;
+  background-size: cover;
+  font-family: 'Roboto', sans-serif;
+}
+
+/***************** PAGE HOME FLEX ******************/
+.Home {
+  display: flex;
+}
+
+.HomeBox {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.842), rgba(0, 0, 0, 0.87)),
+  url("../img/Photos/img-10.jpg");
+  
+}
+
+.UserName {
+  text-align: center;
+}
+
+.Avatar {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.Avatar {
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+}
+
+.UserName {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20%;
+}
+.linea2 {
+  margin: 0rem 1rem;
+  width: 100%;
+  border-top:0.03rem solid #999;
+  position: static;
+}
+
+.Bio {
+
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  padding:  2% 5%;
+  font-size: small;
+}
+
+.Bio h3 {
+  margin-right: 3%;
+}
+.Inf {
+
+  display: flex;
+  flex-direction: column;
+}
+
+.Interests {
+  display: flex;
+  flex-direction: column;
+  padding: 5% 0 5% 5%;
+  font-size: small;
+}
+.Interests-Box {
+  display: flex;
+  justify-content: space-evenly;
+}
+.Avatar-img {
+  width: 50%;
+  border-radius: 100%;
+  border-width: 5px;
+  border-color: rgb(34, 100, 13);
+  border-style: solid;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.Interests-Box img {
+  width: 20%;
+  background-color: black;
+  border-radius: 100%;
+  border: 2px solid rgb(34, 100, 13);
+}
+.Country { 
+  grid-area: Country; 
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  line-height: 160%;
+  padding:  2% 5%;
+  font-size: small;
+}
+
+.countryImg {
+  display: flex;
+  justify-content: flex-start;
+}
+.Country h3 {
+  margin-right: 5%;
+}
+.Email { 
+  grid-area: Country; 
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  line-height: 160%;
+  padding:  2% 5%;
+  font-size: small;
+}
+.Email h3 {
+  margin-right: 13%;
+}
+.Publications { 
+  height: 100%;
+  display: flex;
+  width: 80%;
+}
+.PublicationsContent {
+  background-color: #C4C4C4;
+  width: 70%;
+  box-shadow: inset 5px 5px 10px #a7a1a1,
+  inset -5px -5px 10px #a7a1a1;
+  padding-bottom: 5%;
+}
+
+.opcionAddPost {
+  display: flex;
+  width: 100%;
+}
+
+.AddPhotoPostEdit {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  margin: 5%;
+}
+
+.boxFlexbtnX{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.AddPhotoPost {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 2%;
+}
+
+.AddPhotoPost img {
+  width: 30%;
+}
+
+::-webkit-file-upload-button {
+  width: 100%;
+  height: 100%;
+}
+.inputFilePost {
+  position: absolute;
+  width: 2%;
+  height: 4%;
+  z-index: 10;
+  border-radius: 100%;
+  opacity: 0;
+}
+
+.inputFilePostEdit {
+  position: absolute;
+  width: 2%;
+  height: 4%;
+  z-index: 10;
+  border-radius: 100%;
+  opacity: 0;
+}
+
+.inputFilePostIcon {
+  position:relative;
+}
+
+.FilterPost {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 2%;
+}
+
+.btnAllPost,
+.btnMyPost {
+  border: none;
+  background-color: #7b7b7b;
+  color: beige;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 40%) 0px 2px 4px, rgb(0 0 0 / 30%) 0px 7px 13px -3px, rgb(0 0 0 / 20%) 0px -3px 0px inset;
+  padding: 1% 2%;
+}
+
+.btnAllPost:hover,
+.btnMyPost:hover,
+.NewPost:hover {
+  background-color: #3f3c3c;
+  transform: scale(1.1);
+}
+
+.btnMode {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.switch {
+  background-color: gray;
+  border-radius: 50px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+}
+
+.switch span {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.switch span img {
+  width: 20px;
+  height: 20px;
+}
+
+.switch::after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  background: #e2e2e2;
+  top: 0;
+  left: 0;
+  right: unset;
+  border-radius: 100px;
+  transition: .3s ease all;
+  box-shadow: 0 0 2px 2px #00000033;
+}
+.switch.active {
+  background-color: hsl(47deg 100% 39%);
+}
+
+.switch.active::after {
+  right: 0;
+  left: unset;
+}
+
+.btnPublic {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2%;
+  position: fixed;
+  padding: 1%;
+  width: 56%;
+  background-color: #c4c4c4;
+  top: 9%;
+} 
+
+.btnPublic input {
+  border: none;
+  padding: 6px;
+  border-radius: 10px;
+  box-shadow: inset 5px 5px 10px #dcd4d4, inset -5px -5px 10px #d2d2d2;
+}
+.NewPost{
+  width: 5%;
+  border-radius: 100%;
+  padding: 1%;
+  background-color: rgb(123 123 123);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.btnAllPost, .btnMyPost {
+  background-color: rgba(123, 123, 123, 0.829);
+    border-radius: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    padding: 6px;
+    opacity: 0.9;
+    box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
+}
+
+.SliderNews {
+  background-color: rgba(0, 0, 0, 0.534);
+  width: 30%;
+}
+
+.TittleEcoNews {
+  text-align: center;
+  color: rgb(255, 255, 255);
+  padding: 5%;
+  margin-top: 18%;
+  background-color: rgb(28, 122, 33);
+  box-shadow: inset 5px 5px 10px rgb(20, 92, 24),
+  inset -5px -5px 10px rgb(9, 58, 11);
+}
+.NewsContainer{
+  text-align: center;
+  padding: 5%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.842), rgba(0, 0, 0, 0.87)),
+  url("../img/Photos/img-5.jpg");
+  
+}
+.NewsContainer img {
+  object-fit: cover;
+  width: 100%;
+  height: 130px;
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: rgb(0, 0, 0);
+  border-style: solid; 
+}
+
+.NewsContainer h2 {
+  font-size: small;
+  text-align: justify;
+  font-weight: none;
+  margin-top: 2%;
+  
+}
+.NewsContainer a {
+  font-size: small;
+  padding: 0 9%;
+  color: rgb(206, 206, 13);
+}
+
+.News {
+  padding: 2% 7%;
+  
+}
+
+.save {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  align-items: center;
+}
+
+.save img {
+  width: 2rem;
+}
+
+.save p {
+  color: rgb(28, 122, 33);
+  font-weight: bold;
+}
+
+.boxPublic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 5%;
+}
+
+.btnsPublic {
+  display: flex;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 5%;
+}
+
+.flexFilterBtns {
+  gap: 5%;
+  display: flex;
+}
+
+.CountryFlex {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2%;
+  margin-top: 2%;
+}
+
+.btnDeleteImg,
+.btnDeteleImgEdit {
+  border-radius: 100%;
+  width: 25px;
+  height: 25px;
+  font-weight: bold;
+  border: none;
+  color: beige;
+  background-color: #bf4040;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
+  z-index: 1;
+  position: absolute;
+  margin-top: 1.5%;
+}
+
+.btnDeleteImg:hover,
+.btnDeteleImgEdit:hover {
+  background-color: rgb(146, 26, 26);
+}
+
+.modalNoMoreTwoPost {
+  color: #d5e267;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+  font-weight: bold;
+  filter: drop-shadow(2px 4px 6px black);
+}
+
+.scrollUpContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15%;
+  opacity: 1;
+  visibility: visible;
+}
+
+.btnScrollTop {
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #e2e2e2;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60);
+  transition: all .1s;
+  position: fixed;
+  z-index: 2;
+  margin-top: 4%;
+}
+
+.btnScrollTop:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.btnScrollTop img {
+  width: 30px;
+  height: 30px;
+}
+
+.hideBtnUp {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/***************** PAGE HOME GRID RESPONSIVE ******************/
+
+@media screen and (max-width: 760px) {
+  .Home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.87)), url(img/Photos/img-10.jpg);
+    background-size: cover;
+  }
+  
+  .HomeBox {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.3fr 1.1fr 1fr;
+    grid-auto-columns: 1fr;
+    gap: 0% 0%;
+    grid-auto-flow: row dense;
+    justify-content: center;
+    align-content: stretch;
+    justify-items: center;
+    align-items: stretch;
+    grid-template-areas:
+      "UserName UserName"
+      "Avatar Bio"
+      "Inf Interests";
+    width: 100%;
+    z-index: 3;
+  }
+  
+  .UserName {
+    justify-self: stretch;
+    align-self: stretch;
+    grid-area: UserName;
+  }
+
+  .Email { 
+    grid-area: Country; 
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    line-height: 160%;
+  }
+  .Avatar {
+    justify-self: stretch;
+    align-self: stretch;
+    grid-area: Avatar;
+    grid-area: Avatar;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .Avatar-img {
+    width: 30%;
+    border-radius: 100%;
+    border-width: 5px;
+    border-color: rgb(34, 100, 13);
+    border-style: solid;
+  }
+  
+  .UserName {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
+    margin-top: 0;
+  }
+  .linea2 {
+    margin: 0rem 1rem;
+    width: 100%;
+    border-top:0.03rem solid #999;
+    position: static;
+  }
+  
+  .Bio {  
+    justify-self: stretch;
+    align-self: stretch;
+    grid-area: Bio;
+    display: flex;
+    text-align: justify;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    font-size: small;
+  }
+  
+  .Inf {  
+    justify-self: stretch;
+    align-self: stretch;
+    grid-area: Inf;
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    font-size: small;
+  }
+  
+  .Interests {
+    justify-self: stretch;
+    align-self: stretch;
+    grid-area: Interests;
+    display: flex;
+    flex-direction: column;
+    font-size: small;
+    padding-top: 9%;
+  }
+  .Interests-Box {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .Avatar-img {
+    width: 70%;
+    border-radius: 100%;
+    border-width: 5px;
+    border-color: rgb(34, 100, 13);
+    border-style: solid;
+  }
+  
+  .Interests-Box img {
+    width: 20%;
+    border-radius: 100%;
+    border-width: 2px;
+    border-color: rgb(34, 100, 13);
+    border-style: solid;
+  }
+  .Country { 
+    grid-area: Country; 
+    display: flex;
+    text-align: center;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 160%;
+  }
+  .Publications { 
+    height: 100%;
+    display: flex;
+    width: 100%;
+  }
+
+  .PublicationsContent {
+    background-color: #C4C4C4;
+    width: 100%;
+  }
+  .SliderNews {
+    background-color: black;
+    display: none;
+  }
+  .Avatar .linea2 {
+    display: none;
+  }
+
+  .btnsPublic {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 60%;
+  }
+
+  .flexFilterBtns {
+    display: flex;
+    justify-content: space-between;
+    /* width: 100%; */
+    gap: 5%;
+  }
+
+  .btnPublic input {
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+
+  .CountryFlex {
+    display: flex;
+  }
+
+  .btnDeleteImg {
+    width: 20px;
+    height: 20px;
+    margin: 4%;
+    font-size: x-small;
+  }
+
+  .btnMode {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .btnPublic {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2%;
+    position: fixed;
+    padding: 2% 0% 4% 3%;
+    width: 100%;
+    background-color: #c4c4c4;
+    top: 86%;
+    z-index: 2;
+  }
+
+  .boxPublic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5%;
+    padding-bottom: 20%;
+  }
+
+  #container {
+    padding-top: 17.8%;
+  }
+
+  .btnScrollTop {
+    margin-top: -184%;
+  }
+
+  .scrollUpContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0%;
+    opacity: 1;
+    visibility: visible;
+  }
+}

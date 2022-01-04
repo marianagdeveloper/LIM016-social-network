@@ -1,0 +1,236 @@
+
+.filtros input,
+.filtros select,
+.input input {
+  width: 15rem;
+  padding: 6px 7px;
+  margin: 3px 4px;
+  display: flex;
+  border: 1px solid rgb(185, 161, 161);
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: rgb(79, 112, 46);
+  font-weight: bold;
+}
+
+.caja1 {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  background: rgb(34, 100, 13);
+  box-shadow: inset 5px 5px 10px rgb(20, 92, 24),
+    inset -5px -5px 10px rgb(9, 58, 11);
+  height: auto;
+  align-content: center;
+  padding: 0.7rem 3%;
+}
+
+.input,
+.filtros {
+  margin-top: 4.5%;
+}
+
+.filtros {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.caja2 {
+  height: 40rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: auto;
+  grid-gap: 40px 40px;
+  padding: 40px;
+  justify-items: center;
+}
+
+[class^="search"] {
+  color: rgb(250, 246, 246);
+  /* border: 2rem solid rgb(207, 47, 47); */
+  border-width: 3px;
+  border-radius: 1rem;
+  height: 8rem;
+  width: 20rem;
+  /* box-shadow: #568758 0px 4px 16px, rgb(32 37 32) 0px 8px 32px; */
+}
+
+.search {
+  background: #f4fffe;
+  display: grid;
+  grid-auto-flow: column dense;
+  /* grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr; */
+  /* gap: 15px 15px; */
+  grid-template-areas: "perfil caracteres";
+  padding: 0.4rem;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
+  font-size: small;
+  font-weight: bold;
+}
+
+.perfil {
+  grid-area: perfil;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.perfil img {
+  border: 5px solid #29322a;
+  border-radius: 50%;
+  height: 5rem;
+}
+
+.caracteres {
+  grid-area: caracteres;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+  color: #584d4d;
+  padding: 0.3rem;
+}
+
+.caracteres img {
+  height: 2.5rem;
+  margin: 0 0.2rem;
+  border-radius: 100%;
+  border-width: 3px;
+  border-color: rgb(10, 24, 6);
+  border-style: solid;
+  background: #000;
+}
+
+.intereses {
+  display: flex;
+}
+
+.flexBtn {
+  display: flex;
+  width: 170px;
+  justify-content: flex-end;
+}
+.btnSeeUserPost{
+  margin: 0.5rem;
+  background-color: gray;
+    border-radius: 5px;
+    font-size: x-small;
+    padding: 2%;
+}
+
+.txtBioPost {
+  overflow-y: visible;
+  overflow-wrap: break-word;
+  width: 100%;
+  font-size: x-small;
+  /* height: 45px; */
+}
+
+.scrollUpContainerSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding-top: 15%; */
+  opacity: 1;
+  visibility: visible;
+}
+
+.btnScrollTopSearch {
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #e2e2e2;
+  box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60);
+  transition: all .1s;
+  position: fixed;
+  z-index: 2;
+  margin-top: 12%;
+}
+
+.btnScrollTopSearch:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.btnScrollTopSearch img {
+  width: 30px;
+  height: 30px;
+}
+
+.hideBtnUpSearch {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media (max-width: 900px) {
+  .filtros {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: space-around;
+    align-items: center;
+    width: 100%;
+  }
+  .filtros input {
+    width: 12rem;
+  }
+  .caja2 {
+    /* height: 40rem; */
+    height: 100%;
+    background-color: black;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: auto;
+    grid-gap: 40px 40px;
+    padding: 40px;
+    justify-items: center;
+  }
+  .input,
+  .filtros {
+    margin-top: 0%;
+  }
+
+  .scrollUpContainerSearch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding-top: 15%; */
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .btnScrollTopSearch {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: #e2e2e2;
+    box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60);
+    transition: all .1s;
+    position: fixed;
+    z-index: 2;
+    margin-top: 12%;
+  }
+  
+  .btnScrollTopSearch:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+  
+  .btnScrollTopSearch img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .hideBtnUpSearch {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

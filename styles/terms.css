@@ -1,0 +1,65 @@
+
+.Terms {
+  background-color: #000000c9;
+  color: beige;
+  margin: 0 20%;
+  box-shadow: 3px 3px 18px 3px black;
+}
+
+.Terms i {
+  margin-left: 5%;
+  margin-top: 4%;
+  font-weight: 900;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.Terms-Text h1 {
+  text-align: center;
+  margin: 5% 15%;
+  color: #9effc3;
+}
+
+.Terms-Text h2 {
+  text-align: start;
+  margin: 2% 15%;
+  font-size: medium;
+}
+
+.Terms-Text ul {
+  line-height: 100%;
+  margin: 0 15%;
+  text-align: justify;
+  padding-bottom: 8%;
+}
+
+.logoTerms img {
+  width: 50%;
+}
+
+.Terms-Text {
+  padding: 2% 0;
+}
+
+.logoTerms {
+  text-align: center;
+  padding-bottom: 8%;
+}
+
+@media (max-width: 768px) {
+  .Terms {
+    background-color: black;
+    color: beige;
+    margin: 0 10%;
+    padding: 2%;
+  }
+  .Terms-Text ul {
+    font-size: small;
+  }
+  .Terms-Text h1 {
+    text-align: center;
+    margin: 5% 15%;
+    color: #9effc3;
+    font-size: medium;
+}
+}
