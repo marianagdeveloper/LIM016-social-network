@@ -10,7 +10,8 @@ import {
   doc,
   ref,
   storage,
-  uploadBytes, getDownloadURL,
+  uploadBytes, 
+  getDownloadURL,
 } from
   '../utils/firebaseconfig.js';
 
