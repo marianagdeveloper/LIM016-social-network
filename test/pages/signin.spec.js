@@ -5,6 +5,7 @@ import { handleCurrentUser } from '../../src/pages/signin';
 import {
   signInWithEmailAndPassword,
   signInWithPopup,
+
 } from '../../src/utils/firebaseconfig.js';
 
 jest.mock('../../src/utils/firebaseconfig.js');

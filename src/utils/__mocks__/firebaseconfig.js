@@ -20,6 +20,10 @@ const doc = jest.fn();
 const getDoc = jest.fn();
 const data = '';
 
+// const handleError = jest.fn(() => {
+//   throw new Error('¡Ups!')
+// });
+
 export {
   signInWithEmailAndPassword,
   signInWithPopup,

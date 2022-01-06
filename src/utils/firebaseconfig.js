@@ -30,6 +30,7 @@ import {
   where,
   arrayUnion,
   arrayRemove,
+  orderBy,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 
@@ -80,6 +81,7 @@ export {
   deleteDoc,
   query,
   where,
+  orderBy,
   updateDoc,
   arrayUnion,
   arrayRemove,
