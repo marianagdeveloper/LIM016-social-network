@@ -1,20 +1,31 @@
 const newLocal = '8cm4l6x9m8XLzHcQnUzoZUhciwk0';
 
-const signInWithEmailAndPassword = jest.fn(() => Promise.resolve(() => {
-  const user = newLocal;
-  return user;
+const signInWithEmailAndPassword = jest.fn(() => Promise.resolve({
+  user: {
+    uid: newLocal,
+  },
 }));
-const signInWithPopup = jest.fn(() => Promise.resolve(newLocal));
-// const signInWithPopup = jest.fn(() => Promise.resolve(() => {
-//   const uid = newLocal;
-//   return uid;
-// }));
+const signInWithPopup = jest.fn(() => Promise.resolve({
+  user: {
+    uid: newLocal,
+  },
+}));
 const auth = jest.fn();
+auth.currentUser = {
+  emailVerified: true,
+  providerData: [],
+};
 const provider = jest.fn();
+const doc = jest.fn();
+const getDoc = jest.fn();
+const data = '';
 
 export {
   signInWithEmailAndPassword,
   signInWithPopup,
   auth,
   provider,
+  doc,
+  getDoc,
+  data,
 };

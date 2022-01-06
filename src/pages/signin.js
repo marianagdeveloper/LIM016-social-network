@@ -12,7 +12,7 @@ import {
 export const handleError = (error) => {
   const errorCode = error.code;
   const errorMessage = error.message;
-  console.log('error en signin', errorMessage, errorCode);
+  console.log('error en signin', errorMessage, errorCode, error.stack);
   document
     .getElementById('modalSignIn')
     .classList.replace('modalSignIn', 'alertMessageSignIn');
