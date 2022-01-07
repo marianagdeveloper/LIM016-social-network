@@ -53,10 +53,10 @@ const AboutUs = () => {
             <a target="_blank" href="https://github.com/marianagdeveloper">
               <img src="img/RedesSociales/github-120.png" class="redSocial" alt="Github">
             </a>
-            <a target="_blank" href="mailto:">
+            <a target="_blank" href="mailto:mariana.guanda@gmail.com">
               <img src="img/RedesSociales/gmail-120.png" class="redSocial" alt="Gmail">
             </a>
-            <a target="_blank" href="">
+            <a target="_blank" href="https://www.linkedin.com/in/mariana-guanda-839b38137/">
               <img src="img/RedesSociales/linkedin-120.png" class="redSocial" alt="LinkenIn">
             </a>
             <p>Mariana Guanda</p>
