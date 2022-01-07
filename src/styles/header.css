@@ -3,7 +3,10 @@
 .header {
   height: 60px;
   background-color: rgb(21 32 36 / 69%);
+<<<<<<< HEAD
   /* position: fixed; */
+=======
+>>>>>>> maindeploy
   width: 100%;
   top: 0;
   left: 0;
@@ -12,16 +15,28 @@
 
 main {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.87)),
+<<<<<<< HEAD
     url("/src/img/Photos/img-10.jpg");
   background-size: cover;
   height: 800px;
+=======
+    url("img/Photos/img-10.jpg");
+  background-size: cover;
+>>>>>>> maindeploy
 }
 
 .nav {
   display: flex;
   justify-content: space-between;
+<<<<<<< HEAD
   margin: 0 auto;
   background-color: #000000bf;
+=======
+  position: fixed;
+  margin: 0 auto;
+  background-color: black;
+  z-index: 3;
+>>>>>>> maindeploy
 }
 
 .nav-link {
@@ -29,8 +44,18 @@ main {
   color: beige;
 }
 
+<<<<<<< HEAD
 .logo {
   width: 30%;
+=======
+#OpenDefault {
+  width: 5%;
+}
+
+.logo {
+  width: 20%;
+  margin: 0% 5%;
+>>>>>>> maindeploy
 }
 
 .nav-menu {
@@ -41,6 +66,7 @@ main {
 
 .nav-menu-item {
   font-size: 18px;
+<<<<<<< HEAD
   /* margin: 0 10px;
   line-height: 80px; */
   width: max-content;
@@ -52,6 +78,14 @@ main {
 
 .nav-menu-item p {
   display: none;
+=======
+  width: max-content;
+  text-align: center;
+}
+
+.nav-menu-item img {
+  width: 30%;
+>>>>>>> maindeploy
 }
 
 .nav-menu-link {
@@ -64,6 +98,7 @@ main {
   transition: 0.5s;
 }
 
+<<<<<<< HEAD
 .NavToggle {
   background-color: rgb(40 56 55 / 0%);
   border: none;
@@ -75,10 +110,13 @@ main {
   width: 40px;
 }
 
+=======
+>>>>>>> maindeploy
 /************* HEADER  RESPONSIVE*************/
 
 @media (max-width: 768px) {
   .logo {
+<<<<<<< HEAD
     width: 60%;
   }
 
@@ -97,6 +135,27 @@ main {
     transition: left 0.3s;
     z-index: 5;
     /* padding: 10% 0% 0% 10.7%;*/
+=======
+    /* width: 60%; */
+    width: 80%;
+    margin: 1% 5%;
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    margin: 0 auto;
+    background-color: black;
+    z-index: 4;
+  }
+
+  .nav-menu {
+    background-color: black;
+    display: flex;
+    transition: right 0.3s;
+    z-index: 5;
+>>>>>>> maindeploy
   }
 
   .nav-menu-item {
@@ -104,11 +163,16 @@ main {
   }
 
   .nav-menu-item img {
+<<<<<<< HEAD
     width: 50px;
   }
 
   .nav-menu-item p {
     display: block;
+=======
+    width: 30px;
+    margin-left: 2%;
+>>>>>>> maindeploy
   }
 
   .nav-menu-link:hover {
@@ -116,6 +180,7 @@ main {
     color: #45aa4aea;
   }
 
+<<<<<<< HEAD
   .NavToggle {
     display: block;
     margin-right: 5%;
@@ -141,6 +206,11 @@ main {
   .nav-menu a {
     position: relative;
     padding: 5px;
+=======
+  .nav-menu a {
+    position: relative;
+    padding: 8px;
+>>>>>>> maindeploy
     display: flex;
     align-items: center;
     column-gap: 10%;
@@ -173,6 +243,7 @@ main {
     transform-origin: center;
   }
 }
+<<<<<<< HEAD
 
 @media (max-width: 400px) {
   .logo {
@@ -180,5 +251,14 @@ main {
   } 
   .nav-menu {
     top: 61px;
+=======
+#OpenDefault {
+  width: 20%;
+}
+@media (max-width: 400px) {
+  .logo {
+    width: 80%;
+    margin: 1% 5%;
+>>>>>>> maindeploy
   } 
 }

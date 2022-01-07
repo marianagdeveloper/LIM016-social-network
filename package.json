@@ -13,8 +13,9 @@
     "htmlhint": "htmlhint dist/*.html ",
     "eslint": "eslint --ext .js src/ test/",
     "stylelint": "stylelint --aei src/**/*.css",
-    "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
+    "pretests": "npm run htmlhint && npm run eslint && npm run stylelint",
     "test": "jest --env=jsdom --coverage",
+    "deploy": "gh-pages -d src",
     "start": "serve src/"
   },
   "devDependencies": {
@@ -25,8 +26,10 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^24.1.0",
+    "gh-pages": "^3.2.3",
     "htmlhint": "^0.15.1",
     "jest": "^27.0.1",
+    "page": "^1.11.6",
     "regenerator-runtime": "^0.13.1",
     "serve": "^12.0.0",
     "stylelint": "^13.13.1",

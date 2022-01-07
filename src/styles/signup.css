@@ -1,6 +1,6 @@
-* {
+/* * {
   margin: 0px;
-}
+} */
 
 .BoxSignUp {
   display: grid;
@@ -52,6 +52,10 @@
   box-shadow: 1px 1px 2px 1px #5aff99;
 }
 
+.containerSignUp h1 {
+  margin: 0.5rem;
+}
+
 .inputSignUp {
   border-radius: 10px;
   width: 18rem;
@@ -95,7 +99,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  margin: 3%;
+  /* margin: 3%; */
 }
 
 @media (max-width: 375px) {
@@ -118,4 +122,51 @@
     margin: 0.5rem 0.3rem;
     padding: 1rem;
   }
+}
+
+
+.modalSignUp {
+  display: none;
+}
+
+.alertMessageSignUp {
+  color: #f1ff75;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.Alert {
+  width: 8%;
+  margin-right: 3%;
+}
+
+.modalCheck {
+  display: none;
+}
+
+.alertmodalCheck {
+  color: #4fe24f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.Check {
+  width: 8%;
+  margin-right: 3%;
+}
+
+.modalName{
+  display: none;
+}
+
+.alertmodalName {
+  color: #f1ff75;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
 }

@@ -1,8 +1,4 @@
 /************** GENERAL STYLE **************/
-* {
-  margin: 0px;
-  font-family: 'Roboto', sans-serif;
-}
 
 body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.87)),
@@ -17,16 +13,16 @@ a {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 0px;
   background: rgba(0, 0, 0, 0.993);
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.795);
+  background: rgba(61, 55, 55, 0.795);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2db36075;
+  background: #24e26d75;
   border-radius: 10px;
 }
 
@@ -98,7 +94,7 @@ a {
 }
 
 .kmr {
-  margin: 40px;
+  margin:  1.61%;
   font-weight: bolder;
 }
 
@@ -108,36 +104,58 @@ a {
   opacity: 8;
 }
 
-@media screen and (min-width: 500px) and (max-width: 800px) {
-  .btn-welcome-google,
-  .btn-welcome-signin,
-  .btn-welcome-signup {
-    width: 250px;
-  }
-  .text-home {
-    width: 240px;
-    margin: 5%;
-  }
 
-  .logoHome {
-    width: 40%;
-    margin: 10% 0;
-  }
-}
-
-@media screen and (min-width: 204px) and (max-width: 499px) {
+@media screen and (min-width: 400px) and (max-width: 800px) {
   .btn-welcome-google,
   .btn-welcome-signin,
   .btn-welcome-signup {
     width: 200px;
+    height: 50px;
   }
   .text-home {
     width: 190px;
-    margin: 5%;
+    margin: 8%;
   }
   .logoHome {
-    width: 40%;
-    margin: 15% 0;
+    width: 50%;
+    margin: 13% 0;
+  }
+  .kmr {
+    margin: 10%;
+    font-weight: bolder;
+  }
+
+  .containerSignIn {
+    width: 15rem;
+  }
+}
+
+@media screen and (min-width: 204px) and (max-width: 200px) {
+  .btn-welcome-google,
+  .btn-welcome-signin,
+  .btn-welcome-signup {
+    width: 200px;
+    height: 40px;
+  }
+  .text-home {
+    width: 190px;
+    margin: 8%;
+  }
+  .logoHome {
+    width: 50%;
+    margin: 13% 0;
+  }
+  .kmr {
+    margin: 12%;
+    font-weight: bolder;
+  }
+}
+
+
+
+@media screen and (min-width: 222px) and (max-width: 280px) {
+  .containerSignIn {
+    width: 16rem;
   }
 }
 
@@ -157,6 +175,56 @@ a {
   }
 }
 
-/* html {
-  height: 100%;
-} */
+@media screen and (min-height: 630px) and (min-height: 640px){
+  /* .hero-text {
+    height: 640px;
+  } */
+  .logoHome {
+    width: 30%;
+    /* margin: 8% 0; */
+    border-radius: 100%;
+  }
+}
+@media screen and (min-height: 700px) and (min-height: 720px){
+  .hero-text {
+    height: 735px;
+  }
+  .logoHome {
+    width: 40%;
+    margin: 8% 0;
+    border-radius: 100%;
+  }
+}
+
+@media screen and (min-height: 800px) and (min-height: 812px){
+  .hero-text {
+    height: 812px;
+  }
+}
+
+
+
+@media screen and (min-height: 1000px) and (min-height: 1024px){
+  .hero-text {
+    height: 1024px;
+  }
+  .logoHome {
+    width: 50%;
+    margin: 13% 0;
+    border-radius: 100%;
+  }
+}
+
+@media screen and (min-height: 1000px) and (min-height: 1366px){
+  .hero-text {
+    height: 1366px;
+  }
+  .logoHome {
+    width: 50%;
+    margin: 13% 0;
+    border-radius: 100%;
+  }
+  p {
+    font-size: large;
+  }
+}

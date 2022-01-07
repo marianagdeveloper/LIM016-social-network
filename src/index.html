@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/src/style.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/x-con" sizes="96x96" href="./img/Favicons/apple-icon-120x120.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=Varela+Round&display=swap" rel="stylesheet">
+  
   <title>ECOGRAM</title>
 </head>
 <body>
@@ -20,6 +21,16 @@
   </header>
   <section id="container" class="flex margin-top">
   </section>
+  <div class="modal-container" id="modal-container">
+    <div class="modal" id="modal">
+      <p class="close" id="close">X</p>
+      <p class="question">Are you sure to delete the post?</p>
+      <div>
+        <button class="btn-modal" id="btn-modal-yes" value="yes">Yes</button>
+        <button class="btn-modal" id="btn-modal-no" value="no">No</button>
+      </div>
+    </div>
+  </div>
   <script type="module" src="main.js"></script>
   <script src="https://kit.fontawesome.com/a5f03eb3dc.js" crossorigin="anonymous"></script> 
 </body>

@@ -2,17 +2,7 @@
 /* eslint-disable import/named */
 /* eslint-disable consistent-return */
 import { components } from '../pages/index.js';
-import { handleCurrent } from '../pages/signin.js';
-
-// import { signUpController } from './signup-controller.js';
-// eslint-disable-next-line import/no-unresolved
-// import {
-//   auth,
-//   provider,
-//   signInWithPopup,
-//   GoogleAuthProvider,
-//   sendPasswordResetEmail,
-// } from '../utils/firebaseconfig.js';
+import { handleCurrent, handleCurrentUser } from '../pages/signin.js';
 
 export const changeTmp = (hash) => {
   const id = hash.split('/')[1];
@@ -22,9 +12,6 @@ export const changeTmp = (hash) => {
 
   const headerNav = document.getElementById('headerNav');
   headerNav.innerHTML = '';
-
-  // const publications = document.querySelector('#publications');
-  // publications.innerHTML = '';
 
   switch (hash) {
     case '':
@@ -63,17 +50,19 @@ export const changeTmp = (hash) => {
     }
 
     case '#/searchUser': {
-      if (handleCurrent()) {
+      if (handleCurrentUser()) {
         headerNav.appendChild(components.nav());
         sectionMain.appendChild(components.search());
       } else {
         sectionMain.appendChild(components.signin());
       }
+      // headerNav.appendChild(components.nav());
+      // sectionMain.appendChild(components.search());
       break;
     }
 
     case '#/editProfile': {
-      if (handleCurrent()) {
+      if (handleCurrentUser()) {
         headerNav.appendChild(components.nav());
         sectionMain.appendChild(components.editProfile());
       } else {
@@ -83,7 +72,7 @@ export const changeTmp = (hash) => {
     }
 
     case '#/about': {
-      if (handleCurrent()) {
+      if (handleCurrentUser()) {
         headerNav.appendChild(components.nav());
         sectionMain.appendChild(components.about());
       } else {
@@ -92,6 +81,7 @@ export const changeTmp = (hash) => {
       break;
     }
     // case '#/publications': {
+    //   headerNav.appendChild(components.nav());
     //   publications.appendChild(components.publications());
     //   break;
     // }

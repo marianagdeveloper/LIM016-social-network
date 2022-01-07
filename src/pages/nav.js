@@ -8,6 +8,12 @@ export const handleSignOut = (e) => {
   signOut(auth)
     .then(() => {
     // Sign-out successful.
+<<<<<<< HEAD
+=======
+
+      // Remove all saved data from sessionStorage
+      sessionStorage.clear();
+>>>>>>> maindeploy
       a.href = '#/welcome';
       window.location.href = a.href;
     }).catch((error) => {
@@ -15,6 +21,7 @@ export const handleSignOut = (e) => {
       console.log(error);
     });
 };
+<<<<<<< HEAD
 
 const NavHome = () => {
   const viewNav = ` <nav class="nav">
@@ -25,40 +32,68 @@ const NavHome = () => {
       <button class="NavToggle" id= "NavToggle" area-label="Open menu" >
         <img class="MenuBar" src="/src/img/Icons/WhiteBorder/Menu.png" alt="Menu">
       </button>
+=======
+
+const NavHome = () => {
+  const viewNav = ` <nav class="nav">
+
+      <a id="OpenDefault" href="#/home">
+        <img class="logo" src="img/Logos/LogoG3.png" alt="Ecogram"></a>
+>>>>>>> maindeploy
 
       <ul class="nav-menu nav-menu_visible"  data-animation="center">
 
         <li class="nav-menu-item">
           <a href="#/home" class="nav-menu-link nav-link">
+<<<<<<< HEAD
             <img src="/src/img/Icons/WhiteBorder/Home1.png" alt="Home">
             <p>Eco Home</p>
+=======
+            <img src="img/Icons/WhiteBorder/Home1.png" alt="Home">
+>>>>>>> maindeploy
           </a>
         </li>
 
         <li class="nav-menu-item">
           <a  href="#/searchUser" class="nav-menu-link nav-link " >
+<<<<<<< HEAD
             <img src="/src/img/Icons/WhiteBorder/Search1.png" alt="Search Users">
             <p>Search User</p>
+=======
+            <img src="img/Icons/WhiteBorder/Search1.png" alt="Search Users">
+>>>>>>> maindeploy
           </a>
         </li>
 
         <li class="nav-menu-item">
           <a href="#/editProfile" class="nav-menu-link nav-link">
+<<<<<<< HEAD
             <img src="/src/img/Icons/WhiteBorder/Edit1.png" alt="Edit Profile">
             <p>Edit Profile</p>
+=======
+            <img src="img/Icons/WhiteBorder/Edit1.png" alt="Edit Profile">
+>>>>>>> maindeploy
           </a>
         </li>
 
         <li class="nav-menu-item">
           <a href="#/about" class="nav-menu-link nav-link">
+<<<<<<< HEAD
             <img src="/src/img/Icons/WhiteBorder/Inf1.png" alt="About Us">
             <p>About Us</p>
+=======
+            <img src="img/Icons/WhiteBorder/Inf1.png" alt="About Us">
+>>>>>>> maindeploy
           </a>
         </li>
         <li id="signOutbtn" class="nav-menu-item">
           <a class="nav-menu-link nav-link">
+<<<<<<< HEAD
             <img src="/src/img/Icons/WhiteBorder/SignOut.png" alt="Sign Out">
             <p>Sign Out</p>
+=======
+            <img src="img/Icons/WhiteBorder/SignOut.png" alt="Sign Out">
+>>>>>>> maindeploy
           </a>
         </li>
       </ul>
@@ -67,6 +102,7 @@ const NavHome = () => {
   const divElemt = document.createElement('div');
   divElemt.innerHTML = viewNav;
 
+<<<<<<< HEAD
   // Event for Nav-Menu responsive
 
   const navToggle = divElemt.querySelector('.NavToggle');
@@ -86,6 +122,8 @@ const NavHome = () => {
     }
   });
 
+=======
+>>>>>>> maindeploy
   divElemt
     .querySelector('#signOutbtn')
     .addEventListener('click', handleSignOut);

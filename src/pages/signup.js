@@ -1,11 +1,58 @@
-import { createUserWithEmailAndPassword, auth, sendEmailVerification } from '../utils/firebaseconfig.js';
+/* eslint-disable import/named */
+import {
+  createUserWithEmailAndPassword,
+  auth,
+  sendEmailVerification,
+  doc, setDoc, db, provider, signInWithPopup,
+} from '../utils/firebaseconfig.js';
 
+// Add a new document in collection "users"
+async function createNewUser(bio, country, interests, name, email, uid, photo) {
+  await setDoc(doc(db, 'users', uid), {
+    bio,
+    country,
+    interests,
+    uid,
+    name,
+    email,
+    photo,
+  });
+}
+
+const cleanModal = () => {
+  const check = document.getElementById('modalCheck');
+  const nameI = document.getElementById('modalName');
+  const errorSU = document.getElementById('modalSignUp');
+
+  if (check) {
+    document
+      .getElementById('modalCheck')
+      .classList.replace('alertmodalCheck', 'modalCheck');
+  }
+
+  if (nameI) {
+    document
+      .getElementById('modalName')
+      .classList.replace('alertmodalName', 'modalName');
+  }
+
+  if (errorSU) {
+    document
+      .getElementById('modalSignUp')
+      .classList.replace('alertMessageSignUp', 'modalSignUp');
+  }
+};
+// envío de email para la verificación de correo registrado
 export const handleSenEmailVerification = () => {
   sendEmailVerification(auth.currentUser)
-    .then(() => {
+    .then((result) => {
+      console.log('result: ', result);
       // Email verification sent!
       // ...
       console.log('send email');
+    })
+    .catch(() => {
+      console.log('dont send email');
     });
 };
 
@@ -14,24 +61,80 @@ export const handleSingUp = (e) => {
   const name = e.target.closest('form').querySelector('#name').value;
   const email = e.target.closest('form').querySelector('#email').value;
   const password = e.target.closest('form').querySelector('#password').value;
-  createUserWithEmailAndPassword(auth, email, password, name)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      user.displayname = name;
-      // eslint-disable-next-line no-console
-      console.log(user.displayname);
-      // eslint-disable-next-line no-alert
-      alert(`Created User ${user}`);
-      handleSenEmailVerification();
+
+  if (name !== '') {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Add new user
+        const bio = 'Ecogram non-profit association. We exist to serve planet earth. 🌎';
+        const country = 'pe:Perú';
+        const interests = ['img/Icons/interestNull.png', 'img/Icons/interestNull.png', 'img/Icons/interestNull.png'];
+        const emailFS = userCredential.user.email;
+        const uidFS = userCredential.user.uid;
+        const photo = 'img/Icons/newUser.png';
+        createNewUser(bio, country, interests, name, emailFS, uidFS, photo);
+        cleanModal();
+        // Print notification: User created
+        document
+          .getElementById('modalCheck')
+          .classList.replace('modalCheck', 'alertmodalCheck');
+        handleSenEmailVerification();
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log('error en signup', errorMessage, errorCode);
+        // Print notification: error messeges
+        cleanModal();
+        document
+          .getElementById('modalSignUp')
+          .classList.replace('modalSignUp', 'alertMessageSignUp');
+        // Print text: error messages of Firebase
+        document.getElementById('errormessage').innerHTML = errorCode;
+      });
+  } else if (name === '' || name == null) {
+    cleanModal();
+    // Print notification: name incompleted
+    document
+      .getElementById('modalName')
+      .classList.replace('modalName', 'alertmodalName');
+  }
+};
+
+export const handleSingUpGoogle = (e) => {
+  e.preventDefault();
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const bio = 'Ecogram non-profit association. We exist to serve planet earth. 🌎';
+      const country = 'pe:Perú';
+      const interests = ['img/Icons/interestNull.png', 'img/Icons/interestNull.png', 'img/Icons/interestNull.png'];
+      const user = result.user;
+      const name = user.displayName;
+      const email = user.email;
+      const uid = user.uid;
+      const photo = 'img/Icons/newUser.png';
+      createNewUser(bio, country, interests, name, email, uid, photo)
+        .then(() => {
+          cleanModal();
+          // Print notification: User created
+          document
+            .getElementById('modalCheckWithGoogle')
+            .classList.replace('modalCheck', 'alertmodalCheck');
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log('error en signup', errorMessage, errorCode);
+          // Print notification: error messeges
+          cleanModal();
+          document
+            .getElementById('modalSignUp')
+            .classList.replace('modalSignUp', 'alertMessageSignUp');
+          // Print text: error messages of Firebase
+          document.getElementById('errormessage').innerHTML = errorCode;
+        });
     })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // eslint-disable-next-line no-console
-      console.log(`Notification:${errorCode}${errorMessage}`);
-      // eslint-disable-next-line no-alert
-      alert(`Notification: ${errorMessage}`);
-    });
+    .catch(console.log('error en carga'));
 };
 
 const SignUp = () => {
@@ -83,6 +186,7 @@ const SignUp = () => {
             id="password"
             type="password"
             placeholder="Enter Password"
+            maxlength="8"
             name="psw"
             required
           />
@@ -106,6 +210,26 @@ const SignUp = () => {
           <p id="verify-message" class="verify-message"></p>
           <div class="clearfix">
             <button type="submit" id="btn-welcome-signup" id="signup" class="signupbtn">Sign Up</button>
+            <button type="submit" id="btn-signup-google" class="LoginGooglebtn">Sign Up with Google</button>
+          </div>
+          <div class="clearfix">
+
+          </div>
+          <div id="modalSignUp" class="modalSignUp">
+            <img src="img/Icons/Alert2.png" class="Alert" alt="Alert" />
+            <p id="errormessage"> Error </p>
+          </div>
+          <div id="modalCheck" class="modalCheck">
+            <img src="img/Icons/Verify.png" class="Check" alt="User Created" />
+            <p id="CheckMessage"> Your username was created successfully. Check your email.</p>
+          </div>
+          <div id="modalCheckWithGoogle" class="modalCheck">
+          <img src="img/Icons/Verify.png" class="Check" alt="User Created with Google" />
+          <p id="CheckMessageWithGoogle"> Your username was created successfully.</p>
+          </div>
+          <div id="modalName" class="modalName">
+            <img src="img/Icons/Alert2.png" class="Alert" alt="You need enter your name" />
+            <p id="nameMessage"> Required your name </p>
           </div><hr>
           </div> 
           <p>
@@ -117,7 +241,7 @@ const SignUp = () => {
     </div>
   </div>
   `;
-  // <a type="submit" href="#/home">Send</a>
+
   const divElemt = document.createElement('div');
   divElemt.classList.add('position');
   divElemt.innerHTML = viewCatalogue;
@@ -125,6 +249,10 @@ const SignUp = () => {
   divElemt
     .querySelector('#btn-welcome-signup')
     .addEventListener('click', handleSingUp);
+
+  divElemt
+    .querySelector('#btn-signup-google')
+    .addEventListener('click', handleSingUpGoogle);
   return divElemt;
 };
 

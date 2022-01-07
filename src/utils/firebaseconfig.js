@@ -1,7 +1,8 @@
-/* eslint-disable import/no-unresolved */
 // eslint-disable-next-line import/no-unresolved
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
-// import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
+// eslint-disable-next-line import/no-unresolved
+import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js';
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -11,13 +12,32 @@ import {
   sendPasswordResetEmail,
   sendEmailVerification,
   signOut,
+// eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import {
+  getFirestore,
+  addDoc,
+  doc,
+  setDoc,
+  getDoc,
+  collection,
+  getDocs,
+  onSnapshot,
+  deleteDoc,
+  updateDoc,
+  query,
+  where,
+  arrayUnion,
+  arrayRemove,
+// eslint-disable-next-line import/no-unresolved
+} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import {
+  getStorage, ref, uploadBytes, getDownloadURL, uploadBytesResumable,
+// eslint-disable-next-line import/no-unresolved
+} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-storage.js';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyCk8ZsvxtMvGdSDjbG9qZwEtjRbW7ub9J4',
   authDomain: 'ecogram-5151.firebaseapp.com',
@@ -30,13 +50,17 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider(app);
-// const analytics = getAnalytics(app);
+const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+// const storageRef = ref(storage);
 
 export {
   app,
   auth,
   provider,
+  analytics,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -44,4 +68,24 @@ export {
   sendPasswordResetEmail,
   sendEmailVerification,
   signOut,
+  getFirestore,
+  addDoc,
+  db,
+  doc,
+  setDoc,
+  getDoc,
+  collection,
+  getDocs,
+  onSnapshot,
+  deleteDoc,
+  query,
+  where,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+  storage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  uploadBytesResumable,
 };
