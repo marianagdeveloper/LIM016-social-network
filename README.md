@@ -97,6 +97,7 @@ A continuación, se mostrará parte del prototipado de alta fidelidad, si desea 
 ***
 ## 3.2 Resultado final: 💁🏼
 A continuación se adjuntará una breve videodemostración del resultado final tanto en diseño como en funcionalidad. Si desea verlo completo puede dar click:
+Para ingresar se puede utilizar mi usuario con mi nombre22
 -  [Prototipado videodemostración completa](https://github.com/RJRCH123/LIM016-social-network/blob/dev/practicekmr/src/img/Readme/screen-recorder-mon-jan-03-2022-22-22-16.mp4)
 
 <div align="center">
